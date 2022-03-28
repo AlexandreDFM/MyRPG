@@ -5,7 +5,7 @@
 ## file making
 ##
 
-NAME    = lem_in
+NAME    = my_rpg
 
 CC    = gcc
 

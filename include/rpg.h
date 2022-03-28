@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** lem_in.h
+** rpg.h
 ** File description:
-** Header of Lem_in
+** Header of RPG
 */
 
 #include "my.h"
