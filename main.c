@@ -2,10 +2,18 @@
 ** EPITECH PROJECT, 2022
 ** main
 ** File description:
-** Main of Lem_in
+** Main of rpg
 */
 
-void main(int argc, char **argv)
+#include "infos.h"
+#include "scenes.h"
+
+int main(int argc, char **argv)
 {
-    return 84;
+    wininf *infos = create_window_infos();
+    while (sfRenderWindow_isOpen(infos->win)) {
+        update_events(infos);
+        handle_scene(infos);
+    }
+    return 0;
 }

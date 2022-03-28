@@ -5,25 +5,32 @@
 ## file making
 ##
 
-NAME    = my_rpg
+NAME	= 	my_rpg
 
-CC    = gcc
+CC		=	gcc
 
-RM    = rm -f
+RM		= rm -f
 
-SRC    = main.c								\
+LIB		=  -L ./lib/my/ -lmy
+
+SRC		= 	main.c									\
+			src/scene_handling/scene_handler.c		\
+			src/window/init_window.c				\
+			src/inputs/inputs.c						\
+			src/events/events.c						\
+		
 
 OBJ    = $(SRC:.c=.o)
 
 CFLAGS += -Wall -pedantic -I./include -g3
 
-LIBFLAG    = -L ./lib/my/ -lmy -I ./include -g3 -lcsfml-graphics 		\
--lcsfml-window -lcsfml-system -lcsfml-audio								\
+LIBFLAG    = -I ./include -g3 -lcsfml-graphics	\
+-lcsfml-window -lcsfml-system -lcsfml-audio		\
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C ./lib/my
+	# @make -C ./lib/my
 	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
 
 clean:
