@@ -10,49 +10,64 @@
 
 void init_inputs(wininf *inf)
 {
-    inputs *in = malloc(sizeof(inputs));
-    in->keys = malloc(sizeof(keybinds));
-    in->keys->down = sfKeyS;
-    in->keys->up = sfKeyZ;
-    in->keys->left = sfKeyQ;
-    in->keys->right = sfKeyD;
-    in->keys->interact = sfKeyE;
+    inputs in;
+    in.keys.down = sfKeyS;
+    in.keys.up = sfKeyZ;
+    in.keys.left = sfKeyQ;
+    in.keys.right = sfKeyD;
+    in.keys.interact = sfKeyE;
+    in.axis = (sfVector2f){0.0f, 0.0f};
+    in.interact = 0;
+    in.can_interact = 0;
+    in.interact_callback = -1;
     inf->inputs = in;
 }
 
 void update_inputs(wininf *inf)
 {
-    inf->inputs->axis.x = 0.0f; inf->inputs->axis.y = 0.0f;
+    inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
+    int old_interact = inf->inputs.interact;
+    inf->inputs.interact = 0;
     sfJoystick_update();
     if (sfJoystick_isConnected(0)) {
-        inf->inputs->type = CONTROLLER;
+        inf->inputs.type = CONTROLLER;
         update_joysticks(inf);
-        return;
     }
-    inf->inputs->type = KEYBOARD;
+    inf->inputs.type = KEYBOARD;
     update_keyboard(inf);
+    if (inf->inputs.axis.x > 0.1f) inf->inputs.axis.x = 1.0f;
+    if (inf->inputs.axis.x < -0.1f) inf->inputs.axis.x = -1.0f;
+    if (inf->inputs.axis.y > 0.1f) inf->inputs.axis.y = 1.0f;
+    if (inf->inputs.axis.y < -0.1f) inf->inputs.axis.y = -1.0f;
+    inf->inputs.axis.x = my_clamp(inf->inputs.axis.x, -1.0f, 1.0f);
+    inf->inputs.axis.y = my_clamp(inf->inputs.axis.y, -1.0f, 1.0f);
+    if (old_interact != inf->inputs.interact && old_interact)
+        inf->inputs.can_interact = 0;
 }
 
 void update_keyboard(wininf *inf)
 {
-    inputs *in = inf->inputs;
-    in->axis.y -= (float)sfKeyboard_isKeyPressed(in->keys->up);
-    in->axis.y += (float)sfKeyboard_isKeyPressed(in->keys->down);
-    in->axis.x -= (float)sfKeyboard_isKeyPressed(in->keys->left);
-    in->axis.x += (float)sfKeyboard_isKeyPressed(in->keys->right);
-    in->interact = (int)sfKeyboard_isKeyPressed(in->keys->interact);
+    inf->inputs.axis.y -= (float)sfKeyboard_isKeyPressed(inf->inputs.keys.up);
+    inf->inputs.axis.y += (float)sfKeyboard_isKeyPressed(inf->inputs.keys.down);
+    inf->inputs.axis.x -= (float)sfKeyboard_isKeyPressed(inf->inputs.keys.left);
+    inf->inputs.axis.x += (float)sfKeyboard_isKeyPressed(inf->inputs.keys.right);
+    inf->inputs.interact += (int)sfKeyboard_isKeyPressed(inf->inputs.keys.interact);
 }
 
 void update_joysticks(wininf *inf)
 {
     int has_2d = sfJoystick_hasAxis(0, sfJoystickX);
     has_2d = has_2d && sfJoystick_hasAxis(0, sfJoystickY);
+    float x = 0.0f;
+    float y = 0.0f;
     if (has_2d) {
-        float x = sfJoystick_getAxisPosition(0, sfJoystickX) / 100.0f;
-        float y = sfJoystick_getAxisPosition(0, sfJoystickY) / 100.0f;
-        inf->inputs->axis = (sfVector2f){x, y};
+        x = sfJoystick_getAxisPosition(0, sfJoystickX) / 100.0f;
+        y = sfJoystick_getAxisPosition(0, sfJoystickY) / 100.0f;
     }
     if (sfJoystick_getButtonCount(0)) {
-        inf->inputs->interact = sfJoystick_isButtonPressed(0, 0);
+        inf->inputs.interact += sfJoystick_isButtonPressed(0, 2);
     }
+    x = fabs(x) > 0.35f ? x : 0.0f;
+    y = fabs(y) > 0.35f ? y : 0.0f;
+    inf->inputs.axis = (sfVector2f){x, y};
 }

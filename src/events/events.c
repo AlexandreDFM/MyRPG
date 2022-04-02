@@ -14,5 +14,8 @@ void update_events(wininf *inf)
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
         if (inf->event.type == sfEvtClosed)
             sfRenderWindow_close(inf->win);
+        if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
+        sfKeyRShift)
+            sfRenderWindow_close(inf->win);
     }
 }
