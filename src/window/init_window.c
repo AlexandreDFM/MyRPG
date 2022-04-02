@@ -8,12 +8,28 @@
 #include "infos.h"
 #include "inputs.h"
 
-wininf *create_window_infos(void)
+wininf create_window_infos(char **av)
 {
-    wininf *inf = malloc(sizeof(wininf));
-    inf->mode = (sfVideoMode){1920, 1080, 32};
-    inf->win = sfRenderWindow_create(inf->mode, WINDOW_NAME, sfClose | sfResize, NULL);
-    inf->c_scene = HOME;
-    init_inputs(inf);
+    srand(time(0));
+    wininf inf;
+    inf.mode = (sfVideoMode){1920, 1080, 32};
+    inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
+    inf.c_scene = HOME;
+    init_times(&inf);
+    create_atlases(&inf);
+    init_inputs(&inf);
+    inf.scenes[0] = create_home(&inf, my_atoi(av[1]));
+    inf.scenes[1] = create_static_environment(&inf, 0);
+    inf.scenes[2] = create_static_environment(&inf, my_atoi(av[1]) * 2);
+    inf.camera = init_camera(inf);
+    create_triggers(&inf);
+    inf.transition = 0; inf.change_scene = 0;
+    inf.transition_rect = sfRectangleShape_create();
+    sfRectangleShape_setSize(inf.transition_rect, (sfVector2f){inf.mode.width,
+        inf.mode.height});
+    sfRectangleShape_setFillColor(inf.transition_rect,
+        sfColor_fromRGBA(0, 0, 0, 0));
+    sfRectangleShape_setOrigin(inf.transition_rect,
+    (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
     return inf;
 }

@@ -23,22 +23,9 @@
     #include <stddef.h>
 
     #define WINDOW_NAME "My RPG"
+    #define SIZE 7.0f
+    #define RATE 0.15f
 
-typedef enum scenes_e {
-    HOME,
-} scenes;
-
-typedef struct wininf_t {
-    enum scenes_e c_scene;
-    sfRenderWindow *win;
-    sfVideoMode mode;
-    sfEvent event;
-    struct inputs_t *inputs;
-} wininf;
-
-    #include "inputs.h"
-
-void update_events(wininf *inf);
-wininf *create_window_infos(void);
+    #include "rpg.h"
 
 #endif /* !INFOS_H_ */

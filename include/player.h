@@ -8,7 +8,7 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-    #include "infos.h"
+    #include "rpg.h"
 
 typedef struct stat_s {
     float speed;

@@ -8,7 +8,7 @@
 #ifndef INPUTS_H_
 #define INPUTS_H_
 
-    #include "infos.h"
+    #include "rpg.h"
 
 typedef enum input_types_t {
     KEYBOARD,
@@ -26,13 +26,10 @@ typedef struct keybinds_t {
 typedef struct inputs_t {
     sfVector2f axis;
     int interact;
+    int can_interact;
+    int interact_callback;
     enum input_types_t type;
-    struct keybinds_t *keys;
+    struct keybinds_t keys;
 } inputs;
-
-void init_inputs(wininf *inf);
-void update_inputs(wininf *inf);
-void update_keyboard(wininf *inf);
-void update_joysticks(wininf *inf);
 
 #endif /* !INPUTS_H_ */

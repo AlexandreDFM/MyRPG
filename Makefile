@@ -13,24 +13,52 @@ RM		= rm -f
 
 LIB		=  -L ./lib/my/ -lmy
 
-SRC		= 	main.c									\
-			src/scene_handling/scene_handler.c		\
-			src/window/init_window.c				\
-			src/inputs/inputs.c						\
-			src/events/events.c						\
-		
+SRC		= 	main.c											\
+			src/create_components.c							\
+			src/scene_handling/scene_handler.c				\
+			src/window/init_window.c						\
+			src/entity/draw_entity.c						\
+			src/window/time_handling.c						\
+			src/inputs/inputs.c								\
+			src/events/events.c								\
+			src/csv/load_csv.c								\
+			src/texture_atlas/create_sprite_from_atlas.c	\
+			src/texture_atlas/atlas.c						\
+			src/texture_atlas/init_atlases.c				\
+			src/utils/my_strtwa.c							\
+			src/utils/lists/push_front.c					\
+			src/utils/lists/draw_list.c						\
+			src/entity/init_entity.c						\
+			src/scene_handling/draw_home.c					\
+			src/maths/pingpong.c							\
+			src/maths/my_lerp.c								\
+			src/maths/simple_maths.c						\
+			src/maths/vector_maths.c						\
+			src/anim/create_static_anim.c					\
+			src/anim/handle_decorations.c					\
+			src/player/init_player.c						\
+			src/player/player_update.c						\
+			src/camera/camera_follow.c						\
+			src/camera/init_camera.c						\
+			src/collisions/add_collisions.c					\
+			src/collisions/collision_check.c				\
+			src/collisions/draw_collisions.c				\
+			src/collisions/init_triggers.c					\
+			src/window/handle_transitions.c					\
+			src/scene_handling/draw_scene.c					\
+
 
 OBJ    = $(SRC:.c=.o)
 
 CFLAGS += -Wall -pedantic -I./include -g3
 
-LIBFLAG    = -I ./include -g3 -lcsfml-graphics	\
--lcsfml-window -lcsfml-system -lcsfml-audio		\
+LIBFLAG    = -I ./include -g3 -lGL -lcsfml-graphics					\
+-lcsfml-window -lcsfml-system -lcsfml-audio -L ./lib/ -lmy		\
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	# @make -C ./lib/my
+	@make -C ./lib/my
 	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
 
 clean:
