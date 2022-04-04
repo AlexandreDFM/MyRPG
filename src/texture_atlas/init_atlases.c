@@ -16,4 +16,5 @@ void create_atlases(wininf *inf)
     inf->atlases.scenes = load_csv("csv/scenes.csv");
     inf->atlases.statics = load_csv("csv/statics.csv");
     inf->atlases.collisions = load_csv("csv/collisions.csv");
+    inf->atlases.pnjs = load_csv("csv/pnjs.csv");
 }

@@ -31,6 +31,7 @@ typedef struct atlases_t {
     char **scenes;
     char **pokemons_anim;
     char **houses;
+    char **pnjs;
 } atlases;
 
 typedef struct collision_t {
