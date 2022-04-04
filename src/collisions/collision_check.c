@@ -23,7 +23,7 @@ int check_rect_col(collision *self, sfVector2f pos)
     return 1;
 }
 
-int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf *win)
+int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf *win, player p)
 {
     int res_x = 0, res_y = 0;
     int inside = 0;
@@ -45,7 +45,7 @@ int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf 
             if (c->auto_trigger && !win->inputs.interact) continue;
             if (win->inputs.can_interact) continue;
             win->inputs.can_interact = 1;
-            win->triggers[c->ptr](win);
+            win->triggers[c->ptr](win, p);
         }
     }
     if (!inside) {

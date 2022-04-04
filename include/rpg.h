@@ -60,9 +60,9 @@ typedef struct linked_list_t {
 } list;
 
 typedef struct scene_t {
+    struct linked_list_t *colls;
     struct linked_list_t *statics;
     struct linked_list_t *animated;
-    struct linked_list_t *colls;
 } scene;
 
 typedef struct player_t {
@@ -93,7 +93,7 @@ typedef struct wininf_t {
     struct atlases_t atlases;
     int change_scene;
     sfRectangleShape *transition_rect;
-    void (*triggers[4])(struct wininf_t *win);
+    void (*triggers[5])(struct wininf_t *win, struct player_t p);
 } wininf;
 
 
@@ -140,12 +140,13 @@ void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
 void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
 void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
 void update_camera(camera c, float dt, sfRenderWindow *win, sfRectangleShape *transi);
-int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf *win);
+int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf *win, player p);
 
-void ta_mere(wininf *win);
-void sleep_and_save(wininf *win);
-void homeext_to_village(wininf *win);
-void homeext_to_homeint(wininf *win);
+void ta_mere(wininf *win, player p);
+void sleep_and_save(wininf *win, player p);
+void homeext_to_village(wininf *win, player p);
+void homeext_to_homeint(wininf *win, player p);
+void interact_pnj(wininf *win, player p);
 
 //MATHS
 float my_repeat(float t, float mag);

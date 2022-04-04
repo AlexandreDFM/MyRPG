@@ -13,9 +13,10 @@ void create_triggers(wininf *inf)
     inf->triggers[1] = homeext_to_homeint;
     inf->triggers[2] = ta_mere;
     inf->triggers[3] = sleep_and_save;
+    inf->triggers[4] = interact_pnj;
 }
 
-void homeext_to_village(wininf *win)
+void homeext_to_village(wininf *win, player p)
 {
     sfVector2f home = (sfVector2f){520.0f, 320.0f};
     sfVector2f village = (sfVector2f){25.0f, 320.0f};
@@ -25,7 +26,7 @@ void homeext_to_village(wininf *win)
     win->transition = 1;
 }
 
-void homeext_to_homeint(wininf *win)
+void homeext_to_homeint(wininf *win, player p)
 {
     sfVector2f home = (sfVector2f){275.0f, 200.0f};
     sfVector2f interior = (sfVector2f){166.0f, 235.0f};
@@ -35,7 +36,7 @@ void homeext_to_homeint(wininf *win)
     win->change_scene = 1;
 }
 
-void ta_mere(wininf *win)
+void ta_mere(wininf *win, player p)
 {
     my_printf("Eh non ta mère :D\n");
     sfVector2f mid = (sfVector2f){520.0f, 320.0f};
@@ -45,7 +46,12 @@ void ta_mere(wininf *win)
     win->change_scene = 1;
 }
 
-void sleep_and_save(wininf *win)
+void interact_pnj(wininf *win, player p)
+{
+    my_printf("Interacted with him...\n");
+}
+
+void sleep_and_save(wininf *win, player p)
 {
     my_printf("Saving...\n");
     win->change_scene = 0;
