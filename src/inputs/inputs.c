@@ -25,6 +25,7 @@ void init_inputs(wininf *inf)
 
 void update_inputs(wininf *inf)
 {
+    if (inf->interacting) return;
     inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
     int old_interact = inf->inputs.interact;
     inf->inputs.interact = 0;

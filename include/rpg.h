@@ -17,6 +17,7 @@
     #include "printf.h"
     #include "scenes.h"
     #include "types.h"
+    #include "dialog.h"
 
 typedef enum scenes_e {
     HOME,
@@ -54,12 +55,19 @@ typedef struct time_inft {
     float anim;
 } time_info;
 
+typedef struct pnj_t {
+    sfVector2f pos;
+    entity *ent;
+    char *dialog;
+} pnj;
+
 typedef struct linked_list_t {
     void *data;
     struct linked_list_t *next;
 } list;
 
 typedef struct scene_t {
+    struct linked_list_t *pnjs;
     struct linked_list_t *colls;
     struct linked_list_t *statics;
     struct linked_list_t *animated;
@@ -78,6 +86,13 @@ typedef struct camera_t {
     float speed;
 } camera;
 
+typedef struct ui_t {
+    sfSprite *background;
+    sfFont *font;
+    sfSprite *test;
+    struct dialog_line_t *dialog;
+} ui;
+
 typedef struct wininf_t {
     sfEvent event;
     int transition;
@@ -87,11 +102,13 @@ typedef struct wininf_t {
     enum scenes_e c_scene;
     enum scenes_e next_scene;
     sfVector2f next_pos;
-    struct time_inft time;
+    struct time_inft  time;
     struct camera_t camera;
     struct inputs_t inputs;
     struct atlases_t atlases;
+    struct ui_t ui;
     int change_scene;
+    int interacting;
     sfRectangleShape *transition_rect;
     void (*triggers[5])(struct wininf_t *win, struct player_t p);
 } wininf;
@@ -106,10 +123,12 @@ void draw_home(wininf *inf);
 void init_inputs(wininf *inf);
 camera init_camera(wininf inf);
 void init_times(wininf *infos);
+void init_textbox(wininf *win);
 void update_inputs(wininf *inf);
 void update_time(wininf *infos);
 void update_events(wininf *inf);
 void create_atlases(wininf *inf);
+void create_triggers(wininf *inf);
 void update_keyboard(wininf *inf);
 void update_joysticks(wininf *inf);
 wininf create_window_infos(char **av);
@@ -127,7 +146,9 @@ components create_all_components(char **argv);
 void update_transition(wininf *inf, player p);
 char **my_strtwa(char const *str, char *limit);
 void draw_list(list *obj, sfRenderWindow *win);
+void add_pnjs(atlases atlas, int idx, scene *s);
 int check_rect_col(collision *self, sfVector2f pos);
+void create_pnj(char *line, scene *s, atlases atlas);
 scene create_static_environment(wininf *inf, int id);
 int check_circle_col(collision *self, sfVector2f pos);
 sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
@@ -152,5 +173,7 @@ void interact_pnj(wininf *win, player p);
 float my_repeat(float t, float mag);
 float my_pingpong(float t, float mag);
 float my_clamp(float d, float min, float max);
+float manhattan_distance(sfVector2f a, sfVector2f b);
+float my_lerpf(float a, float b, float t);
 
 #endif

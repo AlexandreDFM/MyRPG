@@ -17,5 +17,8 @@ void update_events(wininf *inf)
         if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
         sfKeyRShift)
             sfRenderWindow_close(inf->win);
+        if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
+        sfKeyEscape)
+            inf->interacting = 0;
     }
 }

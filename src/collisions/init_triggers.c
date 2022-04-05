@@ -48,7 +48,37 @@ void ta_mere(wininf *win, player p)
 
 void interact_pnj(wininf *win, player p)
 {
-    my_printf("Interacted with him...\n");
+    float min = 200.f;
+    pnj *closest = 0;
+    list *l = win->scenes[win->c_scene].pnjs;
+    for (list *t = l; t; t = t->next) {
+        pnj *cp = t->data;
+        float cmin = manhattan_distance(sfSprite_getPosition(p.test), cp->pos);
+        if (cmin < min) {
+            min = cmin;
+            closest = cp;
+        }
+    }
+    sfVector2f poubelle = sfView_getCenter(win->camera.view);
+    poubelle.y += 45.0f;
+    sfSprite_setPosition(win->ui.background, poubelle);
+    FILE *f = fopen(closest->dialog, "r");
+    char *str = 0;
+    int len = 0;
+    getline(&str, &len, f);
+    str[strlen(str) - 1] = '\0';
+    printf("Str: %s\n", str);
+    dline *line = load_line(str, win->ui.font, FONT_SIZE);
+    fclose(f);
+    sfSprite *nsp = sfSprite_create();
+    sfSprite_setTexture(nsp, line->img, sfFalse);
+    poubelle.x -= sfSprite_getTextureRect(win->ui.background).width / 2 - 10;
+    poubelle.y -= sfSprite_getTextureRect(win->ui.background).height / 2;
+    poubelle.x = roundf(poubelle.x);
+    poubelle.y = roundf(poubelle.y);
+    sfSprite_setPosition(nsp, poubelle);
+    win->ui.test = nsp;
+    win->interacting = 1;
 }
 
 void sleep_and_save(wininf *win, player p)

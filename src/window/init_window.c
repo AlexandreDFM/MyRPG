@@ -15,6 +15,7 @@ wininf create_window_infos(char **av)
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
     inf.c_scene = HOME;
+    inf.interacting = 0;
     init_times(&inf);
     create_atlases(&inf);
     init_inputs(&inf);
@@ -31,5 +32,6 @@ wininf create_window_infos(char **av)
         sfColor_fromRGBA(0, 0, 0, 0));
     sfRectangleShape_setOrigin(inf.transition_rect,
     (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
+    init_textbox(&inf);
     return inf;
 }

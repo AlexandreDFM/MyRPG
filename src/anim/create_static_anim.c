@@ -17,7 +17,7 @@ void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
         name += 1;
         printf("Reversed ");
     }
-    printf("%s...\n", name);
+    printf("%s ", name);
     for (; csv[i]; i++) {
         int len = my_strlen(csv[i]);
         if (!my_strncmp(name, csv[i], len))

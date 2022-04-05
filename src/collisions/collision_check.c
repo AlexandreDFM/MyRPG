@@ -9,16 +9,18 @@
 
 int check_circle_col(collision *s, sfVector2f pos)
 {
+    if (manhattan_distance(pos, (sfVector2f){s->pos.x, s->pos.y}) >= 100)
+        return (3);
     return !(distance((sfVector2f){s->pos.x, s->pos.y}, pos) <= s->radius);
 }
 
 
-int check_rect_col(collision *self, sfVector2f pos)
+int check_rect_col(collision *s, sfVector2f pos)
 {
-    int x_cond = pos.x >= self->pos.x && pos.x <= self->pos.x + self->size.x;
-    int y_cond = pos.y >= self->pos.y && pos.y <= self->pos.y + self->size.y;
+    int x_cond = pos.x >= s->pos.x && pos.x <= s->pos.x + s->size.x;
+    int y_cond = pos.y >= s->pos.y && pos.y <= s->pos.y + s->size.y;
     if (x_cond && y_cond) {
-        return self->ptr != -1 ? 2 : 0;
+        return s->ptr != -1 ? 2 : 0;
     }
     return 1;
 }
@@ -31,9 +33,10 @@ int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf 
         sfVector2f x_axis = (sfVector2f){pos.x + vel->x, pos.y};
         sfVector2f y_axis = (sfVector2f){pos.x, pos.y + vel->y};
         collision *c = t->data;
-        c->draw(c, win->win);
         res_x = c->check(c, x_axis);
         res_y = c->check(c, y_axis);
+        if (res_x != 3 && res_y != 3)
+            c->draw(c, win->win);
         if (!res_x && !res_y)
             return 0;
         if (res_x && !res_y)

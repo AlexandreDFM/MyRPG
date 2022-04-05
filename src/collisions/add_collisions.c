@@ -34,9 +34,6 @@ void add_collisions(char *str, list **l)
             sfRectangleShape_setFillColor(n->rect,
                 sfColor_fromRGBA(0, 0, 255, 122));
         }
-        if (!my_strcmp(arr[i], "PNJ")) {
-            int id = my_atoi(arr[i + 1]);
-        }
     }
 }
 

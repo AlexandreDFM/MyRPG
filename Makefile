@@ -46,6 +46,9 @@ SRC		= 	main.c											\
 			src/collisions/init_triggers.c					\
 			src/window/handle_transitions.c					\
 			src/scene_handling/draw_scene.c					\
+			src/pnjs/add_pnjs.c								\
+			src/text_handling/create_textbox.c				\
+			src/text_handling/load_font.c					\
 
 
 OBJ    = $(SRC:.c=.o)

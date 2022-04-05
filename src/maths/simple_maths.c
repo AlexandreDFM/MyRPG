@@ -11,3 +11,8 @@ float my_lerpf(float a, float b, float t)
 {
     return a + (b - a) * t;
 }
+
+float manhattan_distance(sfVector2f a, sfVector2f b)
+{
+    return (fabsf(a.x - b.x) + fabsf(a.y - b.y));
+}
