@@ -64,9 +64,9 @@ void interact_pnj(wininf *win, player p)
     sfSprite_setPosition(win->ui.background, poubelle);
     FILE *f = fopen(closest->dialog, "r");
     char *str = 0;
-    int len = 0;
+    size_t len = 0;
     getline(&str, &len, f);
-    str[strlen(str) - 1] = '\0';
+    str[my_strlen(str) - 1] = '\0';
     printf("Str: %s\n", str);
     dline *line = load_line(str, win->ui.font, FONT_SIZE);
     fclose(f);
