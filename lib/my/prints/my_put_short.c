@@ -7,7 +7,7 @@
 
 #include "../printf.h"
 
-int my_put_short(short int number)
+int my_put_short(int number)
 {
     int number2;
     if (number < 0) {

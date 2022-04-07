@@ -2,7 +2,8 @@ Name;Rect Left;Rect Top;Rect Width;Rect Height;Max x;Loop Type
 Inside Fire Hut Fire;470;527;8;14;40;0
 Inside Fire Hut Fireplace;398;577;18;20;90;0
 Inside Fire Hut Chimney;0;725;64;70;192;1
-Inside Water Hut Waterfall;398;548;26;29;130;0
+Inside Water Hut Waterfall;398;548;27;29;81;0
+Inside Water Hut Special Waterfall;401;652;27;29;81;0
 Red Flowers;0;698;30;23;90;1
 Yellow Flowers;120;698;30;23;90;1
 Big Ripple;0;560;199;136;199;0

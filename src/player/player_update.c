@@ -11,6 +11,7 @@ void draw_player(wininf *inf, player p)
 {
     p.vel = inf->inputs.axis;
     sfVector2f po = sfSprite_getPosition(p.test);
+    // printf("Player Position: %f %f\n", po.x, po.y);
     sfVector2f nextp = (sfVector2f){po.x, po.y};
     list *cols = inf->scenes[inf->c_scene].colls;
     if (check_if_valid_movement(cols, nextp, &p.vel, inf, p) && !inf->transition) {

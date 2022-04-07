@@ -12,14 +12,14 @@
 
 typedef struct dialog_line_t {
     sfTexture *img;
+    sfSprite *sp;
     int *steps;
     int height;
     int i;
+    int max;
     float time;
 } dline;
 
 void load_alphabet(sfFont *font, int size);
-void treat_balise(char *balise, sfColor *color);
-dline *load_line(char *line, sfFont *font, int size);
 
 #endif /* !DIALOG_H_ */

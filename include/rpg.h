@@ -23,6 +23,9 @@ typedef enum scenes_e {
     HOME,
     VILLAGE,
     INTERIOR,
+    DOJO,
+    BEKIPAN,
+    DITTOLAND,
 } scenes;
 
 typedef struct atlases_t {
@@ -33,6 +36,7 @@ typedef struct atlases_t {
     char **pokemons_anim;
     char **houses;
     char **pnjs;
+    char **icons;
 } atlases;
 
 typedef struct collision_t {
@@ -89,6 +93,7 @@ typedef struct camera_t {
 typedef struct ui_t {
     sfSprite *background;
     sfFont *font;
+    float text_delay;
     sfSprite *test;
     struct dialog_line_t *dialog;
 } ui;
@@ -98,7 +103,7 @@ typedef struct wininf_t {
     int transition;
     sfVideoMode mode;
     sfRenderWindow *win;
-    struct scene_t scenes[3];
+    struct scene_t scenes[6];
     enum scenes_e c_scene;
     enum scenes_e next_scene;
     sfVector2f next_pos;
@@ -110,7 +115,7 @@ typedef struct wininf_t {
     int change_scene;
     int interacting;
     sfRectangleShape *transition_rect;
-    void (*triggers[5])(struct wininf_t *win, struct player_t p);
+    void (*triggers[8])(struct wininf_t *win, struct player_t p);
 } wininf;
 
 
@@ -142,6 +147,7 @@ float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
 entity *create_entity(wininf *info, int id);
 void draw_static_scene(wininf *inf, scene s);
+sfIntRect find_icons(wininf *inf, char *str);
 components create_all_components(char **argv);
 void update_transition(wininf *inf, player p);
 char **my_strtwa(char const *str, char *limit);
@@ -156,18 +162,24 @@ void add_circle_col(list **l, int radius, int x, int y);
 void draw_rect_col(collision *self, sfRenderWindow *win);
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 void draw_circle_col(collision *self, sfRenderWindow *win);
+int treat_balise(char *balise, sfColor *color, wininf *inf);
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
+dline *load_line(char *line, sfFont *font, int size, wininf *inf);
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
 void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
 void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
+void add_icon(sfVector2i origin, sfImage *img, sfIntRect r, sfImage *atlas);
 void update_camera(camera c, float dt, sfRenderWindow *win, sfRectangleShape *transi);
 int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf *win, player p);
 
 void ta_mere(wininf *win, player p);
+void interact_pnj(wininf *win, player p);
 void sleep_and_save(wininf *win, player p);
+void village_to_dojo(wininf *win, player p);
 void homeext_to_village(wininf *win, player p);
 void homeext_to_homeint(wininf *win, player p);
-void interact_pnj(wininf *win, player p);
+void village_to_bekipan(wininf *win, player p);
+void village_to_dittoland(wininf *win, player p);
 
 //MATHS
 float my_repeat(float t, float mag);

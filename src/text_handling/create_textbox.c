@@ -14,19 +14,28 @@ void init_textbox(wininf *win)
     sfSprite_setOrigin(win->ui.background, (sfVector2f) {r.width / 2, r.height / 2});
 	win->ui.font = sfFont_createFromFile("fontt.ttf");
 	win->ui.dialog = 0;
+	win->ui.text_delay = 0.05f;
 	load_alphabet(win->ui.font, FONT_SIZE);
 }
 
-dline *load_line(char *line, sfFont *font, int size)
+dline *load_line(char *line, sfFont *font, int size, wininf *inf)
 {
 	int length = 0, posx = 0;
-	int height = size + 1;
+	int height = 0;
 	char prev = 0;
 	sfImage *font_alpha = sfTexture_copyToImage(sfFont_getTexture(font, size));
-	for (int i = 0; line[i] != '\0'; i++) {
+	int len = 0;
+	for (int i = 0; line[i] != '\0'; i++, len++) {
+		if (line[i] == '<') {
+			for (int y = i; line[y] != '>' && line[y] != '\0'; y++, len--);
+			if (line[i + 1] == 'i' && line[i + 2] == '_') len++;
+			length += find_icons(inf, "lCoin").width;
+			continue;
+		}
 		sfGlyph glyph = sfFont_getGlyph(font, line[i], size, sfFalse, 0.0f);
 		length += (int)glyph.advance;
-		height = glyph.textureRect.height > height ? glyph.textureRect.height : height;
+		int nh = glyph.textureRect.height + (glyph.textureRect.height + glyph.bounds.top);
+		height = nh > height ? nh + 1 : height;
 		if (prev) {
 			length -= sfFont_getKerning(font, prev, line[i], size);
 		}
@@ -35,20 +44,29 @@ dline *load_line(char *line, sfFont *font, int size)
 	prev = 0;
 	sfColor current_color = sfWhite;
 	sfImage *img = sfImage_createFromColor(length, height, sfColor_fromRGBA(0, 0, 0, 0));
-	int *steps = malloc(sizeof(int) * (my_strlen(line) + 1));
-	for (int i = 0, li = 0; line[i] != '\0'; i++, li++) {
+	int *steps = malloc(sizeof(int) * (len + 1));
+	int li = 0;
+	for (int i = 0; line[i] != '\0'; i++, li++) {
 		if (line[i] == '<') {
 			int y = 0;
 			for (; line[i + y] != '>'; y++);
-			char test[y - 1];
+			char test[y + 1];
 			my_strncpy(test,line + i + 1, y - 1);
-			treat_balise(test, &current_color);
+			test[y - 1] = '\0';
+			int res = treat_balise(test, &current_color, inf);
 			i += y;
-			li--;
+			if (!res) {
+				li--;
+			} else {
+				sfIntRect r = find_icons(inf, 2 + test);
+				add_icon((sfVector2i){posx - 1, 1}, img, r, inf->atlases.atlas);
+				posx += res;
+				steps[li] = posx;
+			}
 			continue;
 		}
 		sfGlyph glyph = sfFont_getGlyph(font, line[i], size, sfFalse, 0.0f);
-		int startY = height - glyph.textureRect.height;
+		int startY = (height - 1) + glyph.bounds.top;
 		for (int y = 0; y < glyph.textureRect.height; y++) {
 			for (int x = 0; x < glyph.textureRect.width; x++) {
 				sfColor col = sfImage_getPixel(font_alpha, glyph.textureRect.left + x, glyph.textureRect.top + y);
@@ -63,12 +81,15 @@ dline *load_line(char *line, sfFont *font, int size)
 		prev = line[i];
 		steps[li] = posx;
 	}
-	steps[my_strlen(line)] = 0;
+	steps[li + 1] = 0;
 	dline *nl = malloc(sizeof(dline));
 	nl->img = sfTexture_createFromImage(img, NULL);
+	nl->sp = sfSprite_create();
+    sfSprite_setTexture(nl->sp, nl->img, sfFalse);
+	sfSprite_setTextureRect(nl->sp, (sfIntRect){0, 0, steps[li], height});
 	nl->steps = steps;
 	nl->height = height;
-	nl->i = 0;
+	nl->i = 1;
 	nl->time = 0;
 	return nl;
 }

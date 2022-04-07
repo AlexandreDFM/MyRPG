@@ -14,6 +14,9 @@ void create_triggers(wininf *inf)
     inf->triggers[2] = ta_mere;
     inf->triggers[3] = sleep_and_save;
     inf->triggers[4] = interact_pnj;
+    inf->triggers[5] = village_to_bekipan;
+    inf->triggers[6] = village_to_dittoland;
+    inf->triggers[7] = village_to_dojo;
 }
 
 void homeext_to_village(wininf *win, player p)
@@ -46,6 +49,36 @@ void ta_mere(wininf *win, player p)
     win->change_scene = 1;
 }
 
+void village_to_bekipan(wininf *win, player p)
+{
+    sfVector2f home = (sfVector2f){940.0f, 325.0f};
+    sfVector2f interior = (sfVector2f){12.5f, 216.5f};
+    win->next_scene = win->c_scene == VILLAGE ? BEKIPAN : VILLAGE;
+    win->next_pos = win->c_scene == BEKIPAN ? home : interior;
+    win->transition = 1;
+    win->change_scene = 1;
+}
+
+void village_to_dojo(wininf *win, player p)
+{
+    sfVector2f home = (sfVector2f){531.5f, 687.0f};
+    sfVector2f interior = (sfVector2f){340.0f, 22.0f};
+    win->next_scene = win->c_scene == VILLAGE ? DOJO : VILLAGE;
+    win->next_pos = win->c_scene == DOJO ? home : interior;
+    win->transition = 1;
+    win->change_scene = 1;
+}
+
+void village_to_dittoland(wininf *win, player p)
+{
+    sfVector2f home = (sfVector2f){232.0f, 509.0f};
+    sfVector2f interior = (sfVector2f){520.0f, 40.0f};
+    win->next_scene = win->c_scene == VILLAGE ? DITTOLAND : VILLAGE;
+    win->next_pos = win->c_scene == DITTOLAND ? interior : home;
+    win->transition = 1;
+    win->change_scene = 1;
+}
+
 void interact_pnj(wininf *win, player p)
 {
     float min = 200.f;
@@ -67,17 +100,12 @@ void interact_pnj(wininf *win, player p)
     size_t len = 0;
     getline(&str, &len, f);
     str[my_strlen(str) - 1] = '\0';
-    printf("Str: %s\n", str);
-    dline *line = load_line(str, win->ui.font, FONT_SIZE);
+    dline *line = load_line(str, win->ui.font, FONT_SIZE, win);
     fclose(f);
-    sfSprite *nsp = sfSprite_create();
-    sfSprite_setTexture(nsp, line->img, sfFalse);
     poubelle.x -= sfSprite_getTextureRect(win->ui.background).width / 2 - 10;
-    poubelle.y -= sfSprite_getTextureRect(win->ui.background).height / 2;
-    poubelle.x = roundf(poubelle.x);
-    poubelle.y = roundf(poubelle.y);
-    sfSprite_setPosition(nsp, poubelle);
-    win->ui.test = nsp;
+    poubelle.y -= sfSprite_getTextureRect(win->ui.background).height / 2 - 5;
+    sfSprite_setPosition(line->sp, poubelle);
+    win->ui.dialog = line;
     win->interacting = 1;
 }
 

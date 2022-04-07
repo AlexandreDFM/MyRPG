@@ -49,6 +49,7 @@ SRC		= 	main.c											\
 			src/pnjs/add_pnjs.c								\
 			src/text_handling/create_textbox.c				\
 			src/text_handling/load_font.c					\
+			src/text_handling/icons_handler.c				\
 
 
 OBJ    = $(SRC:.c=.o)

@@ -9,7 +9,7 @@
 
 int check_circle_col(collision *s, sfVector2f pos)
 {
-    if (manhattan_distance(pos, (sfVector2f){s->pos.x, s->pos.y}) >= 100)
+    if (manhattan_distance(pos, (sfVector2f){s->pos.x, s->pos.y}) >= 70.0f)
         return (3);
     return !(distance((sfVector2f){s->pos.x, s->pos.y}, pos) <= s->radius);
 }

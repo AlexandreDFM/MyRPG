@@ -10,7 +10,7 @@
 
 void init_pointer(int (**print)())
 {
-    print[(int)('%')] = &my_putchar;
+    print[(int)('%')] = &my_putchar_disp;
     print[(int)('d')] = &my_put_nbr;
     print[(int)('i')] = &my_put_nbr;
     print[(int)('s')] = &my_putstr;
@@ -53,14 +53,15 @@ int my_printf(char *str, ...)
     va_start(ap, str);
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] == '%' && str[i + 1] == 'c') {
-            my_putchar(va_arg(ap, int));
+            char c = va_arg(ap, int);
+            my_putchar_disp(&c);
             i = i + 1;
         } else if (str[i] == '%' && (check(str, i) == 1
         || check(str, i) == 2)) {
             (*print[(int)(str[i + 1])])(va_arg(ap, char *));
             i = i + (check(str, i));
         } else {
-            my_putchar(str[i]);
+            my_putchar_disp(&str[i]);
         }
     }
     return (0);

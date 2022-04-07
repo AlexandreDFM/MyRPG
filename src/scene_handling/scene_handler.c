@@ -23,7 +23,15 @@ void handle_scene(wininf *infos, player p)
     if (infos->interacting) {
         sfRenderWindow_drawSprite(infos->win,
         infos->ui.background, 0);
-        sfRenderWindow_drawSprite(infos->win, infos->ui.test, 0);
+        dline *d = infos->ui.dialog;
+        sfRenderWindow_drawSprite(infos->win, d->sp, 0);
+        if (d->time > infos->ui.text_delay && d->steps[d->i + 1]) {
+            sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
+            sfSprite_setTextureRect(d->sp, new_rect);
+            d->i++;
+            d->time = 0.0f;
+        }
+        d->time += infos->time.dt;
     }
     sfRenderWindow_display(infos->win);
     update_time(infos);
@@ -70,7 +78,8 @@ scene create_static_environment(wininf *inf, int id)
     }
     place_decorations(inf->atlases.scenes[id + 1], inf->atlases.atlas,
         inf->atlases.statics, &scene.animated);
-    id = !id ? 22 : 25 + id;
+    int oldid = id;
+    id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
     add_collisions(inf->atlases.collisions[id], &scene.colls);
     return scene;
 }
