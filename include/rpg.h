@@ -95,7 +95,7 @@ typedef struct ui_t {
     sfFont *font;
     float text_delay;
     sfSprite *test;
-    struct dialog_line_t *dialog;
+    struct linked_list_t *dialog;
 } ui;
 
 typedef struct wininf_t {
@@ -142,6 +142,7 @@ void draw_player(wininf *inf, player p);
 float my_lerpf(float a, float b, float t);
 void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
+void push_back(list **l, void *new_data);
 void handle_scene(wininf *infos, player p);
 float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
@@ -166,6 +167,7 @@ int treat_balise(char *balise, sfColor *color, wininf *inf);
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 dline *load_line(char *line, sfFont *font, int size, wininf *inf);
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
+list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
 void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
 void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
 void add_icon(sfVector2i origin, sfImage *img, sfIntRect r, sfImage *atlas);

@@ -20,10 +20,10 @@ void handle_scene(wininf *infos, player p)
         update_transition(infos, p);
         sfRenderWindow_drawRectangleShape(infos->win, infos->transition_rect, 0);
     }
-    if (infos->interacting) {
+    if (infos->interacting && infos->ui.dialog) {
         sfRenderWindow_drawSprite(infos->win,
         infos->ui.background, 0);
-        dline *d = infos->ui.dialog;
+        dline *d = infos->ui.dialog->data;
         sfRenderWindow_drawSprite(infos->win, d->sp, 0);
         if (d->time > infos->ui.text_delay && d->steps[d->i + 1]) {
             sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
@@ -80,6 +80,7 @@ scene create_static_environment(wininf *inf, int id)
         inf->atlases.statics, &scene.animated);
     int oldid = id;
     id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
+    printf("%d\n", id);
     add_collisions(inf->atlases.collisions[id], &scene.colls);
     return scene;
 }

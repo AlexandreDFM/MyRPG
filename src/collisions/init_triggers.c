@@ -95,18 +95,18 @@ void interact_pnj(wininf *win, player p)
     sfVector2f poubelle = sfView_getCenter(win->camera.view);
     poubelle.y += 45.0f;
     sfSprite_setPosition(win->ui.background, poubelle);
-    FILE *f = fopen(closest->dialog, "r");
-    char *str = 0;
-    size_t len = 0;
-    getline(&str, &len, f);
-    str[my_strlen(str) - 1] = '\0';
-    dline *line = load_line(str, win->ui.font, FONT_SIZE, win);
-    fclose(f);
-    poubelle.x -= sfSprite_getTextureRect(win->ui.background).width / 2 - 10;
-    poubelle.y -= sfSprite_getTextureRect(win->ui.background).height / 2 - 5;
-    sfSprite_setPosition(line->sp, poubelle);
-    win->ui.dialog = line;
     win->interacting = 1;
+    if (!win->ui.dialog)
+        win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
+    else {
+        dline *c_line = ((dline*)win->ui.dialog->data);
+        if (!c_line->steps[c_line->i + 1]) {
+            win->ui.dialog = win->ui.dialog->next;
+            win->interacting = !win->ui.dialog ? 0 : win->interacting;
+        } else {
+            for (; c_line->steps[c_line->i + 2]; c_line->i++);
+        }
+    }
 }
 
 void sleep_and_save(wininf *win, player p)

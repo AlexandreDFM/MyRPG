@@ -25,7 +25,6 @@ void init_inputs(wininf *inf)
 
 void update_inputs(wininf *inf)
 {
-    if (inf->interacting) return;
     inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
     int old_interact = inf->inputs.interact;
     inf->inputs.interact = 0;
@@ -44,6 +43,9 @@ void update_inputs(wininf *inf)
     inf->inputs.axis.y = my_clamp(inf->inputs.axis.y, -1.0f, 1.0f);
     if (old_interact != inf->inputs.interact && old_interact)
         inf->inputs.can_interact = 0;
+    if (inf->interacting) {
+        inf->inputs.axis = (sfVector2f){0.0f, 0.0f};
+    }
 }
 
 void update_keyboard(wininf *inf)
