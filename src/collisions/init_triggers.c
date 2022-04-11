@@ -99,8 +99,8 @@ void interact_pnj(wininf *win, player p)
     if (!win->ui.dialog)
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
     else {
-        dline *c_line = ((dline*)win->ui.dialog->data);
-        if (!c_line->steps[c_line->i + 1]) {
+        dline *c_line = (dline*)win->ui.dialog->data;
+        if (c_line->i == c_line->max) {
             win->ui.dialog = win->ui.dialog->next;
             win->interacting = !win->ui.dialog ? 0 : win->interacting;
         } else {
