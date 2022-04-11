@@ -9,8 +9,8 @@
 
 float my_clamp(float d, float min, float max)
 {
-  const float t = d < min ? min : d;
-  return t > max ? max : t;
+    const float t = d < min ? min : d;
+    return t > max ? max : t;
 }
 
 float my_repeat(float t, float mag)

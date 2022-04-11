@@ -22,4 +22,4 @@ typedef struct dialog_line_t {
 
 void load_alphabet(sfFont *font, int size);
 
-#endif /* !DIALOG_H_ */
+#endif

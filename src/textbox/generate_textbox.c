@@ -12,9 +12,12 @@ sfSprite *generate_textbox(sfVector2i size, sfImage *atlas)
     sfColor trans = sfColor_fromRGBA(32, 72, 104, 221);
     sfImage *new = sfImage_createFromColor(size.x, size.y, trans);
     add_corner(new, atlas, (sfVector2i){0, 0}, (sfVector2i){1232, 812});
-    add_corner(new, atlas, (sfVector2i){0, size.y - 6}, (sfVector2i){1232, 846});
-    add_corner(new, atlas, (sfVector2i){size.x - 9, 0}, (sfVector2i){1447, 812});
-    add_corner(new, atlas, (sfVector2i){size.x - 9, size.y - 6}, (sfVector2i){1447, 846});
+    add_corner(new, atlas,
+        (sfVector2i){0, size.y - 6}, (sfVector2i){1232, 846});
+    add_corner(new, atlas,
+        (sfVector2i){size.x - 9, 0}, (sfVector2i){1447, 812});
+    add_corner(new, atlas,
+        (sfVector2i){size.x - 9, size.y - 6}, (sfVector2i){1447, 846});
     leftright_border(size, new);
     topbot_border(size, new);
     sfSprite *sp = sfSprite_create();

@@ -29,4 +29,4 @@
 
     #include "rpg.h"
 
-#endif /* !INFOS_H_ */
+#endif

@@ -19,4 +19,4 @@ typedef struct player_s {
     sfSprite *sp;
 } player;
 
-#endif /* !PLAYER_H_ */
+#endif

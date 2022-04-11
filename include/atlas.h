@@ -13,4 +13,4 @@
 char **load_csv(char *filename);
 int get_number_lines(char *filename);
 
-#endif /* !ATLAS_H_ */
+#endif

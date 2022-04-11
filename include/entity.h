@@ -26,4 +26,4 @@ typedef struct entity_t {
     int sign;
 } entity;
 
-#endif /* !ENTITY_H_ */
+#endif

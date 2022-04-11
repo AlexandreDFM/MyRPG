@@ -32,4 +32,4 @@ typedef struct inputs_t {
     struct keybinds_t keys;
 } inputs;
 
-#endif /* !INPUTS_H_ */
+#endif

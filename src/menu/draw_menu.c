@@ -9,12 +9,9 @@
 
 void draw_menu(wininf *inf)
 {
-    char *str = "Press to start";
-    sfVector2f pos = {500, 500};
-    sfText *text = sfText_create();
-    sfText_setFont(text, inf->ui.font);
-    sfText_setString(text, str);
-    sfText_setCharacterSize(text, 50);
-    sfText_setPosition(text, pos);
-    sfRenderWindow_drawText(inf->win, text, NULL);
+    sfRenderWindow_drawSprite(inf->win,inf->main_menu->background, NULL);
+    sfRenderWindow_drawSprite(inf->win,inf->main_menu->background2, NULL);
+    draw_choices(inf, inf->main_menu->choices);
+    sfRenderWindow_drawSprite(inf->win, inf->main_menu->cursor, NULL);
+    move_cursor(inf);
 }

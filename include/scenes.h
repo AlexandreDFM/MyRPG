@@ -10,4 +10,4 @@
 
     #include "rpg.h"
 
-#endif /* !SCENES_H_ */
+#endif

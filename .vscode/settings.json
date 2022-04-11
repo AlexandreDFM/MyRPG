@@ -2,6 +2,7 @@
     "files.associations": {
         "*.c": "c",
         "rpg.h": "c",
-        "entity.h": "c"
+        "entity.h": "c",
+        "scenes.h": "c"
     }
 }

@@ -14,7 +14,7 @@ wininf create_window_infos(char **av)
     wininf inf;
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
-    inf.c_scene = HOME;
+    inf.c_scene = MAIN_MENU;
     inf.interacting = 0;
     init_times(&inf);
     create_atlases(&inf);
@@ -36,5 +36,7 @@ wininf create_window_infos(char **av)
     sfRectangleShape_setOrigin(inf.transition_rect,
     (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
     init_textbox(&inf);
+    inf.main_menu = init_menu(&inf, 0);
+    init_main_menu_pointers(&inf);
     return inf;
 }

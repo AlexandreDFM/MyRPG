@@ -24,4 +24,4 @@ typedef enum types_e {
     ROCHE
 } types;
 
-#endif /* !TYPES_H_ */
+#endif

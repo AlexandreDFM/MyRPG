@@ -8,7 +8,7 @@
 #include "rpg.h"
 #include "scenes.h"
 
-void handle_scene(wininf *infos, player p)
+void handle_scene(wininf *infos, player *p)
 {
     sfRenderWindow_clear(infos->win, sfBlack);
     if (infos->c_scene == MAIN_MENU) {
@@ -18,9 +18,9 @@ void handle_scene(wininf *infos, player p)
             draw_home(infos);
         if (infos->c_scene)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
-        draw_player(infos, p);
+        draw_player(infos, *p);
         if (infos->transition) {
-            update_transition(infos, p);
+            update_transition(infos, *p);
             sfRenderWindow_drawRectangleShape(infos->win, infos->transition_rect, 0);
         }
         if (infos->interacting && infos->ui.dialog) {
@@ -87,7 +87,6 @@ scene create_static_environment(wininf *inf, int id)
     place_decorations(inf->atlases.scenes[id + 1], inf->atlases.atlas,
         inf->atlases.statics, &scene.animated);
     id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
-    printf("%d\n", id);
     add_collisions(inf->atlases.collisions[id], &scene.colls);
     return scene;
 }

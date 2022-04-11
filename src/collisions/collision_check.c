@@ -25,7 +25,7 @@ int check_rect_col(collision *s, sfVector2f pos)
     return 1;
 }
 
-int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf *win, player p)
+int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p)
 {
     int res_x = 0, res_y = 0;
     int inside = 0;
@@ -36,7 +36,7 @@ int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf 
         res_x = c->check(c, x_axis);
         res_y = c->check(c, y_axis);
         if (res_x != 3 && res_y != 3)
-            c->draw(c, win->win);
+            c->draw(c, inf->win);
         if (!res_x && !res_y)
             return 0;
         if (res_x && !res_y)
@@ -45,14 +45,14 @@ int check_if_valid_movement(list *cols, sfVector2f pos, sfVector2f *vel, wininf 
             vel->x = 0.0f;
         if ((res_x == 2 || res_y == 2) && (c->ptr != -1)) {
             inside = 1;
-            if (c->auto_trigger && !win->inputs.interact) continue;
-            if (win->inputs.can_interact) continue;
-            win->inputs.can_interact = 1;
-            win->triggers[c->ptr](win, p);
+            if (c->auto_trigger && !inf->inputs.interact) continue;
+            if (inf->inputs.can_interact) continue;
+            inf->inputs.can_interact = 1;
+            inf->triggers[c->ptr](inf, p);
         }
     }
     if (!inside) {
-        win->inputs.can_interact = 0;
+        inf->inputs.can_interact = 0;
     }
     return 1;
 }

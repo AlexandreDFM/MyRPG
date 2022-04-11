@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
     components all = create_all_components(argv);
     while (sfRenderWindow_isOpen(all.inf.win)) {
-        handle_scene(&(all.inf), all.pla);
+        handle_scene(&all.inf, &all.pla);
         update_events(&(all.inf));
     }
     sfRenderWindow_destroy(all.inf.win);

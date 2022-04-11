@@ -23,11 +23,11 @@ SRC		= 	main.c											\
 			src/events/events.c								\
 			src/csv/load_csv.c								\
 			src/texture_atlas/create_sprite_from_atlas.c	\
-			src/texture_atlas/atlas.c						\
 			src/texture_atlas/init_atlases.c				\
 			src/utils/my_strtwa.c							\
 			src/utils/lists/push_front.c					\
 			src/utils/lists/draw_list.c						\
+			src/utils/lists/init_double.c					\
 			src/entity/init_entity.c						\
 			src/scene_handling/draw_home.c					\
 			src/maths/pingpong.c							\
@@ -50,9 +50,15 @@ SRC		= 	main.c											\
 			src/text_handling/create_textbox.c				\
 			src/text_handling/load_font.c					\
 			src/text_handling/icons_handler.c				\
+			src/text_handling/init_text.c					\
 			src/text_handling/create_dialog_list.c			\
 			src/textbox/generate_textbox.c					\
 			src/menu/draw_menu.c							\
+			src/menu/draw_choices.c							\
+			src/menu/init_menu.c							\
+			src/menu/move_cursor.c							\
+			src/menu/function_pointers/main_menu.c			\
+			src/menu/init_main_menu_pointers.c				\
 
 
 OBJ    = $(SRC:.c=.o)
