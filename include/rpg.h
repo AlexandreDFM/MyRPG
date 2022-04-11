@@ -124,6 +124,20 @@ typedef struct components_t {
     struct player_t pla;
 } components;
 
+typedef struct choices_t {
+    char *choice;
+    char *desc;
+    void (*choices[])()
+} choices;
+
+typedef struct menu_t {
+    sfSprite *background;
+    sfSprite *cursor;
+    list *head;
+    list *choices;
+    int max_choice;
+} menus;
+
 void draw_home(wininf *inf);
 void init_inputs(wininf *inf);
 camera init_camera(wininf inf);
