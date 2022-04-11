@@ -38,6 +38,7 @@ typedef struct atlases_t {
     char **houses;
     char **pnjs;
     char **icons;
+    char **menus;
 } atlases;
 
 typedef struct collision_t {
@@ -69,6 +70,7 @@ typedef struct pnj_t {
 typedef struct linked_list_t {
     void *data;
     struct linked_list_t *next;
+    struct linked_list_t *prev;
 } list;
 
 typedef struct scene_t {
@@ -90,12 +92,6 @@ typedef struct camera_t {
     sfVector2f static_p;
     float speed;
 } camera;
-
-typedef struct choice_t {
-    char *text;
-    char *desc;
-    void (*action)(void);
-} choice;
 
 typedef struct textbox_t {
     sfSprite *background;
@@ -138,16 +134,17 @@ typedef struct components_t {
 } components;
 
 typedef struct choices_t {
-    char *choice;
-    char *desc;
-    void (*choices[])()
+    sfText *choice;
+    sfText *desc;
+    int ptr;
+    void (*choices[15])(void);
 } choices;
 
 typedef struct menu_t {
     sfSprite *background;
     sfSprite *cursor;
-    list *head;
-    list *choices;
+    struct linked_list_t *head;
+    struct linked_list_t *choices;
     int max_choice;
 } menus;
 
@@ -166,13 +163,16 @@ void update_joysticks(wininf *inf);
 wininf create_window_infos(char **av);
 player init_player(wininf inf, int id);
 void draw_player(wininf *inf, player p);
-float my_lerpf(float a, float b, float t);
 void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
 void push_back(list **l, void *new_data);
+float my_lerpf(float a, float b, float t);
+sfText *init_text(char *str, sfFont *font);
 float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
+void handle_scene(wininf *infos, player p);
 entity *create_entity(wininf *info, int id);
+list *init_circular(char **arr, wininf *inf);
 void draw_static_scene(wininf *inf, scene s);
 sfIntRect find_icons(wininf *inf, char *str);
 components create_all_components(char **argv);
@@ -180,13 +180,13 @@ void update_transition(wininf *inf, player p);
 char **my_strtwa(char const *str, char *limit);
 void draw_list(list *obj, sfRenderWindow *win);
 void add_pnjs(atlases atlas, int idx, scene *s);
+void push_back_double(list **l, void *new_data);
 int check_rect_col(collision *self, sfVector2f pos);
 void create_pnj(char *line, scene *s, atlases atlas);
 scene create_static_environment(wininf *inf, int id);
 int check_circle_col(collision *self, sfVector2f pos);
 sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 void add_circle_col(list **l, int radius, int x, int y);
-void handle_scene(wininf *infos, player p);
 void draw_rect_col(collision *self, sfRenderWindow *win);
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 void draw_circle_col(collision *self, sfRenderWindow *win);

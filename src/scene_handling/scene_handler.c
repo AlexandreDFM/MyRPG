@@ -82,7 +82,6 @@ scene create_static_environment(wininf *inf, int id)
     }
     place_decorations(inf->atlases.scenes[id + 1], inf->atlases.atlas,
         inf->atlases.statics, &scene.animated);
-    int oldid = id;
     id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
     printf("%d\n", id);
     add_collisions(inf->atlases.collisions[id], &scene.colls);

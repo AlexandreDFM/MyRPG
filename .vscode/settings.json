@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "rpg.h": "c"
+        "*.c": "c",
+        "rpg.h": "c",
+        "entity.h": "c"
     }
 }
