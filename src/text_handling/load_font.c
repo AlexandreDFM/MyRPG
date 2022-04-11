@@ -30,6 +30,7 @@ int treat_balise(char *balise, sfColor *color, wininf *inf)
 	}
 	if (balise[0] == 'i' && balise[1] == '_') {
 		sfIntRect r = find_icons(inf, 2 + balise);
+		printf("Balise: %s => %d %d %d %d\n", balise, r.left, r.top, r.width, r.height);
 		return r.width;
 	}
 	int r = atoi(balise);
