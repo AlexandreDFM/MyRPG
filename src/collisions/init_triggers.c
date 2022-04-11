@@ -104,7 +104,8 @@ void interact_pnj(wininf *win, player p)
             win->ui.dialog = win->ui.dialog->next;
             win->interacting = !win->ui.dialog ? 0 : win->interacting;
         } else {
-            for (; c_line->steps[c_line->i + 2]; c_line->i++);
+            c_line->i = c_line->max - 1;
+            // for (; c_line->steps[c_line->i + 2]; c_line->i++);
         }
     }
 }

@@ -27,7 +27,7 @@ dline *load_line(char *line, sfFont *font, int size, wininf *inf)
 	int len = 0;
 	for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++, len++) {
 		if (line[i] == '<') {
-			for (int y = i; line[y] != '>' && line[y] != '\0' && line[y] != '\n'; y++, len--, i++);
+			for (int y = i; line[y] != '>' && line[y] != '\0' && line[y] != '\n'; y++, i++);
 			if (line[i + 1] == 'i' && line[i + 2] == '_') len++;
 				length += 8;
 			continue;
@@ -43,6 +43,7 @@ dline *load_line(char *line, sfFont *font, int size, wininf *inf)
 	}
 	prev = 0;
 	sfColor current_color = sfWhite;
+	printf("Length: %d\nHeight: %d\n", length, height);
 	sfImage *img = sfImage_createFromColor(length, height, sfColor_fromRGBA(0, 0, 0, 255));
 	int *steps = malloc(sizeof(int) * (len + 1));
 	int li = 0;
@@ -58,10 +59,10 @@ dline *load_line(char *line, sfFont *font, int size, wininf *inf)
 			if (!res) {
 				li--;
 			} else {
-				// sfIntRect r = find_icons(inf, 2 + test);
-				// add_icon((sfVector2i){posx - 1, 1}, img, r, inf->atlases.atlas);
-				// posx += res;
-				// steps[li] = posx;
+				sfIntRect r = find_icons(inf, 2 + test);
+				add_icon((sfVector2i){posx - 1, 1}, img, r, inf->atlases.atlas);
+				posx += res;
+				steps[li] = posx;
 			}
 			continue;
 		}

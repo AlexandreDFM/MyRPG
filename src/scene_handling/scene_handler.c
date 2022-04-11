@@ -26,15 +26,19 @@ void handle_scene(wininf *infos, player p)
         if (infos->interacting && infos->ui.dialog) {
             sfRenderWindow_drawSprite(infos->win,
             infos->ui.background, 0);
-            dline *d = infos->ui.dialog->data;
-            sfRenderWindow_drawSprite(infos->win, d->sp, 0);
-            if (d->time > infos->ui.text_delay && d->i < d->max) {
-                sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
-                sfSprite_setTextureRect(d->sp, new_rect);
-                d->i++;
-                d->time = 0.0f;
+            if (infos->ui.dialog) {
+                dline *d = infos->ui.dialog->data;
+                if (d && d->sp) {
+                    sfRenderWindow_drawSprite(infos->win, d->sp, 0);
+                    if (d->time > infos->ui.text_delay && d->i < d->max) {
+                        sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
+                        sfSprite_setTextureRect(d->sp, new_rect);
+                        d->i++;
+                        d->time = 0.0f;
+                    }
+                    d->time += infos->time.dt;
+                }
             }
-            d->time += infos->time.dt;
         }
         update_time(infos);
     }
