@@ -11,30 +11,34 @@
 void handle_scene(wininf *infos, player p)
 {
     sfRenderWindow_clear(infos->win, sfBlack);
-    if (infos->c_scene == HOME)
-        draw_home(infos);
-    if (infos->c_scene)
-        draw_static_scene(infos, infos->scenes[infos->c_scene]);
-    draw_player(infos, p);
-    if (infos->transition) {
-        update_transition(infos, p);
-        sfRenderWindow_drawRectangleShape(infos->win, infos->transition_rect, 0);
-    }
-    if (infos->interacting && infos->ui.dialog) {
-        sfRenderWindow_drawSprite(infos->win,
-        infos->ui.background, 0);
-        dline *d = infos->ui.dialog->data;
-        sfRenderWindow_drawSprite(infos->win, d->sp, 0);
-        if (d->time > infos->ui.text_delay && d->steps[d->i + 1]) {
-            sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
-            sfSprite_setTextureRect(d->sp, new_rect);
-            d->i++;
-            d->time = 0.0f;
+    if (infos->c_scene == MAIN_MENU) {
+        draw_menu(infos);
+    } else {
+        if (infos->c_scene == HOME)
+            draw_home(infos);
+        if (infos->c_scene)
+            draw_static_scene(infos, infos->scenes[infos->c_scene]);
+        draw_player(infos, p);
+        if (infos->transition) {
+            update_transition(infos, p);
+            sfRenderWindow_drawRectangleShape(infos->win, infos->transition_rect, 0);
         }
-        d->time += infos->time.dt;
+        if (infos->interacting && infos->ui.dialog) {
+            sfRenderWindow_drawSprite(infos->win,
+            infos->ui.background, 0);
+            dline *d = infos->ui.dialog->data;
+            sfRenderWindow_drawSprite(infos->win, d->sp, 0);
+            if (d->time > infos->ui.text_delay && d->i < d->max) {
+                sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
+                sfSprite_setTextureRect(d->sp, new_rect);
+                d->i++;
+                d->time = 0.0f;
+            }
+            d->time += infos->time.dt;
+        }
+        update_time(infos);
     }
     sfRenderWindow_display(infos->win);
-    update_time(infos);
 }
 
 scene create_home(wininf *infos, int id)

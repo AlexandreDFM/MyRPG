@@ -51,6 +51,8 @@ SRC		= 	main.c											\
 			src/text_handling/load_font.c					\
 			src/text_handling/icons_handler.c				\
 			src/text_handling/create_dialog_list.c			\
+			src/textbox/generate_textbox.c					\
+			src/menu/draw_menu.c							\
 
 
 OBJ    = $(SRC:.c=.o)

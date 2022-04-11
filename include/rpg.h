@@ -26,6 +26,7 @@ typedef enum scenes_e {
     DOJO,
     BEKIPAN,
     DITTOLAND,
+    MAIN_MENU
 } scenes;
 
 typedef struct atlases_t {
@@ -90,6 +91,18 @@ typedef struct camera_t {
     float speed;
 } camera;
 
+typedef struct choice_t {
+    char *text;
+    char *desc;
+    void (*action)(void);
+} choice;
+
+typedef struct textbox_t {
+    sfSprite *background;
+    int nbr;
+    struct linked_list_t *choices;
+} textbox;
+
 typedef struct ui_t {
     sfSprite *background;
     sfFont *font;
@@ -143,7 +156,6 @@ float my_lerpf(float a, float b, float t);
 void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
 void push_back(list **l, void *new_data);
-void handle_scene(wininf *infos, player p);
 float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
 entity *create_entity(wininf *info, int id);
@@ -160,10 +172,12 @@ scene create_static_environment(wininf *inf, int id);
 int check_circle_col(collision *self, sfVector2f pos);
 sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 void add_circle_col(list **l, int radius, int x, int y);
+void handle_scene(wininf *infos, player p);
 void draw_rect_col(collision *self, sfRenderWindow *win);
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 void draw_circle_col(collision *self, sfRenderWindow *win);
 int treat_balise(char *balise, sfColor *color, wininf *inf);
+sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 dline *load_line(char *line, sfFont *font, int size, wininf *inf);
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
