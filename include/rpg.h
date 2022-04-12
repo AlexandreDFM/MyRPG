@@ -154,6 +154,7 @@ typedef struct components_t {
     struct player_t pla;
 } components;
 
+int length_of_int(int a);
 void draw_choices(wininf *inf, list *choices_l);
 void draw_menu(wininf *inf);
 void draw_home(wininf *inf);
