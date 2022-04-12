@@ -47,7 +47,8 @@ void change_settings(int opt, char *arg, wininf *inf)
         try_to_connect(ip, port, inf);
     }
     if (opt == 1000) {
-        my_printf("Starting server side on localhost at 7878...\n");
+        sfIpAddress ip = sfIpAddress_getLocalAddress();
+        my_printf("Starting server side on your local address at 7878...\n");
         inf->net.is_host = 1;
         inf->net.is_multi = 1;
         inf->net.packet = sfPacket_create();
@@ -57,7 +58,6 @@ void change_settings(int opt, char *arg, wininf *inf)
         int port = 7878;
         inf->net.port = &port;
         sfUdpSocket_setBlocking(inf->net.socket, sfFalse);
-        sfIpAddress ip = sfIpAddress_fromString("localhost");
         sfUdpSocket_bind(inf->net.socket, port, ip);
     }
 }
