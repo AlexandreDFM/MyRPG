@@ -7,11 +7,11 @@
 
 #include "rpg.h"
 
-components create_all_components(char **argv)
+components create_all_components(int ac, char **argv)
 {
     components cps;
-    cps.inf = create_window_infos(argv);
-    cps.pla = init_player(cps.inf, my_atoi(argv[2]));
+    cps.inf = create_window_infos(ac, argv);
+    cps.pla = init_player(cps.inf, cps.inf.settings->pokemon);
     cps.inf.camera.target = cps.pla.test;
     return cps;
 }

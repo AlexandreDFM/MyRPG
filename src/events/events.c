@@ -23,6 +23,6 @@ void update_events(wininf *inf)
         if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
         sfKeyUp || inf->event.key.code == sfKeyDown) && inf->c_scene
         == MAIN_MENU)
-           inf->main_menu->pressed = 0;
+           inf->current_menu->pressed = 0;
     }
 }

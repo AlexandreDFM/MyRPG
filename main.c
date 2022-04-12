@@ -10,10 +10,11 @@
 
 int main(int argc, char **argv)
 {
-    components all = create_all_components(argv);
+    components all = create_all_components(argc, argv);
     while (sfRenderWindow_isOpen(all.inf.win)) {
         handle_scene(&all.inf, &all.pla);
         update_events(&(all.inf));
+        update_network(&(all.inf));
     }
     sfRenderWindow_destroy(all.inf.win);
     sfImage_destroy(all.inf.atlases.atlas);

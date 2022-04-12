@@ -27,7 +27,7 @@ list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2)
     node->data = create_choice(arr, 6, inf, pos);
     node->next = NULL; node->prev = NULL; n_first = node;
     for (int i = 9; i <= (my_atoi(arr[5]) - 1)* 3 + 6; i += 3) {
-        pos.y += 40;
+        pos.y += inf->menu_padding;
         push_back_double(&node, create_choice(arr, i, inf, pos));
     }
     for (int i = 0; i < my_atoi(arr[5]) - 1; i++) {

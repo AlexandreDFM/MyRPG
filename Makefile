@@ -57,8 +57,17 @@ SRC		= 	main.c											\
 			src/menu/draw_choices.c							\
 			src/menu/init_menu.c							\
 			src/menu/move_cursor.c							\
+			src/menu/init_menus_pointers.c					\
 			src/menu/function_pointers/main_menu.c			\
-			src/menu/init_main_menu_pointers.c				\
+			src/menu/function_pointers/load_menu_pointers.c	\
+			src/menu/set_cursor.c							\
+			src/menu/init_load_menu.c						\
+			src/dungeon/edge_detection.c					\
+			src/dungeon/map_generator.c						\
+			src/settings/flags_handling.c					\
+			src/network/connecting_utils.c					\
+			src/network/update_network.c					\
+			src/settings/init_settings.c					\
 
 
 OBJ    = $(SRC:.c=.o)
@@ -66,7 +75,8 @@ OBJ    = $(SRC:.c=.o)
 CFLAGS += -Wall -pedantic -I./include -g3
 
 LIBFLAG    = -I ./include -g3 -lGL -lcsfml-graphics					\
--lcsfml-window -lcsfml-system -lcsfml-audio -L ./lib/ -lmy		\
+-lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network 		\
+-L ./lib/ -lmy														\
 
 all: $(NAME)
 

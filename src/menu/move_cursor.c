@@ -7,47 +7,46 @@
 
 #include "rpg.h"
 
-void up(wininf *inf, sfVector2f *pos)
+void up(menus *menu, sfVector2f *pos)
 {
-    inf->main_menu->pressed = 1;
-    if (inf->main_menu->curr_choice > 0) {
-        inf->main_menu->curr_choice -= 1;
+    menu->pressed = 1;
+    if (menu->curr_choice > 0) {
+        menu->curr_choice -= 1;
         pos->y -= 40;
     } else {
-        pos->y = 40 * inf->main_menu->max_choice + inf->main_menu->base_pos.y;
-        inf->main_menu->curr_choice = inf->main_menu->max_choice;
+        pos->y = 40 * menu->max_choice + menu->base_pos.y;
+        menu->curr_choice = menu->max_choice;
     }
-    inf->main_menu->selected = inf->main_menu->selected->prev;
+    menu->selected = menu->selected->prev;
+    menu->blink = 0;
 }
 
-void down(wininf *inf, sfVector2f *pos)
+void down(menus *menu, sfVector2f *pos)
 {
-    inf->main_menu->pressed = 1;
-    if (inf->main_menu->curr_choice < inf->main_menu->max_choice) {
-        inf->main_menu->curr_choice += 1;
+    menu->pressed = 1;
+    if (menu->curr_choice < menu->max_choice) {
+        menu->curr_choice += 1;
         pos->y += 40;
     } else {
-        inf->main_menu->curr_choice = 0;
-        pos->y = inf->main_menu->base_pos.y;
+        menu->curr_choice = 0;
+        pos->y = menu->base_pos.y;
     }
-    inf->main_menu->selected = inf->main_menu->selected->next;
+    menu->selected = menu->selected->next;
+    menu->blink = 0;
 }
 
-void move_cursor(wininf *inf)
+void move_cursor(menus *menu, wininf *inf)
 {
-    sfVector2f pos = sfSprite_getPosition(inf->main_menu->cursor);
-    if (sfKeyboard_isKeyPressed(sfKeyDown) && inf->main_menu->pressed == 0) {
-        down(inf, &pos);
+    sfVector2f pos = sfSprite_getPosition(menu->cursor);
+    if (sfKeyboard_isKeyPressed(sfKeyDown) && !menu->pressed) {
+        down(menu, &pos);
     }
-    if (sfKeyboard_isKeyPressed(sfKeyUp) && !inf->main_menu->pressed) {
-        up(inf, &pos);
+    if (sfKeyboard_isKeyPressed(sfKeyUp) && !menu->pressed) {
+        up(menu, &pos);
     }
     if (inf->inputs.interact && inf->inputs.can_interact == 0) {
         inf->inputs.can_interact = 1;
-        choices *c = inf->main_menu->selected->data;
-        inf->main_menu->ptrs[c->ptr](inf);
+        menu->ptrs[menu->curr_choice](inf);
     }
-    choices *c = (choices*)inf->main_menu->selected->data;
-    sfRenderWindow_drawText(inf->win, c->desc, NULL);
-    sfSprite_setPosition(inf->main_menu->cursor, pos);
+    sfSprite_setPosition(menu->cursor, pos);
 }

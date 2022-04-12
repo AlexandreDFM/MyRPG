@@ -7,11 +7,11 @@
 
 #include "rpg.h"
 
-void draw_choices(wininf *inf, list *choices_l)
+void draw_choices(wininf *inf, list *choices_l, list *head)
 {
     sfRenderWindow_drawText(inf->win, ((choices *)choices_l->data)->choice,
     NULL);
-    while (choices_l->next != inf->main_menu->head) {
+    while (choices_l->next != head) {
         choices_l = choices_l->next;
         sfRenderWindow_drawText(inf->win,
         ((choices *)choices_l->data)->choice, NULL);

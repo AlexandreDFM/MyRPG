@@ -35,7 +35,7 @@ int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p)
         collision *c = t->data;
         res_x = c->check(c, x_axis);
         res_y = c->check(c, y_axis);
-        if (res_x != 3 && res_y != 3)
+        if (res_x != 3 && res_y != 3 && inf->settings->show_collision)
             c->draw(c, inf->win);
         if (!res_x && !res_y)
             return 0;

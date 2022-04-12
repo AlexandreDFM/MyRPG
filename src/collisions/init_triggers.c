@@ -17,6 +17,7 @@ void create_triggers(wininf *inf)
     inf->triggers[5] = village_to_bekipan;
     inf->triggers[6] = village_to_dittoland;
     inf->triggers[7] = village_to_dojo;
+    inf->triggers[8] = generate_random_dungeon;
 }
 
 void homeext_to_village(wininf *win, player p)
@@ -107,6 +108,11 @@ void interact_pnj(wininf *win, player p)
             c_line->i = c_line->max - 1;
         }
     }
+}
+
+void generate_random_dungeon(wininf *win, player p)
+{
+    // map_inf minf = generate_map(4, win->atlases.atlas);
 }
 
 void sleep_and_save(wininf *win, player p)

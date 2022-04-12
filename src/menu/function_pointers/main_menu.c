@@ -9,7 +9,8 @@
 
 void play(wininf *inf)
 {
-    inf->c_scene = HOME;
+    inf->current_menu = inf->load_menu;
+    inf->c_menu = LOAD_SAVE;
     my_printf("Play: %d\n", inf->c_scene);
 }
 
@@ -20,5 +21,12 @@ void options(wininf *inf)
 
 void my_exit(wininf *inf)
 {
+    sfRenderWindow_close(inf->win);
     my_printf("Exit\n");
+}
+
+void a_log(wininf *inf)
+{
+    inf->c_scene = HOME;
+    my_printf("Log\n");
 }

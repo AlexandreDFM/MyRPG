@@ -9,6 +9,7 @@
 #define RPG_H_
 
     #include "infos.h"
+    #include "dungeon.h"
     #include "atlas.h"
     #include "entity.h"
     #include "inputs.h"
@@ -28,6 +29,21 @@ typedef enum scenes_e {
     DITTOLAND,
     MAIN_MENU
 } scenes;
+
+
+typedef enum main_menu_t {
+    NONE = -1,
+    LOAD_SAVE,
+    ADVENTURE_LOG,
+    OPTIONS,
+    EXIT,
+}m_menu_t;
+
+typedef struct settings_t {
+    int show_collision;
+    int pokemon;
+    int house;
+} settings;
 
 typedef struct atlases_t {
     sfImage *atlas;
@@ -107,6 +123,15 @@ typedef struct ui_t {
     struct linked_list_t *dialog;
 } ui;
 
+typedef struct network_t {
+    int is_multi;
+    int is_host;
+    sfPacket *packet;
+    sfUdpSocket *socket;
+    sfIpAddress *ip;
+    int *port;
+} network;
+
 typedef struct choices_t {
     sfText *choice;
     sfText *desc;
@@ -114,40 +139,50 @@ typedef struct choices_t {
     void (**choices)(void);
 } choices;
 
+typedef struct wininf_t {
+    sfEvent event;
+    int transition;
+    int interacting;
+    int change_scene;
+    int menu_padding;
+    sfVideoMode mode;
+    sfVector2f next_pos;
+    sfRenderWindow *win;
+    enum scenes_e c_scene;
+    enum main_menu_t c_menu;
+    enum scenes_e next_scene;
+    struct ui_t ui;
+    struct network_t net;
+    struct time_inft time;
+    struct camera_t camera;
+    struct inputs_t inputs;
+    struct atlases_t atlases;
+    struct scene_t scenes[6];
+    struct menu_t *current_menu;
+    struct menu_t *main_menu;
+    struct menu_t *load_menu;
+    struct menu_t *first_menu;
+    struct settings_t *settings;
+    sfRectangleShape *transition_rect;
+    void (*triggers[9])(struct wininf_t *win, struct player_t p);
+} wininf;
+
 typedef struct menu_t {
     sfSprite *background;
     sfSprite *background2;
+    sfSprite *background3;
     sfSprite *cursor;
     struct linked_list_t *head;
     struct linked_list_t *choices;
     struct linked_list_t *selected;
-    void (*ptrs[3])();
+    struct choices_t *current;
+    void (*ptrs[5])(struct wininf_t *);
     int max_choice;
     int curr_choice;
     sfVector2f base_pos;
     int pressed;
+    float blink;
 } menus;
-
-typedef struct wininf_t {
-    sfEvent event;
-    int transition;
-    sfVideoMode mode;
-    sfRenderWindow *win;
-    struct scene_t scenes[6];
-    enum scenes_e c_scene;
-    enum scenes_e next_scene;
-    sfVector2f next_pos;
-    struct time_inft  time;
-    struct camera_t camera;
-    struct inputs_t inputs;
-    struct atlases_t atlases;
-    struct ui_t ui;
-    struct menu_t *main_menu;
-    int change_scene;
-    int interacting;
-    sfRectangleShape *transition_rect;
-    void (*triggers[8])(struct wininf_t *win, struct player_t p);
-} wininf;
 
 typedef struct components_t {
     struct wininf_t inf;
@@ -155,11 +190,11 @@ typedef struct components_t {
 } components;
 
 int length_of_int(int a);
-void draw_choices(wininf *inf, list *choices_l);
+network init_network(void);
 void draw_menu(wininf *inf);
 void draw_home(wininf *inf);
+settings *init_settings(void);
 void init_inputs(wininf *inf);
-void move_cursor(wininf *inf);
 camera init_camera(wininf inf);
 void init_times(wininf *infos);
 void init_textbox(wininf *win);
@@ -170,13 +205,13 @@ void create_atlases(wininf *inf);
 void create_triggers(wininf *inf);
 void update_keyboard(wininf *inf);
 void update_joysticks(wininf *inf);
-wininf create_window_infos(char **av);
 player init_player(wininf inf, int id);
 void draw_player(wininf *inf, player p);
 void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
 void push_back(list **l, void *new_data);
 float my_lerpf(float a, float b, float t);
+void move_cursor(menus *menu, wininf *inf);
 menus *init_menu(wininf *inf, int menu_id);
 float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
@@ -184,22 +219,28 @@ void handle_scene(wininf *infos, player *p);
 entity *create_entity(wininf *info, int id);
 void draw_static_scene(wininf *inf, scene s);
 sfIntRect find_icons(wininf *inf, char *str);
-components create_all_components(char **argv);
+wininf create_window_infos(int ac, char **av);
 void update_transition(wininf *inf, player p);
 char **my_strtwa(char const *str, char *limit);
 void draw_list(list *obj, sfRenderWindow *win);
 void add_pnjs(atlases atlas, int idx, scene *s);
+menus *init_load_menu(wininf *inf, int menu_id);
 void push_back_double(list **l, void *new_data);
+sfSprite *set_cursor(wininf *inf, sfVector2f scale);
 int check_rect_col(collision *self, sfVector2f pos);
-void create_pnj(char *line, scene *s, atlases atlas);
 scene create_static_environment(wininf *inf, int id);
+void try_to_connect(sfIpAddress ip, int port, wininf *inf);
+void create_pnj(char *line, scene *s, atlases atlas);
+components create_all_components(int ac, char **argv);
 int check_circle_col(collision *self, sfVector2f pos);
+int get_settings_flags(int ac, char **av, wininf *win);
 sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 void add_circle_col(list **l, int radius, int x, int y);
 void draw_rect_col(collision *self, sfRenderWindow *win);
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 void draw_circle_col(collision *self, sfRenderWindow *win);
 sfText *init_text(char *str, sfFont *font, sfVector2f pos);
+void draw_choices(wininf *inf, list *choices_l, list *head);
 int treat_balise(char *balise, sfColor *color, wininf *inf);
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
@@ -221,11 +262,16 @@ void homeext_to_village(wininf *win, player p);
 void homeext_to_homeint(wininf *win, player p);
 void village_to_bekipan(wininf *win, player p);
 void village_to_dittoland(wininf *win, player p);
+void generate_random_dungeon(wininf *win, player p);
 
 //POINTERS
 void play(wininf *inf);
+void a_log(wininf *inf);
+void no_but(wininf *inf);
 void options(wininf *inf);
 void my_exit(wininf *inf);
+void yes_but(wininf *inf);
+void init_load_pointers(wininf *inf);
 void init_main_menu_pointers(wininf *inf);
 
 //MATHS

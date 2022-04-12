@@ -9,6 +9,7 @@
 #define INFOS_H_
 
     #include <SFML/Audio.h>
+    #include <SFML/Network.h>
     #include <SFML/Graphics.h>
     #include <sys/stat.h>
     #include <sys/types.h>
