@@ -30,13 +30,13 @@ list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2)
         pos.y += inf->menu_padding;
         push_back_double(&node, create_choice(arr, i, inf, pos));
     }
+    n_first->prev = node;
+    node->next = n_first;
+    node = node->next;
     for (int i = 0; i < my_atoi(arr[5]) - 1; i++) {
         sfText_setPosition(((choices *)node->data)->desc, pos2);
         node = node->next;
     }
     sfText_setPosition(((choices *)node->data)->desc, pos2);
-    n_first->prev = node;
-    node->next = n_first;
-    node = node->next;
     return node;
 }

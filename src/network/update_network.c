@@ -9,17 +9,22 @@
 
 void update_network(wininf *inf)
 {
-    if (!inf->net.is_multi) return;
-    sfPacket *p = inf->net.packet;
+    network *net = inf->net;
+    if (!net->is_host) return;
+    if (!inf->net->is_multi) return;
+    sfPacket *p = inf->net->packet;
     sfPacket_clear(p);
-    int res = sfUdpSocket_receivePacket(inf->net.socket, p, inf->net.ip, inf->net.port);
+    char ipstr[40];
+    sfIpAddress_toString(*net->ip, ipstr);
+    int res = sfUdpSocket_receivePacket(net->socket, p, net->ip, &net->port);
     if (res == sfSocketDone) {
+        printf("Receiving on %s\n", ipstr);
         void *data = sfPacket_getData(p);
-        sfIpAddress *client_ip = data;
-        data += sizeof(client_ip);
+        sfIpAddress *client_ip = (sfIpAddress*)data;
+        data += sizeof(sfIpAddress);
         int *port = data;
-        char ipstr[20];
-        sfIpAddress_toString(*client_ip, ipstr);
-        printf("Received message from client %s at port %d !!!!!!\n", ipstr, *port);
+        net->other.ip = *client_ip;
+        net->other.port = *port;
+        send_okay(net);
     }
 }

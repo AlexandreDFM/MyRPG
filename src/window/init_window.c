@@ -40,11 +40,11 @@ wininf create_window_infos(int ac, char **av)
     (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
     init_textbox(&inf);
     inf.menu_padding = 40;
-    inf.main_menu = init_menu(&inf, 0);
+    inf.main_menu = init_all_menus(&inf, 2);
     init_main_menu_pointers(&inf);
     inf.load_menu = init_load_menu(&inf, 1);
     inf.c_menu = NONE;
-    inf.current_menu = inf.main_menu;
+    // inf.current_menu = inf.main_menu;
     init_load_pointers(&inf);
     return inf;
 }

@@ -42,6 +42,6 @@ void push_back_double(list **l, void *new_data)
             tmp = tmp->next;
         tmp->next = new_elem;
         new_elem->prev = tmp;
-    } else
-        *l = new_elem;
+    }
+    *l = new_elem;
 }

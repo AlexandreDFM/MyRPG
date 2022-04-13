@@ -30,6 +30,10 @@ typedef enum scenes_e {
     MAIN_MENU
 } scenes;
 
+typedef enum orders_e {
+    OKAY,
+    POSITION
+} orders;
 
 typedef enum main_menu_t {
     NONE = -1,
@@ -123,21 +127,20 @@ typedef struct ui_t {
     struct linked_list_t *dialog;
 } ui;
 
+typedef struct other_t {
+    sfIpAddress ip;
+    int port;
+} other;
+
 typedef struct network_t {
     int is_multi;
     int is_host;
     sfPacket *packet;
     sfUdpSocket *socket;
     sfIpAddress *ip;
-    int *port;
+    unsigned short port;
+    struct other_t other;
 } network;
-
-typedef struct choices_t {
-    sfText *choice;
-    sfText *desc;
-    int ptr;
-    void (*ptr[1])(void);
-} choices;
 
 typedef struct wininf_t {
     sfEvent event;
@@ -152,20 +155,28 @@ typedef struct wininf_t {
     enum main_menu_t c_menu;
     enum scenes_e next_scene;
     struct ui_t ui;
-    struct network_t net;
+    struct network_t *net;
     struct time_inft time;
     struct camera_t camera;
     struct inputs_t inputs;
     struct atlases_t atlases;
     struct scene_t scenes[6];
     struct menu_t *current_menu;
-    struct menu_t *main_menu;
+    struct menus *main_menu;
     struct menu_t *load_menu;
     struct menu_t *first_menu;
     struct settings_t *settings;
     sfRectangleShape *transition_rect;
     void (*triggers[9])(struct wininf_t *win, struct player_t p);
 } wininf;
+
+typedef struct choices_t {
+    sfText *choice;
+    sfText *desc;
+    int ptr;
+    void (*ptrs[1])(struct wininf_t *);
+} choices;
+
 
 typedef struct menu_t {
     sfSprite *background;
@@ -185,8 +196,13 @@ typedef struct menu_t {
 } menus;
 
 typedef struct menus {
-    struct linked_list_t *backgrounds;
+    float blink;
+    int pressed;
+    int max_choice;
+    sfSprite *cursor;
+    struct choices_t *current;
     struct linked_list_t *choices;
+    struct linked_list_t *backgrounds;
 }menuss;
 
 typedef struct components_t {
@@ -195,7 +211,7 @@ typedef struct components_t {
 } components;
 
 int length_of_int(int a);
-network init_network(void);
+network *init_network(void);
 void draw_menu(wininf *inf);
 void draw_home(wininf *inf);
 settings *init_settings(void);
@@ -291,5 +307,7 @@ void topbot_border(sfVector2i size, sfImage *new);
 void leftright_border(sfVector2i size, sfImage *new);
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
+
+menuss *init_all_menus(wininf *inf, int menu_id);
 
 #endif

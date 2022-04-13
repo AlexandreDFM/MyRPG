@@ -9,10 +9,10 @@
 
 void init_main_menu_pointers(wininf *inf)
 {
-    inf->main_menu->ptrs[0] = play;
-    inf->main_menu->ptrs[1] = a_log;
-    inf->main_menu->ptrs[2] = options;
-    inf->main_menu->ptrs[3] = my_exit;
+    // inf->main_menu->ptrs[0] = play;
+    // inf->main_menu->ptrs[1] = a_log;
+    // inf->main_menu->ptrs[2] = options;
+    // inf->main_menu->ptrs[3] = my_exit;
 }
 
 void init_load_pointers(wininf *inf)
