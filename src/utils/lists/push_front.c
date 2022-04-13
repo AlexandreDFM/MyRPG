@@ -37,6 +37,7 @@ void push_back_double(list **l, void *new_data)
     new_elem->data = new_data;
     new_elem->next = 0;
     if (*l) {
+        printf("ICI\n");
         list *tmp = *l;
         while (tmp->next)
             tmp = tmp->next;

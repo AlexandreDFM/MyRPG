@@ -20,5 +20,7 @@ void draw_player(wininf *inf, player p)
         sfSprite_setPosition(p.test, np);
     }
     update_camera(inf->camera, inf->time.dt, inf->win, inf->transition_rect);
+    if (inf->net->other.p.test)
+        sfRenderWindow_drawSprite(inf->win, inf->net->other.p.test, 0);
     sfRenderWindow_drawSprite(inf->win, p.test, 0);
 }

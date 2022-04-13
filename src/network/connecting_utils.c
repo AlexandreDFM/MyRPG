@@ -16,25 +16,36 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
     sfIpAddress *addrip = &my_ip;
     sfIpAddress *otherip = &ip;
     int *addrport = &port;
-    while (iter <= 1000) {
+    int order = CONNECTION;
+    sfSocketSelector_addUdpSocket(inf->net->selector, inf->net->socket);
+    while (iter <= 30) {
         sfPacket_clear(net->packet);
+        sfPacket_append(net->packet, &order, sizeof(int));
         sfPacket_append(net->packet, addrip, sizeof(sfIpAddress));
         sfPacket_append(net->packet, addrport, sizeof(int));
         sfUdpSocket_sendPacket(net->socket, net->packet, ip, port);
-        if (!(iter % 500)) {
-            my_printf("Trying to connect... (x%d)\n", iter / 500);
-        }
-        //MB SLEEP
-        sfPacket_clear(net->packet);
-        int res = sfUdpSocket_receivePacket(net->socket, net->packet, otherip, addrport);
-        if (!res) {
-            net->other.ip = ip;
-            net->other.port = port;
-            printf("Successfully connected!\n");
+        if (receive_with_timeout(net, addrip, addrport))
             break;
-        }
         iter += 1;
     }
+    net->other.ip = ip;
+    net->other.port = port;
+}
+
+int receive_with_timeout(network *net, sfIpAddress *ip, int *port)
+{
+    if (sfSocketSelector_wait(net->selector, net->timeout)) {
+        if (!sfSocketSelector_isUdpSocketReady(net->selector, net->socket))
+            return 0;
+        int res = sfUdpSocket_receivePacket(net->socket, net->packet, ip, port);
+        if (!res) { 
+            net->other.ip = *ip;
+            net->other.port = *port;
+            my_printf("Successfully connected!\n");
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void send_okay(network *net)
@@ -42,9 +53,9 @@ void send_okay(network *net)
     int order = OKAY;
     sfPacket_clear(net->packet);
     sfPacket_append(net->packet, &order, sizeof(int));
-    char ipstr[20];
-    sfIpAddress_toString(net->other.ip, ipstr);
-    printf("Sending confirmation to: %s at port %d\n", ipstr, net->other.port);
+    char s[20];
+    sfIpAddress_toString(net->other.ip, s);
+    my_printf("Sending confirmation to: %s at port %d\n", s, net->other.port);
     int res = sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip, net->other.port);
 }
 
@@ -57,5 +68,11 @@ network *init_network(void)
     net->socket = 0;
     net->other.ip = sfIpAddress_None;
     net->other.port = 0;
+    net->is_okay = 1;
+    net->selector = sfSocketSelector_create();
+    sfTime timeout;
+    timeout.microseconds = 1000000;
+    net->timeout = timeout;
+    net->other.p.test = 0;
     return net;
 }

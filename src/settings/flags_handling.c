@@ -20,9 +20,6 @@ int get_settings_flags(int ac, char **av, wininf *win)
     while ((opt = getopt_long(ac, av, "H:C:p", lo, NULL)) != -1) {
         change_settings(opt, optarg, win);
     }
-    if (win->net->is_multi && win->net->is_host) {
-        printf("Before FIP: %d\n", win->net->port);
-    }
     return 0;
 }
 
@@ -45,6 +42,7 @@ void change_settings(int opt, char *arg, wininf *inf)
         inf->net->is_multi = 1;
         inf->net->socket = sfUdpSocket_create();
         sfIpAddress ip = sfIpAddress_fromString(arg);
+        sfUdpSocket_setBlocking(inf->net->socket, sfFalse);
         try_to_connect(ip, port, inf);
     }
     if (opt == 1000) {
@@ -57,10 +55,11 @@ void change_settings(int opt, char *arg, wininf *inf)
         inf->net->ip = malloc(sizeof(sfIpAddress));
         *inf->net->ip = ip;
         inf->net->port = 7878;
-        sfUdpSocket_setBlocking(inf->net->socket, sfFalse);
         char ipstr[40];
         sfIpAddress_toString(ip, ipstr);
         printf("Binding to %s\n", ipstr);
+        sfUdpSocket_setBlocking(inf->net->socket, sfFalse);
         sfUdpSocket_bind(inf->net->socket, inf->net->port, ip);
+        sfSocketSelector_addUdpSocket(inf->net->selector, inf->net->socket);
     }
 }

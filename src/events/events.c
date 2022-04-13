@@ -21,8 +21,8 @@ void update_events(wininf *inf)
         sfKeyEscape)
             inf->interacting = 0;
         if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
-        sfKeyUp || inf->event.key.code == sfKeyDown) && inf->c_scene
-        == MAIN_MENU)
-           inf->current_menu->pressed = 0;
+        sfKeyUp || inf->event.key.code == sfKeyDown))
+        //    inf->current_menu->pressed = 0;
+            inf->c_scene = HOME;
     }
 }

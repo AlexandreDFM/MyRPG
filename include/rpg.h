@@ -32,7 +32,9 @@ typedef enum scenes_e {
 
 typedef enum orders_e {
     OKAY,
-    POSITION
+    CONNECTION,
+    SYNC,
+    POSITION,
 } orders;
 
 typedef enum main_menu_t {
@@ -128,6 +130,7 @@ typedef struct ui_t {
 } ui;
 
 typedef struct other_t {
+    struct player_t p;
     sfIpAddress ip;
     int port;
 } other;
@@ -135,6 +138,9 @@ typedef struct other_t {
 typedef struct network_t {
     int is_multi;
     int is_host;
+    int is_okay;
+    sfTime timeout;
+    sfSocketSelector *selector;
     sfPacket *packet;
     sfUdpSocket *socket;
     sfIpAddress *ip;
@@ -201,7 +207,9 @@ typedef struct menus {
     int max_choice;
     sfSprite *cursor;
     struct choices_t *current;
+    struct linked_list_t *head;
     struct linked_list_t *choices;
+    struct linked_list_t *selected;
     struct linked_list_t *backgrounds;
 }menuss;
 
@@ -247,6 +255,7 @@ void draw_list(list *obj, sfRenderWindow *win);
 void add_pnjs(atlases atlas, int idx, scene *s);
 menus *init_load_menu(wininf *inf, int menu_id);
 void push_back_double(list **l, void *new_data);
+void update_network(wininf *inf, components *all);
 sfSprite *set_cursor(wininf *inf, sfVector2f scale);
 int check_rect_col(collision *self, sfVector2f pos);
 scene create_static_environment(wininf *inf, int id);
@@ -266,6 +275,7 @@ int treat_balise(char *balise, sfColor *color, wininf *inf);
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 dline *load_line(char *line, sfFont *font, int size, wininf *inf);
+int receive_with_timeout(network *net, sfIpAddress *ip, int *port);
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
 list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
 void place_decorations(char *line, sfImage *atlas, char **csv, list **l);

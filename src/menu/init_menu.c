@@ -25,13 +25,13 @@ menus *init_menu(wininf *inf, int menu_id)
     sfSprite_setPosition(menu->cursor, menu->base_pos);
     menu->choices = malloc(sizeof(list));
     pos2.x += 25; pos2.y += 10;
-    menu->choices = init_circular(arr, inf, pos, pos2);
-    menu->head = menu->choices;
-    menu->selected = menu->choices;
+    // menu->choices = init_circular(arr, inf, pos, pos2);
+    // menu->head = menu->choices;
+    // menu->selected = menu->choices;
     menu->curr_choice = 0;
     menu->pressed = 0;
     menu->max_choice = my_atoi(arr[5]) - 1;
     menu->blink = 0;
-    menu->current = (choices *)menu->head->data;
+    // menu->current = (choices *)menu->head->data;
     return menu;
 }
