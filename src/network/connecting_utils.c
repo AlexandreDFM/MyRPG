@@ -13,7 +13,7 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
     sfIpAddress my_ip = sfIpAddress_getLocalAddress();
     sfIpAddress *addrip = &my_ip;
     int *addrport = &port;
-    while (iter <= 1000) {
+    while (iter <= 6000) {
         sfPacket_clear(inf->net.packet);
         if (!(iter % 100)) {
             my_printf("Trying to connect... (x%d)\n", iter / 100);

@@ -136,7 +136,7 @@ typedef struct choices_t {
     sfText *choice;
     sfText *desc;
     int ptr;
-    void (**choices)(void);
+    void (*ptr[1])(void);
 } choices;
 
 typedef struct wininf_t {
@@ -183,6 +183,11 @@ typedef struct menu_t {
     int pressed;
     float blink;
 } menus;
+
+typedef struct menus {
+    struct linked_list_t *backgrounds;
+    struct linked_list_t *choices;
+}menuss;
 
 typedef struct components_t {
     struct wininf_t inf;
