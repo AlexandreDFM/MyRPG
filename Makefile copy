@@ -26,8 +26,8 @@ SRC_COLLISIONS	=		src/collisions/init_triggers.c					\
 
 SRC_CSV	=				src/csv/load_csv.c
 
-SRC_DUNGEON	=			src/dungeon/edge_detection.c					\
-						src/dungeon/map_generator.c
+SRC_DUNGEON	=			src/dungeon/map_generator.c						\
+						src/dungeon/edge_detection.c
 
 SRC_ENTITY	=			src/entity/draw_entity.c						\
 						src/entity/init_entity.c

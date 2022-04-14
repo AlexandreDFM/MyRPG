@@ -94,5 +94,6 @@ clean:
 fclean:
 	@$(RM) $(NAME)
 	@$(RM) $(OBJ)
+	@make -C ./lib/my fclean
 
 re: fclean all
