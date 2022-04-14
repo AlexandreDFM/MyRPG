@@ -16,7 +16,7 @@ char **empty_map(int size)
     new[size] = 0;
     for (int i = 0; i < size; i++) {
         new[i] = malloc(size + 1);
-        memset(new[i], '.', size);
+        my_memset(new[i], '.', size);
         new[i][size] = '\0';
     }
     return new;
@@ -47,7 +47,6 @@ bsp *split_container(sfIntRect *main, int iter)
 
 int random_btw(int min, int max)
 {
-    int mid = max / 2;
     return (rand() % (max - min + 1)) + min;
 }
 
@@ -106,7 +105,6 @@ void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count)
     if (tree) {
         if (is_leaf(tree)) {
             sfIntRect rect = generate_room(tree->rect);
-            char rdm = '0' + rand() % 9;
             for (int y = rect.top; y < rect.top + rect.height; y++) {
                 for (int i = rect.left; i < rect.left + rect.width; i++) {
                     (*map)[y][i] = ' ';
@@ -134,7 +132,7 @@ void append_list(sfIntRect ***rects, sfIntRect *new_alloc)
     int y = 0;
     for (; *rects && (*rects)[y]; y++);
     sfIntRect **new = malloc(sizeof(sfIntRect*) * (y + 2));
-    memset(new, 0, y + 2);
+    my_memset(new, 0, y + 2);
     for (int i = 0; i < y; i++) {
         new[i] = (*rects)[i];
     }
@@ -165,7 +163,7 @@ void get_paths(char ***map, bsp *tree)
         for (int i = min; i < max; i++) {
             if ((*map)[center_a.y][i] == '.') {
                 (*map)[center_a.y][i] = ' ';
-            }		
+            }
         }
     } else {
         min = center_a.y < center_b.y ? center_a.y : center_b.y;
@@ -173,10 +171,10 @@ void get_paths(char ***map, bsp *tree)
         for (int i = min; i < max; i++) {
             if ((*map)[i][center_a.x] == '.') {
                 (*map)[i][center_a.x] = ' ';
-            }		
+            }
         }
     }
-    
+
     get_paths(map, tree->left);
     get_paths(map, tree->right);
 }
@@ -191,8 +189,7 @@ int is_leaf(bsp *tree) {
 map_inf generate_map(int iter, sfImage *atlas)
 {
     sfIntRect **rects = 0;
-    sfIntRect **paths = 0;
-    int count = 0; 
+    int count = 0;
     char **map = empty_map(MAP_SIZE + 2);
     bsp *tree = build_bsp(MAP_SIZE, iter);
     populate_map(&map, tree, &rects, &count);

@@ -33,9 +33,11 @@ typedef enum scenes_e {
 typedef enum orders_e {
     OKAY,
     CONNECTION,
-    SYNC,
+    CSYNC,
     POSITION,
     CHANGE_SCENE,
+    HSYNC,
+    COUNT,
 } orders;
 
 typedef enum main_menu_t {
@@ -200,110 +202,236 @@ typedef struct network_t {
     sfPacket *packet;
     sfUdpSocket *socket;
     sfIpAddress *ip;
+    sfIpAddress *any;
     unsigned short port;
-    int (*orders[5])(void **data, int *important, components *com);
+    int flags[COUNT - 1];
+    int (*orders[5])(char** data, int *important, components *com);
     struct other_t other;
 } network;
 
-int length_of_int(int a);
-network *init_network(void);
-void draw_home(wininf *inf);
-settings *init_settings(void);
-void init_inputs(wininf *inf);
-camera init_camera(wininf inf);
-void init_times(wininf *infos);
-void init_textbox(wininf *win);
-void update_inputs(wininf *inf);
-void update_time(wininf *infos);
-void update_events(wininf *inf);
-void create_atlases(wininf *inf);
-void create_triggers(wininf *inf);
-void update_keyboard(wininf *inf);
-void update_joysticks(wininf *inf);
-player init_player(wininf inf, int id);
-void draw_player(wininf *inf, player p);
-void add_collisions(char *str, list **l);
-scene create_home(wininf *infos, int id);
-void push_back(list **l, void *new_data);
-float my_lerpf(float a, float b, float t);
-void draw_menu(wininf *inf, menuss *menu);
-float distance(sfVector2f a, sfVector2f b);
-void add_to_list(list **l, void *new_elem); 
-void move_cursor(menuss *menu, wininf *inf);
-void handle_scene(wininf *infos, player *p);
-entity *create_entity(wininf *info, int id);
-void draw_static_scene(wininf *inf, scene s);
-sfIntRect find_icons(wininf *inf, char *str);
-wininf create_window_infos(int ac, char **av);
-void update_transition(wininf *inf, player p);
-char **my_strtwa(char const *str, char *limit);
-void draw_list(list *obj, sfRenderWindow *win);
-void receive_ord(network *net, components *all);
-void add_pnjs(atlases atlas, int idx, scene *s);
-void push_back_double(list **l, void *new_data);
-void update_network(wininf *inf, components *all);
-int check_rect_col(collision *self, sfVector2f pos);
-scene create_static_environment(wininf *inf, int id);
-void create_pnj(char *line, scene *s, atlases atlas);
-components create_all_components(int ac, char **argv);
-int check_circle_col(collision *self, sfVector2f pos);
+////////////////////////////////////////////////////////////
+//Flags Handling
+void change_settings(int opt, char *arg, wininf *inf);
+//Flags Handling
 int get_settings_flags(int ac, char **av, wininf *win);
-sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
-void add_circle_col(list **l, int radius, int x, int y);
-void draw_rect_col(collision *self, sfRenderWindow *win);
-sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
-void try_to_connect(sfIpAddress ip, int port, wininf *inf);
-void draw_circle_col(collision *self, sfRenderWindow *win);
-void draw_choices(wininf *inf, list *choices_l, list *head);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Dungeon Generation
+int search(int array[], int x, int started);
+//Dungeon Generation
+void append_list(sfIntRect ***rects, sfIntRect *new_alloc);
+//Dungeon Generation
+void insert_into(sfUint8 **pixels, int index, int start_x, int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Utility functions
+char **my_strtwa(char const *str, char *limit);
+//Utility functions
+void *my_memset(void *dest, int value, int length);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Dialogs Handling
+sfIntRect find_icons(wininf *inf, char *str);
+//Dialogs Handling
 int treat_balise(char *balise, sfColor *color, wininf *inf);
-sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
-void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
-void add_ord(int ord, void *data, int size, sfPacket *packet);
+//Dialogs Handling
 dline *load_line(char *line, sfFont *font, int size, wininf *inf);
-int receive_with_timeout(network *net, sfIpAddress *ip, int *port);
-void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
-sfSprite *set_cursor(wininf *inf, sfVector2f scale, sfVector2f pos);
+//Dialogs Handling
 list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
-void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
-void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
+//Dialogs Handling
 void add_icon(sfVector2i origin, sfImage *img, sfIntRect r, sfImage *atlas);
-list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Network functions
+void send_okay(network *net);
+//Network functions
+void init_orders(network *net);
+//Network functions
+void sync_online(components *all);
+//Network functions
+void receive_ord(network *net, components *all);
+//Network functions
+void update_network(wininf *inf, components *all);
+//Network functions
+void try_to_connect(sfIpAddress ip, int port, wininf *inf);
+//Network functions
+void add_ord(int ord, void *data, int size, sfPacket *packet);
+//Network functions
+int receive_with_timeout(network *net, sfIpAddress *ip, unsigned short *port);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Collision Handling
+void add_collisions(char *str, list **l);
+//Collision Handling
+int check_rect_col(collision *self, sfVector2f pos);
+//Collision Handling
+int check_circle_col(collision *self, sfVector2f pos);
+//Collision Handling
+void add_circle_col(list **l, int radius, int x, int y);
+//Collision Handling
+void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Drawing functions
+void draw_home(wininf *inf);
+//Drawing functions
+void draw_player(wininf *inf, player p);
+//Drawing functions
+void draw_menu(wininf *inf, menuss *menu);
+//Drawing functions
+void move_cursor(menuss *menu, wininf *inf);
+//Drawing functions
+void handle_scene(wininf *infos, player *p);
+//Drawing functions
+void draw_static_scene(wininf *inf, scene s);
+//Drawing functions
+void update_transition(wininf *inf, player p);
+//Drawing functions
+void draw_rect_col(collision *self, sfRenderWindow *win);
+//Drawing functions
+void draw_circle_col(collision *self, sfRenderWindow *win);
+//Drawing functions
+void draw_choices(wininf *inf, list *choices_l, list *head);
+//Drawing functions
+void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Initializations
+network *init_network(void);
+//Initializations
+settings *init_settings(void);
+//Initializations
+void init_inputs(wininf *inf);
+//Initializations
+void init_times(wininf *infos);
+//Initializations
+void init_textbox(wininf *win);
+//Initializations
+camera init_camera(wininf inf);
+//Initializations
+void create_atlases(wininf *inf);
+//Initializations
+void create_triggers(wininf *inf);
+//Initializations
+player init_player(wininf inf, int id);
+//Initializations
+scene create_home(wininf *infos, int id);
+//Initializations
+entity *create_entity(wininf *info, int id);
+//Initializations
+wininf create_window_infos(int ac, char **av);
+//Initializations
+void add_pnjs(atlases atlas, int idx, scene *s);
+//Initializations
+scene create_static_environment(wininf *inf, int id);
+//Initializations
+void create_pnj(char *line, scene *s, atlases atlas);
+//Initializations
+components create_all_components(int ac, char **argv);
+//Initializations
+sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
+//Initializations
+void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
+//Initializations
+void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Updates
+void update_inputs(wininf *inf);
+//Updates
+void update_time(wininf *infos);
+//Updates
+void update_events(wininf *inf);
+//Updates
+void update_keyboard(wininf *inf);
+//Updates
+void update_joysticks(wininf *inf);
+//Updates
 void update_camera(camera c, float dt, sfRenderWindow *w, sfRectangleShape *t);
-int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
+////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
-/// \brief Teleporters
-///
+//Linked lists
+void push_back(list **l, void *new_data);
+//Linked lists
+void add_to_list(list **l, void *new_elem);
+//Linked lists
+void draw_list(list *obj, sfRenderWindow *win);
+//Linked lists
+void push_back_double(list **l, void *new_data);
+//Linked lists
+list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2);
 ////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Teleporters
 void ta_mere(wininf *win, player p);
+//Teleporters
 void interact_pnj(wininf *win, player p);
+//Teleporters
 void sleep_and_save(wininf *win, player p);
+//Teleporters
 void village_to_dojo(wininf *win, player p);
+//Teleporters
 void homeext_to_village(wininf *win, player p);
+//Teleporters
 void homeext_to_homeint(wininf *win, player p);
+//Teleporters
 void village_to_bekipan(wininf *win, player p);
+//Teleporters
 void village_to_dittoland(wininf *win, player p);
+//Teleporters
 void generate_random_dungeon(wininf *win, player p);
+////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Menu pointers
 void play(wininf *inf);
+//Menu pointers
 void a_log(wininf *inf);
+//Menu pointers
 void no_but(wininf *inf);
+//Menu pointers
 void options(wininf *inf);
+//Menu pointers
 void my_exit(wininf *inf);
+//Menu pointers
 void yes_but(wininf *inf);
+//Menu pointers
 void init_load_pointers(wininf *inf);
+//Menu pointers
 void init_main_menu_pointers(wininf *inf);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
 //Maths Functions
+int length_of_int(int a);
+//Maths Functions
 float my_repeat(float t, float mag);
+//Maths Functions
 float my_pingpong(float t, float mag);
+//Maths Functions
 float my_lerpf(float a, float b, float t);
+//Maths Functions
+float distance(sfVector2f a, sfVector2f b);
+//Maths Functions
 float my_clamp(float d, float min, float max);
+//Maths Functions
 float manhattan_distance(sfVector2f a, sfVector2f b);
+//Maths Functions
+sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
+//Maths Functions
 int is_same(sfVector2f v1, sfVector2f v2, float threshold);
+//Maths Functions
+int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -318,17 +446,27 @@ void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Menu initialization
 sfText *init_text(char *str, sfFont *font, sfVector2f pos);
+//Menu initialization
 menuss *init_all_menus(wininf *inf, int menu_id, int focus);
+//Menu initialization
+sfSprite *set_cursor(wininf *inf, sfVector2f scale, sfVector2f pos);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
 //Network pointers
-int receive_okay(void **data, int *important, components *all);
+int receive_okay(char **data, int *important, components *all);
 //Network pointers
-int receive_scene(void **data, int *important, components *all);
+int receive_scene(char **data, int *important, components *all);
 //Network pointers
-int receive_position(void **data, int *important, components *all);
+int receive_position(char **data, int *important, components *all);
+//Network pointers
+int receive_connection(char **data, int *important, components *all);
+//Network pointers
+int receive_clientsync(char **data, int *important, components *all);
+//Network pointers
+int receive_hostsync(char **data, int *important, components *all);
 ////////////////////////////////////////////////////////////
 
 #endif

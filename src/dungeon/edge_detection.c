@@ -13,9 +13,8 @@ sfImage *generate_map_image(char **map, int line_len, sfImage *spritesheet)
         66, 0, 72, 80, 2, 8, 90, 16, 64, 26, 74, 82, 88, 250, 222, 123, 95,
         254, 251, 223, 127, 106, 210, 75, 86, 30, 27, 216, 120, 91, 94,
         122, 218, 126, 219};
-    int count = 0;
     char **tab = map;
-    sfUint8 *ptr = sfImage_getPixelsPtr(spritesheet);
+    const sfUint8 *ptr = sfImage_getPixelsPtr(spritesheet);
     sfUint8 *pixels = malloc((24 * line_len) * (24 * line_len) * 4 * sizeof(sfUint8));
     for (int i = 0; i < (24 * line_len) * (24 * line_len) * 4; i++) {
         pixels[i] = 255;
@@ -40,7 +39,7 @@ sfImage *generate_map_image(char **map, int line_len, sfImage *spritesheet)
     return texture;
 }
 
-void insert_into(sfUint8 **pixels, int index, int start_x, int start_y, sfUint8 *ptr, int y, int line_len, int ref_len)
+void insert_into(sfUint8 **pixels, int index, int start_x, int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len)
 {
     for (int x = 0; x < 24; x += 1) {
         for (int i = 0; i < 24 * 4; i++) {

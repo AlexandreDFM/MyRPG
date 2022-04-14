@@ -1,0 +1,121 @@
+##
+## EPITECH PROJECT, 2021
+## Makefile
+## File description:
+## file making
+##
+
+NAME	= 	my_rpg
+
+CC		=	gcc
+
+RM		= rm -f
+
+LIB		=  -L ./lib/my/ -lmy
+
+SRC_ANIM	=			src/anim/create_static_anim.c					\
+						src/anim/handle_decorations.c
+
+SRC_CAMERA	=			src/camera/init_camera.c						\
+						src/camera/camera_follow.c
+
+SRC_COLLISIONS	=		src/collisions/init_triggers.c					\
+						src/collisions/add_collisions.c					\
+						src/collisions/collision_check.c				\
+						src/collisions/draw_collisions.c
+
+SRC_CSV	=				src/csv/load_csv.c
+
+SRC_DUNGEON	=			src/dungeon/edge_detection.c					\
+						src/dungeon/map_generator.c
+
+SRC_ENTITY	=			src/entity/draw_entity.c						\
+						src/entity/init_entity.c
+
+SRC_EVENTS	=			src/events/events.c
+
+SRC_INPUTS	=			src/inputs/inputs.c
+
+SRC_MATHS	=			src/maths/my_lerp.c								\
+						src/maths/pingpong.c							\
+						src/maths/simple_maths.c						\
+						src/maths/vector_maths.c
+
+SRC_MENU	=			src/menu/draw_menu.c							\
+						src/menu/set_cursor.c							\
+						src/menu/move_cursor.c							\
+						src/menu/draw_choices.c							\
+						src/menu/init_all_menus.c						\
+						src/menu/init_menus_pointers.c					\
+						src/menu/function_pointers/main_menu.c			\
+						src/menu/function_pointers/load_menu_pointers.c	\
+
+SRC_NETWORK	=			src/network/handle_orders.c						\
+						src/network/update_network.c					\
+						src/network/network_syncing.c					\
+						src/network/connecting_utils.c
+
+SRC_PLAYER	=			src/player/init_player.c						\
+						src/player/player_update.c
+
+
+SRC_PNJS	=			src/pnjs/add_pnjs.c
+
+SRC_SCENE_HANDLING	=	src/scene_handling/draw_home.c					\
+						src/scene_handling/draw_scene.c					\
+						src/scene_handling/scene_handler.c
+
+
+SRC_SETTINGS	=		src/settings/flags_handling.c					\
+						src/settings/init_settings.c
+
+SRC_TEXT_HANDLING	=	src/text_handling/create_textbox.c				\
+						src/text_handling/load_font.c					\
+						src/text_handling/icons_handler.c				\
+						src/text_handling/init_text.c					\
+						src/text_handling/create_dialog_list.c
+
+SRC_TEXTBOX	=			src/textbox/generate_textbox.c
+
+SRC_TEXTURE_ATLAS	=	src/texture_atlas/create_sprite_from_atlas.c	\
+						src/texture_atlas/init_atlases.c
+
+SRC_UTILS	=			src/utils/my_strtwa.c							\
+						src/utils/lists/push_front.c					\
+						src/utils/is_same.c								\
+						src/utils/my_memset.c							\
+						src/utils/lists/draw_list.c						\
+						src/utils/lists/init_double.c
+
+SRC_WINDOW	=			src/window/init_window.c						\
+						src/window/time_handling.c						\
+						src/window/handle_transitions.c
+
+SRC_GLOBAL	=			src/create_components.c
+
+SRC_MAIN	=			main.c
+
+
+OBJ    = $(SRC:.c=.o)
+
+CFLAGS += -Wall -pedantic -I./include -g3
+
+LIBFLAG    = -I ./include -g3 -lGL -lcsfml-graphics					\
+-lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network 		\
+-L ./lib/ -lmy														\
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@make -C ./lib/my
+	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
+
+clean:
+	@$(RM) $(OBJ)
+	@make -C ./lib/my fclean
+
+fclean:
+	@$(RM) $(NAME)
+	@$(RM) $(OBJ)
+
+re: fclean all

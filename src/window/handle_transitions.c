@@ -9,12 +9,11 @@
 
 void update_transition(wininf *inf, player p)
 {
-    sfColor col = sfRectangleShape_getFillColor(inf->transition_rect); 
+    sfColor col = sfRectangleShape_getFillColor(inf->transition_rect);
     float new_a = col.a / 255.0f;
     if (inf->transition == 1) {
         if (new_a > 0.99f) {
-            inf->transition = -1;
-            inf->time.transi = 0.0f;
+            inf->transition = -1; inf->time.transi = 0.0f;
             if (!inf->change_scene) return;
             inf->c_scene = inf->next_scene;
             sfSprite_setPosition(p.test, inf->next_pos);
@@ -23,8 +22,7 @@ void update_transition(wininf *inf, player p)
         new_a = my_lerpf(new_a, 1.0f, 9.0 * inf->time.transi);
     } else {
         if (new_a <= 0.05f) {
-            inf->transition = 0;
-            inf->time.transi = 0.0f;
+            inf->transition = 0; inf->time.transi = 0.0f;
         }
         inf->time.transi += inf->time.dt / 15.0f;
         new_a = my_lerpf(new_a, 0.0f, 9.0 * inf->time.transi);

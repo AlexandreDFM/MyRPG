@@ -45,8 +45,7 @@ list *init_choices(char **arr, wininf *inf, int off)
     choices_l->data = fill_choice(arr, off + 1, inf);
     choices_l->next = NULL;
     choices_l->prev = NULL;
-    sfVector2f base = {my_atoi(arr[1]), my_atoi(arr[2])};
-    choices *first = choices_l;
+    list *first = choices_l;
     for (int i = 0, tmp = off + 8; i < my_atoi(arr[off]) - 1; i++, tmp += 7) {
         push_back_double(&choices_l, fill_choice(arr, tmp, inf));
     }

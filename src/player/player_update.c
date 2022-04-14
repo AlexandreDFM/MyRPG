@@ -31,18 +31,3 @@ void draw_player(wininf *inf, player p)
     }
     sfRenderWindow_drawSprite(inf->win, p.test, 0);
 }
-
-// void send_position(sfVector2f pos, network *net)
-// {
-//     int order = POSITION;
-//     int host = net->is_host;
-//     sfPacket *p = net->packet;
-//     int r = sfUdpSocket_receivePacket(net->socket, p, net->ip, &net->port);
-//     if (!p && *((int*)sfPacket_getData(p)) == 0) return;
-//     sfPacket_append(net->packet, &order, sizeof(int));
-//     sfPacket_append(net->packet, &host, sizeof(int));
-//     sfPacket_append(net->packet, &pos, sizeof(sfVector2f));
-//     sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-//         net->other.port);
-//     sfPacket_clear(net->packet);
-// }

@@ -27,6 +27,7 @@ SRC		= 	main.c											\
 			src/utils/my_strtwa.c							\
 			src/utils/lists/push_front.c					\
 			src/utils/is_same.c								\
+			src/utils/my_memset.c							\
 			src/utils/lists/draw_list.c						\
 			src/utils/lists/init_double.c					\
 			src/entity/init_entity.c						\

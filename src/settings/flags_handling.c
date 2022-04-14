@@ -54,7 +54,7 @@ void change_settings(int opt, char *arg, wininf *inf)
         inf->net->socket = sfUdpSocket_create();
         inf->net->ip = malloc(sizeof(sfIpAddress));
         *inf->net->ip = ip;
-        inf->net->port = 7878;
+        inf->net->port = 4242;
         char ipstr[40];
         sfIpAddress_toString(ip, ipstr);
         printf("Binding to %s\n", ipstr);

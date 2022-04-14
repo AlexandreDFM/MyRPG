@@ -14,7 +14,6 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
     sfIpAddress my_ip = sfIpAddress_getLocalAddress();
     sfUdpSocket_bind(net->socket, port, my_ip);
     sfIpAddress *addrip = &my_ip;
-    sfIpAddress *otherip = &ip;
     int *addrport = &port;
     int order = CONNECTION;
     sfSocketSelector_addUdpSocket(inf->net->selector, inf->net->socket);
@@ -24,7 +23,7 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
         sfPacket_append(net->packet, addrip, sizeof(sfIpAddress));
         sfPacket_append(net->packet, addrport, sizeof(int));
         sfUdpSocket_sendPacket(net->socket, net->packet, ip, port);
-        if (receive_with_timeout(net, addrip, addrport))
+        if (receive_with_timeout(net, addrip, (short unsigned int*)addrport))
             break;
         iter += 1;
     }
@@ -32,7 +31,7 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
     net->other.port = port;
 }
 
-int receive_with_timeout(network *net, sfIpAddress *ip, int *port)
+int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *port)
 {
     if (sfSocketSelector_wait(net->selector, net->timeout)) {
         if (!sfSocketSelector_isUdpSocketReady(net->selector, net->socket))
@@ -46,17 +45,6 @@ int receive_with_timeout(network *net, sfIpAddress *ip, int *port)
         }
     }
     return 0;
-}
-
-void send_okay(network *net)
-{
-    int order = OKAY;
-    sfPacket_clear(net->packet);
-    sfPacket_append(net->packet, &order, sizeof(int));
-    char s[20];
-    sfIpAddress_toString(net->other.ip, s);
-    my_printf("Sending confirmation to: %s at port %d\n", s, net->other.port);
-    int res = sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip, net->other.port);
 }
 
 network *init_network(void)
@@ -81,15 +69,10 @@ network *init_network(void)
 
 void init_orders(network *net)
 {
-
-    OKAY,
-    CONNECTION,
-    SYNC,
-    POSITION,
-    CHANGE_SCENE,
-    net->orders[0] = receive_okay;
-    net->orders[1] = 0;
-    net->orders[2] = 0;
-    net->orders[3] = receive_position;
-    net->orders[4] = receive_scene;
+    net->orders[OKAY] = receive_okay;
+    net->orders[CONNECTION] = receive_connection;
+    net->orders[CSYNC] = receive_clientsync;
+    net->orders[HSYNC] = receive_hostsync;
+    net->orders[POSITION] = receive_position;
+    net->orders[CHANGE_SCENE] = receive_scene;
 }
