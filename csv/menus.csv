@@ -1,3 +1,2 @@
-Main;100;375;350;200;4;New Game;Start an entirely new adventure.;0;Adventure Log;Check your career as an adventurer.;1;Options;Manage settings.;2;Exit;Quit the game.;3
-Load;1280;175;540;400;8;Team:;" ";-1;Name:;" ";-1;Location:;" ";-1;Playtime:;" ";-1;Resuming Saved Adventure.;" ";-1;Is that OK?;" ";-1;Yes;" ";0;No;" ";1
-Main;100;375;2;Bg 1;0;0;350;200;Bg 2;0;250;540;100;4;New Game;38;0;Start an entirely new adventure.;20;263;0;Adventure Log;38;40;Check your career as an adventurer.;20;263;1;Options;38;80;Manage settings;20;263;2;Exit;38;120;Quit the game.;20;263;3;Cursor;15;25;3;4
+Main;100;375;2;Bg 1;0;0;350;200;Bg 2;0;250;540;100;4;New Game;38;0;Start an entirely new adventure.;20;263;0;Adventure Log;38;40;Check your career as an adventurer.;20;263;1;Options;38;80;Manage settings;20;263;2;Exit;38;120;Quit the game.;20;263;3;0;Cursor;15;25;3;4
+Load;1280;175;3;Bg 1;0;0;540;400;Bg 2;0;450;390;100;Bg 3;440;450;100;100;2;Yes;488;450; ;0;0;No;488;490; ;0;0;Cursor;455;475

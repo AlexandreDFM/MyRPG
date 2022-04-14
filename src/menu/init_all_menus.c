@@ -28,26 +28,27 @@ choices *fill_choice(char **arr, int tmp, wininf *inf)
 {
     sfVector2f pos;
     choices *choice = malloc(sizeof(choices));
-    pos = (sfVector2f){my_atoi(arr[tmp + 1]) + my_atoi(arr[1]), my_atoi(arr[tmp + 2]) + my_atoi(arr[2])};
+    pos = (sfVector2f){my_atoi(arr[tmp + 1]) + my_atoi(arr[1]),
+    my_atoi(arr[tmp + 2]) + my_atoi(arr[2])};
     choice->choice = init_text(arr[tmp], inf->ui.font, pos);
-    pos = (sfVector2f){my_atoi(arr[tmp + 4]) + my_atoi(arr[1]), my_atoi(arr[tmp + 5]) + my_atoi(arr[2])};
+    pos = (sfVector2f){my_atoi(arr[tmp + 4]) + my_atoi(arr[1]),
+    my_atoi(arr[tmp + 5]) + my_atoi(arr[2])};
     choice->desc = init_text(arr[tmp + 3], inf->ui.font, pos);
     choice->ptr = my_atoi(arr[tmp + 6]);
     return choice;
 }
 
-list *init_choices(char **arr, wininf *inf, int offset)
+list *init_choices(char **arr, wininf *inf, int off)
 {
+    if (my_atoi(arr[off]) == 0) return NULL;
     list *choices_l = malloc(sizeof(list));
-    choices_l->data = fill_choice(arr, offset + 1, inf);
+    choices_l->data = fill_choice(arr, off + 1, inf);
     choices_l->next = NULL;
     choices_l->prev = NULL;
     sfVector2f base = {my_atoi(arr[1]), my_atoi(arr[2])};
     choices *first = choices_l;
-    printf("PTR NB %d\n", ((choices *)choices_l->data)->ptr);
-    for (int i = 0, tmp = offset + 8; i < my_atoi(arr[offset]) - 1; i++, tmp += 7) {
+    for (int i = 0, tmp = off + 8; i < my_atoi(arr[off]) - 1; i++, tmp += 7) {
         push_back_double(&choices_l, fill_choice(arr, tmp, inf));
-        printf("PTR NB %d\n", ((choices *)choices_l->data)->ptr);
     }
     choices_l->next = first;
     choices_l->next->prev = choices_l;
@@ -55,24 +56,50 @@ list *init_choices(char **arr, wininf *inf, int offset)
     return choices_l;
 }
 
+list *fill_texts(char **arr, wininf *inf, int off)
+{
+    if (my_atoi(arr[off]) == 0) return NULL;
+    list *texts = 0;
+    sfVector2f pos;
+    for (int i = 0, tmp = off + 1; i < my_atoi(arr[off]); i++, tmp += 3) {
+        pos.x = my_atoi(arr[tmp + 1]); pos.y = my_atoi(arr[tmp + 2]);
+        add_to_list(&texts, init_text(arr[tmp], inf->ui.font, pos));
+    }
+    return texts;
+}
+
 menuss *init_all_menus(wininf *inf, int menu_id)
 {
+    printf("MENU_ID %d\n", menu_id);
     menuss *menu = malloc(sizeof(menuss));
     char **arr = my_strtwa(inf->atlases.menus[menu_id], ";\n");
-    int offset = my_atoi(arr[3]) * 5 + 4;
-    printf("%d\n", offset);
-    printf("%s\n", arr[offset]);
     menu->backgrounds = init_backgrounds(arr, inf);
+    int offset = my_atoi(arr[3]) * 5 + 4;
+    printf("OFFSET 1 %d\n", offset);
     menu->choices = init_choices(arr, inf, offset);
     menu->head = menu->choices;
     menu->selected = menu->choices;
-    printf("PTR 1 %d\n", ((choices *)menu->choices->data)->ptr);
-    offset += my_atoi(arr[offset]) * 7 + 2;
-    printf("%d\n", offset);
-    printf("%s\n", arr[offset]);
-    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]), my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
+    if (menu->choices) {
+        offset += my_atoi(arr[offset]) * 7 + 1;
+        printf("ADDED CHOICES\n");
+    } else offset += 1;
+    printf("OFFSET 2 %d\n", offset);
+    menu->texts = fill_texts(arr, inf, offset);
+    if (menu->texts) {
+        printf("ADDED TEXTS\n");
+        offset += my_atoi(arr[offset]) * 3 + 2;
+        if (!arr[offset + 1]) return menu;
+    } else {
+        if (!arr[offset + 1]) return menu;
+        offset += 2;
+    }
+    printf("OFFSET 3 %d\n", offset);
+    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]),
+    my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
     menu->base_pos = pos;
-    menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]), my_atoi(arr[offset + 2])}, pos);
+    my_printf("SCALE %s\n", arr[offset + 2]);
+    menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]),
+    my_atoi(arr[offset + 2])}, pos);
     menu->blink = 0;
     menu->pressed = 0;
     menu->max_choice = my_atoi(arr[offset + 3]);

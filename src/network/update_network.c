@@ -38,6 +38,9 @@ void send_scene(wininf *inf, int scene)
             net->other.port);
         int r = sfUdpSocket_receivePacket(net->socket, p, net->ip, &net->port);
         if (!r) {
+            int *data = sfPacket_getData(net->packet);
+            if (*data != 0) continue;
+            my_printf("Received");
             net->is_okay = 1;
         }
     }
@@ -138,12 +141,7 @@ void handle_packet(components *all, void *data)
         if (*id != net->is_host) {
             int *nscene = data;
             net->other.cscene = *nscene;
-            int ok = OKAY;
-            sfPacket_clear(net->packet);
-
-            sfPacket_append(net->packet, &ok, sizeof(int));
-            sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-                net->other.port);
+            send_okay(net);
         }
     }
     if (*order == POSITION) {

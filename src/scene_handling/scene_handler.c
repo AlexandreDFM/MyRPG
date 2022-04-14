@@ -12,7 +12,7 @@ void handle_scene(wininf *infos, player *p)
 {
     sfRenderWindow_clear(infos->win, sfBlack);
     if (infos->c_scene == MAIN_MENU) {
-        draw_menu(infos);
+        draw_menu(infos, infos->main_menu);
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);

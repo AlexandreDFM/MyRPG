@@ -170,10 +170,9 @@ typedef struct wininf_t {
     struct inputs_t inputs;
     struct atlases_t atlases;
     struct scene_t scenes[6];
-    struct menus *current_menu;
     struct menus *main_menu;
-    struct menu_t *load_menu;
-    struct menu_t *first_menu;
+    struct menus *load_menu;
+    struct menus *current_menu;
     struct settings_t *settings;
     sfRectangleShape *transition_rect;
     void (*triggers[9])(struct wininf_t *win, struct player_t p);
@@ -186,24 +185,6 @@ typedef struct choices_t {
     void (*ptrs[1])(struct wininf_t *);
 } choices;
 
-
-typedef struct menu_t {
-    sfSprite *background;
-    sfSprite *background2;
-    sfSprite *background3;
-    sfSprite *cursor;
-    struct linked_list_t *head;
-    struct linked_list_t *choices;
-    struct linked_list_t *selected;
-    struct choices_t *current;
-    void (*ptrs[5])(struct wininf_t *);
-    int max_choice;
-    int curr_choice;
-    sfVector2f base_pos;
-    int pressed;
-    float blink;
-} menus;
-
 typedef struct menus {
     float blink;
     int pressed;
@@ -211,6 +192,7 @@ typedef struct menus {
     sfSprite *cursor;
     sfVector2f base_pos;
     struct linked_list_t *head;
+    struct linked_list_t *texts;
     struct linked_list_t *choices;
     struct linked_list_t *selected;
     struct linked_list_t *backgrounds;
@@ -223,7 +205,6 @@ typedef struct components_t {
 
 int length_of_int(int a);
 network *init_network(void);
-void draw_menu(wininf *inf);
 void draw_home(wininf *inf);
 settings *init_settings(void);
 void init_inputs(wininf *inf);
@@ -244,10 +225,10 @@ void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
 void push_back(list **l, void *new_data);
 float my_lerpf(float a, float b, float t);
-void move_cursor(menuss *menu, wininf *inf);
-menus *init_menu(wininf *inf, int menu_id);
+void draw_menu(wininf *inf, menuss *menu);
 float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
+void move_cursor(menuss *menu, wininf *inf);
 void handle_scene(wininf *infos, player *p);
 entity *create_entity(wininf *info, int id);
 void draw_static_scene(wininf *inf, scene s);
@@ -257,7 +238,6 @@ void update_transition(wininf *inf, player p);
 char **my_strtwa(char const *str, char *limit);
 void draw_list(list *obj, sfRenderWindow *win);
 void add_pnjs(atlases atlas, int idx, scene *s);
-menus *init_load_menu(wininf *inf, int menu_id);
 void push_back_double(list **l, void *new_data);
 void update_network(wininf *inf, components *all);
 int check_rect_col(collision *self, sfVector2f pos);
@@ -272,7 +252,6 @@ void draw_rect_col(collision *self, sfRenderWindow *win);
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 void try_to_connect(sfIpAddress ip, int port, wininf *inf);
 void draw_circle_col(collision *self, sfRenderWindow *win);
-sfText *init_text(char *str, sfFont *font, sfVector2f pos);
 void draw_choices(wininf *inf, list *choices_l, list *head);
 int treat_balise(char *balise, sfColor *color, wininf *inf);
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
@@ -289,6 +268,7 @@ list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2);
 void update_camera(camera c, float dt, sfRenderWindow *w, sfRectangleShape *t);
 int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
 
+//TELEPORTERS
 void ta_mere(wininf *win, player p);
 void interact_pnj(wininf *win, player p);
 void sleep_and_save(wininf *win, player p);
@@ -299,7 +279,7 @@ void village_to_bekipan(wininf *win, player p);
 void village_to_dittoland(wininf *win, player p);
 void generate_random_dungeon(wininf *win, player p);
 
-//POINTERS
+//MENU POINTERS
 void play(wininf *inf);
 void a_log(wininf *inf);
 void no_but(wininf *inf);
@@ -312,9 +292,10 @@ void init_main_menu_pointers(wininf *inf);
 //MATHS
 float my_repeat(float t, float mag);
 float my_pingpong(float t, float mag);
+float my_lerpf(float a, float b, float t);
 float my_clamp(float d, float min, float max);
 float manhattan_distance(sfVector2f a, sfVector2f b);
-float my_lerpf(float a, float b, float t);
+int is_same(sfVector2f v1, sfVector2f v2, float threshold);
 
 //TEXTBOXES
 void topbot_border(sfVector2i size, sfImage *new);
@@ -322,7 +303,8 @@ void leftright_border(sfVector2i size, sfImage *new);
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
 
+//menus
 menuss *init_all_menus(wininf *inf, int menu_id);
-int is_same(sfVector2f v1, sfVector2f v2, float threshold);
+sfText *init_text(char *str, sfFont *font, sfVector2f pos);
 
 #endif
