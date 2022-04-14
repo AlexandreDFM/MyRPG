@@ -70,7 +70,11 @@ menuss *init_all_menus(wininf *inf, int menu_id)
     offset += my_atoi(arr[offset]) * 7 + 2;
     printf("%d\n", offset);
     printf("%s\n", arr[offset]);
-    menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset]), my_atoi(arr[offset + 1])});
+    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]), my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
+    menu->base_pos = pos;
+    menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]), my_atoi(arr[offset + 2])}, pos);
     menu->blink = 0;
+    menu->pressed = 0;
+    menu->max_choice = my_atoi(arr[offset + 3]);
     return menu;
 }

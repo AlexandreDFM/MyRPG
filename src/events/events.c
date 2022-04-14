@@ -22,7 +22,9 @@ void update_events(wininf *inf)
             inf->interacting = 0;
         if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
         sfKeyUp || inf->event.key.code == sfKeyDown))
-        //    inf->current_menu->pressed = 0;
+            inf->current_menu->pressed = 0;
+        if (inf->event.type == sfEvtKeyReleased && inf->event.key.code ==
+        sfKeyRControl)
             inf->c_scene = HOME;
     }
 }

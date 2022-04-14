@@ -35,6 +35,7 @@ typedef enum orders_e {
     CONNECTION,
     SYNC,
     POSITION,
+    CHANGE_SCENE,
 } orders;
 
 typedef enum main_menu_t {
@@ -131,7 +132,9 @@ typedef struct ui_t {
 
 typedef struct other_t {
     struct player_t p;
+    sfVector2f target;
     sfIpAddress ip;
+    int cscene;
     int port;
 } other;
 
@@ -167,7 +170,7 @@ typedef struct wininf_t {
     struct inputs_t inputs;
     struct atlases_t atlases;
     struct scene_t scenes[6];
-    struct menu_t *current_menu;
+    struct menus *current_menu;
     struct menus *main_menu;
     struct menu_t *load_menu;
     struct menu_t *first_menu;
@@ -206,7 +209,7 @@ typedef struct menus {
     int pressed;
     int max_choice;
     sfSprite *cursor;
-    struct choices_t *current;
+    sfVector2f base_pos;
     struct linked_list_t *head;
     struct linked_list_t *choices;
     struct linked_list_t *selected;
@@ -235,12 +238,13 @@ void create_triggers(wininf *inf);
 void update_keyboard(wininf *inf);
 void update_joysticks(wininf *inf);
 player init_player(wininf inf, int id);
+void send_scene(wininf *inf, int scene);
 void draw_player(wininf *inf, player p);
 void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
 void push_back(list **l, void *new_data);
 float my_lerpf(float a, float b, float t);
-void move_cursor(menus *menu, wininf *inf);
+void move_cursor(menuss *menu, wininf *inf);
 menus *init_menu(wininf *inf, int menu_id);
 float distance(sfVector2f a, sfVector2f b);
 void add_to_list(list **l, void *new_elem);
@@ -256,10 +260,8 @@ void add_pnjs(atlases atlas, int idx, scene *s);
 menus *init_load_menu(wininf *inf, int menu_id);
 void push_back_double(list **l, void *new_data);
 void update_network(wininf *inf, components *all);
-sfSprite *set_cursor(wininf *inf, sfVector2f scale);
 int check_rect_col(collision *self, sfVector2f pos);
 scene create_static_environment(wininf *inf, int id);
-void try_to_connect(sfIpAddress ip, int port, wininf *inf);
 void create_pnj(char *line, scene *s, atlases atlas);
 components create_all_components(int ac, char **argv);
 int check_circle_col(collision *self, sfVector2f pos);
@@ -268,6 +270,7 @@ sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 void add_circle_col(list **l, int radius, int x, int y);
 void draw_rect_col(collision *self, sfRenderWindow *win);
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
+void try_to_connect(sfIpAddress ip, int port, wininf *inf);
 void draw_circle_col(collision *self, sfRenderWindow *win);
 sfText *init_text(char *str, sfFont *font, sfVector2f pos);
 void draw_choices(wininf *inf, list *choices_l, list *head);
@@ -277,6 +280,7 @@ void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 dline *load_line(char *line, sfFont *font, int size, wininf *inf);
 int receive_with_timeout(network *net, sfIpAddress *ip, int *port);
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
+sfSprite *set_cursor(wininf *inf, sfVector2f scale, sfVector2f pos);
 list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
 void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
 void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
@@ -319,5 +323,6 @@ sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
 
 menuss *init_all_menus(wininf *inf, int menu_id);
+int is_same(sfVector2f v1, sfVector2f v2, float threshold);
 
 #endif

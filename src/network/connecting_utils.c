@@ -74,5 +74,6 @@ network *init_network(void)
     timeout.microseconds = 1000000;
     net->timeout = timeout;
     net->other.p.test = 0;
+    net->other.cscene = -1;
     return net;
 }

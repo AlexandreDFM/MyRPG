@@ -28,6 +28,8 @@ void homeext_to_village(wininf *win, player p)
     win->next_pos = win->c_scene == VILLAGE ? home : village;
     win->change_scene = 1;
     win->transition = 1;
+    send_scene(win, win->next_scene);
+    send_position(win->next_pos, win->net);
 }
 
 void homeext_to_homeint(wininf *win, player p)
@@ -38,6 +40,8 @@ void homeext_to_homeint(wininf *win, player p)
     win->next_pos = win->c_scene == INTERIOR ? home : interior;
     win->transition = 1;
     win->change_scene = 1;
+    send_scene(win, win->next_scene);
+    send_position(win->next_pos, win->net);
 }
 
 void ta_mere(wininf *win, player p)
@@ -48,6 +52,8 @@ void ta_mere(wininf *win, player p)
     win->next_pos = mid;
     win->transition = 1;
     win->change_scene = 1;
+    send_scene(win, win->next_scene);
+    send_position(win->next_pos, win->net);
 }
 
 void village_to_bekipan(wininf *win, player p)
@@ -58,6 +64,8 @@ void village_to_bekipan(wininf *win, player p)
     win->next_pos = win->c_scene == BEKIPAN ? home : interior;
     win->transition = 1;
     win->change_scene = 1;
+    send_scene(win, win->next_scene);
+    send_position(win->next_pos, win->net);
 }
 
 void village_to_dojo(wininf *win, player p)
@@ -68,6 +76,8 @@ void village_to_dojo(wininf *win, player p)
     win->next_pos = win->c_scene == DOJO ? home : interior;
     win->transition = 1;
     win->change_scene = 1;
+    send_scene(win, win->next_scene);
+    send_position(win->next_pos, win->net);
 }
 
 void village_to_dittoland(wininf *win, player p)
@@ -78,6 +88,8 @@ void village_to_dittoland(wininf *win, player p)
     win->next_pos = win->c_scene == DITTOLAND ? interior : home;
     win->transition = 1;
     win->change_scene = 1;
+    send_scene(win, win->next_scene);
+    send_position(win->next_pos, win->net);
 }
 
 void interact_pnj(wininf *win, player p)

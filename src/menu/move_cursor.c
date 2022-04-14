@@ -7,46 +7,23 @@
 
 #include "rpg.h"
 
-void up(menus *menu, sfVector2f *pos)
-{
-    menu->pressed = 1;
-    if (menu->curr_choice > 0) {
-        menu->curr_choice -= 1;
-        pos->y -= 40;
-    } else {
-        pos->y = 40 * menu->max_choice + menu->base_pos.y;
-        menu->curr_choice = menu->max_choice;
-    }
-    menu->selected = menu->selected->prev;
-    menu->blink = 0;
-}
-
-void down(menus *menu, sfVector2f *pos)
-{
-    menu->pressed = 1;
-    if (menu->curr_choice < menu->max_choice) {
-        menu->curr_choice += 1;
-        pos->y += 40;
-    } else {
-        menu->curr_choice = 0;
-        pos->y = menu->base_pos.y;
-    }
-    menu->selected = menu->selected->next;
-    menu->blink = 0;
-}
-
-void move_cursor(menus *menu, wininf *inf)
+void move_cursor(menuss *menu, wininf *inf)
 {
     sfVector2f pos = sfSprite_getPosition(menu->cursor);
     if (sfKeyboard_isKeyPressed(sfKeyDown) && !menu->pressed) {
-        down(menu, &pos);
+        menu->pressed = 1;
+        pos.y = pos.y >= menu->base_pos.y + (menu->max_choice - 1) * 40 ? menu->base_pos.y : pos.y + 40;
+        menu->selected = menu->selected->next;
+        menu->blink = 0;
     }
     if (sfKeyboard_isKeyPressed(sfKeyUp) && !menu->pressed) {
-        up(menu, &pos);
+        menu->pressed = 1;
+        pos.y = pos.y <= menu->base_pos.y  ? menu->base_pos.y + (menu->max_choice - 1) * 40 : pos.y - 40;
+        menu->selected = menu->selected->prev;
+        menu->blink = 0;
     }
     if (inf->inputs.interact && inf->inputs.can_interact == 0) {
         inf->inputs.can_interact = 1;
-        menu->ptrs[menu->curr_choice](inf);
     }
     sfSprite_setPosition(menu->cursor, pos);
 }

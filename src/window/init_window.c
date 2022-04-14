@@ -41,10 +41,8 @@ wininf create_window_infos(int ac, char **av)
     init_textbox(&inf);
     inf.menu_padding = 40;
     inf.main_menu = init_all_menus(&inf, 2);
-    // init_main_menu_pointers(&inf);
-    // inf.load_menu = init_load_menu(&inf, 1);
     inf.c_menu = NONE;
-    // inf.current_menu = inf.main_menu;
-    // init_load_pointers(&inf);
+    inf.current_menu = inf.main_menu;
+    inf.net->timeout.microseconds = 5000;
     return inf;
 }

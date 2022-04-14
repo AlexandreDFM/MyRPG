@@ -17,7 +17,7 @@ menus *init_menu(wininf *inf, int menu_id)
     menu->background = generate_textbox(size, inf->atlases.atlas);
     size.x = 550, size.y = 100;
     menu->background2 = generate_textbox(size, inf->atlases.atlas);
-    menu->cursor = set_cursor(inf, (sfVector2f){3, 3});
+    // menu->cursor = set_cursor(inf, (sfVector2f){3, 3});
     sfSprite_setPosition(menu->background, pos);
     pos2.y += my_atoi(arr[4]) + 50;
     sfSprite_setPosition(menu->background2, pos2);

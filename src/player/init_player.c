@@ -10,6 +10,7 @@
 player init_player(wininf inf, int id)
 {
     player p;
+    printf("Creating player: %d\n", id);
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
     sfIntRect r = (sfIntRect){my_atoi(arr[1]), my_atoi(arr[2]),
         my_atoi(arr[3]), my_atoi(arr[4])};
