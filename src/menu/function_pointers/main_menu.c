@@ -11,6 +11,8 @@ void play(wininf *inf)
 {
     inf->current_menu = inf->load_menu;
     inf->c_menu = LOAD_SAVE;
+    inf->main_menu->focus = 0;
+    inf->load_menu->focus = 1;
     my_printf("Play: %d\n", inf->c_scene);
 }
 

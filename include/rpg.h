@@ -138,19 +138,6 @@ typedef struct other_t {
     int port;
 } other;
 
-typedef struct network_t {
-    int is_multi;
-    int is_host;
-    int is_okay;
-    sfTime timeout;
-    sfSocketSelector *selector;
-    sfPacket *packet;
-    sfUdpSocket *socket;
-    sfIpAddress *ip;
-    unsigned short port;
-    struct other_t other;
-} network;
-
 typedef struct wininf_t {
     sfEvent event;
     int transition;
@@ -188,6 +175,7 @@ typedef struct choices_t {
 typedef struct menus {
     float blink;
     int pressed;
+    int focus;
     int max_choice;
     sfSprite *cursor;
     sfVector2f base_pos;
@@ -202,6 +190,20 @@ typedef struct components_t {
     struct wininf_t inf;
     struct player_t pla;
 } components;
+
+typedef struct network_t {
+    int is_multi;
+    int is_host;
+    int is_okay;
+    sfTime timeout;
+    sfSocketSelector *selector;
+    sfPacket *packet;
+    sfUdpSocket *socket;
+    sfIpAddress *ip;
+    unsigned short port;
+    int (*orders[5])(void **data, int *important, components *com);
+    struct other_t other;
+} network;
 
 int length_of_int(int a);
 network *init_network(void);
@@ -219,7 +221,6 @@ void create_triggers(wininf *inf);
 void update_keyboard(wininf *inf);
 void update_joysticks(wininf *inf);
 player init_player(wininf inf, int id);
-void send_scene(wininf *inf, int scene);
 void draw_player(wininf *inf, player p);
 void add_collisions(char *str, list **l);
 scene create_home(wininf *infos, int id);
@@ -227,7 +228,7 @@ void push_back(list **l, void *new_data);
 float my_lerpf(float a, float b, float t);
 void draw_menu(wininf *inf, menuss *menu);
 float distance(sfVector2f a, sfVector2f b);
-void add_to_list(list **l, void *new_elem);
+void add_to_list(list **l, void *new_elem); 
 void move_cursor(menuss *menu, wininf *inf);
 void handle_scene(wininf *infos, player *p);
 entity *create_entity(wininf *info, int id);
@@ -237,6 +238,7 @@ wininf create_window_infos(int ac, char **av);
 void update_transition(wininf *inf, player p);
 char **my_strtwa(char const *str, char *limit);
 void draw_list(list *obj, sfRenderWindow *win);
+void receive_ord(network *net, components *all);
 void add_pnjs(atlases atlas, int idx, scene *s);
 void push_back_double(list **l, void *new_data);
 void update_network(wininf *inf, components *all);
@@ -256,6 +258,7 @@ void draw_choices(wininf *inf, list *choices_l, list *head);
 int treat_balise(char *balise, sfColor *color, wininf *inf);
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
+void add_ord(int ord, void *data, int size, sfPacket *packet);
 dline *load_line(char *line, sfFont *font, int size, wininf *inf);
 int receive_with_timeout(network *net, sfIpAddress *ip, int *port);
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
@@ -268,7 +271,10 @@ list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2);
 void update_camera(camera c, float dt, sfRenderWindow *w, sfRectangleShape *t);
 int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
 
-//TELEPORTERS
+////////////////////////////////////////////////////////////
+/// \brief Teleporters
+///
+////////////////////////////////////////////////////////////
 void ta_mere(wininf *win, player p);
 void interact_pnj(wininf *win, player p);
 void sleep_and_save(wininf *win, player p);
@@ -279,7 +285,7 @@ void village_to_bekipan(wininf *win, player p);
 void village_to_dittoland(wininf *win, player p);
 void generate_random_dungeon(wininf *win, player p);
 
-//MENU POINTERS
+////////////////////////////////////////////////////////////
 void play(wininf *inf);
 void a_log(wininf *inf);
 void no_but(wininf *inf);
@@ -288,23 +294,41 @@ void my_exit(wininf *inf);
 void yes_but(wininf *inf);
 void init_load_pointers(wininf *inf);
 void init_main_menu_pointers(wininf *inf);
+////////////////////////////////////////////////////////////
 
-//MATHS
+////////////////////////////////////////////////////////////
+//Maths Functions
 float my_repeat(float t, float mag);
 float my_pingpong(float t, float mag);
 float my_lerpf(float a, float b, float t);
 float my_clamp(float d, float min, float max);
 float manhattan_distance(sfVector2f a, sfVector2f b);
 int is_same(sfVector2f v1, sfVector2f v2, float threshold);
+////////////////////////////////////////////////////////////
 
-//TEXTBOXES
+////////////////////////////////////////////////////////////
+//Generate textboxes
 void topbot_border(sfVector2i size, sfImage *new);
+//Generate textboxes
 void leftright_border(sfVector2i size, sfImage *new);
+//Generate textboxes
 sfSprite *generate_textbox(sfVector2i size, sfImage *atlas);
+//Generate textboxes
 void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
+////////////////////////////////////////////////////////////
 
-//menus
-menuss *init_all_menus(wininf *inf, int menu_id);
+////////////////////////////////////////////////////////////
 sfText *init_text(char *str, sfFont *font, sfVector2f pos);
+menuss *init_all_menus(wininf *inf, int menu_id, int focus);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Network pointers
+int receive_okay(void **data, int *important, components *all);
+//Network pointers
+int receive_scene(void **data, int *important, components *all);
+//Network pointers
+int receive_position(void **data, int *important, components *all);
+////////////////////////////////////////////////////////////
 
 #endif

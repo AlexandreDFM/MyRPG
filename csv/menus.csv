@@ -1,2 +1,2 @@
 Main;100;375;2;Bg 1;0;0;350;200;Bg 2;0;250;540;100;4;New Game;38;0;Start an entirely new adventure.;20;263;0;Adventure Log;38;40;Check your career as an adventurer.;20;263;1;Options;38;80;Manage settings;20;263;2;Exit;38;120;Quit the game.;20;263;3;0;Cursor;15;25;3;4
-Load;1280;175;3;Bg 1;0;0;540;400;Bg 2;0;450;390;100;Bg 3;440;450;100;100;2;Yes;488;450; ;0;0;No;488;490; ;0;0;Cursor;455;475
+Load;1280;175;3;Bg 1;0;0;540;300;Bg 2;0;350;420;100;Bg 3;440;350;100;100;2;Yes;480;345; ;0;0;0;No;480;385; ;0;0;1;7;Team:;15;0;Name:;15;40;Location:;15;80;Playtime:;15;120;Pokemon:;15;160;Resuming saved adventure.;15;343;Is that OK?;15;383;Cursor;455;370;3;2

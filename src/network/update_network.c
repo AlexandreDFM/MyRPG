@@ -15,94 +15,42 @@ void update_network(wininf *inf, components *all)
     if (sfSocketSelector_wait(net->selector, net->timeout)) {
         if (sfSocketSelector_isUdpSocketReady(net->selector, net->socket)) {
             sfUdpSocket_receivePacket(net->socket, p, net->ip, &net->port);
-            void *data = sfPacket_getData(p);
-            handle_packet(all, data);
+            receive_ord(net, all);
         }
     }
     sfPacket_clear(p);
 }
 
-void send_scene(wininf *inf, int scene)
+void receive_ord(network *net, components *all)
 {
-    network *net = inf->net;
-    net->is_okay = 0;
-    int order = CHANGE_SCENE;
-    components fcomp;
-    fcomp.inf = *inf;
-    sfPacket_append(net->packet, &order, sizeof(int));
-    sfPacket_append(net->packet, &(inf->net->is_host), sizeof(int));
-    sfPacket_append(net->packet, &scene, sizeof(int));
-    sfPacket *p = inf->net->packet;
-    while (!net->is_okay) {
-        sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-            net->other.port);
-        int r = sfUdpSocket_receivePacket(net->socket, p, net->ip, &net->port);
-        if (!r) {
-            int *data = sfPacket_getData(net->packet);
-            if (*data != 0) continue;
-            my_printf("Received");
-            net->is_okay = 1;
-        }
+    int important = 0;
+    int scanned = 0;
+    int total = sfPacket_getDataSize(net->packet);
+    void *data = sfPacket_getData(net->packet);
+    if (total < sizeof(int)) return;
+    while (scanned < total) {
+        int *ord = data;
+        my_printf("Order received: %d\n", *ord);
+        data += sizeof(int);
+        scanned += sizeof(int);
+        if (net->orders[*ord])
+            scanned += net->orders[*ord](&data, &important, all);
+        else
+            my_printf("Order not implemented ! (%d)\n", *ord);
+        // printf("Scanned: %d == %d\n", scanned, total);
     }
     sfPacket_clear(net->packet);
+    // if (important) {
+    //     add_ord(OKAY, 0, 0, net->packet);
+    // }
 }
 
-void send_sync(components *all)
+void add_ord(int ord, void *data, int size, sfPacket *packet)
 {
-    network *net = all->inf.net;
-    sfPacket_clear(net->packet);
-    my_printf("Asked to sync...\n");
-    sfPacket_clear(net->packet);
-    int order = SYNC;
-    sfPacket_append(net->packet, &order, sizeof(int));
-    sfVector2f pos = sfSprite_getPosition(all->pla.test);
-    sfPacket_append(net->packet, &pos, sizeof(sfVector2f));
-    int poke = all->inf.settings->pokemon;
-    sfPacket_append(net->packet, &all->inf.c_scene, sizeof(int));
-    sfPacket_append(net->packet, &poke, sizeof(int));
-    sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-        net->other.port);
-}
-
-void sync_online(components *all)
-{
-    int order = SYNC;
-    network *net = all->inf.net;
-    sfPacket_clear(net->packet);
-    sfPacket_append(net->packet, &order, sizeof(int));
-    int poke = all->inf.settings->pokemon;
-    sfPacket_append(net->packet, &poke, sizeof(int));
-    my_printf("Waiting to sync...\n");
-    net->is_okay = 0;
-    while (!net->is_okay) {
-        sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip, net->other.port);
-        if (sfSocketSelector_wait(net->selector, net->timeout)) {
-            if (!sfSocketSelector_isUdpSocketReady(net->selector, net->socket))
-                continue;
-            int res = sfUdpSocket_receivePacket(net->socket, net->packet, &net->other.ip, &net->other.port);
-            if (!res) {
-                void *data = sfPacket_getData(net->packet);
-                int *order = data;
-                data += sizeof(int);
-                if (*order == SYNC) {
-                    sfVector2f *np = data;
-                    data += sizeof(sfVector2f);
-                    int *scene = data;
-                    data += sizeof(int);
-                    sfSprite_setPosition(all->pla.test, *np);
-                    int *poke = data;
-                    net->other.p = init_player(all->inf, *poke);
-                    sfSprite_setPosition(net->other.p.test, *np);
-                    net->other.target = *np;
-                    all->inf.c_scene = *scene;
-                    net->other.cscene = *scene;
-                    net->is_okay = 1;
-                }
-            }
-        }
+    sfPacket_append(packet, &ord, sizeof(int));
+    if (data) {
+        sfPacket_append(packet, &data, size);
     }
-    sfPacket_clear(net->packet);
-    my_printf("Synced !\n");
 }
 
 void handle_packet(components *all, void *data)
@@ -135,15 +83,15 @@ void handle_packet(components *all, void *data)
     if (*order == OKAY) {
         net->is_okay = 1;
     }
-    if (*order == CHANGE_SCENE) {
-        int *id = data;
-        data += sizeof(int);
-        if (*id != net->is_host) {
-            int *nscene = data;
-            net->other.cscene = *nscene;
-            send_okay(net);
-        }
-    }
+    // if (*order == CHANGE_SCENE) {
+    //     int *id = data;
+    //     data += sizeof(int);
+    //     if (*id != net->is_host) {
+    //         int *nscene = data;
+    //         net->other.cscene = *nscene;
+    //         send_okay(net);
+    //     }
+    // }
     if (*order == POSITION) {
         int *id = data;
         data += sizeof(int);

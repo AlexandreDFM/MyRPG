@@ -66,6 +66,7 @@ network *init_network(void)
     net->is_multi = 0;
     net->packet = 0;
     net->socket = 0;
+    init_orders(net);
     net->other.ip = sfIpAddress_None;
     net->other.port = 0;
     net->is_okay = 1;
@@ -76,4 +77,19 @@ network *init_network(void)
     net->other.p.test = 0;
     net->other.cscene = -1;
     return net;
+}
+
+void init_orders(network *net)
+{
+
+    OKAY,
+    CONNECTION,
+    SYNC,
+    POSITION,
+    CHANGE_SCENE,
+    net->orders[0] = receive_okay;
+    net->orders[1] = 0;
+    net->orders[2] = 0;
+    net->orders[3] = receive_position;
+    net->orders[4] = receive_scene;
 }

@@ -66,7 +66,9 @@ SRC		= 	main.c											\
 			src/dungeon/map_generator.c						\
 			src/settings/flags_handling.c					\
 			src/network/connecting_utils.c					\
+			src/network/network_syncing.c					\
 			src/network/update_network.c					\
+			src/network/handle_orders.c						\
 			src/settings/init_settings.c					\
 
 

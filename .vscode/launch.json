@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/my_rpg",
-            "args": [],
+            "args": ["--host"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

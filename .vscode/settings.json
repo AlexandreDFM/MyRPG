@@ -4,6 +4,9 @@
         "rpg.h": "c",
         "array": "c",
         "string": "c",
-        "string_view": "c"
+        "string_view": "c",
+        "scenes.h": "c",
+        "export.h": "c",
+        "config.h": "c"
     }
 }
