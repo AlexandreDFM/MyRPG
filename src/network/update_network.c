@@ -17,11 +17,10 @@ void update_network(wininf *inf, components *all)
     sfPacket_clear(p);
     if (sfSocketSelector_wait(net->selector, net->timeout)) {
         if (sfSocketSelector_isUdpSocketReady(net->selector, net->socket)) {
-            sfUdpSocket_receivePacket(net->socket, p, net->ip, &net->port);
+            sfUdpSocket_receivePacket(net->socket, p, &(net->other.ip), &net->port);
             receive_ord(net, all);
         }
     }
-    sfPacket_clear(p);
 }
 
 void receive_ord(network *net, components *all)

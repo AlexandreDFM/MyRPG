@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/my_rpg",
-            "args": ["--client", "10.16.242.142:7878", "--pokemon", "16"],
+            "args": ["--client", "10.16.242.142:4242", "--pokemon", "16"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

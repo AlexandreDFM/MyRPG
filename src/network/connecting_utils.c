@@ -27,8 +27,6 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
             break;
         iter += 1;
     }
-    net->other.ip = ip;
-    net->other.port = port;
 }
 
 int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *port)

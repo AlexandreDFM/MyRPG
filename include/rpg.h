@@ -19,6 +19,7 @@
     #include "scenes.h"
     #include "types.h"
     #include "dialog.h"
+    #define APPEND -1
 
 typedef enum scenes_e {
     HOME,
@@ -205,7 +206,7 @@ typedef struct network_t {
     sfIpAddress *any;
     unsigned short port;
     int flags[COUNT - 1];
-    int (*orders[5])(char** data, int *important, components *com);
+    int (*orders[6])(char** data, int *important, components *com);
     struct other_t other;
 } network;
 

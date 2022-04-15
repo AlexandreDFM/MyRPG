@@ -19,16 +19,32 @@ int receive_okay(char **data, int *important, components *all)
 
 int receive_hostsync(char **data, int *important, components *all)
 {
-    my_printf("RECEIVED HostSync: %d\n", *((int*)(*data)));
-    return sizeof(int);
+    network *net = all->inf.net;
+    net->other.p = init_player(all->inf, *((int*)*data));
+    *data += sizeof(int) * 2 + sizeof(sfVector2f);
+    return sizeof(int) * 3 + sizeof(sfVector2f);
 }
 
 int receive_clientsync(char **data, int *important, components *all)
 {
-    printf("Pokemon: %d\n", *((int*)*data));
+    network *net = all->inf.net;
+    all->inf.net->other.cscene = all->inf.c_scene;
+    all->inf.net->other.p = init_player(all->inf, *((int*)*data));
+    sfVector2f pos = sfSprite_getPosition(all->pla.test);
+    all->inf.net->other.target = pos;
+    sfSprite_setPosition(all->inf.net->other.p.test, pos);
     *data += sizeof(int);
     int ans = CSYNC;
+    sfPacket_clear(net->packet);
+    settings *set = all->inf.settings;
+    int scene = all->inf.c_scene;
     add_ord(OKAY, &ans, sizeof(int), all->inf.net->packet);
+    add_ord(HSYNC, &set->pokemon, sizeof(int), all->inf.net->packet);
+    add_ord(APPEND, &pos, sizeof(sfVector2f), all->inf.net->packet);
+    add_ord(APPEND, &scene, sizeof(int), all->inf.net->packet);
+    sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
+        net->other.port);
+    sfPacket_clear(net->packet);
     return sizeof(int) * 2;
 }
 

@@ -27,6 +27,7 @@
     #define SIZE 7.0f
     #define RATE 0.15f
     #define FONT_SIZE 15.0f
+    #define PORT 7272
 
     #include "rpg.h"
 

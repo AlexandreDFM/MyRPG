@@ -4,6 +4,15 @@
 ## File description:
 ## file making
 ##
+Reset = "\033[0m"
+Black = "\033[0;30m"
+Red = "\033[0;31m"
+Green = "\033[0;32m"
+Yellow = "\033[0;33m"
+Blue = "\033[0;34m"
+Purple = "\033[0;35m"
+Cyan = "\033[0;36m"
+White = "\033[0;37m"
 
 NAME	= 	my_rpg
 
@@ -81,7 +90,43 @@ LIBFLAG    = -I ./include -g3 -lGL -lcsfml-graphics					\
 -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network 		\
 -L ./lib/ -lmy														\
 
-all: $(NAME)
+print_pokeball:
+	@echo -e "        ▄███████████▄        "
+	@echo -n "     ▄███"
+	@echo -en "\033[0;31m"
+	@echo -n "███████████"
+	@echo -en "\033[0;0m"
+	@echo -e "███▄     "
+	@echo -n "    ███"
+	@echo -en "\033[0;31m"
+	@echo -n "███████████████"
+	@echo -en "\033[0;0m"
+	@echo -e "███    "
+	@echo -n "   ██"
+	@echo -en "\033[0;31m"
+	@echo -n "███████████████████"
+	@echo -en "\033[0;0m"
+	@echo -e "██   "
+	@echo -n "  ██"
+	@echo -n "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
+	@echo -e "██  "
+	@echo -e " ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██ "
+	@echo -e "██▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓██"
+	@echo -e "██▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓██"
+	@echo -e "██▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓██"
+	@echo -e "███████████░░███░░███████████"
+	@echo -e "██░░░░░░░██░░███░░██░░░░░░░██"
+	@echo -e "██░░░░░░░░██░░░░░██░░░░░░░░██"
+	@echo -e "██░░░░░░░░░███████░░░░░░░░░██"
+	@echo -e " ██░░░░░░░░░░░░░░░░░░░░░░░██ "
+	@echo -e "  ██░░░░░░░░░░░░░░░░░░░░░██  "
+	@echo -e "   ██░░░░░░░░░░░░░░░░░░░██   "
+	@echo -e "    ███░░░░░░░░░░░░░░░███    "
+	@echo -e "     ▀███░░░░░░░░░░░███▀     "
+	@echo -e "        ▀███████████▀        "
+	@echo -e "\033[0;0m"
+
+all: $(NAME) print_pokeball
 
 $(NAME): $(OBJ)
 	@make -C ./lib/my
@@ -94,6 +139,5 @@ clean:
 fclean:
 	@$(RM) $(NAME)
 	@$(RM) $(OBJ)
-	@make -C ./lib/my fclean
 
 re: fclean all
