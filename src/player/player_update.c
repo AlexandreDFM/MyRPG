@@ -17,7 +17,7 @@ void draw_player(wininf *inf, player p)
         nextp.x += p.vel.x; nextp.y += p.vel.y;
         sfVector2f np = my_lerp(po, nextp, p.speed * inf->time.dt);
         sfSprite_setPosition(p.test, np);
-        if (!is_same(po, nextp, 0.2f)) {
+        if (!is_same(po, nextp, 0.5f)) {
             add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
         }
     }

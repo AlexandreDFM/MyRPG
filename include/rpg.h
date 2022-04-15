@@ -38,6 +38,7 @@ typedef enum orders_e {
     POSITION,
     CHANGE_SCENE,
     HSYNC,
+    SETPOS,
     COUNT,
 } orders;
 
@@ -206,7 +207,7 @@ typedef struct network_t {
     sfIpAddress *any;
     unsigned short port;
     int flags[COUNT - 1];
-    int (*orders[6])(char** data, int *important, components *com);
+    int (*orders[7])(char** data, int *important, components *com);
     struct other_t other;
 } network;
 
@@ -468,6 +469,8 @@ int receive_connection(char **data, int *important, components *all);
 int receive_clientsync(char **data, int *important, components *all);
 //Network pointers
 int receive_hostsync(char **data, int *important, components *all);
+//Network pointers
+int receive_setposition(char **data, int *important, components *all);
 ////////////////////////////////////////////////////////////
 
 #endif
