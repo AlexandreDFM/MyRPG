@@ -50,6 +50,7 @@ typedef enum main_menu_t {
     LOAD_SAVE,
     ADVENTURE_LOG,
     OPTIONS,
+    CHANGING_KEY,
     EXIT,
 }m_menu_t;
 
@@ -151,12 +152,15 @@ typedef struct other_t {
 
 typedef struct wininf_t {
     sfEvent event;
+    int key_change;
     int transition;
+    int waiting_key;
     int interacting;
     int change_scene;
-    int menu_padding;
+    const char **key_list;
     sfVideoMode mode;
     sfVector2f next_pos;
+    sfKeyCode tmp_key;
     sfRenderWindow *win;
     enum scenes_e c_scene;
     enum main_menu_t c_menu;
@@ -170,6 +174,7 @@ typedef struct wininf_t {
     struct scene_t scenes[6];
     struct menus *main_menu;
     struct menus *load_menu;
+    struct menus *options_menu;
     struct menus *current_menu;
     struct settings_t *settings;
     struct intro_assets_t *intro;
@@ -188,8 +193,9 @@ typedef struct choices_t {
 
 typedef struct menus {
     float blink;
-    int pressed;
     int focus;
+    int offset;
+    int pressed;
     int max_choice;
     sfSprite *cursor;
     sfVector2f base_pos;
@@ -417,6 +423,24 @@ void options(wininf *inf);
 void my_exit(wininf *inf);
 //Menu pointers
 void yes_but(wininf *inf);
+//Menu pointers
+void key_up(wininf *inf);
+//Menu pointers
+void key_down(wininf *inf);
+//Menu pointers
+void key_left(wininf *inf);
+//Menu pointers
+void key_right(wininf *inf);
+//Menu pointers
+void key_interact(wininf *inf);
+//Menu pointers
+void key_inventory(wininf *inf);
+//Menu pointers
+void key_attack(wininf *inf);
+//Menu pointers
+void key_back(wininf *inf);
+//Menu pointers
+void go_back(wininf *inf);
 //Menu pointers
 void init_load_pointers(wininf *inf);
 //Menu pointers

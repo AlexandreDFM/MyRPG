@@ -18,6 +18,10 @@ void play(wininf *inf)
 
 void options(wininf *inf)
 {
+    inf->current_menu = inf->options_menu;
+    inf->c_menu = OPTIONS;
+    inf->main_menu->focus = 0;
+    inf->options_menu->focus = 1;
     my_printf("Options\n");
 }
 

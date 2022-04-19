@@ -21,6 +21,6 @@ void draw_menu(wininf *inf, menuss *menu)
             sfRenderWindow_drawSprite(inf->win, menu->cursor, NULL);
         else if (menu->blink > 0.9f) menu->blink = 0;
         menu->blink += inf->time.dt;
-        move_cursor(menu, inf);
+        if (inf->waiting_key == 0) move_cursor(menu, inf);
     }
 }

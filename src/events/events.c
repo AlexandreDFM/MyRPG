@@ -28,5 +28,9 @@ void update_events(wininf *inf)
         sfKeyRControl)
             inf->c_scene = HOME;
         manage_intro(inf);
+        if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
+            inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
+            printf("%s\n", inf->tmp_key > 0 ? inf->key_list[inf->tmp_key] : "Unknown key");
+        }
     }
 }

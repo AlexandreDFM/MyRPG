@@ -46,8 +46,10 @@ list *init_choices(char **arr, wininf *inf, int off)
     choices_l->next = NULL;
     choices_l->prev = NULL;
     list *first = choices_l;
+    printf("%s\n", arr[off]);
     for (int i = 0, tmp = off + 8; i < my_atoi(arr[off]) - 1; i++, tmp += 7) {
         push_back_double(&choices_l, fill_choice(arr, tmp, inf));
+        printf("%s\n", arr[tmp]);
     }
     choices_l->next = first;
     choices_l->next->prev = choices_l;
@@ -92,10 +94,11 @@ menuss *init_all_menus(wininf *inf, int menu_id, int focus)
     my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
     menu->base_pos = pos;
     menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]),
-    my_atoi(arr[offset + 2])}, pos);
+    my_atoi(arr[offset + 3])}, pos);
     menu->blink = 0;
     menu->pressed = 0;
     menu->focus = focus;
-    menu->max_choice = my_atoi(arr[offset + 3]);
+    menu->max_choice = my_atoi(arr[offset + 4]);
+    menu->offset = my_atoi(arr[offset + 5]);
     return menu;
 }

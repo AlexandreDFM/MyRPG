@@ -8,6 +8,26 @@
 #include "infos.h"
 #include "inputs.h"
 
+void init_key_list(wininf *inf)
+{
+    const char *list[102] = {
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3",
+    "4", "5", "6", "7", "8", "9", "Escape", "LControl", "LShift", "LAlt",
+    "LSystem", "RControl", "RShift", "RAlt", "RSystem", "Menu", "LBracket",
+    "RBracket", "SemiColon", "Comma", "Period", "Quote", "Slash", "BackSlash",
+    "Tilde", "Equal", "Hyphen", "Space", "Enter", "BackSpace", "Tab", "PageUp",
+    "PageDown", "End", "Home", "Insert", "Delete", "Add", "Subtract",
+    "Multiply", "Divide", "Arrow Left", "Arrow Right", "Arrow Up",
+    "Arrow Down", "Numpad 0", "Numpad 1",
+    "Numpad 2", "Numpad 3", "Numpad 4", "Numpad 5", "Numpad 6", "Numpad 7",
+    "Numpad 8", "Numpad 9", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8",
+    "F9", "F10", "F11", "F12", "F13", "F14", "F15", "Pause"};
+    inf->key_list = malloc(sizeof(char *) * 102);
+    for (int i = 0; i < 101; i++)
+        inf->key_list[i] = my_strdup(list[i]);
+}
+
 wininf create_window_infos(int ac, char **av)
 {
     srand(time(0));
@@ -40,16 +60,19 @@ wininf create_window_infos(int ac, char **av)
     sfRectangleShape_setOrigin(inf.transi,
     (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
     init_textbox(&inf);
-    inf.menu_padding = 40;
     inf.main_menu = init_all_menus(&inf, 0, 1);
     init_main_menu_pointers(&inf);
     inf.load_menu = init_all_menus(&inf, 1, 0);
     init_load_pointers(&inf);
+    inf.options_menu = init_all_menus(&inf, 2, 0);
+    init_options_pointers(&inf);
     inf.c_menu = NONE;
+    inf.waiting_key = 0;
     inf.current_menu = inf.main_menu;
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL;
     inf.ditto = NULL;
     inf.dream = NULL;
+    init_key_list(&inf);
     return inf;
 }

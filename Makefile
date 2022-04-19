@@ -70,6 +70,7 @@ SRC		= 	main.c											\
 			src/menu/init_menus_pointers.c					\
 			src/menu/function_pointers/main_menu.c			\
 			src/menu/function_pointers/load_menu_pointers.c	\
+			src/menu/function_pointers/options_pointers.c	\
 			src/menu/set_cursor.c							\
 			src/menu/init_all_menus.c						\
 			src/dungeon/edge_detection.c					\

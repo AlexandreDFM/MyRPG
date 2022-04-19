@@ -20,6 +20,7 @@ void handle_scene(wininf *infos, player *p)
     } else if (infos->c_scene == MAIN_MENU) {
         draw_menu(infos, infos->main_menu);
         if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->load_menu);
+        if (infos->c_menu == OPTIONS) draw_menu(infos, infos->options_menu);
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);

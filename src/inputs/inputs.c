@@ -23,10 +23,56 @@ void init_inputs(wininf *inf)
     inf->inputs = in;
 }
 
+sfKeyCode check_key_valid(wininf *inf)
+{
+    if (inf->inputs.keys.up == inf->tmp_key) return -1;
+    if (inf->inputs.keys.down == inf->tmp_key) return -1;
+    if (inf->inputs.keys.left == inf->tmp_key) return -1;
+    if (inf->inputs.keys.right == inf->tmp_key) return -1;
+    if (inf->inputs.keys.interact == inf->tmp_key) return -1;
+    if (inf->inputs.keys.inventory == inf->tmp_key) return -1;
+    if (inf->inputs.keys.attack == inf->tmp_key) return -1;
+    if (inf->inputs.keys.back == inf->tmp_key) return -1;
+    return inf->tmp_key;
+}
+
+void update_key(wininf *inf)
+{
+    if (check_key_valid(inf) > 0) {
+        if (inf->key_change == 0)
+            inf->inputs.keys.up = inf->tmp_key;
+        if (inf->key_change == 1)
+            inf->inputs.keys.down = inf->tmp_key;
+        if (inf->key_change == 2)
+            inf->inputs.keys.left = inf->tmp_key;
+        if (inf->key_change == 3)
+            inf->inputs.keys.right = inf->tmp_key;
+        if (inf->key_change == 4)
+            inf->inputs.keys.interact = inf->tmp_key;
+        if (inf->key_change == 5)
+            inf->inputs.keys.inventory = inf->tmp_key;
+        if (inf->key_change == 6)
+            inf->inputs.keys.attack = inf->tmp_key;
+        if (inf->key_change == 7)
+            inf->inputs.keys.back = inf->tmp_key;
+    }
+    inf->options_menu->focus = 1;
+    inf->waiting_key = 0;
+    inf->key_change = -1;
+    sfText *tmp_t = ((choices *)inf->options_menu->selected->data)->choice;
+    sfVector2f pos = sfText_getPosition(tmp_t);
+    pos.y -= 20;
+    sfText_setPosition(tmp_t, pos);
+    sfText_setString(tmp_t, inf->tmp_key > 0 ? inf->key_list[inf->tmp_key] : "Unknown key");
+
+}
 void update_inputs(wininf *inf)
 {
-    inf->inputs.axis.x = 0.0f;
-    inf->inputs.axis.y = 0.0f;
+    if (inf->waiting_key == 37) {
+        update_key(inf);
+        return;
+    }
+    inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
     int old_interact = inf->inputs.interact;
     inf->inputs.interact = 0;
     sfJoystick_update();

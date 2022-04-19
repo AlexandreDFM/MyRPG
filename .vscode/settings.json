@@ -2,9 +2,21 @@
     "files.associations": {
         "intro.h": "c",
         "rpg.h": "c",
+<<<<<<< Updated upstream
         "limits": "c",
         "*.tcc": "c",
         "type_traits": "c",
         "cinematics_elements.h": "c"
+=======
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "scenes.h": "c",
+        "export.h": "c",
+        "config.h": "c",
+        "dialog.h": "c",
+        "infos.h": "c",
+        "inputs.h": "c"
+>>>>>>> Stashed changes
     }
 }
