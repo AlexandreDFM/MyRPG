@@ -14,6 +14,10 @@ void init_times(wininf *infos)
     infos->time.dt = 0.0f;
     infos->time.transi = 0.0f;
     infos->time.time = 0.0f;
+    infos->time.intro_anim = 0.0f;
+    infos->time.intro_anim2 = 0.0f;
+    infos->time.ditto_anim = 0.0f;
+    infos->time.ditto_anim2 = 0.0f;
 }
 
 void update_time(wininf *infos)
@@ -22,6 +26,10 @@ void update_time(wininf *infos)
     if (infos->time.anim > RATE) {
         infos->time.anim = 0.0f;
     }
+    infos->time.intro_anim += dt;
+    infos->time.intro_anim2 += dt;
+    infos->time.ditto_anim += dt;
+    infos->time.ditto_anim2 += dt;
     infos->time.time += dt;
     infos->time.anim += dt;
     infos->time.dt = dt;

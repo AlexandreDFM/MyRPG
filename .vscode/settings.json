@@ -1,13 +1,10 @@
 {
     "files.associations": {
-        "*.c": "c",
+        "intro.h": "c",
         "rpg.h": "c",
-        "array": "c",
-        "string": "c",
-        "string_view": "c",
-        "scenes.h": "c",
-        "export.h": "c",
-        "config.h": "c",
-        "dialog.h": "c"
+        "limits": "c",
+        "*.tcc": "c",
+        "type_traits": "c",
+        "cinematics_elements.h": "c"
     }
 }

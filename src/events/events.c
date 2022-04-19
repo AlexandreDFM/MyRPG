@@ -26,5 +26,6 @@ void update_events(wininf *inf)
         if (inf->event.type == sfEvtKeyReleased && inf->event.key.code ==
         sfKeyRControl)
             inf->c_scene = HOME;
+        manage_intro(inf);
     }
 }

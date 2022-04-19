@@ -11,7 +11,13 @@
 void handle_scene(wininf *infos, player *p)
 {
     sfRenderWindow_clear(infos->win, sfBlack);
-    if (infos->c_scene == MAIN_MENU) {
+    if (infos->c_scene == INTRO) {
+        draw_intro(infos);
+    // if (infos->c_scene == DITTO) {
+    //     draw_ditto(infos);
+    // if (infos->c_scene == DREAM) {
+    //     draw_dream(infos);
+    } else if (infos->c_scene == MAIN_MENU) {
         draw_menu(infos, infos->main_menu);
         if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->load_menu);
     } else {

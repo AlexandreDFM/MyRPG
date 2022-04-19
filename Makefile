@@ -80,6 +80,18 @@ SRC		= 	main.c											\
 			src/network/update_network.c					\
 			src/network/handle_orders.c						\
 			src/settings/init_settings.c					\
+			src/intro/create_elements_intro.c				\
+			src/intro/create_intro.c						\
+			src/intro/display_elements_intro.c				\
+			src/intro/intro.c								\
+			src/intro/manage_intro.c						\
+			src/intro/move_rect_intro.c						\
+			src/intro/my_hsvtorgb.c							\
+			src/intro/plan_intro.c							\
+			src/ditto/create_ditto.c						\
+			src/ditto/ditto.c								\
+			src/dream/create_dream.c						\
+			src/dream/dream.c								\
 
 
 

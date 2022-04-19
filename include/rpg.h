@@ -28,7 +28,10 @@ typedef enum scenes_e {
     DOJO,
     BEKIPAN,
     DITTOLAND,
-    MAIN_MENU
+    MAIN_MENU,
+    INTRO,
+    DITTO,
+    DREAM
 } scenes;
 
 typedef enum orders_e {
@@ -83,6 +86,10 @@ typedef struct collision_t {
 typedef struct time_inft {
     sfClock *dt_cal;
     float dt;
+    float intro_anim;
+    float intro_anim2;
+    float ditto_anim;
+    float ditto_anim2;
     float transi;
     float time;
     float anim;
@@ -165,6 +172,9 @@ typedef struct wininf_t {
     struct menus *load_menu;
     struct menus *current_menu;
     struct settings_t *settings;
+    struct intro_assets_t *intro;
+    struct ditto_assets_t *ditto;
+    struct dream_assets_t *dream;
     sfRectangleShape *transition_rect;
     void (*triggers[9])(struct wininf_t *win, struct player_t p);
 } wininf;
