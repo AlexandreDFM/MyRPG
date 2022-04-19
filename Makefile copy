@@ -95,8 +95,29 @@ SRC_GLOBAL	=			src/create_components.c
 
 SRC_MAIN	=			main.c
 
-
-OBJ    = $(SRC:.c=.o)
+.SILENT:
+OBJ_ANIM			=		$(SRC_ANIM:.c=.o)
+OBJ_CAMERA			=		$(SRC_CAMERA:.c=.o)
+OBJ_COLLISIONS		=		$(SRC_COLLISIONS:.c=.o)
+OBJ_CSV				=		$(SRC_CSV:.c=.o)
+OBJ_DUNGEON			=		$(SRC_DUNGEON:.c=.o)
+OBJ_ENTITY			=		$(SRC_ENTITY:.c=.o)
+OBJ_EVENTS			=		$(SRC_EVENTS:.c=.o)
+OBJ_INPUTS			=		$(SRC_INPUTS:.c=.o)
+OBJ_MATHS			=		$(SRC_MATHS:.c=.o)
+OBJ_MENU			=		$(SRC_MENU:.c=.o)
+OBJ_NETWORK			=		$(SRC_NETWORK:.c=.o)
+OBJ_PLAYER			=		$(SRC_PLAYER:.c=.o)
+OBJ_PNJS			=		$(SRC_PNJS:.c=.o)
+OBJ_SCENE_HANDLING	=		$(SRC_SCENE_HANDLING:.c=.o)
+OBJ_SETTINGS		=		$(SRC_SETTINGS:.c=.o)
+OBJ_TEXT_HANDLING	=		$(SRC_TEXT_HANDLING:.c=.o)
+OBJ_TEXTBOX			=		$(SRC_TEXTBOX:.c=.o)
+OBJ_TEXTURE_ATLAS	=		$(SRC_TEXTURE_ATLAS:.c=.o)
+OBJ_UTILS			=		$(SRC_UTILS:.c=.o)
+OBJ_WINDOW			=		$(SRC_WINDOW:.c=.o)
+OBJ_GLOBAL			=		$(SRC_GLOBAL:.c=.o)
+OBJ_MAIN			=		$(SRC_MAIN:.c=.o)
 
 CFLAGS += -Wall -pedantic -I./include -g3
 
@@ -104,41 +125,85 @@ LIBFLAG    = -I ./include -g3 -lGL -lcsfml-graphics					\
 -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network 		\
 -L ./lib/ -lmy														\
 
+SRCS = $(SRC_ANIM)				\
+		$(SRC_CAMERA)			\
+		$(SRC_COLLISIONS)		\
+		$(SRC_CSV)				\
+		$(SRC_DUNGEON)			\
+		$(SRC_ENTITY)			\
+		$(SRC_EVENTS)			\
+		$(SRC_INPUTS)			\
+		$(SRC_MATHS)			\
+		$(SRC_MENU)				\
+		$(SRC_NETWORK)			\
+		$(SRC_PLAYER)			\
+		$(SRC_PNJS)				\
+		$(SRC_SCENE_HANDLING)	\
+		$(SRC_SETTINGS)			\
+		$(SRC_TEXT_HANDLING)	\
+		$(SRC_TEXTBOX)			\
+		$(SRC_TEXTURE_ATLAS)	\
+		$(SRC_UTILS)			\
+		$(SRC_WINDOW)			\
+		$(SRC_GLOBAL)			\
+		$(SRC_MAIN)
 
-print_pokeball:
-	@echo -e "        ▄███████████▄        \n"
-	@echo -e "     ▄███▓▓▓▓▓▓▓▓▓▓▓███▄     \n"
-	@echo -e "    ███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███    \n"
-	@echo -e "   ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██   \n"
-	@echo -e "  ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██  \n"
-	@echo -e " ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██ \n"
-	@echo -e "██▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓██\n"
-	@echo -e "██▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓██\n"
-	@echo -e "██▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓██\n"
-	@echo -e "███████████░░███░░███████████\n"
-	@echo -e "██░░░░░░░██░░███░░██░░░░░░░██\n"
-	@echo -e "██░░░░░░░░██░░░░░██░░░░░░░░██\n"
-	@echo -e "██░░░░░░░░░███████░░░░░░░░░██\n"
-	@echo -e " ██░░░░░░░░░░░░░░░░░░░░░░░██ \n"
-	@echo -e "  ██░░░░░░░░░░░░░░░░░░░░░██  \n"
-	@echo -e "   ██░░░░░░░░░░░░░░░░░░░██   \n"
-	@echo -e "    ███░░░░░░░░░░░░░░░███    \n"
-	@echo -e "     ▀███░░░░░░░░░░░███▀     \n"
-	@echo -e "        ▀███████████▀        \n"
+OBJS =	$(OBJ_CAMERA)			\
+		$(OBJ_COLLISIONS)		\
+		$(OBJ_CSV)				\
+		$(OBJ_DUNGEON)			\
+		$(OBJ_ENTITY)			\
+		$(OBJ_EVENTS)			\
+		$(OBJ_INPUTS)			\
+		$(OBJ_MATHS)			\
+		$(OBJ_MENU)				\
+		$(OBJ_NETWORK)			\
+		$(OBJ_PLAYER)			\
+		$(OBJ_PNJS)				\
+		$(OBJ_SCENE_HANDLING)	\
+		$(OBJ_SETTINGS)			\
+		$(OBJ_TEXT_HANDLING)	\
+		$(OBJ_TEXTBOX)			\
+		$(OBJ_TEXTURE_ATLAS)	\
+		$(OBJ_UTILS)			\
+		$(OBJ_WINDOW)			\
+		$(OBJ_GLOBAL)			\
+		$(OBJ_MAIN)				\
 
-all: print_pokeball
-	$(NAME)
+all: $(OBJ_COLLISIONS)		\
+$(OBJ_ANIM)				\
+$(OBJ_CSV)				\
+$(OBJ_DUNGEON)			\
+$(OBJ_ENTITY)			\
+$(OBJ_EVENTS)			\
+$(OBJ_INPUTS)			\
+$(OBJ_MATHS)			\
+$(OBJ_MENU)				\
+$(OBJ_NETWORK)			\
+$(OBJ_PLAYER)			\
+$(OBJ_PNJS)				\
+$(OBJ_SCENE_HANDLING)	\
+$(OBJ_SETTINGS)			\
+$(OBJ_TEXT_HANDLING)	\
+$(OBJ_TEXTBOX)			\
+$(OBJ_TEXTURE_ATLAS)	\
+$(OBJ_UTILS)			\
+$(OBJ_WINDOW)			\
+$(OBJ_GLOBAL)			\
+$(OBJ_MAIN)				\
+compile					\
 
-$(NAME): $(OBJ)
+compile:
 	@make -C ./lib/my
-	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
+	@$(CC) $(SRCS) -o $(NAME) $(LIBFLAG) -lm
+	@./bonus/pokeball.sh
 
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJS)
 	@make -C ./lib/my fclean
 
 fclean:
 	@$(RM) $(NAME)
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJS)
 
 re: fclean all

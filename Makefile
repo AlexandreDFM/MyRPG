@@ -82,6 +82,7 @@ SRC		= 	main.c											\
 			src/settings/init_settings.c					\
 
 
+
 OBJ    = $(SRC:.c=.o)
 
 CFLAGS += -Wall -pedantic -I./include -g3
@@ -90,47 +91,13 @@ LIBFLAG    = -I ./include -g3 -lGL -lcsfml-graphics					\
 -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network 		\
 -L ./lib/ -lmy														\
 
-print_pokeball:
-	@echo -e "        ▄███████████▄        "
-	@echo -n "     ▄███"
-	@echo -en "\033[0;31m"
-	@echo -n "███████████"
-	@echo -en "\033[0;0m"
-	@echo -e "███▄     "
-	@echo -n "    ███"
-	@echo -en "\033[0;31m"
-	@echo -n "███████████████"
-	@echo -en "\033[0;0m"
-	@echo -e "███    "
-	@echo -n "   ██"
-	@echo -en "\033[0;31m"
-	@echo -n "███████████████████"
-	@echo -en "\033[0;0m"
-	@echo -e "██   "
-	@echo -n "  ██"
-	@echo -n "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
-	@echo -e "██  "
-	@echo -e " ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██ "
-	@echo -e "██▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓██"
-	@echo -e "██▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓██"
-	@echo -e "██▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓██"
-	@echo -e "███████████░░███░░███████████"
-	@echo -e "██░░░░░░░██░░███░░██░░░░░░░██"
-	@echo -e "██░░░░░░░░██░░░░░██░░░░░░░░██"
-	@echo -e "██░░░░░░░░░███████░░░░░░░░░██"
-	@echo -e " ██░░░░░░░░░░░░░░░░░░░░░░░██ "
-	@echo -e "  ██░░░░░░░░░░░░░░░░░░░░░██  "
-	@echo -e "   ██░░░░░░░░░░░░░░░░░░░██   "
-	@echo -e "    ███░░░░░░░░░░░░░░░███    "
-	@echo -e "     ▀███░░░░░░░░░░░███▀     "
-	@echo -e "        ▀███████████▀        "
-	@echo -e "\033[0;0m"
+all:  $(OBJ) compile
 
-all: $(NAME) print_pokeball
 
-$(NAME): $(OBJ)
+compile:
 	@make -C ./lib/my
 	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
+	@./bonus/pokeball.sh
 
 clean:
 	@$(RM) $(OBJ)

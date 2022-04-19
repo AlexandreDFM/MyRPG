@@ -53,6 +53,7 @@ SRC	=	my_putchar.c 					\
 	 	./prints/my_put_short.c			\
 	 	./prints/my_put_long.c			\
 
+.SILENT:
 OBJ	= $(SRC:.c=.o)
 
 NAME	= libmy.a
@@ -62,6 +63,7 @@ all:	$(NAME)
 CFLAGS		+=	-I../../include -L../lib/my/ -lmy
 
 $(NAME): $(OBJ)
+	@echo -e "Making library"
 	ar rc libmy.a $(OBJ)
 	cp *.h ../../include/
 	cp libmy.a ../

@@ -13,7 +13,6 @@ int receive_okay(char **data, int *important, components *all)
     int ord_to_remove = *((int*)*data);
     *data += sizeof(int);
     net->flags[ord_to_remove] = 0;
-    my_printf("RECEIVED OKAY\n");
     return sizeof(int);
 }
 
@@ -21,7 +20,14 @@ int receive_hostsync(char **data, int *important, components *all)
 {
     network *net = all->inf.net;
     net->other.p = init_player(all->inf, *((int*)*data));
-    *data += sizeof(int) * 2 + sizeof(sfVector2f);
+    *data += sizeof(int);
+    sfVector2f pos = *((sfVector2f*)*data);
+    sfSprite_setPosition(net->other.p.test, pos);
+    net->other.target = pos;
+    *data += sizeof(sfVector2f);
+    net->other.cscene = *((int*)*data);
+    all->inf.c_scene = net->other.cscene;
+    *data += sizeof(int);
     return sizeof(int) * 3 + sizeof(sfVector2f);
 }
 
@@ -50,11 +56,11 @@ int receive_clientsync(char **data, int *important, components *all)
 
 int receive_connection(char **data, int *important, components *all)
 {
-    my_printf("RECEIVED CONNECTION\n");
+    my_printf("Incomming connection...\n");
     *important = 1;
     sfIpAddress *client_ip = (sfIpAddress*)(*data);
     *data += sizeof(sfIpAddress);
-    int *port = (int*) *data;
+    int *port = (int*)*data;
     all->inf.net->other.ip = *client_ip;
     all->inf.net->other.port = *port;
     return sizeof(int) * 2 + sizeof(sfIpAddress);
@@ -62,15 +68,24 @@ int receive_connection(char **data, int *important, components *all)
 
 int receive_position(char **data, int *important, components *all)
 {
-    my_printf("RECEIVED POSITION\n");
+    all->inf.net->other.target = *((sfVector2f*)*data);
+    *data += sizeof(sfVector2f);
+    return sizeof(int) + sizeof(sfVector2f);
+}
+
+int receive_setposition(char **data, int *important, components *all)
+{
+    sfVector2f np = *((sfVector2f*)*data);
+    sfSprite_setPosition(all->inf.net->other.p.test, np);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
 }
 
 int receive_scene(char **data, int *important, components *all)
 {
-    my_printf("RECIEVED SCENE\n");
-    *important = 1;
+    int ord_to_remove = *((int*)*data);
+    all->inf.net->other.cscene = ord_to_remove;
+    all->inf.net->flags[ord_to_remove] = 0;
     *data += sizeof(int);
     return sizeof(int) * 2;
 }
