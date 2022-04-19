@@ -6,9 +6,6 @@
 */
 
 #include "dungeon.h"
-#define MAP_SIZE 50
-#define H_RATIO 0.45
-#define W_RATIO 0.45
 
 char **empty_map(int size)
 {
@@ -25,7 +22,7 @@ char **empty_map(int size)
 void display_map(char **map)
 {
     for (int y = 0; map[y] != 0; y++) {
-        for (int x= 0; map[y][x] != '\0'; x++) {
+        for (int x = 0; map[y][x] != '\0'; x++) {
             my_printf("%c", map[y][x]);
         }
         my_printf("\n");
@@ -50,36 +47,37 @@ int random_btw(int min, int max)
     return (rand() % (max - min + 1)) + min;
 }
 
-sfIntRect **random_split(sfIntRect *rect)
+sfIntRect **random_split(sfIntRect *r)
 {
     sfIntRect **splits = malloc(sizeof(sfIntRect*) * 2);
-    sfIntRect *left = malloc(sizeof(sfIntRect));
-    sfIntRect *right = malloc(sizeof(sfIntRect));
+    sfIntRect *l = malloc(sizeof(sfIntRect)), *re = malloc(sizeof(sfIntRect));
     if (rand() % 2) {
-        *left = (sfIntRect){rect->left, rect->top, random_btw(1, rect->width), rect->height};
-        splits[0] = left;
-        *right = (sfIntRect){rect->left + splits[0]->width, rect->top, rect->width - splits[0]->width, rect->height};
-        splits[1] = right;
-        float left_ratio = (float)left->width / (float)left->height;
-        float right_ratio = (float)right->width / (float)right->height;
+        *l = (sfIntRect){r->left, r->top, random_btw(1, r->width), r->height};
+        splits[0] = l;
+        *re = (sfIntRect){r->left + splits[0]->width, r->top,
+            r->width - splits[0]->width, r->height};
+        splits[1] = re;
+        float left_ratio = (float)l->width / (float)l->height;
+        float right_ratio = (float)re->width / (float)re->height;
         if (left_ratio < W_RATIO || right_ratio < W_RATIO) {
             free(splits);
-            free(left);
-            free(right);
-            return random_split(rect);
+            free(l);
+            free(re);
+            return random_split(r);
         }
     } else {
-        *left = (sfIntRect){rect->left, rect->top, rect->width, random_btw(1, rect->height)};
-        splits[0] = left;
-        *right = (sfIntRect){rect->left, rect->top + splits[0]->height, rect->width, rect->height - splits[0]->height};
-        splits[1] = right;
-        float left_ratio = (float)left->height / (float)left->width;
-        float right_ratio = (float)right->height / (float)right->width;
+        *l = (sfIntRect){r->left, r->top, r->width, random_btw(1, r->height)};
+        splits[0] = l;
+        *re = (sfIntRect){r->left, r->top + splits[0]->height, r->width,
+            r->height - splits[0]->height};
+        splits[1] = re;
+        float left_ratio = (float)l->height / (float)l->width;
+        float right_ratio = (float)re->height / (float)re->width;
         if (left_ratio < H_RATIO || right_ratio < H_RATIO) {
             free(splits);
-            free(left);
-            free(right);
-            return random_split(rect);
+            free(l);
+            free(re);
+            return random_split(r);
         }
     }
     return splits;
@@ -94,7 +92,8 @@ bsp *build_bsp(int size, int iter)
 
 sfIntRect generate_room(sfIntRect *rect)
 {
-    sfIntRect room = {rect->left, rect->top, (float)rect->width / 1.5f, (float)rect->height / 1.5f};
+    sfIntRect room = {rect->left, rect->top,
+        (float)rect->width / 1.5f, (float)rect->height / 1.5f};
     room.left += random_btw(0, (float)rect->width / 4.0f);
     room.top += random_btw(0, (float)rect->height / 4.0f);
     return room;
@@ -143,18 +142,20 @@ void append_list(sfIntRect ***rects, sfIntRect *new_alloc)
 
 sfIntRect get_center(sfIntRect *rect)
 {
-    return (sfIntRect){rect->left + rect->width / 2, rect->top + rect->height / 2};
+    return (sfIntRect){rect->left + rect->width / 2,
+        rect->top + rect->height / 2};
 }
 
 void get_paths(char ***map, bsp *tree)
 {
     if (!tree->left || !tree->right)
         return;
-    sfIntRect *rect = tree->left->rect;
-    sfVector2i center_a = (sfVector2i){(float)rect->left + (float)rect->width / 2.0f, (float)rect->top + (float)rect->height / 2.0f};
-    rect = tree->right->rect;
-    sfVector2i center_b = (sfVector2i){(float)rect->left + (float)rect->width / 2.0f, (float)rect->top + (float)rect->height / 2.0f};
-
+    sfIntRect *r = tree->left->rect;
+    sfVector2i center_a = (sfVector2i){(float)r->left + (float)r->width / 2.0f,
+        (float)r->top + (float)r->height / 2.0f};
+    r = tree->right->rect;
+    sfVector2i center_b = (sfVector2i){(float)r->left + (float)r->width / 2.0f,
+        (float)r->top + (float)r->height / 2.0f};
     int diff = center_a.x == center_b.x ? -1 : 1;
     int min = 0, max = 0;
     if (diff == 1) {

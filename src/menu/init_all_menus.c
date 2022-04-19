@@ -61,7 +61,8 @@ list *fill_texts(char **arr, wininf *inf, int off)
     list *texts = 0;
     sfVector2f pos;
     for (int i = 0, tmp = off + 1; i < my_atoi(arr[off]); i++, tmp += 3) {
-        pos.x = my_atoi(arr[tmp + 1]) + my_atoi(arr[1]); pos.y = my_atoi(arr[tmp + 2]) + my_atoi(arr[2]);
+        pos.x = my_atoi(arr[tmp + 1]) + my_atoi(arr[1]);
+        pos.y = my_atoi(arr[tmp + 2]) + my_atoi(arr[2]);
         add_to_list(&texts, init_text(arr[tmp], inf->ui.font, pos));
     }
     return texts;

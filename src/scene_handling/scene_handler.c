@@ -28,7 +28,7 @@ void handle_scene(wininf *infos, player *p)
         draw_player(infos, *p);
         if (infos->transition) {
             update_transition(infos, *p);
-            sfRenderWindow_drawRectangleShape(infos->win, infos->transition_rect, 0);
+            sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
         }
         if (infos->interacting && infos->ui.dialog) {
             sfRenderWindow_drawSprite(infos->win,
@@ -38,8 +38,8 @@ void handle_scene(wininf *infos, player *p)
                 if (d && d->sp) {
                     sfRenderWindow_drawSprite(infos->win, d->sp, 0);
                     if (d->time > infos->ui.text_delay && d->i < d->max) {
-                        sfIntRect new_rect = (sfIntRect){0, 0, d->steps[d->i], d->height};
-                        sfSprite_setTextureRect(d->sp, new_rect);
+                        sfIntRect nr = (sfIntRect){0, 0, d->steps[d->i], d->height};
+                        sfSprite_setTextureRect(d->sp, nr);
                         d->i++;
                         d->time = 0.0f;
                     }
@@ -80,7 +80,7 @@ scene create_home(wininf *infos, int id)
     return scene;
 }
 
-scene create_static_environment(wininf *inf, int id)
+scene create_static_env(wininf *inf, int id)
 {
     scene scene;
     my_printf("Loading Scene %d:\n", id);

@@ -7,6 +7,7 @@
 
 #include "infos.h"
 #include "inputs.h"
+#include "intro.h"
 
 void update_events(wininf *inf)
 {

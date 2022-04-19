@@ -17,143 +17,142 @@ CYAN='\033[0;36m'
 WHITE='\033[0;37m'
 
 echo -en ${BLACK}
-echo -e "        ▄███████████▄        "
+echo -e "        ▄█████████████████████▄        "
 echo -n "     ▄███"
 echo -en ${RED}
-echo -n "███████████"
+echo -n "█████████████████████"
 echo -en ${BLACK}
 echo -e "███▄     "
 echo -n "    ███"
 echo -en ${RED}
-echo -n "███████████████"
+echo -n "█████████████████████████"
 echo -en ${BLACK}
 echo -e "███    "
 echo -n "   ██"
 echo -en ${RED}
-echo -n "███████████████████"
+echo -n "█████████████████████████████"
 echo -en ${BLACK}
 echo -e "██   "
 echo -n "  ██"
 echo -en ${RED}
-echo -n "█████████████████████"
+echo -n "███████████████████████████████"
 echo -en ${BLACK}
 echo -e "██  "
 echo -n " ██"
 echo -en ${RED}
-echo -n "███████████████████████"
+echo -n "█████████████████████████████████"
 echo -en ${BLACK}
 echo -e "██ "
 echo -n "██"
 echo -en ${RED}
-echo -n "█████████"
+echo -n "█████████████"
 echo -en ${BLACK}
-echo -n "███████"
-echo -en ${RED}
-echo -n "█████████"
-echo -en ${BLACK}
-echo -e "██"
-echo -n "██"
-echo -en ${RED}
 echo -n "████████"
-echo -en ${BLACK}
-echo -n "██"
-echo -en ${WHITE}
-echo -n "█████"
-echo -en ${BLACK}
-echo -n "██"
 echo -en ${RED}
-echo -n "████████"
+echo -n "█████████████"
 echo -en ${BLACK}
 echo -e "██"
 echo -n "██"
 echo -en ${RED}
-echo -n "███████"
-echo -en ${BLACK}
-echo -n "██"
-echo -en ${WHITE}
-echo -n "██"
-echo -en ${BLACK}
-echo -n "███"
-echo -en ${WHITE}
-echo -n "██"
-echo -en ${BLACK}
-echo -n "██"
-echo -en ${RED}
-echo -n "███████"
-echo -en ${BLACK}
-echo -e "██"
 echo -n "███████████"
-echo -en ${WHITE}
-echo -n "██"
-echo -en ${BLACK}
-echo -n "███"
-echo -en ${WHITE}
-echo -n "██"
-echo -en ${BLACK}
-echo -e "███████████"
-echo -n "██"
-echo -en ${WHITE}
-echo -n "███████"
 echo -en ${BLACK}
 echo -n "██"
 echo -en ${WHITE}
-echo -n "██"
-echo -en ${BLACK}
-echo -n "███"
-echo -en ${WHITE}
-echo -n "██"
+echo -n "████████"
 echo -en ${BLACK}
 echo -n "██"
-echo -en ${WHITE}
-echo -n "███████"
+echo -en ${RED}
+echo -n "███████████"
 echo -en ${BLACK}
 echo -e "██"
+echo -n "██"
+echo -en ${RED}
+echo -n "█████████"
+echo -en ${BLACK}
+echo -n "██"
+echo -en ${WHITE}
+echo -n "████"
+echo -en ${BLACK}
+echo -n "████"
+echo -en ${WHITE}
+echo -n "████"
+echo -en ${BLACK}
+echo -n "██"
+echo -en ${RED}
+echo -n "█████████"
+echo -en ${BLACK}
+echo -e "██"
+echo -n "█████████████"
+echo -en ${WHITE}
+echo -n "████"
+echo -en ${BLACK}
+echo -n "████"
+echo -en ${WHITE}
+echo -n "████"
+echo -en ${BLACK}
+echo -e "█████████████"
+echo -n "██"
+echo -en ${WHITE}
+echo -n "█████████"
+echo -en ${BLACK}
+echo -n "██"
+echo -en ${WHITE}
+echo -n "████"
+echo -en ${BLACK}
+echo -n "████"
+echo -en ${WHITE}
+echo -n "████"
+echo -en ${BLACK}
+echo -n "██"
+echo -en ${WHITE}
+echo -n "█████████"
+echo -en ${BLACK}
+echo -e "██"
+echo -n "██"
+echo -en ${WHITE}
+echo -n "███████████"
+echo -en ${BLACK}
 echo -n "██"
 echo -en ${WHITE}
 echo -n "████████"
 echo -en ${BLACK}
 echo -n "██"
 echo -en ${WHITE}
-echo -n "█████"
-echo -en ${BLACK}
-echo -n "██"
-echo -en ${WHITE}
-echo -n "████████"
+echo -n "███████████"
 echo -en ${BLACK}
 echo -e "██"
 echo -n "██"
 echo -en ${WHITE}
-echo -n "█████████"
+echo -n "█████████████"
 echo -en ${BLACK}
-echo -n "███████"
+echo -n "████████"
 echo -en ${WHITE}
-echo -n "█████████"
+echo -n "█████████████"
 echo -en ${BLACK}
 echo -e "██"
 echo -n " ██"
 echo -en ${WHITE}
-echo -n "███████████████████████"
+echo -n "████████████████████████████████"
 echo -en ${BLACK}
 echo -e "██ "
 echo -n "  ██"
 echo -en ${WHITE}
-echo -n "█████████████████████"
+echo -n "██████████████████████████████"
 echo -en ${BLACK}
 echo -e "██  "
 echo -n "   ██"
 echo -en ${WHITE}
-echo -n "███████████████████"
+echo -n "████████████████████████████"
 echo -en ${BLACK}
 echo -e "██   "
 echo -n "    ███"
 echo -en ${WHITE}
-echo -n "███████████████"
+echo -n "████████████████████████"
 echo -en ${BLACK}
 echo -e "███    "
 echo -n "     ▀███"
 echo -en ${WHITE}
-echo -en "███████████"
+echo -en "████████████████████"
 echo -en ${BLACK}
 echo -e "███▀     "
-echo -e "        ▀███████████▀        "
-echo -e "\033[0;0m"
+echo -e "        ▀█████████████████████▀        \033[0;0m"

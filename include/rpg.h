@@ -175,7 +175,7 @@ typedef struct wininf_t {
     struct intro_assets_t *intro;
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
-    sfRectangleShape *transition_rect;
+    sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t p);
 } wininf;
 
@@ -342,7 +342,7 @@ wininf create_window_infos(int ac, char **av);
 //Initializations
 void add_pnjs(atlases atlas, int idx, scene *s);
 //Initializations
-scene create_static_environment(wininf *inf, int id);
+scene create_static_env(wininf *inf, int id);
 //Initializations
 void create_pnj(char *line, scene *s, atlases atlas);
 //Initializations
@@ -482,5 +482,8 @@ int receive_hostsync(char **data, int *important, components *all);
 //Network pointers
 int receive_setposition(char **data, int *important, components *all);
 ////////////////////////////////////////////////////////////
+
+void draw_intro(wininf *inf);
+void treat_axis(wininf *inf);
 
 #endif

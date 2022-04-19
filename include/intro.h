@@ -41,11 +41,15 @@ typedef struct intro_assets_t {
     sfMusic *i_music2;
 } intro_a;
 
-intro_a *create_intro(wininf *inf);
+void move_sun(intro_a *rpg);
 void manage_intro(wininf *inf);
+intro_a *create_intro(wininf *inf);
+void move_sun_reverse(intro_a *rpg);
+void display_eles(sfRenderWindow *window, cine_ele ele);
+void plan_clock(sfRenderWindow *window, wininf *inf, intro_a *rpg);
+void move_rectintrotop(sfIntRect *rect, int modify, int max_value);
 void move_rectintroleft(sfIntRect *rect, int modify, int max_value);
 void move_rectintroleft2(sfIntRect *rect, int modify, int max_value);
 void move_rectintroleft3(sfIntRect *rect, int modify, int max_value);
-void move_rectintrotop(sfIntRect *rect, int modify, int max_value);
 
 #endif

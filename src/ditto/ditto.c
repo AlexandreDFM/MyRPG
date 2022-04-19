@@ -6,6 +6,7 @@
 */
 
 #include "ditto.h"
+#include "intro.h"
 
 void ditto_clock(wininf *inf, ditto_a *cditto)
 {

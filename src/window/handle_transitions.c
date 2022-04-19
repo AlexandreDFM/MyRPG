@@ -9,7 +9,7 @@
 
 void update_transition(wininf *inf, player p)
 {
-    sfColor col = sfRectangleShape_getFillColor(inf->transition_rect);
+    sfColor col = sfRectangleShape_getFillColor(inf->transi);
     float new_a = col.a / 255.0f;
     if (inf->transition == 1) {
         if (new_a > 0.99f) {
@@ -28,5 +28,5 @@ void update_transition(wininf *inf, player p)
         new_a = my_lerpf(new_a, 0.0f, 9.0 * inf->time.transi);
     }
     col.a = (int)(new_a * 255.0f);
-    sfRectangleShape_setFillColor(inf->transition_rect, col);
+    sfRectangleShape_setFillColor(inf->transi, col);
 }

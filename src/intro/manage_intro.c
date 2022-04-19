@@ -15,7 +15,6 @@ void manage_intro(wininf *inf)
         if (inf->event.type == sfEvtKeyPressed || (inf->event.mouseButton.type == sfEvtMouseButtonPressed && inf->event.mouseButton.button != sfMouseRight)) {
             sfMusic_pause(inf->intro->i_music1);
             sfMusic_play(inf->intro->i_music2);
-            inf->intro->i_music1;
             inf->intro->b_intro[0].rect = (sfIntRect) {4456 + 480, 608, 240, 160};
             inf->intro->b_intro[1].rect = (sfIntRect) {4456 + 480, 448, 240, 160};
             inf->intro->b_intro[2].rect = (sfIntRect) {4456 + 720, 481, 96, 29};

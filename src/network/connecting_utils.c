@@ -29,15 +29,15 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
     }
 }
 
-int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *port)
+int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *p)
 {
     if (sfSocketSelector_wait(net->selector, net->timeout)) {
         if (!sfSocketSelector_isUdpSocketReady(net->selector, net->socket))
             return 0;
-        int res = sfUdpSocket_receivePacket(net->socket, net->packet, ip, port);
+        int res = sfUdpSocket_receivePacket(net->socket, net->packet, ip, p);
         if (!res) { 
             net->other.ip = *ip;
-            net->other.port = *port;
+            net->other.port = *p;
             my_printf("Successfully connected!\n");
             return 1;
         }

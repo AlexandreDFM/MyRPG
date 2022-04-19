@@ -17,11 +17,11 @@ void draw_player(wininf *inf, player p)
         nextp.x += p.vel.x; nextp.y += p.vel.y;
         sfVector2f np = my_lerp(po, nextp, p.speed * inf->time.dt);
         sfSprite_setPosition(p.test, np);
-        if (!is_same(po, nextp, 0.5f)) {
+        if (!is_same(po, nextp, 0.5f) && inf->net->is_multi) {
             add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
         }
     }
-    update_camera(inf->camera, inf->time.dt, inf->win, inf->transition_rect);
+    update_camera(inf->camera, inf->time.dt, inf->win, inf->transi);
     if (inf->net->other.p.test) {
         sfVector2f pos = sfSprite_getPosition(inf->net->other.p.test);
         pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
