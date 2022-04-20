@@ -14,7 +14,6 @@
     #define H_RATIO 0.45
     #define W_RATIO 0.45
 
-
 enum directions {
     RIGHT = 1,
     LEFT = 2,

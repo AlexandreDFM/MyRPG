@@ -35,7 +35,7 @@ int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *p)
         if (!sfSocketSelector_isUdpSocketReady(net->selector, net->socket))
             return 0;
         int res = sfUdpSocket_receivePacket(net->socket, net->packet, ip, p);
-        if (!res) { 
+        if (!res) {
             net->other.ip = *ip;
             net->other.port = *p;
             my_printf("Successfully connected!\n");

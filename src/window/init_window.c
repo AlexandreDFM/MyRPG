@@ -25,7 +25,7 @@ void init_key_list(wininf *inf)
     "F9", "F10", "F11", "F12", "F13", "F14", "F15", "Pause"};
     inf->key_list = malloc(sizeof(char *) * 102);
     for (int i = 0; i < 101; i++)
-        inf->key_list[i] = my_strdup(list[i]);
+        inf->key_list[i] = my_strdup((char *)list[i]);
 }
 
 wininf create_window_infos(int ac, char **av)
@@ -74,5 +74,6 @@ wininf create_window_infos(int ac, char **av)
     inf.ditto = NULL;
     inf.dream = NULL;
     init_key_list(&inf);
+    inf.key_change = -1;
     return inf;
 }

@@ -110,7 +110,7 @@ all:  $(OBJ) compile
 compile:
 	@make -C ./lib/my
 	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
-	@./bonus/pokeball.sh
+	## @./bonus/pokeball.sh
 
 clean:
 	@$(RM) $(OBJ)

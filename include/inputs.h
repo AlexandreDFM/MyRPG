@@ -24,6 +24,10 @@ typedef struct keybinds_t {
     sfKeyCode inventory;
     sfKeyCode attack;
     sfKeyCode back;
+    sfKeyCode mup;
+    sfKeyCode mdown;
+    sfKeyCode mleft;
+    sfKeyCode mright;
 } keybinds;
 
 typedef struct inputs_t {

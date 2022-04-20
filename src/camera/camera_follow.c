@@ -7,13 +7,12 @@
 
 #include "rpg.h"
 
-void update_camera(camera c, float dt, sfRenderWindow *win, sfRectangleShape *transi)
+void update_camera(camera c, float dt, sfRenderWindow *win,
+sfRectangleShape *transi)
 {
     if (!c.target) {
         return;
     }
-    // float max_x = 550.0f;
-    // float max_y = 526.0f;
     float max_x = 958.0f;
     float max_y = 719.0f;
     sfVector2f pos = sfSprite_getPosition(c.target);

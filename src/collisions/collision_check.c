@@ -25,11 +25,11 @@ int check_rect_col(collision *s, sfVector2f pos)
     return 1;
 }
 
-int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p)
+int is_valid(list *col, sfVector2f pos, sfVector2f *vel, wininf *inf, player p)
 {
     int res_x = 0, res_y = 0;
     int inside = 0;
-    for (list *t = cols; t; t = t->next) {
+    for (list *t = col; t; t = t->next) {
         sfVector2f x_axis = (sfVector2f){pos.x + vel->x, pos.y};
         sfVector2f y_axis = (sfVector2f){pos.x, pos.y + vel->y};
         collision *c = t->data;

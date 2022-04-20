@@ -46,7 +46,6 @@ list *init_choices(char **arr, wininf *inf, int off)
     choices_l->next = NULL;
     choices_l->prev = NULL;
     list *first = choices_l;
-    printf("%s\n", arr[off]);
     for (int i = 0, tmp = off + 8; i < my_atoi(arr[off]) - 1; i++, tmp += 7) {
         push_back_double(&choices_l, fill_choice(arr, tmp, inf));
     }

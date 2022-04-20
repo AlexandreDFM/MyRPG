@@ -24,9 +24,11 @@ void init_load_pointers(wininf *inf)
 
 void init_options_pointers(wininf *inf)
 {
-    void (*ptrs[])(wininf *inf) = {key_up, key_down, key_left, key_right,key_interact, key_inventory, key_attack, key_back, go_back};
-    for (int i = 0; i < inf->options_menu->max_choice; i++) {
-        ((choices *)inf->options_menu->choices->data)->ptrs[0] = ptrs[i];
+    void (*ptrs[])(wininf *inf) = {change_keybind, go_back};
+    for (int i = 0; i < inf->options_menu->max_choice - 1; i++) {
+        ((choices *)inf->options_menu->choices->data)->ptrs[0] = ptrs[0];
         inf->options_menu->choices = inf->options_menu->choices->next;
     }
+    ((choices *)inf->options_menu->choices->data)->ptrs[0] = ptrs[1];
+    inf->options_menu->choices = inf->options_menu->choices->next;
 }

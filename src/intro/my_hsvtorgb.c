@@ -36,8 +36,6 @@ sfColor my_hsvtorgb(float H, float S, float V)
     int R = (r+m)*255;
     int G = (g+m)*255;
     int B = (b+m)*255;
-    // printf("%f %f %f\n", r+m, g+m, b+m);
-    printf("%d %d %d\n", R, G, B);
     sfColor color = {R, G, B, 255};
     return color;
 }

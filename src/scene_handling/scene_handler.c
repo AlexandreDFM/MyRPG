@@ -13,10 +13,6 @@ void handle_scene(wininf *infos, player *p)
     sfRenderWindow_clear(infos->win, sfBlack);
     if (infos->c_scene == INTRO) {
         draw_intro(infos);
-    // if (infos->c_scene == DITTO) {
-    //     draw_ditto(infos);
-    // if (infos->c_scene == DREAM) {
-    //     draw_dream(infos);
     } else if (infos->c_scene == MAIN_MENU) {
         draw_menu(infos, infos->main_menu);
         if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->load_menu);
@@ -39,7 +35,8 @@ void handle_scene(wininf *infos, player *p)
                 if (d && d->sp) {
                     sfRenderWindow_drawSprite(infos->win, d->sp, 0);
                     if (d->time > infos->ui.text_delay && d->i < d->max) {
-                        sfIntRect nr = (sfIntRect){0, 0, d->steps[d->i], d->height};
+                        sfIntRect nr = (sfIntRect){0, 0, d->steps[d->i],
+                        d->height};
                         sfSprite_setTextureRect(d->sp, nr);
                         d->i++;
                         d->time = 0.0f;

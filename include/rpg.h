@@ -223,7 +223,7 @@ typedef struct network_t {
     sfIpAddress *any;
     unsigned short port;
     int flags[COUNT - 1];
-    int (*orders[7])(char** data, int *important, components *com);
+    int (*orders[7])(char **data, int *important, components *com);
     struct other_t other;
 } network;
 
@@ -240,7 +240,8 @@ int search(int array[], int x, int started);
 //Dungeon Generation
 void append_list(sfIntRect ***rects, sfIntRect *new_alloc);
 //Dungeon Generation
-void insert_into(sfUint8 **pixels, int index, int start_x, int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
+void insert_into(sfUint8 **pixels, int index, int start_x,
+int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -424,25 +425,13 @@ void my_exit(wininf *inf);
 //Menu pointers
 void yes_but(wininf *inf);
 //Menu pointers
-void key_up(wininf *inf);
-//Menu pointers
-void key_down(wininf *inf);
-//Menu pointers
-void key_left(wininf *inf);
-//Menu pointers
-void key_right(wininf *inf);
-//Menu pointers
-void key_interact(wininf *inf);
-//Menu pointers
-void key_inventory(wininf *inf);
-//Menu pointers
-void key_attack(wininf *inf);
-//Menu pointers
-void key_back(wininf *inf);
-//Menu pointers
 void go_back(wininf *inf);
 //Menu pointers
+void change_keybind(wininf *inf);
+//Menu pointers
 void init_load_pointers(wininf *inf);
+//Menu pointers
+void init_options_pointers(wininf *inf);
 //Menu pointers
 void init_main_menu_pointers(wininf *inf);
 ////////////////////////////////////////////////////////////
@@ -467,7 +456,7 @@ sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 //Maths Functions
 int is_same(sfVector2f v1, sfVector2f v2, float threshold);
 //Maths Functions
-int is_valid(list *cols, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
+int is_valid(list *c, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////

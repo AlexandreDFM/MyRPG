@@ -11,11 +11,18 @@
 void init_inputs(wininf *inf)
 {
     inputs in;
-    in.keys.down = sfKeyS;
     in.keys.up = sfKeyZ;
+    in.keys.down = sfKeyS;
     in.keys.left = sfKeyQ;
     in.keys.right = sfKeyD;
     in.keys.interact = sfKeyE;
+    in.keys.inventory = sfKeyI;
+    in.keys.attack = sfKeySpace;
+    in.keys.back = sfKeyEscape;
+    in.keys.mup = sfKeyUp;
+    in.keys.mdown = sfKeyDown;
+    in.keys.mleft = sfKeyLeft;
+    in.keys.mright = sfKeyRight;
     in.axis = (sfVector2f){0.0f, 0.0f};
     in.interact = 0;
     in.can_interact = 0;
@@ -38,7 +45,7 @@ sfKeyCode check_key_valid(wininf *inf)
 
 void update_key(wininf *inf)
 {
-    if (check_key_valid(inf) > 0) {
+    if (check_key_valid(inf) >= 0) {
         if (inf->key_change == 0)
             inf->inputs.keys.up = inf->tmp_key;
         if (inf->key_change == 1)
@@ -55,6 +62,14 @@ void update_key(wininf *inf)
             inf->inputs.keys.attack = inf->tmp_key;
         if (inf->key_change == 7)
             inf->inputs.keys.back = inf->tmp_key;
+        if (inf->key_change == 8)
+            inf->inputs.keys.mup = inf->tmp_key;
+        if (inf->key_change == 9)
+            inf->inputs.keys.mdown = inf->tmp_key;
+        if (inf->key_change == 10)
+            inf->inputs.keys.mleft = inf->tmp_key;
+        if (inf->key_change == 11)
+            inf->inputs.keys.mright = inf->tmp_key;
     }
     inf->options_menu->focus = 1;
     inf->waiting_key = 0;
@@ -63,7 +78,8 @@ void update_key(wininf *inf)
     sfVector2f pos = sfText_getPosition(tmp_t);
     pos.y -= 20;
     sfText_setPosition(tmp_t, pos);
-    sfText_setString(tmp_t, inf->tmp_key > 0 ? inf->key_list[inf->tmp_key] : "Unknown key");
+    sfText_setString(tmp_t, inf->tmp_key >= 0 ?
+    inf->key_list[inf->tmp_key] : "Unknown key");
 
 }
 void update_inputs(wininf *inf)
