@@ -71,8 +71,7 @@ void update_key(wininf *inf)
         if (inf->key_change == 11)
             inf->inputs.keys.mright = inf->tmp_key;
     }
-    inf->options_menu->focus = 1;
-    inf->waiting_key = 0;
+    inf->waiting_key = 38;
     inf->key_change = -1;
     sfText *tmp_t = ((choices *)inf->options_menu->selected->data)->choice;
     sfVector2f pos = sfText_getPosition(tmp_t);

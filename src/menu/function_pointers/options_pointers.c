@@ -20,7 +20,8 @@ void change_keybind(wininf *inf)
 
 void go_back(wininf *inf)
 {
-    inf->options_menu->focus = 0;
+    inf->current_menu->selected = inf->current_menu->head;
+    inf->current_menu->focus = 0;
     inf->main_menu->focus = 1;
     inf->current_menu = inf->main_menu;
     inf->c_menu = NONE;

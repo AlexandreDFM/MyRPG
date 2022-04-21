@@ -13,7 +13,6 @@ void play(wininf *inf)
     inf->c_menu = LOAD_SAVE;
     inf->main_menu->focus = 0;
     inf->load_menu->focus = 1;
-    my_printf("Play: %d\n", inf->c_scene);
 }
 
 void options(wininf *inf)
@@ -22,17 +21,14 @@ void options(wininf *inf)
     inf->c_menu = OPTIONS;
     inf->main_menu->focus = 0;
     inf->options_menu->focus = 1;
-    my_printf("Options\n");
 }
 
 void my_exit(wininf *inf)
 {
     sfRenderWindow_close(inf->win);
-    my_printf("Exit\n");
 }
 
 void a_log(wininf *inf)
 {
     inf->c_scene = HOME;
-    my_printf("Log\n");
 }

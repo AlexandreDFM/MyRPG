@@ -19,7 +19,7 @@ void init_main_menu_pointers(wininf *inf)
 void init_load_pointers(wininf *inf)
 {
     ((choices *)inf->load_menu->choices->data)->ptrs[0] = yes_but;
-    ((choices *)inf->load_menu->choices->next->data)->ptrs[0] = no_but;
+    ((choices *)inf->load_menu->choices->next->data)->ptrs[0] = go_back;
 }
 
 void init_options_pointers(wininf *inf)

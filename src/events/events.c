@@ -31,5 +31,11 @@ void update_events(wininf *inf)
         if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
             inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
         }
+        if (inf->waiting_key == 38 && inf->event.type == sfEvtKeyReleased) {
+            inf->waiting_key = 0;
+            inf->options_menu->focus = 1;
+        }
+        if ((inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE) && sfKeyboard_isKeyPressed(inf->inputs.keys.back))
+            go_back(inf);
     }
 }

@@ -72,7 +72,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm ../libmy.a
+	rm -f ../libmy.a
 	rm -f $(NAME)
 
 re: 	fclean $(NAME)
