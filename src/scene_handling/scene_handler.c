@@ -23,6 +23,7 @@ void handle_scene(wininf *infos, player *p)
         if (infos->c_scene)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
         draw_player(infos, *p);
+
         if (infos->transition) {
             update_transition(infos, *p);
             sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
@@ -45,6 +46,8 @@ void handle_scene(wininf *infos, player *p)
                 }
             }
         }
+        if (infos->c_menu == PAUSE)
+            draw_menu(infos, infos->pause_menu);
     }
     update_time(infos);
     sfRenderWindow_display(infos->win);

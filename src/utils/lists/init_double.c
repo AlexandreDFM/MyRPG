@@ -9,11 +9,12 @@
 
 choices *create_choice(char **arr, int index, wininf *inf, sfVector2f pos)
 {
+    int size = my_atoi(arr[1]);
     choices *choice = malloc(sizeof(choices));
     choice->ptr = my_atoi(arr[index + 2]);
-    choice->choice = init_text(arr[index], inf->ui.font, pos);
+    choice->choice = init_text(arr[index], inf->ui.font, pos, size);
     choice->desc = init_text(arr[index + 1], inf->ui.font,
-    (sfVector2f) {0, 500});
+    (sfVector2f) {0, 500}, size);
     choice->ptr = my_atoi(arr[index + 2]);
     return choice;
 }

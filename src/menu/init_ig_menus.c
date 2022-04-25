@@ -2,29 +2,12 @@
 ** EPITECH PROJECT, 2022
 ** B-MUL-200-NCE-2-1-myrpg-antoine.frankel
 ** File description:
-** init_all_menus
+** init_ig_menus
 */
 
 #include "rpg.h"
 
-list *init_backgrounds(char **arr, wininf *inf)
-{
-    list *backgrounds = 0;
-    sfVector2f base = {my_atoi(arr[2]), my_atoi(arr[3])};
-    sfVector2i size;
-    sfVector2f pos;
-    for (int i = 0, off = 6; i < my_atoi(arr[4]); i++, off += 5) {
-        pos.x = my_atoi(arr[off]) + base.x;
-        pos.y = my_atoi(arr[off + 1]) + base.y;
-        size.x = my_atoi(arr[off + 2]);
-        size.y = my_atoi(arr[off + 3]);
-        add_to_list(&backgrounds, generate_textbox(size, inf->atlases.atlas));
-        sfSprite_setPosition((sfSprite *)backgrounds->data, pos);
-    }
-    return backgrounds;
-}
-
-choices *fill_choice(char **arr, int tmp, wininf *inf)
+choices *fill_ig_choice(char **arr, int tmp, wininf *inf)
 {
     int size = my_atoi(arr[1]);
     sfVector2f pos;
@@ -39,7 +22,7 @@ choices *fill_choice(char **arr, int tmp, wininf *inf)
     return choice;
 }
 
-list *init_choices(char **arr, wininf *inf, int off)
+list *init_ig_choices(char **arr, wininf *inf, int off)
 {
     if (my_atoi(arr[off]) == 0) return NULL;
     list *choices_l = malloc(sizeof(list));
@@ -56,7 +39,7 @@ list *init_choices(char **arr, wininf *inf, int off)
     return choices_l;
 }
 
-list *fill_texts(char **arr, wininf *inf, int off)
+list *fill_ig_texts(char **arr, wininf *inf, int off)
 {
     int size = my_atoi(arr[1]);
     if (my_atoi(arr[off]) == 0) return NULL;
@@ -70,7 +53,7 @@ list *fill_texts(char **arr, wininf *inf, int off)
     return texts;
 }
 
-menuss *init_all_menus(wininf *inf, int menu_id, int focus)
+menuss *init_ig_menus(wininf *inf, int menu_id, int focus)
 {
     menuss *menu = malloc(sizeof(menuss));
     char **arr = my_strtwa(inf->atlases.menus[menu_id], ";\n");

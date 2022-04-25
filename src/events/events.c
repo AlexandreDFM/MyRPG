@@ -35,7 +35,12 @@ void update_events(wininf *inf)
             inf->waiting_key = 0;
             inf->options_menu->focus = 1;
         }
-        if ((inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE) && sfKeyboard_isKeyPressed(inf->inputs.keys.back))
+        if ((inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE) &&
+        sfKeyboard_isKeyPressed(inf->inputs.keys.back))
             go_back(inf);
+        if ((inf->c_scene != INTRO || inf->c_scene != MAIN_MENU) && sfKeyboard_isKeyPressed(inf->inputs.keys.back)) {
+            inf->c_menu = PAUSE;
+            inf->pause_menu->focus = 1;
+        }
     }
 }

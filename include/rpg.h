@@ -31,7 +31,7 @@ typedef enum scenes_e {
     MAIN_MENU,
     INTRO,
     DITTO,
-    DREAM
+    DREAM,
 } scenes;
 
 typedef enum orders_e {
@@ -52,6 +52,7 @@ typedef enum main_menu_t {
     OPTIONS,
     CHANGING_KEY,
     EXIT,
+    PAUSE,
 }m_menu_t;
 
 typedef struct settings_t {
@@ -174,6 +175,7 @@ typedef struct wininf_t {
     struct scene_t scenes[6];
     struct menus *main_menu;
     struct menus *load_menu;
+    struct menus *pause_menu;
     struct menus *options_menu;
     struct menus *current_menu;
     struct settings_t *settings;
@@ -185,8 +187,8 @@ typedef struct wininf_t {
 } wininf;
 
 typedef struct choices_t {
-    sfText *choice;
-    sfText *desc;
+    void *choice;
+    void *desc;
     int ptr;
     void (*ptrs[1])(struct wininf_t *);
 } choices;
@@ -472,7 +474,7 @@ void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
 
 ////////////////////////////////////////////////////////////
 //Menu initialization
-sfText *init_text(char *str, sfFont *font, sfVector2f pos);
+sfText *init_text(char *str, sfFont *font, sfVector2f pos, int size);
 //Menu initialization
 menuss *init_all_menus(wininf *inf, int menu_id, int focus);
 //Menu initialization
