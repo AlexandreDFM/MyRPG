@@ -76,7 +76,6 @@ menuss *init_ig_menus(wininf *inf, int menu_id, int focus)
     menuss *menu = malloc(sizeof(menuss));
     char **arr = my_strtwa(inf->atlases.menus[menu_id], ";\n");
     menu->offset = my_atoi(arr[get_arr_len(arr) - 1]);
-    printf("%d\n", menu->offset);
     menu->backgrounds = init_backgrounds(arr, inf);
     int offset = my_atoi(arr[4]) * 5 + 5;
     menu->choices = init_ig_choices(arr, inf, offset);
