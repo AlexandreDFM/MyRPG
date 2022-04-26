@@ -37,11 +37,6 @@ void intro(sfRenderWindow *w, intro_a *rpg)
         display_ele(w, rpg->b_intro[0]);
         for (int i = 3; i > 0; i--) display_ele(w, rpg->b_intro[i]);
     }
-    // if (rpg->plan == DITTO) {
-    //     if (sfMusic_getStatus(rpg->conga) == 0) sfMusic_play(rpg->conga);
-    //     sfRenderWindow_clear(w, rpg->color);
-    //     for (int i = 0; i < 4; i++) display_ele(w, rpg->ditto[i]);
-    // }
 }
 
 void draw_intro(wininf *inf)
