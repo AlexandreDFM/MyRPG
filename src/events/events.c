@@ -23,7 +23,7 @@ void update_events(wininf *inf)
             inf->interacting = 0;
         if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
         inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown))
-            inf->current_menu->pressed = 0;
+            inf->current_menu->press = 0;
         if (inf->event.type == sfEvtKeyReleased && inf->event.key.code ==
         sfKeyRControl)
             inf->c_scene = HOME;
@@ -38,9 +38,20 @@ void update_events(wininf *inf)
         if ((inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE) &&
         sfKeyboard_isKeyPressed(inf->inputs.keys.back))
             go_back(inf);
-        if ((inf->c_scene != INTRO || inf->c_scene != MAIN_MENU) && sfKeyboard_isKeyPressed(inf->inputs.keys.back)) {
+        if ((inf->c_scene != INTRO || inf->c_scene != MAIN_MENU) && sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->c_menu == NONE && inf->pause_menu->press == 0) {
             inf->c_menu = PAUSE;
             inf->pause_menu->focus = 1;
+            inf->pause_menu->press = 1;
+            inf->current_menu = inf->pause_menu;
+        }
+        if (inf->pause_menu->press == 1 && inf->event.type == sfEvtKeyReleased && inf->event.key.code == inf->inputs.keys.back)
+            inf->pause_menu->press = 0;
+        if (inf->c_menu == PAUSE && sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->pause_menu->press == 0) {
+            inf->c_menu = NONE;
+            inf->pause_menu->press = 1;
+            inf->pause_menu->focus = 0;
+            inf->pause_menu->selected = inf->pause_menu->head;
+            inf->current_menu = inf->main_menu;
         }
     }
 }

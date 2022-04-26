@@ -13,6 +13,7 @@ void yes_but(wininf *inf)
     inf->load_menu->focus = 0;
     inf->c_scene = HOME;
     inf->c_menu = NONE;
+    inf->current_menu = NULL;
 }
 
 void no_but(wininf *inf)

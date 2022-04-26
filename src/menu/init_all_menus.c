@@ -95,10 +95,11 @@ menuss *init_all_menus(wininf *inf, int menu_id, int focus)
     menu->base_pos = pos;
     menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]),
     my_atoi(arr[offset + 3])}, pos);
-    menu->blink = 0;
-    menu->pressed = 0;
+    menu->blk = 0;
+    menu->press = 0;
     menu->focus = focus;
     menu->max_choice = my_atoi(arr[offset + 4]);
     menu->offset = my_atoi(arr[offset + 5]);
+    menu->type = my_atoi(arr[offset + 6]);
     return menu;
 }

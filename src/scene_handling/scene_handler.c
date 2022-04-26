@@ -46,8 +46,10 @@ void handle_scene(wininf *infos, player *p)
                 }
             }
         }
-        if (infos->c_menu == PAUSE)
+        if (infos->c_menu == PAUSE) {
             draw_menu(infos, infos->pause_menu);
+            // draw_list(infos->pause_menu->texts, infos->win);
+        }
     }
     update_time(infos);
     sfRenderWindow_display(infos->win);
