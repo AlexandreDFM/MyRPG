@@ -35,12 +35,14 @@ SRC		= 	main.c											\
 			src/texture_atlas/init_atlases.c				\
 			src/utils/my_strtwa.c							\
 			src/utils/lists/push_front.c					\
+			src/utils/my_itoa.c								\
 			src/utils/is_same.c								\
-			src/utils/my_memset.c							\
 			src/utils/my_atof.c								\
+			src/utils/my_memset.c							\
 			src/utils/get_arr_len.c							\
 			src/utils/lists/draw_list.c						\
 			src/utils/lists/init_double.c					\
+			src/utils/unix_to_date.c						\
 			src/entity/init_entity.c						\
 			src/scene_handling/draw_home.c					\
 			src/maths/pingpong.c							\

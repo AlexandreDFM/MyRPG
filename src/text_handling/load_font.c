@@ -15,10 +15,15 @@ void load_alphabet(sfFont *font, int size)
     for (int i = 0; i < 26; i++) {
         sfFont_getGlyph(font, 'A' + i, size, sfFalse, 0.0f);
     }
+    for (int i = 0; i < 10; i++) {
+        sfFont_getGlyph(font, '0' + i, size, sfFalse, 0.0f);
+    }
     sfFont_getGlyph(font, ':', size, sfFalse, 0.0f);
     sfFont_getGlyph(font, '?', size, sfFalse, 0.0f);
     sfFont_getGlyph(font, ',', size, sfFalse, 0.0f);
     sfFont_getGlyph(font, '\'', size, sfFalse, 0.0f);
+    sfFont_getGlyph(font, '-', size, sfFalse, 0.0f);
+    sfFont_getGlyph(font, 'é', size, sfFalse, 0.0f);
 }
 
 int treat_balise(char *balise, sfColor *color, wininf *inf)

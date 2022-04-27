@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.c": "c",
         "intro.h": "c",
         "rpg.h": "c",
         "limits": "c",
@@ -13,6 +14,11 @@
         "config.h": "c",
         "dialog.h": "c",
         "infos.h": "c",
-        "inputs.h": "c"
+        "inputs.h": "c",
+        "types.h": "c",
+        "struct_tm.h": "c",
+        "chrono": "c",
+        "utility": "c",
+        "variant": "c"
     }
 }

@@ -230,6 +230,23 @@ typedef struct network_t {
     struct other_t other;
 } network;
 
+typedef struct date {
+    long int curryear;
+    long int extradays;
+    long int index;
+    long int date;
+    long int month;
+    long int hours;
+    long int minutes;
+    long int secondss;
+    long int flag;
+    long int daystillnow;
+    long int extratime;
+    int *daysofmonth;
+}date_t;
+
+char *unix_to_date(long int seconds);
+
 ////////////////////////////////////////////////////////////
 //Flags Handling
 void change_settings(int opt, char *arg, wininf *inf);
@@ -248,6 +265,8 @@ int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Utility functions
+char *my_itoa(int num);
 //Utility functions
 int get_arr_len(char **arr);
 //Utility functions
