@@ -68,7 +68,8 @@ int receive_connection(char **data, int *important, components *all)
 
 int receive_position(char **data, int *important, components *all)
 {
-    all->inf.net->other.target = *((sfVector2f*)*data);
+    sfSprite_setPosition(all->inf.net->other.p.test, *((sfVector2f*)*data));
+    // all->inf.net->other.target = *((sfVector2f*)*data);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
 }

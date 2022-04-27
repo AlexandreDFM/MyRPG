@@ -104,6 +104,20 @@ void village_to_dittoland(wininf *win, player p)
     }
 }
 
+void generate_random_dungeon(wininf *win, player p)
+{
+    sfVector2f home = (sfVector2f){0.0f, 0.0f};
+    sfVector2f interior = (sfVector2f){0.0f, 0.0f};
+    win->next_scene = win->c_scene == HOME ? DUNGEON : HOME;
+    win->next_pos = win->c_scene == DUNGEON ? interior : home;
+    win->transition = 1;
+    win->change_scene = 1;
+    if (win->net->is_multi) {
+        add_ord(SETPOS, &win->next_pos, sizeof(sfVector2f), win->net->packet);
+        add_ord(CHANGE_SCENE, &win->next_scene, sizeof(int), win->net->packet);
+    }
+}
+
 void interact_pnj(wininf *win, player p)
 {
     float min = 200.f;
@@ -132,11 +146,6 @@ void interact_pnj(wininf *win, player p)
             c_line->i = c_line->max - 1;
         }
     }
-}
-
-void generate_random_dungeon(wininf *win, player p)
-{
-    return;
 }
 
 void sleep_and_save(wininf *win, player p)

@@ -32,6 +32,7 @@ typedef enum scenes_e {
     INTRO,
     DITTO,
     DREAM,
+    DUNGEON,
 } scenes;
 
 typedef enum orders_e {

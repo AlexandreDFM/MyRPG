@@ -22,6 +22,7 @@ void update_network(wininf *inf, components *all)
             receive_ord(net, all);
         }
     }
+    sfPacket_clear(p);
 }
 
 void receive_ord(network *net, components *all)
