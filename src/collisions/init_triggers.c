@@ -109,8 +109,9 @@ void generate_random_dungeon(wininf *win, player p)
 {
     sfImage *img = sfImage_createFromFile("result8.png");
     win->dungeon.inf = generate_map(3, img);
+    win->dungeon.in = 1;
+    p.nextpos = sfSprite_getPosition(p.test);
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
-    printf("Starting %f %f\n", pos.x, pos.y);
     sfVector2f interior = (sfVector2f){0.0f, 0.0f};
     sfVector2f home = (sfVector2f){pos.x, pos.y};
     win->next_scene = win->c_scene == HOME ? DUNGEON : HOME;

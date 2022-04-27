@@ -19,6 +19,7 @@
         "struct_tm.h": "c",
         "chrono": "c",
         "utility": "c",
-        "variant": "c"
+        "variant": "c",
+        "dungeon.h": "c"
     }
 }

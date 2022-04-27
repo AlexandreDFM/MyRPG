@@ -7,19 +7,20 @@
 
 #include "rpg.h"
 
-void update_camera(camera c, float dt, sfRenderWindow *win,
-sfRectangleShape *transi)
+void update_camera(wininf *inf)
 {
-    if (!c.target) {
+    if (!inf->camera.target) {
         return;
     }
     float max_x = 958.0f;
     float max_y = 719.0f;
-    sfVector2f pos = sfSprite_getPosition(c.target);
-    sfVector2f size = sfView_getSize(c.view);
+    sfVector2f pos = sfSprite_getPosition(inf->camera.target);
+    sfVector2f size = sfView_getSize(inf->camera.view);
     // pos.x = my_clamp(pos.x, size.x / 2.0f, max_x - size.x / 2.0f);
     // pos.y = my_clamp(pos.y, size.y / 2.0f, max_y - size.y / 2.0f);
-    sfView_setCenter(c.view, pos);
-    sfRectangleShape_setPosition(transi, pos);
-    sfRenderWindow_setView(win, c.view);
+    if (inf->dungeon.in)
+        pos = my_lerp(sfView_getCenter(inf->camera.view), pos, 6.0f * inf->time.dt);
+    sfView_setCenter(inf->camera.view, pos);
+    sfRectangleShape_setPosition(inf->transi, pos);
+    sfRenderWindow_setView(inf->win, inf->camera.view);
 }

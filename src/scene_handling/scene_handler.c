@@ -24,7 +24,7 @@ void handle_scene(wininf *infos, player *p)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
         else
             draw_dungeon(infos, p);
-        draw_player(infos, *p);
+        draw_player(infos, p);
 
         if (infos->transition) {
             update_transition(infos, *p);
