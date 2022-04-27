@@ -187,7 +187,7 @@ int is_leaf(bsp *tree) {
     return 0;
 }
 
-map_inf generate_map(int iter, sfImage *atlas)
+map_inf *generate_map(int iter, sfImage *atlas)
 {
     sfIntRect **rects = 0;
     int count = 0;
@@ -197,6 +197,11 @@ map_inf generate_map(int iter, sfImage *atlas)
     get_paths(&map, tree);
     sfImage *img = generate_map_image(map, MAP_SIZE + 2, atlas);
     sfTexture *tex = sfTexture_createFromImage(img, NULL);
+    sfSprite *sp = sfSprite_create();
+    sfSprite_setTexture(sp, tex, sfFalse);
     sfImage_destroy(img);
-    return (map_inf){tex, map, rects, count};
+    map_inf *inf = malloc(sizeof(map_inf));
+    inf->pos = get_random_position(rects, count, &map);
+    inf->map = map; inf->sp = sp; inf->rooms = rects; inf->nbr_rooms = count;
+    return inf;
 }

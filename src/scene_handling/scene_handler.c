@@ -23,7 +23,7 @@ void handle_scene(wininf *infos, player *p)
         if (infos->c_scene != DUNGEON)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
         else
-            draw_dungeon(infos);
+            draw_dungeon(infos, p);
         draw_player(infos, *p);
 
         if (infos->transition) {

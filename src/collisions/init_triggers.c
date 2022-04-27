@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "dungeon.h"
 
 void create_triggers(wininf *inf)
 {
@@ -106,8 +107,12 @@ void village_to_dittoland(wininf *win, player p)
 
 void generate_random_dungeon(wininf *win, player p)
 {
-    sfVector2f home = (sfVector2f){0.0f, 0.0f};
+    sfImage *img = sfImage_createFromFile("result8.png");
+    win->dungeon.inf = generate_map(3, img);
+    sfVector2f pos = *(win->dungeon.inf->pos[0]);
+    printf("Starting %f %f\n", pos.x, pos.y);
     sfVector2f interior = (sfVector2f){0.0f, 0.0f};
+    sfVector2f home = (sfVector2f){pos.x, pos.y};
     win->next_scene = win->c_scene == HOME ? DUNGEON : HOME;
     win->next_pos = win->c_scene == DUNGEON ? interior : home;
     win->transition = 1;

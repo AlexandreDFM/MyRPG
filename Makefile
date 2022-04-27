@@ -78,6 +78,7 @@ SRC		= 	main.c											\
 			src/menu/set_cursor.c							\
 			src/menu/init_all_menus.c						\
 			src/menu/init_ig_menus.c						\
+			src/dungeon/coordinate.c						\
 			src/dungeon/edge_detection.c					\
 			src/dungeon/draw_dungeons.c						\
 			src/dungeon/map_generator.c						\

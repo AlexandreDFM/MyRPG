@@ -52,6 +52,8 @@ wininf create_window_infos(int ac, char **av)
     create_triggers(&inf);
     inf.transition = 0;
     inf.change_scene = 0;
+    dungeon d; d.img = sfImage_createFromFile("result8.png");
+    inf.dungeon = d;
     inf.transi = sfRectangleShape_create();
     sfRectangleShape_setSize(inf.transi, (sfVector2f){inf.mode.width,
         inf.mode.height});

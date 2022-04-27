@@ -17,8 +17,8 @@ sfRectangleShape *transi)
     float max_y = 719.0f;
     sfVector2f pos = sfSprite_getPosition(c.target);
     sfVector2f size = sfView_getSize(c.view);
-    pos.x = my_clamp(pos.x, size.x / 2.0f, max_x - size.x / 2.0f);
-    pos.y = my_clamp(pos.y, size.y / 2.0f, max_y - size.y / 2.0f);
+    // pos.x = my_clamp(pos.x, size.x / 2.0f, max_x - size.x / 2.0f);
+    // pos.y = my_clamp(pos.y, size.y / 2.0f, max_y - size.y / 2.0f);
     sfView_setCenter(c.view, pos);
     sfRectangleShape_setPosition(transi, pos);
     sfRenderWindow_setView(win, c.view);
