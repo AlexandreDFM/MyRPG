@@ -37,6 +37,8 @@ SRC		= 	main.c											\
 			src/utils/lists/push_front.c					\
 			src/utils/is_same.c								\
 			src/utils/my_memset.c							\
+			src/utils/my_atof.c								\
+			src/utils/get_arr_len.c							\
 			src/utils/lists/draw_list.c						\
 			src/utils/lists/init_double.c					\
 			src/entity/init_entity.c						\
@@ -73,6 +75,7 @@ SRC		= 	main.c											\
 			src/menu/function_pointers/options_pointers.c	\
 			src/menu/set_cursor.c							\
 			src/menu/init_all_menus.c						\
+			src/menu/init_ig_menus.c						\
 			src/dungeon/edge_detection.c					\
 			src/dungeon/map_generator.c						\
 			src/settings/flags_handling.c					\

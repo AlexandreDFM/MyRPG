@@ -11,13 +11,13 @@
     #include <SFML/Graphics.h>
 
 typedef struct dialog_line_t {
-    sfTexture *img;
-    sfSprite *sp;
-    int *steps;
-    int height;
     int i;
     int max;
+    int height;
+    int *steps;
     float time;
+    sfSprite *sp;
+    sfTexture *img;
 } dline;
 
 void load_alphabet(sfFont *font, int size);

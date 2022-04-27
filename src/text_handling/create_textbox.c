@@ -49,8 +49,7 @@ dline *load_line(char *line, sfFont *font, int size, wininf *inf)
     }
     prev = 0;
     sfColor current_color = sfWhite;
-    my_printf("Length: %d\nHeight: %d\n", length, height);
-    sfColor bl = sfColor_fromRGBA(0, 0, 0, 255);
+    sfColor bl = sfColor_fromRGBA(0, 0, 0, 0);
     sfImage *img = sfImage_createFromColor(length, height, bl);
     int *steps = malloc(sizeof(int) * (len + 1));
     int li = 0;

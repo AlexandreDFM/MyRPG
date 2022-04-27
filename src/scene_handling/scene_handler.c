@@ -25,6 +25,7 @@ void handle_scene(wininf *infos, player *p)
         else
             draw_dungeon(infos);
         draw_player(infos, *p);
+
         if (infos->transition) {
             update_transition(infos, *p);
             sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
@@ -46,6 +47,10 @@ void handle_scene(wininf *infos, player *p)
                     d->time += infos->time.dt;
                 }
             }
+        }
+        if (infos->c_menu == PAUSE) {
+            draw_menu(infos, infos->pause_menu);
+            // draw_list(infos->pause_menu->texts, infos->win);
         }
     }
     update_time(infos);

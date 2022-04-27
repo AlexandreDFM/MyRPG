@@ -31,7 +31,7 @@ typedef enum scenes_e {
     MAIN_MENU,
     INTRO,
     DITTO,
-    DREAM
+    DREAM,
 } scenes;
 
 typedef enum orders_e {
@@ -52,6 +52,7 @@ typedef enum main_menu_t {
     OPTIONS,
     CHANGING_KEY,
     EXIT,
+    PAUSE,
 }m_menu_t;
 
 typedef struct settings_t {
@@ -129,16 +130,16 @@ typedef struct camera_t {
 } camera;
 
 typedef struct textbox_t {
-    sfSprite *background;
     int nbr;
+    sfSprite *background;
     struct linked_list_t *choices;
 } textbox;
 
 typedef struct ui_t {
-    sfSprite *background;
     sfFont *font;
-    float text_delay;
     sfSprite *test;
+    float text_delay;
+    sfSprite *background;
     struct linked_list_t *dialog;
 } ui;
 
@@ -174,6 +175,7 @@ typedef struct wininf_t {
     struct scene_t scenes[6];
     struct menus *main_menu;
     struct menus *load_menu;
+    struct menus *pause_menu;
     struct menus *options_menu;
     struct menus *current_menu;
     struct settings_t *settings;
@@ -185,17 +187,18 @@ typedef struct wininf_t {
 } wininf;
 
 typedef struct choices_t {
-    sfText *choice;
-    sfText *desc;
+    void *choice;
+    void *desc;
     int ptr;
     void (*ptrs[1])(struct wininf_t *);
 } choices;
 
 typedef struct menus {
-    float blink;
+    float blk;
+    int type;
     int focus;
+    int press;
     int offset;
-    int pressed;
     int max_choice;
     sfSprite *cursor;
     sfVector2f base_pos;
@@ -245,6 +248,10 @@ int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Utility functions
+int get_arr_len(char **arr);
+//Utility functions
+float my_atof(char *number);
 //Utility functions
 char **my_strtwa(char const *str, char *limit);
 //Utility functions
@@ -412,6 +419,9 @@ void generate_random_dungeon(wininf *win, player p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
 //Menu pointers
 void play(wininf *inf);
 //Menu pointers
@@ -472,11 +482,15 @@ void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
 
 ////////////////////////////////////////////////////////////
 //Menu initialization
-sfText *init_text(char *str, sfFont *font, sfVector2f pos);
+list *init_backgrounds(char **arr, wininf *inf);
+//Menu initialization
+menuss *init_ig_menus(wininf *inf, int menu_id, int focus);
 //Menu initialization
 menuss *init_all_menus(wininf *inf, int menu_id, int focus);
 //Menu initialization
 sfSprite *set_cursor(wininf *inf, sfVector2f scale, sfVector2f pos);
+//Menu initialization
+sfText *init_text(char *str, sfFont *font, sfVector2f pos, int size);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
