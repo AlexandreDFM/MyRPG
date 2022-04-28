@@ -420,7 +420,7 @@ void update_joysticks(wininf *inf);
 //Updates
 void update_events(wininf *inf, player *p);
 //Updates
-void update_camera(camera c, float dt, sfRenderWindow *w, sfRectangleShape *t);
+void update_camera(wininf *inf);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
