@@ -56,6 +56,18 @@ typedef enum main_menu_t {
     PAUSE,
 }m_menu_t;
 
+typedef enum direction_t {
+    PUP,
+    PUPLEFT,
+    PUPRIGHT,
+    PDOWN,
+    PDOWNLEFT,
+    PDOWNRIGHT,
+    PLEFT,
+    PRIGHT,
+    PNONE_DIRECTION,
+} direction;
+
 typedef enum menu_indx {
     MAIN_IDX,
     LOAD_IDX,
@@ -77,6 +89,12 @@ typedef struct settings_t {
 
 typedef struct atlases_t {
     sfImage *atlas;
+    char **statics;
+    char **collisions;
+    char **scenes;
+    char **pokemons_anim;
+    char **pokemons_rect;
+    char **houses;
     char **pnjs;
     char **icons;
     char **menus;
@@ -132,9 +150,15 @@ typedef struct scene_t {
 } scene;
 
 typedef struct player_t {
+    int offset;
+    enum direction_t direction;
+    float speed;
+    int *slist;
+    int **rlist;
+    sfIntRect r;
+    sfVector2i limit;
     sfSprite *test;
     sfVector2f vel;
-    float speed;
     float time;
     sfVector2f nextpos;
 } player;
@@ -562,5 +586,11 @@ int receive_setposition(char **data, int *important, components *all);
 void draw_intro(wininf *inf);
 void treat_axis(wininf *inf);
 void draw_dungeon(wininf *inf, player *p);
+
+sfIntRect move_rect_player(player p);
+int pos_char(char *string, char *presence);
+char *my_strdup_to_char(char *src, char *delim);
+void player_direction_management(wininf *inf, player *p);
+char *my_slice_array(int direction, char *strslice, int nbslice);
 
 #endif

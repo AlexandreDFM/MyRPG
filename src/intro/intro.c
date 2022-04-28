@@ -19,18 +19,12 @@ void intro(sfRenderWindow *w, intro_a *rpg)
         for (int i = 0; i < 3; i++) display_ele(w, rpg->pkmintro[i]);
     }
     if (rpg->plan == PLAN2) {
-        display_ele(w, rpg->b_intro[1]);
-        display_ele(w, rpg->b_intro[2]);
-        display_ele(w, rpg->b_intro[0]);
-        display_ele(w, rpg->pkmintro[1]);
+        display_ele(w, rpg->b_intro[1]); display_ele(w, rpg->b_intro[2]);
+        display_ele(w, rpg->b_intro[0]); display_ele(w, rpg->pkmintro[1]);
     }
-    if (rpg->plan == PLAN3) {
-        display_ele(w, rpg->b_intro[0]);
-        display_ele(w, rpg->pkmintro[BEKIPAN1]);
-    }
+    if (rpg->plan == PLAN3) display_ele(w, rpg->b_intro[0]);
     if (rpg->plan == PLAN4) {
-        display_ele(w, rpg->b_intro[0]);
-        display_ele(w, rpg->b_intro[3]);
+        display_ele(w, rpg->b_intro[0]); display_ele(w, rpg->b_intro[3]);
     }
     if (rpg->plan == PLAN5) display_ele(w, rpg->b_intro[3]);
     if (rpg->plan == PLAN6) {

@@ -43,6 +43,9 @@ SRC		= 	main.c											\
 			src/utils/lists/draw_list.c						\
 			src/utils/lists/init_double.c					\
 			src/utils/unix_to_date.c						\
+			src/utils/my_strdup_to_char.c					\
+			src/utils/my_checks.c							\
+			src/utils/my_slice_array.c						\
 			src/entity/init_entity.c						\
 			src/scene_handling/draw_home.c					\
 			src/maths/pingpong.c							\
@@ -53,6 +56,8 @@ SRC		= 	main.c											\
 			src/anim/handle_decorations.c					\
 			src/player/init_player.c						\
 			src/player/player_update.c						\
+			src/player/anims/move_rect.c					\
+			src/player/anims/update_sprite.c				\
 			src/camera/camera_follow.c						\
 			src/camera/init_camera.c						\
 			src/collisions/add_collisions.c					\
@@ -126,7 +131,7 @@ clean:
 	@$(RM) $(OBJ)
 	@make -C ./lib/my fclean
 
-fclean:
+fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(OBJ)
 
