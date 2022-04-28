@@ -77,6 +77,7 @@ typedef enum menu_indx {
 }menu_indx;
 
 typedef enum language {
+    DEFAULT = -1,
     ENGLISH,
     FRANCAIS,
 }language;
@@ -89,20 +90,16 @@ typedef struct settings_t {
 
 typedef struct atlases_t {
     sfImage *atlas;
-    char **statics;
-    char **collisions;
-    char **scenes;
-    char **pokemons_anim;
-    char **pokemons_rect;
-    char **houses;
     char **pnjs;
     char **icons;
-    char **menus;
-    char **scenes;
+    char **menus_en;
+    char **menus_fr;
     char **houses;
     char **statics;
+    char **scenes;
     char **collisions;
     char **poke_names;
+    char **pokemons_rect;
     char **pokemons_anim;
 } atlases;
 
@@ -297,7 +294,7 @@ typedef struct date {
 }date_t;
 
 char *unix_to_date(long int seconds);
-void update_pokemon(wininf *inf);
+void set_pokemon(wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

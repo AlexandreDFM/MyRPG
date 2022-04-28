@@ -15,9 +15,10 @@ int get_settings_flags(int ac, char **av, wininf *win)
                             {"pokemon", required_argument, NULL, 'p'},
                             {"house", required_argument, NULL, 'H'},
                             {"client", required_argument, NULL, 1001},
-                            {"host", no_argument, NULL, 1000}};
+                            {"host", no_argument, NULL, 1000},
+                            {"language", required_argument, NULL,'l'}};
     int opt = 0;
-    while ((opt = getopt_long(ac, av, "H:C:p", lo, NULL)) != -1) {
+    while ((opt = getopt_long(ac, av, "H:C:p:l:", lo, NULL)) != -1) {
         change_settings(opt, optarg, win);
     }
     return 0;
@@ -62,4 +63,12 @@ void change_settings(int opt, char *arg, wininf *inf)
         sfUdpSocket_bind(inf->net->socket, inf->net->port, ip);
         sfSocketSelector_addUdpSocket(inf->net->selector, inf->net->socket);
     }
+    if (opt == 'l')
+        if (my_strcmp(arg, "en") == 0) inf->lang = ENGLISH;
+        else if (my_strcmp(arg, "fr") == 0) inf->lang = FRANCAIS;
+        else inf->lang = DEFAULT;
+        if (inf->lang == DEFAULT) {
+            my_printf("Language not found, defaulting to English\n");
+            inf->lang = ENGLISH;
+        }
 }

@@ -31,10 +31,11 @@ void init_key_list(wininf *inf)
 wininf create_window_infos(int ac, char **av)
 {
     srand(time(0));
-    wininf inf;
+    wininf inf; inf.lang = ENGLISH;
     inf.settings = init_settings();
     inf.net = init_network();
     get_settings_flags(ac, av, &inf);
+    printf("%d\n", inf.lang);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
     inf.c_scene = INTRO;
@@ -73,13 +74,8 @@ wininf create_window_infos(int ac, char **av)
     inf.waiting_key = 0;
     inf.current_menu = inf.main_menu;
     inf.net->timeout.microseconds = 5000;
-    inf.intro = NULL;
-    inf.ditto = NULL;
-    inf.dream = NULL;
-    init_key_list(&inf);
-    inf.key_change = -1;
-    inf.play_time = sfClock_create();
-    inf.lang = ENGLISH;
-    update_pokemon(&inf);
+    inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
+    init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();
+    set_pokemon(&inf);
     return inf;
 }
