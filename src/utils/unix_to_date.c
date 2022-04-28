@@ -64,6 +64,5 @@ char *unix_to_date(long int seconds)
     strcat(ans, my_itoa(minutes));
     strcat(ans, ":");
     strcat(ans, my_itoa(secondss));
-    printf("%s\n", ans);
     return ans;
 }
