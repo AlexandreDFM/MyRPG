@@ -60,13 +60,13 @@ wininf create_window_infos(int ac, char **av)
     sfRectangleShape_setOrigin(inf.transi,
     (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
     init_textbox(&inf);
-    inf.main_menu = init_all_menus(&inf, 0, 1);
+    inf.main_menu = init_all_menus(&inf, MAIN_IDX, 1);
     init_main_menu_pointers(&inf);
-    inf.load_menu = init_all_menus(&inf, 1, 0);
+    inf.load_menu = init_all_menus(&inf, LOAD_IDX, 0);
     init_load_pointers(&inf);
-    inf.options_menu = init_all_menus(&inf, 2, 0);
+    inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
     init_options_pointers(&inf);
-    inf.pause_menu = init_ig_menus(&inf, 3, 0);
+    inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.c_menu = NONE;
     inf.waiting_key = 0;
     inf.current_menu = inf.main_menu;
@@ -76,5 +76,6 @@ wininf create_window_infos(int ac, char **av)
     inf.dream = NULL;
     init_key_list(&inf);
     inf.key_change = -1;
+    inf.play_time = sfClock_create();
     return inf;
 }

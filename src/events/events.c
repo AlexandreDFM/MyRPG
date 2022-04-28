@@ -8,8 +8,9 @@
 #include "infos.h"
 #include "inputs.h"
 #include "intro.h"
+#include "rpg.h"
 
-void update_events(wininf *inf)
+void update_events(wininf *inf, player *p)
 {
     update_inputs(inf);
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
@@ -43,6 +44,8 @@ void update_events(wininf *inf)
             inf->pause_menu->focus = 1;
             inf->pause_menu->press = 1;
             inf->current_menu = inf->pause_menu;
+            center_menu(inf->pause_menu, inf, p);
+            // update_playtime(inf);
         }
         if (inf->pause_menu->press == 1 && inf->event.type == sfEvtKeyReleased && inf->event.key.code == inf->inputs.keys.back)
             inf->pause_menu->press = 0;

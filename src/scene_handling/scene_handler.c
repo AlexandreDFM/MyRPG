@@ -48,6 +48,7 @@ void handle_scene(wininf *infos, player *p)
         }
         if (infos->c_menu == PAUSE) {
             draw_menu(infos, infos->pause_menu);
+            update_playtime(infos);
             // draw_list(infos->pause_menu->texts, infos->win);
         }
     }

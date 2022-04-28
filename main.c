@@ -16,7 +16,7 @@ int main(int argc, char **argv)
         sync_online(&all);
     while (sfRenderWindow_isOpen(all.inf.win)) {
         handle_scene(&all.inf, &all.pla);
-        update_events(&(all.inf));
+        update_events(&all.inf, &all.pla);
         update_network(&(all.inf), &all);
     }
     sfRenderWindow_destroy(all.inf.win);

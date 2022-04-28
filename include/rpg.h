@@ -55,6 +55,14 @@ typedef enum main_menu_t {
     PAUSE,
 }m_menu_t;
 
+typedef enum menu_indx {
+    MAIN_IDX,
+    LOAD_IDX,
+    OPTIONS_IDX,
+    PAUSE_VILLAGE_IDX,
+    PAUSE_DG_IDX,
+}menu_indx;
+
 typedef struct settings_t {
     int show_collision;
     int pokemon;
@@ -158,6 +166,7 @@ typedef struct wininf_t {
     int waiting_key;
     int interacting;
     int change_scene;
+    sfClock *play_time;
     const char **key_list;
     sfVideoMode mode;
     sfVector2f next_pos;
@@ -195,6 +204,7 @@ typedef struct choices_t {
 
 typedef struct menus {
     float blk;
+    int id;
     int type;
     int focus;
     int press;
@@ -394,11 +404,11 @@ void update_inputs(wininf *inf);
 //Updates
 void update_time(wininf *infos);
 //Updates
-void update_events(wininf *inf);
-//Updates
 void update_keyboard(wininf *inf);
 //Updates
 void update_joysticks(wininf *inf);
+//Updates
+void update_events(wininf *inf, player *p);
 //Updates
 void update_camera(camera c, float dt, sfRenderWindow *w, sfRectangleShape *t);
 ////////////////////////////////////////////////////////////
@@ -500,6 +510,8 @@ void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Menu initialization
+void update_playtime(wininf *inf);
 //Menu initialization
 list *init_backgrounds(char **arr, wininf *inf);
 //Menu initialization

@@ -101,5 +101,6 @@ menuss *init_all_menus(wininf *inf, int menu_id, int focus)
     menu->max_choice = my_atoi(arr[offset + 4]);
     menu->offset = my_atoi(arr[offset + 5]);
     menu->type = my_atoi(arr[offset + 6]);
+    menu->id = menu_id;
     return menu;
 }
