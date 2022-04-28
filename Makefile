@@ -77,6 +77,7 @@ SRC		= 	main.c											\
 			src/menu/function_pointers/options_pointers.c	\
 			src/menu/set_cursor.c							\
 			src/menu/center_menu.c							\
+			src/menu/update_player_pokemon.c				\
 			src/menu/init_all_menus.c						\
 			src/menu/init_ig_menus.c						\
 			src/menu/update_playtime.c						\

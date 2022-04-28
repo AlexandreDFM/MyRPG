@@ -79,5 +79,7 @@ wininf create_window_infos(int ac, char **av)
     init_key_list(&inf);
     inf.key_change = -1;
     inf.play_time = sfClock_create();
+    inf.lang = ENGLISH;
+    update_pokemon(&inf);
     return inf;
 }

@@ -64,6 +64,11 @@ typedef enum menu_indx {
     PAUSE_DG_IDX,
 }menu_indx;
 
+typedef enum language {
+    ENGLISH,
+    FRANCAIS,
+}language;
+
 typedef struct settings_t {
     int show_collision;
     int pokemon;
@@ -72,14 +77,15 @@ typedef struct settings_t {
 
 typedef struct atlases_t {
     sfImage *atlas;
-    char **statics;
-    char **collisions;
-    char **scenes;
-    char **pokemons_anim;
-    char **houses;
     char **pnjs;
     char **icons;
     char **menus;
+    char **scenes;
+    char **houses;
+    char **statics;
+    char **collisions;
+    char **poke_names;
+    char **pokemons_anim;
 } atlases;
 
 typedef struct collision_t {
@@ -181,6 +187,7 @@ typedef struct wininf_t {
     sfVector2f next_pos;
     sfKeyCode tmp_key;
     sfRenderWindow *win;
+    enum language lang;
     enum scenes_e c_scene;
     enum main_menu_t c_menu;
     enum scenes_e next_scene;
@@ -266,6 +273,7 @@ typedef struct date {
 }date_t;
 
 char *unix_to_date(long int seconds);
+void update_pokemon(wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
