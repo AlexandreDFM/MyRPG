@@ -21,7 +21,7 @@ void create_triggers(wininf *inf)
     inf->triggers[8] = generate_random_dungeon;
 }
 
-void homeext_to_village(wininf *win, player p)
+void homeext_to_village(wininf *win, player *p)
 {
     sfVector2f home = (sfVector2f){520.0f, 320.0f};
     sfVector2f village = (sfVector2f){25.0f, 320.0f};
@@ -35,7 +35,7 @@ void homeext_to_village(wininf *win, player p)
     }
 }
 
-void homeext_to_homeint(wininf *win, player p)
+void homeext_to_homeint(wininf *win, player *p)
 {
     sfVector2f home = (sfVector2f){275.0f, 200.0f};
     sfVector2f interior = (sfVector2f){166.0f, 235.0f};
@@ -49,7 +49,7 @@ void homeext_to_homeint(wininf *win, player p)
     }
 }
 
-void ta_mere(wininf *win, player p)
+void ta_mere(wininf *win, player *p)
 {
     my_printf("Eh non ta mère :D\n");
     sfVector2f mid = (sfVector2f){520.0f, 320.0f};
@@ -63,7 +63,7 @@ void ta_mere(wininf *win, player p)
     }
 }
 
-void village_to_bekipan(wininf *win, player p)
+void village_to_bekipan(wininf *win, player *p)
 {
     sfVector2f home = (sfVector2f){940.0f, 325.0f};
     sfVector2f interior = (sfVector2f){12.5f, 216.5f};
@@ -77,7 +77,7 @@ void village_to_bekipan(wininf *win, player p)
     }
 }
 
-void village_to_dojo(wininf *win, player p)
+void village_to_dojo(wininf *win, player *p)
 {
     sfVector2f home = (sfVector2f){531.5f, 687.0f};
     sfVector2f interior = (sfVector2f){340.0f, 22.0f};
@@ -91,7 +91,7 @@ void village_to_dojo(wininf *win, player p)
     }
 }
 
-void village_to_dittoland(wininf *win, player p)
+void village_to_dittoland(wininf *win, player *p)
 {
     sfVector2f home = (sfVector2f){232.0f, 509.0f};
     sfVector2f interior = (sfVector2f){520.0f, 40.0f};
@@ -105,14 +105,14 @@ void village_to_dittoland(wininf *win, player p)
     }
 }
 
-void generate_random_dungeon(wininf *win, player p)
+void generate_random_dungeon(wininf *win, player *p)
 {
     sfImage *img = sfImage_createFromFile("result8.png");
     win->dungeon.inf = generate_map(3, img);
     win->dungeon.in = 1;
-    p.nextpos = sfSprite_getPosition(p.test);
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
-    sfVector2f interior = (sfVector2f){0.0f, 0.0f};
+    p->nextpos = pos;
+    sfVector2f interior = (sfVector2f){10.0f, 10.0f};
     sfVector2f home = (sfVector2f){pos.x, pos.y};
     win->next_scene = win->c_scene == HOME ? DUNGEON : HOME;
     win->next_pos = win->c_scene == DUNGEON ? interior : home;
@@ -124,14 +124,14 @@ void generate_random_dungeon(wininf *win, player p)
     }
 }
 
-void interact_pnj(wininf *win, player p)
+void interact_pnj(wininf *win, player *p)
 {
     float min = 200.f;
     pnj *closest = 0;
     list *l = win->scenes[win->c_scene].pnjs;
     for (list *t = l; t; t = t->next) {
         pnj *cp = t->data;
-        float cmin = manhattan_distance(sfSprite_getPosition(p.test), cp->pos);
+        float cmin = manhattan_distance(sfSprite_getPosition(p->test), cp->pos);
         if (cmin < min) {
             min = cmin;
             closest = cp;
@@ -154,7 +154,7 @@ void interact_pnj(wininf *win, player p)
     }
 }
 
-void sleep_and_save(wininf *win, player p)
+void sleep_and_save(wininf *win, player *p)
 {
     my_printf("Saving...\n");
     win->change_scene = 0;

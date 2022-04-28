@@ -10,8 +10,10 @@
 int get_int_len(long long int nbr)
 {
     int i = 0;
-    for (; (nbr /= 10) > 9; i++);
-    return i;
+    for (; nbr > 9; i++) {
+        nbr /= 10;
+    }
+    return i + 1;
 }
 
 char *my_itoa(int num)
