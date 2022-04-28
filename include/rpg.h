@@ -89,12 +89,7 @@ typedef struct settings_t {
 
 typedef struct atlases_t {
     sfImage *atlas;
-    char **statics;
-    char **collisions;
-    char **scenes;
-    char **pokemons_anim;
     char **pokemons_rect;
-    char **houses;
     char **pnjs;
     char **icons;
     char **menus;
@@ -592,6 +587,8 @@ sfIntRect move_rect_player(player p);
 int pos_char(char *string, char *presence);
 char *my_strdup_to_char(char *src, char *delim);
 void perform_free_movement(wininf *inf, player *p);
+void perform_dungeon_movement(wininf *inf, player *p);
+void center_menu(menuss *menu, wininf *inf, player *p);
 void player_direction_management(wininf *inf, player *p);
 char *my_slice_array(int direction, char *strslice, int nbslice);
 
