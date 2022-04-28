@@ -35,7 +35,6 @@ wininf create_window_infos(int ac, char **av)
     inf.settings = init_settings();
     inf.net = init_network();
     get_settings_flags(ac, av, &inf);
-    printf("%d\n", inf.lang);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
     inf.c_scene = INTRO;

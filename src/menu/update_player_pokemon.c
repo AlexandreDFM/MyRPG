@@ -11,9 +11,9 @@ void set_pokemon(wininf *inf)
 {
     char **name =
     my_strtwa(inf->atlases.poke_names[inf->settings->pokemon], ";\n");
-    char *new_name = malloc(my_strlen(name[inf->lang]) + 1);
+    char *new_name = malloc(my_strlen(name[inf->lang]) + 2);
     my_strcpy(new_name, name[inf->lang]);
-    my_strcat(new_name, ":");
+    my_strcat(new_name, ":\0");
     dline *tmp = load_line(new_name, inf->ui.font, 15, inf);
     list *tmp2 = inf->pause_menu->texts;
     while (tmp2->next->next != NULL) tmp2 = tmp2->next;

@@ -63,12 +63,17 @@ void change_settings(int opt, char *arg, wininf *inf)
         sfUdpSocket_bind(inf->net->socket, inf->net->port, ip);
         sfSocketSelector_addUdpSocket(inf->net->selector, inf->net->socket);
     }
-    if (opt == 'l')
-        if (my_strcmp(arg, "en") == 0) inf->lang = ENGLISH;
-        else if (my_strcmp(arg, "fr") == 0) inf->lang = FRANCAIS;
-        else inf->lang = DEFAULT;
+    if (opt == 'l') {
+        if (my_strcmp(arg, "en") == 0){
+            inf->lang = ENGLISH;
+        } else if (my_strcmp(arg, "fr") == 0){
+            inf->lang = FRANCAIS;
+        } else {
+            inf->lang = DEFAULT;
+        }
         if (inf->lang == DEFAULT) {
             my_printf("Language not found, defaulting to English\n");
             inf->lang = ENGLISH;
         }
+    }
 }
