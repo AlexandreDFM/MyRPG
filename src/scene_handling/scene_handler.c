@@ -20,9 +20,11 @@ void handle_scene(wininf *infos, player *p)
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);
-        if (infos->c_scene)
+        if (infos->c_scene != DUNGEON)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
-        draw_player(infos, *p);
+        else
+            draw_dungeon(infos, p);
+        draw_player(infos, p);
 
         if (infos->transition) {
             update_transition(infos, *p);

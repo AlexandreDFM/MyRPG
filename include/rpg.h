@@ -32,6 +32,7 @@ typedef enum scenes_e {
     INTRO,
     DITTO,
     DREAM,
+    DUNGEON,
 } scenes;
 
 typedef enum orders_e {
@@ -128,6 +129,8 @@ typedef struct player_t {
     sfSprite *test;
     sfVector2f vel;
     float speed;
+    float time;
+    sfVector2f nextpos;
 } player;
 
 typedef struct camera_t {
@@ -159,6 +162,12 @@ typedef struct other_t {
     int port;
 } other;
 
+typedef struct dungeon_t {
+    sfImage *img;
+    struct map_info *inf;
+    int in;
+} dungeon;
+
 typedef struct wininf_t {
     sfEvent event;
     int key_change;
@@ -181,6 +190,7 @@ typedef struct wininf_t {
     struct camera_t camera;
     struct inputs_t inputs;
     struct atlases_t atlases;
+    struct dungeon_t dungeon;
     struct scene_t scenes[6];
     struct menus *main_menu;
     struct menus *load_menu;
@@ -336,7 +346,7 @@ void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 //Drawing functions
 void draw_home(wininf *inf);
 //Drawing functions
-void draw_player(wininf *inf, player p);
+void draw_player(wininf *inf, player *p);
 //Drawing functions
 void draw_menu(wininf *inf, menuss *menu);
 //Drawing functions
@@ -543,5 +553,6 @@ int receive_setposition(char **data, int *important, components *all);
 
 void draw_intro(wininf *inf);
 void treat_axis(wininf *inf);
+void draw_dungeon(wininf *inf, player *p);
 
 #endif

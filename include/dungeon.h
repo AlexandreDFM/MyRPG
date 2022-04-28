@@ -21,23 +21,27 @@ enum directions {
     DOWN = 8
 };
 
-typedef struct map_info{
-    sfTexture *texture;
+typedef struct map_info {
+    sfSprite *sp;
     char **map;
     sfIntRect **rooms;
     int nbr_rooms;
-}map_inf;
+    sfVector2f **pos;
+} map_inf;
 
-typedef struct bsp_s{
+typedef struct bsp_s {
     sfIntRect *rect;
     struct bsp_s *left;
     struct bsp_s *right;
 } bsp;
 
 int is_leaf(bsp *tree);
+sfVector2f local_to_global(int x, int y);
+sfVector2i global_to_local(sfVector2f p);
 sfVector2i apply_dir(int dir, char **map);
 sfIntRect **random_split(sfIntRect *rect);
 char **my_str_to_word_array(char const *str);
+map_inf *generate_map(int iter, sfImage *atlas);
 unsigned char get_neighbours(int i, int o, char **tab, int len);
 sfImage *generate_map_image(char **map, int line_len, sfImage *filename);
 sfVector2f **get_random_position(sfIntRect **rooms, int count, char ***map);
