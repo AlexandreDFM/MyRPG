@@ -90,6 +90,7 @@ typedef struct settings_t {
 
 typedef struct atlases_t {
     sfImage *atlas;
+    char **pokemons_rect;
     char **pnjs;
     char **icons;
     char **menus_en;
@@ -99,7 +100,6 @@ typedef struct atlases_t {
     char **scenes;
     char **collisions;
     char **poke_names;
-    char **pokemons_rect;
     char **pokemons_anim;
 } atlases;
 
@@ -230,7 +230,7 @@ typedef struct wininf_t {
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
     sfRectangleShape *transi;
-    void (*triggers[9])(struct wininf_t *win, struct player_t p);
+    void (*triggers[9])(struct wininf_t *win, struct player_t *p);
 } wininf;
 
 typedef struct choices_t {
@@ -467,23 +467,23 @@ list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2);
 
 ////////////////////////////////////////////////////////////
 //Teleporters
-void ta_mere(wininf *win, player p);
+void ta_mere(wininf *win, player *p);
 //Teleporters
-void interact_pnj(wininf *win, player p);
+void interact_pnj(wininf *win, player *p);
 //Teleporters
-void sleep_and_save(wininf *win, player p);
+void sleep_and_save(wininf *win, player *p);
 //Teleporters
-void village_to_dojo(wininf *win, player p);
+void village_to_dojo(wininf *win, player *p);
 //Teleporters
-void homeext_to_village(wininf *win, player p);
+void homeext_to_village(wininf *win, player *p);
 //Teleporters
-void homeext_to_homeint(wininf *win, player p);
+void homeext_to_homeint(wininf *win, player *p);
 //Teleporters
-void village_to_bekipan(wininf *win, player p);
+void village_to_bekipan(wininf *win, player *p);
 //Teleporters
-void village_to_dittoland(wininf *win, player p);
+void village_to_dittoland(wininf *win, player *p);
 //Teleporters
-void generate_random_dungeon(wininf *win, player p);
+void generate_random_dungeon(wininf *win, player *p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -534,7 +534,7 @@ sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 //Maths Functions
 int is_same(sfVector2f v1, sfVector2f v2, float threshold);
 //Maths Functions
-int is_valid(list *c, sfVector2f pos, sfVector2f *vel, wininf *inf, player p);
+int is_valid(list *c, sfVector2f pos, sfVector2f *v, wininf *inf, player *p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -584,9 +584,13 @@ void draw_intro(wininf *inf);
 void treat_axis(wininf *inf);
 void draw_dungeon(wininf *inf, player *p);
 
+int get_int_len(long long int nbr);
 sfIntRect move_rect_player(player p);
 int pos_char(char *string, char *presence);
 char *my_strdup_to_char(char *src, char *delim);
+void perform_free_movement(wininf *inf, player *p);
+void perform_dungeon_movement(wininf *inf, player *p);
+void center_menu(menuss *menu, wininf *inf, player *p);
 void player_direction_management(wininf *inf, player *p);
 char *my_slice_array(int direction, char *strslice, int nbslice);
 

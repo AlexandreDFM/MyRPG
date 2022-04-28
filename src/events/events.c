@@ -45,7 +45,6 @@ void update_events(wininf *inf, player *p)
             inf->pause_menu->press = 1;
             inf->current_menu = inf->pause_menu;
             center_menu(inf->pause_menu, inf, p);
-            // update_playtime(inf);
         }
         if (inf->pause_menu->press == 1 && inf->event.type == sfEvtKeyReleased && inf->event.key.code == inf->inputs.keys.back)
             inf->pause_menu->press = 0;

@@ -23,7 +23,8 @@ void load_alphabet(sfFont *font, int size)
     sfFont_getGlyph(font, ',', size, sfFalse, 0.0f);
     sfFont_getGlyph(font, '\'', size, sfFalse, 0.0f);
     sfFont_getGlyph(font, '-', size, sfFalse, 0.0f);
-    sfFont_getGlyph(font, 'é', size, sfFalse, 0.0f);
+    sfFont_getGlyph(font, 0xE9, size, sfFalse, 0.0f);
+    sfFont_getGlyph(font, 0xE8, size, sfFalse, 0.0f);
 }
 
 int treat_balise(char *balise, sfColor *color, wininf *inf)
