@@ -46,5 +46,6 @@ map_inf *generate_map(int iter, sfImage *atlas);
 unsigned char get_neighbours(int i, int o, char **tab, int len);
 sfImage *generate_map_image(char **map, int line_len, sfImage *filename);
 sfVector2f **get_random_position(sfIntRect **rooms, int count, char ***map);
+void get_current_room(sfVector2f pos, map_inf *inf);
 
 #endif /* !DEBUG_H_ */
