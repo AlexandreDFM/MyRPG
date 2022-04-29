@@ -55,7 +55,7 @@ void draw_ditto(wininf *inf)
         inf->ditto = create_ditto(inf);
     }
     if (inf->ditto->plan != DELETEDITTO) {
-        if (sfMusic_getStatus(inf->ditto->conga) == 0) {
+        if (sfMusic_getStatus(inf->ditto->conga) != sfPlaying) {
             sfMusic_play(inf->ditto->conga);
         }
         ditto_clock(inf, inf->ditto);

@@ -52,6 +52,6 @@ ditto_a *create_ditto(wininf *inf)
     sfSprite_setColor(cditto->ditto[3].sprite,
         (sfColor){ditto3.r, ditto3.g, ditto3.b, ditto3.a - 125});
     cditto->conga = sfMusic_createFromFile("music/00_conga.ogg");
-    cditto->color = my_hsvtorgb(rand() % 360, 29, 100);
-    return cditto;
+    sfMusic_setLoop(cditto->conga, sfTrue);
+    cditto->color = my_hsvtorgb(rand() % 360, 29, 100); return cditto;
 }
