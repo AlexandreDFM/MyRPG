@@ -54,6 +54,7 @@ void center_menu(menuss *menu, wininf *inf, player *p)
     sfVector2f center = sfView_getCenter(inf->camera.view);
     sfVector2f size = sfView_getSize(inf->camera.view);
     sfVector2f topl = {center.x - size.x / 2, center.y - size.y / 2};
+    printf("%.2f %.2f\n", topl.x, topl.y);
     char **arr = inf->lang ? my_strtwa(inf->atlases.menus_fr[menu->id], ";\n")
     : my_strtwa(inf->atlases.menus_en[menu->id], ";\n");
     sfVector2f new_pos = {topl.x + my_atoi(arr[2]), topl.y + my_atoi(arr[3])};
