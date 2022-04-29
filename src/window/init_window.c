@@ -74,6 +74,7 @@ wininf create_window_infos(int ac, char **av)
     inf.current_menu = inf.main_menu;
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
+    inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();
     set_pokemon(&inf);
     return inf;

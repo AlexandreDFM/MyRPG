@@ -12,6 +12,7 @@
 
 void update_events(wininf *inf, player *p)
 {
+    // if (inf->ui.dialog) printf("%d\n", ((dline*)inf->ui.dialog->data)->i);
     update_inputs(inf);
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
         if (inf->event.type == sfEvtClosed)
@@ -25,9 +26,6 @@ void update_events(wininf *inf, player *p)
         if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
         inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown))
             inf->current_menu->press = 0;
-        if (inf->event.type == sfEvtKeyReleased && inf->event.key.code ==
-        sfKeyRControl)
-            inf->c_scene = HOME;
         manage_intro(inf);
         if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
             inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;

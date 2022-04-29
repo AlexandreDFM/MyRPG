@@ -49,5 +49,6 @@ void draw_intro(wininf *inf)
     if (inf->intro->plan == DELETEINTRO) {
         delete_intro(inf);
         inf->c_scene = MAIN_MENU;
+        inf->intro = NULL;
     }
 }
