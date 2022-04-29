@@ -56,6 +56,7 @@ void perform_dungeon_movement(wininf *inf, player *p)
     if (inf->dungeon.inf->map[np.y][np.x] == ' ' && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
         p->nextpos = local_to_global(np.x, np.y);
         p->time = 0.0f;
+        get_current_room(pos, inf->dungeon.inf);
     }
     p->time += (inf->time.dt * 4.0f);
     sfVector2f newp = my_lerp(pos, p->nextpos, p->time / 100.0f);

@@ -161,17 +161,31 @@ void get_paths(char ***map, bsp *tree)
     if (diff == 1) {
         min = center_a.x < center_b.x ? center_a.x : center_b.x;
         max = min == center_a.x ? center_b.x : center_a.x;
+        int started = 0;
         for (int i = min; i < max; i++) {
             if ((*map)[center_a.y][i] == '.') {
                 (*map)[center_a.y][i] = ' ';
+                if (!started) {
+                    (*map)[center_a.y][i] = 'E';
+                    started = 1;
+                }
+                if ((*map)[center_a.y][i + 1] == ' ')
+                    (*map)[center_a.y][i] = 'E';
             }
         }
     } else {
+        int started = 0;
         min = center_a.y < center_b.y ? center_a.y : center_b.y;
         max = min == center_a.y ? center_b.y : center_a.y;
         for (int i = min; i < max; i++) {
             if ((*map)[i][center_a.x] == '.') {
                 (*map)[i][center_a.x] = ' ';
+                if (!started) {
+                    (*map)[i][center_a.x] = 'E';
+                    started = 1;
+                }
+                if ((*map)[i + 1][center_a.x] == ' ')
+                    (*map)[i][center_a.x] = 'E';
             }
         }
     }

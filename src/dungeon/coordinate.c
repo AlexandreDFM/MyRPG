@@ -35,3 +35,15 @@ sfVector2i global_to_local(sfVector2f p) {
     int b = p.y / 24.0f;
     return (sfVector2i){a, b};
 }
+
+void get_current_room(sfVector2f pos, map_inf *inf)
+{
+    sfVector2i lpos = global_to_local(pos);
+    for (int i = 0; inf->rooms[i]; i++) {
+        sfIntRect *rect = inf->rooms[i];
+        if (sfIntRect_contains(rect, lpos.x, lpos.y)) {
+            printf("Player in room %d\n", i);
+        }
+    }
+    // printf("%f %f\n", );
+}

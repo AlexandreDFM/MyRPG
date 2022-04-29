@@ -24,6 +24,7 @@ enum directions {
 typedef struct map_info {
     sfSprite *sp;
     char **map;
+    int **dsts;
     sfIntRect **rooms;
     int nbr_rooms;
     sfVector2f **pos;

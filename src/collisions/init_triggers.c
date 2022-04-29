@@ -110,6 +110,9 @@ void generate_random_dungeon(wininf *win, player *p)
     sfImage *img = sfImage_createFromFile("result8.png");
     win->dungeon.inf = generate_map(3, img);
     win->dungeon.in = 1;
+    for (int i = 0; win->dungeon.inf->map[i]; i++) {
+        printf("%s\n", win->dungeon.inf->map[i]);
+    }
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
     p->nextpos = pos;
     sfVector2f interior = (sfVector2f){10.0f, 10.0f};
