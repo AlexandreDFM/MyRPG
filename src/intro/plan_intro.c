@@ -86,7 +86,7 @@ void plan2_clock(wininf *inf, intro_a *rpg)
         move_rectintroleft(&rpg->b_intro[2].rect, 240, 4456 + 1223);
         if (rpg->pkmintro[BEKIPAN1].rect.left >= 4456 + 196)
             rpg->pkmintro[BEKIPAN1].rect.left = 4456 + 138;
-        else 
+        else
             rpg->pkmintro[BEKIPAN1].rect.left += 29;
         inf->time.intro_anim2 = 0.0f;
     }

@@ -53,5 +53,6 @@ void draw_intro(wininf *inf)
         sfMusic_destroy(inf->intro->i_music2);
         //delete_intro(inf);
         inf->c_scene = MAIN_MENU;
+        inf->intro = NULL;
     }
 }
