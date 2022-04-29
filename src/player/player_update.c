@@ -58,7 +58,6 @@ void perform_dungeon_movement(wininf *inf, player *p)
         p->time = 0.0f;
         get_current_room(pos, inf->dungeon.inf);
     }
-    p->time += (inf->time.dt * 4.0f);
-    sfVector2f newp = my_lerp(pos, p->nextpos, p->time / 100.0f);
+    sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
     sfSprite_setPosition(p->test, newp);
 }

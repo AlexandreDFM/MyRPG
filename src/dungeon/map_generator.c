@@ -34,10 +34,12 @@ bsp *split_container(sfIntRect *main, int iter)
     bsp *root = malloc(sizeof(bsp));
     root->rect = main, root->left = 0, root->right = 0;
     if (iter != 0) {
-        sfIntRect **lr = random_split(main);
-        root->left = split_container(lr[0], iter - 1);
-        root->right = split_container(lr[1], iter - 1);
-        free(lr);
+        sfIntRect **lr = random_split(main, 1000);
+        if (lr) {
+            root->left = split_container(lr[0], iter - 1);
+            root->right = split_container(lr[1], iter - 1);
+            free(lr);
+        }
     }
     return root;
 }
@@ -47,12 +49,13 @@ int random_btw(int min, int max)
     return (rand() % (max - min + 1)) + min;
 }
 
-sfIntRect **random_split(sfIntRect *r)
+sfIntRect **random_split(sfIntRect *r, int iter)
 {
+    if (!iter) return 0;
     sfIntRect **splits = malloc(sizeof(sfIntRect*) * 2);
     sfIntRect *l = malloc(sizeof(sfIntRect)), *re = malloc(sizeof(sfIntRect));
     if (rand() % 2) {
-        *l = (sfIntRect){r->left, r->top, random_btw(1, r->width), r->height};
+        *l = (sfIntRect){r->left, r->top, random_btw(2, r->width - 2), r->height};
         splits[0] = l;
         *re = (sfIntRect){r->left + splits[0]->width, r->top,
             r->width - splits[0]->width, r->height};
@@ -63,10 +66,10 @@ sfIntRect **random_split(sfIntRect *r)
             free(splits);
             free(l);
             free(re);
-            return random_split(r);
+            return random_split(r, iter--);
         }
     } else {
-        *l = (sfIntRect){r->left, r->top, r->width, random_btw(1, r->height)};
+        *l = (sfIntRect){r->left, r->top, r->width, random_btw(2, r->height - 2)};
         splits[0] = l;
         *re = (sfIntRect){r->left, r->top + splits[0]->height, r->width,
             r->height - splits[0]->height};
@@ -77,7 +80,7 @@ sfIntRect **random_split(sfIntRect *r)
             free(splits);
             free(l);
             free(re);
-            return random_split(r);
+            return random_split(r, iter--);
         }
     }
     return splits;
@@ -157,20 +160,20 @@ void get_paths(char ***map, bsp *tree)
     sfVector2i center_b = (sfVector2i){(float)r->left + (float)r->width / 2.0f,
         (float)r->top + (float)r->height / 2.0f};
     int diff = center_a.x == center_b.x ? -1 : 1;
-    int min = 0, max = 0;
+    int min = 0, max = 0, out = 1;
     if (diff == 1) {
         min = center_a.x < center_b.x ? center_a.x : center_b.x;
         max = min == center_a.x ? center_b.x : center_a.x;
         int started = 0;
         for (int i = min; i < max; i++) {
-            if ((*map)[center_a.y][i] == '.') {
-                (*map)[center_a.y][i] = ' ';
-                if (!started) {
-                    (*map)[center_a.y][i] = 'E';
-                    started = 1;
-                }
-                if ((*map)[center_a.y][i + 1] == ' ')
-                    (*map)[center_a.y][i] = 'E';
+            if ((*map)[center_a.y - 1][i] == '.') {
+                if (out)
+                    (*map)[center_a.y - 1][i - 1] = 'E';
+                (*map)[center_a.y - 1][i] = 'T';
+                out = 0;
+            } else if (!out) {
+                (*map)[center_a.y - 1][i] = 'E';
+                out = 1;
             }
         }
     } else {
@@ -179,17 +182,18 @@ void get_paths(char ***map, bsp *tree)
         max = min == center_a.y ? center_b.y : center_a.y;
         for (int i = min; i < max; i++) {
             if ((*map)[i][center_a.x] == '.') {
-                (*map)[i][center_a.x] = ' ';
-                if (!started) {
-                    (*map)[i][center_a.x] = 'E';
-                    started = 1;
+                if (out)
+                    (*map)[i - 1][center_a.x - 1] = 'E';
+                (*map)[i][center_a.x - 1] = 'T';
+                out = 0;
+            } else if ((*map)[i][center_a.x - 1] == ' ') {
+                if (!out) {
+                    (*map)[i][center_a.x - 1] = 'E';
                 }
-                if ((*map)[i + 1][center_a.x] == ' ')
-                    (*map)[i][center_a.x] = 'E';
+                out = 1;
             }
         }
     }
-
     get_paths(map, tree->left);
     get_paths(map, tree->right);
 }
