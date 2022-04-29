@@ -18,7 +18,7 @@ void change_keybind(wininf *inf)
     sfText_setString(tmp, "-"); sfText_setPosition(tmp, pos);
 }
 
-void go_back(wininf *inf)
+void go_main(wininf *inf)
 {
     inf->current_menu->selected = inf->current_menu->head;
     inf->current_menu->focus = 0;

@@ -17,6 +17,7 @@ void handle_scene(wininf *infos, player *p)
         draw_menu(infos, infos->main_menu);
         if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->load_menu);
         if (infos->c_menu == OPTIONS) draw_menu(infos, infos->options_menu);
+        if (infos->c_menu == KEYBINDS_M) draw_menu(infos, infos->change_keys_menu);
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);

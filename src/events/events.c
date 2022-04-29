@@ -36,7 +36,7 @@ void update_events(wininf *inf, player *p)
         }
         if ((inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE) &&
         sfKeyboard_isKeyPressed(inf->inputs.keys.back)) {
-            go_back(inf);
+            // go_back(inf);
         }
         if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
             sfKeyboard_isKeyPressed(inf->inputs.keys.back) &&
