@@ -8,16 +8,12 @@
 #include "rpg.h"
 #include "intro.h"
 #include "ditto.h"
+#include "dream.h"
 #include "cinematics_elements.h"
-
 
 void free_musics(wininf *inf)
 {
-    if (inf->intro != NULL) {
-        sfMusic_stop(inf->intro->i_music1);
-        sfMusic_stop(inf->intro->i_music2);
-        sfMusic_destroy(inf->intro->i_music1);
-        sfMusic_destroy(inf->intro->i_music2);
-        //delete_intro(inf);
-    }
+    if (inf->intro != NULL) delete_intro(inf);
+    if (inf->ditto != NULL) delete_ditto(inf);
+    if (inf->dream != NULL) delete_dream(inf);
 }

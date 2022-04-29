@@ -61,9 +61,5 @@ void draw_ditto(wininf *inf)
         ditto_clock(inf, inf->ditto);
         ditto(inf, inf->ditto);
     }
-    if (inf->ditto->plan == DELETEDITTO) {
-        sfMusic_stop(inf->ditto->conga);
-        sfMusic_destroy(inf->ditto->conga);
-        //delete_ditto(inf);
-    }
+    if (inf->ditto->plan == DELETEDITTO) delete_ditto(inf);
 }

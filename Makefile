@@ -104,10 +104,13 @@ SRC		= 	main.c											\
 			src/intro/move_rect_intro.c						\
 			src/intro/my_hsvtorgb.c							\
 			src/intro/plan_intro.c							\
+			src/intro/delete_intro.c						\
 			src/ditto/create_ditto.c						\
 			src/ditto/ditto.c								\
+			src/ditto/delete_ditto.c						\
 			src/dream/create_dream.c						\
 			src/dream/dream.c								\
+			src/dream/delete_dream.c						\
 			src/free_memory/main_free.c						\
 			src/free_memory/free_musics.c					\
 

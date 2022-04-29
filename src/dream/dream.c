@@ -48,10 +48,5 @@ void draw_dream(wininf *inf)
         for (int i = 0; i < 3; i++)
             display_ele(inf->win, inf->dream->b_dream[i]);
     }
-    if (inf->dream->plan == DELETEDREAM) {
-        sfMusic_stop(inf->dream->music);
-        sfMusic_destroy(inf->dream->music);
-        free(inf->dream);
-        inf->dream = NULL;
-    }
+    if (inf->dream->plan == DELETEDREAM) delete_dream(inf);
 }

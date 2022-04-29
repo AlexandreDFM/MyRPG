@@ -35,7 +35,6 @@ typedef struct intro_assets_t {
     enum introscene_t plan;
     cine_ele pkmintro[4];
     cine_ele b_intro[5];
-    sfEvent event;
     sfColor color;
     sfMusic *i_music1;
     sfMusic *i_music2;
@@ -43,6 +42,7 @@ typedef struct intro_assets_t {
 
 void move_sun(intro_a *rpg);
 void manage_intro(wininf *inf);
+void delete_intro(wininf *inf);
 intro_a *create_intro(wininf *inf);
 void move_sun_reverse(intro_a *rpg);
 void display_eles(sfRenderWindow *window, cine_ele ele);
