@@ -95,11 +95,12 @@ dline *load_line(char *line, sfFont *font, int size, wininf *inf)
     nl->img = sfTexture_createFromImage(img, NULL);
     nl->sp = sfSprite_create();
     sfSprite_setTexture(nl->sp, nl->img, sfFalse);
-    sfSprite_setTextureRect(nl->sp, (sfIntRect){0, 0, steps[0], height});
     nl->steps = steps;
     nl->max = li - 1;
     nl->height = height;
     nl->i = 1;
     nl->time = 0;
+    sfImage_destroy(font_alpha);
+    sfImage_destroy(img);
     return nl;
 }

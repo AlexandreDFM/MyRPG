@@ -67,7 +67,7 @@ wininf create_window_infos(int ac, char **av)
     inf.load_menu = init_all_menus(&inf, LOAD_IDX, 0);
     init_load_pointers(&inf);
     inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
-    init_options_pointers(&inf);
+    // init_options_pointers(&inf);
     inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.c_menu = NONE;
     inf.waiting_key = 0;

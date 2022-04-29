@@ -10,7 +10,6 @@
 void center_bg(list *bg, char **arr, sfVector2f topl)
 {
     sfVector2f pos;
-    sfFloatRect pos2 = sfSprite_getGlobalBounds((sfSprite *)bg->data);
     for (int i = 0, off = 4 + (5 * my_atoi(arr[4])); off > 6; i++, off -= 5) {
         pos.x = my_atoi(arr[off - 3]) + topl.x + my_atoi(arr[2]);
         pos.y = my_atoi(arr[off  - 2]) + topl.y + my_atoi(arr[3]);
@@ -54,11 +53,8 @@ void center_menu(menuss *menu, wininf *inf, player *p)
     sfVector2f center = sfView_getCenter(inf->camera.view);
     sfVector2f size = sfView_getSize(inf->camera.view);
     sfVector2f topl = {center.x - size.x / 2, center.y - size.y / 2};
-    printf("%.2f %.2f\n", topl.x, topl.y);
     char **arr = inf->lang ? my_strtwa(inf->atlases.menus_fr[menu->id], ";\n")
     : my_strtwa(inf->atlases.menus_en[menu->id], ";\n");
-    sfVector2f new_pos = {topl.x + my_atoi(arr[2]), topl.y + my_atoi(arr[3])};
-    sfVector2f tmp_pos;
     center_bg(menu->backgrounds, arr, topl);
     int offset = my_atoi(arr[4]) * 5 + 5;
     if (menu->choices) {

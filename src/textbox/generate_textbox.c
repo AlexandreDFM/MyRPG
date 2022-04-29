@@ -22,6 +22,7 @@ sfSprite *generate_textbox(sfVector2i size, sfImage *atlas)
     topbot_border(size, new);
     sfSprite *sp = sfSprite_create();
     sfSprite_setTexture(sp, sfTexture_createFromImage(new, 0), sfFalse);
+    sfImage_destroy(new);
     return sp;
 }
 

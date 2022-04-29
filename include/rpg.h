@@ -72,6 +72,7 @@ typedef enum menu_indx {
     MAIN_IDX,
     LOAD_IDX,
     OPTIONS_IDX,
+    KEYBINDS_IDX,
     PAUSE_VILLAGE_IDX,
     PAUSE_DG_IDX,
 }menu_indx;
@@ -204,6 +205,7 @@ typedef struct wininf_t {
     int change_scene;
     sfClock *play_time;
     const char **key_list;
+    dline *playtime;
     sfVideoMode mode;
     sfVector2f next_pos;
     sfKeyCode tmp_key;
