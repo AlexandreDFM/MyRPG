@@ -108,6 +108,8 @@ SRC		= 	main.c											\
 			src/ditto/ditto.c								\
 			src/dream/create_dream.c						\
 			src/dream/dream.c								\
+			src/free_memory/main_free.c						\
+			src/free_memory/free_musics.c					\
 
 
 

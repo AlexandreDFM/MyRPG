@@ -297,6 +297,8 @@ typedef struct date {
 
 char *unix_to_date(long int seconds);
 void set_pokemon(wininf *inf);
+void free_musics(wininf *inf);
+void end_global_free(components *all);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
