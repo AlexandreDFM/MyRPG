@@ -21,13 +21,13 @@ void handle_scene(wininf *infos, player *p)
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);
-        if (infos->c_scene != DUNGEON)
+        if (infos->c_scene == VILLAGE || infos->c_scene == BEKIPAN
+        || infos->c_scene == DOJO || infos->c_scene == DITTOLAND)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
-        else
+        else if (infos->c_scene == DUNGEON)
             draw_dungeon(infos, p);
         player_direction_management(infos, p);
         draw_player(infos, p);
-
         if (infos->transition) {
             update_transition(infos, *p);
             sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
