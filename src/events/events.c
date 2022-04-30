@@ -34,10 +34,6 @@ void update_events(wininf *inf, player *p)
             inf->waiting_key = 0;
             inf->options_menu->focus = 1;
         }
-        if ((inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE) &&
-        sfKeyboard_isKeyPressed(inf->inputs.keys.back)) {
-            // go_back(inf);
-        }
         if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
             sfKeyboard_isKeyPressed(inf->inputs.keys.back) &&
             inf->c_menu == NONE && inf->pause_menu->press == 0) {
@@ -61,5 +57,17 @@ void update_events(wininf *inf, player *p)
             inf->pause_menu->selected = inf->pause_menu->head;
             inf->current_menu = inf->main_menu;
         }
+        if (inf->c_scene == MAIN_MENU &&
+        sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->pressed == 0) {
+            inf->pressed = 1;
+            go_back(inf);
+        }
+        if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code == inf->inputs.keys.mright || inf->event.key.code ==
+            inf->inputs.keys.mleft)) {
+            inf->pressed = 0;
+        }
+        if (inf->c_scene == MAIN_MENU && inf->event.type == sfEvtKeyReleased
+        && inf->event.key.code == inf->inputs.keys.back)
+            inf->pressed = 0;
     }
 }

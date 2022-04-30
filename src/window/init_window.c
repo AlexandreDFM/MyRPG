@@ -74,9 +74,17 @@ wininf create_window_infos(int ac, char **av)
     inf.waiting_key = 0;
     inf.current_menu = inf.main_menu;
     inf.prev_menu = NULL;
+    inf.vol_music = 100;
+    inf.vol_sound = 100;
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
     inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
+    inf.pressed = 0;
+    sfRenderWindow_setFramerateLimit(inf.win, inf.settings->c_fps < 5 ?
+    my_atoi(inf.settings->fps[inf.settings->c_fps]) : 0);
+    sfText_setString(
+        ((choices *)inf.options_menu->choices->prev->prev->prev->data)->choice
+        , inf.settings->fps[inf.settings->c_fps]);
     init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();
     set_pokemon(&inf);
     return inf;

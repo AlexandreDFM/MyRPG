@@ -88,6 +88,8 @@ typedef struct settings_t {
     int show_collision;
     int pokemon;
     int house;
+    int c_fps;
+    char **fps;
 } settings;
 
 typedef struct atlases_t {
@@ -199,12 +201,17 @@ typedef struct dungeon_t {
 
 typedef struct wininf_t {
     sfEvent event;
+    int pressed;
     int key_change;
     int transition;
     int waiting_key;
     int interacting;
     int change_scene;
+    int vol_music;
+    int vol_sound;
+    int c_fps;
     sfClock *play_time;
+    const char **fps;
     const char **key_list;
     dline *playtime;
     sfVideoMode mode;
@@ -504,6 +511,8 @@ void a_log(wininf *inf);
 //Menu pointers
 void no_but(wininf *inf);
 //Menu pointers
+void go_back(wininf *inf);
+//Menu pointers
 void options(wininf *inf);
 //Menu pointers
 void my_exit(wininf *inf);
@@ -513,6 +522,8 @@ void yes_but(wininf *inf);
 void go_main(wininf *inf);
 //Menu pointers
 void go_keybinds(wininf *inf);
+//Menu pointers
+void change_volume(wininf *inf);
 //Menu pointers
 void change_keybind(wininf *inf);
 //Menu pointers

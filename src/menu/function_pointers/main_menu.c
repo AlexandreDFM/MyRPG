@@ -44,3 +44,11 @@ void a_log(wininf *inf)
 {
     inf->c_scene = HOME;
 }
+
+void go_back(wininf *inf)
+{
+    if (inf->c_menu == OPTIONS)
+        go_main(inf);
+    if (inf->c_menu == KEYBINDS_M)
+        options(inf);
+}

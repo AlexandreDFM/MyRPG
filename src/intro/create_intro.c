@@ -54,7 +54,7 @@ intro_a *create_intro(wininf *inf)
     intro->valid = 0;
     sfVector2f size = {7, 7};
     // intro->pkmintro[0] = c_ele(inf->atlases.atlas, (sfVector2f) {120 + 560, 1080}, (sfIntRect) {4456 + 0, 41, 24, 19}, size);
-    intro->pkmintro[0] = c_ele(inf->atlases.atlas, (sfVector2f) {120 + 560, 1080}, (sfIntRect) {324, 1232, 27, 22}, size);    
+    intro->pkmintro[0] = c_ele(inf->atlases.atlas, (sfVector2f) {120 + 560, 1080}, (sfIntRect) {324, 1232, 27, 22}, size);
     intro->pkmintro[1] = c_ele(inf->atlases.atlas, (sfVector2f) {120 + 550, 250}, (sfIntRect) {4456 + 40, 16, 31, 26}, size);
     intro->pkmintro[2] = c_ele(inf->atlases.atlas, (sfVector2f) {120 + 950, 250}, (sfIntRect) {4456 + 40, 16, 31, 26}, size);
     intro->pkmintro[3] = c_ele(inf->atlases.atlas, (sfVector2f) {120 + 560, 1080}, (sfIntRect) {4456 + 0, 41, 24, 19}, size);
@@ -67,5 +67,7 @@ intro_a *create_intro(wininf *inf)
     sfSprite_setColor(intro->b_intro[3].sprite, (sfColor) {base.r, base.g, base.b, 0});
     intro->i_music1 = sfMusic_createFromFile("music/01_pkm_red_rescue_team_theme.ogg");
     intro->i_music2 = sfMusic_createFromFile("music/02_title_screen.ogg");
+    sfMusic_setVolume(intro->i_music1, 0);
+    sfMusic_setVolume(intro->i_music2, 0);
     return intro;
 }

@@ -16,9 +16,10 @@ int get_settings_flags(int ac, char **av, wininf *win)
                             {"house", required_argument, NULL, 'H'},
                             {"client", required_argument, NULL, 1001},
                             {"host", no_argument, NULL, 1000},
-                            {"language", required_argument, NULL,'l'}};
+                            {"language", required_argument, NULL,'l'},
+                            {"framerate", required_argument, NULL, 'f'}};
     int opt = 0;
-    while ((opt = getopt_long(ac, av, "H:C:p:l:", lo, NULL)) != -1) {
+    while ((opt = getopt_long(ac, av, "H:C:p:l:f:", lo, NULL)) != -1) {
         change_settings(opt, optarg, win);
     }
     return 0;
@@ -70,10 +71,17 @@ void change_settings(int opt, char *arg, wininf *inf)
             inf->lang = FRANCAIS;
         } else {
             inf->lang = DEFAULT;
-        }
-        if (inf->lang == DEFAULT) {
             my_printf("Language not found, defaulting to English\n");
-            inf->lang = ENGLISH;
+        }
+    }
+    if (opt == 'f') {
+        int i = 0;
+        for (; i < 6 && my_strcmp(arg, inf->settings->fps[i]) != 0; i++);
+        if (i == 6) {
+            my_printf("Framerate not found, defaulting to 60\n");
+            inf->settings->c_fps = 1;
+        } else {
+            inf->settings->c_fps = i;
         }
     }
 }

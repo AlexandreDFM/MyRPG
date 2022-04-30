@@ -15,8 +15,14 @@ void handle_scene(wininf *infos, player *p)
         draw_intro(infos);
     } else if (infos->c_scene == MAIN_MENU) {
         draw_menu(infos, infos->main_menu);
-        if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->load_menu);
-        if (infos->c_menu == OPTIONS) draw_menu(infos, infos->options_menu);
+        if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->current_menu);
+        if (infos->c_menu == OPTIONS){
+            draw_menu(infos, infos->current_menu);
+            if (((choices *)infos->current_menu->selected->data)->ptr < 3
+                && infos->pressed == 0) {
+                change_volume(infos);
+            }
+        }
         if (infos->c_menu == KEYBINDS_M) draw_menu(infos, infos->change_keys_menu);
     } else {
         if (infos->c_scene == HOME)
@@ -53,7 +59,6 @@ void handle_scene(wininf *infos, player *p)
         if (infos->c_menu == PAUSE) {
             draw_menu(infos, infos->pause_menu);
             update_playtime(infos);
-            // draw_list(infos->pause_menu->texts, infos->win);
         }
     }
     update_time(infos);
