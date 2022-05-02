@@ -17,15 +17,16 @@ void update_transition(wininf *inf, player p)
             if (!inf->change_scene) return;
             inf->c_scene = inf->next_scene;
             sfSprite_setPosition(p.test, inf->next_pos);
+            col.a = (int)(new_a * 255.0f);
+            sfRectangleShape_setFillColor(inf->transi, col);
+            return;
         }
-        inf->time.transi += inf->time.dt / 15.0f;
-        new_a = my_lerpf(new_a, 1.0f, 9.0 * inf->time.transi);
+        new_a += inf->time.dt * 3.0f;
     } else {
         if (new_a <= 0.05f) {
             inf->transition = 0; inf->time.transi = 0.0f;
         }
-        inf->time.transi += inf->time.dt / 15.0f;
-        new_a = my_lerpf(new_a, 0.0f, 9.0 * inf->time.transi);
+        new_a -= inf->time.dt * 3.0f;
     }
     col.a = (int)(new_a * 255.0f);
     sfRectangleShape_setFillColor(inf->transi, col);

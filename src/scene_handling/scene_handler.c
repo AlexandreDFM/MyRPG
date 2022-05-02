@@ -27,8 +27,9 @@ void handle_scene(wininf *infos, player *p)
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);
-        if (infos->c_scene == VILLAGE || infos->c_scene == BEKIPAN
-        || infos->c_scene == DOJO || infos->c_scene == DITTOLAND)
+        int cs = infos->c_scene;
+        if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
+            cs == INTERIOR)
             draw_static_scene(infos, infos->scenes[infos->c_scene]);
         else if (infos->c_scene == DUNGEON)
             draw_dungeon(infos, p);
