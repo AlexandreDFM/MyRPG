@@ -19,8 +19,9 @@ void update_transition(wininf *inf, player p)
             sfSprite_setPosition(p.test, inf->next_pos);
             col.a = (int)(new_a * 255.0f);
             sfRectangleShape_setFillColor(inf->transi, col);
+            return;
         }
-        new_a += inf->time.dt;
+        new_a += inf->time.dt * 3.0f;
     } else {
         if (new_a <= inf->time.dt) {
             inf->transition = 0; inf->time.transi = 0.0f;
