@@ -149,6 +149,17 @@ sfIntRect get_center(sfIntRect *rect)
         rect->top + rect->height / 2};
 }
 
+void clean_map(char ***mapref)
+{
+    char **map = *mapref;
+    for (int y = 0; map[y]; y++) {
+        for (int x = 0; map[y][x] != '\0'; x++) {
+            char c = map[y][x];
+            map[y][x] = c == 'T' ? ' ' : c;
+        }
+    }
+}
+
 void get_paths(char ***map, bsp *tree)
 {
     if (!tree->left || !tree->right)
@@ -196,6 +207,7 @@ void get_paths(char ***map, bsp *tree)
     }
     get_paths(map, tree->left);
     get_paths(map, tree->right);
+    clean_map(map);
 }
 
 int is_leaf(bsp *tree) {

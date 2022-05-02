@@ -9,7 +9,7 @@
 
 int direction_play(wininf *inf, player *p)
 {
-    int axis_x = inf->inputs.axis.x; int axis_y = inf->inputs.axis.y;
+    int axis_x = p->vel.x; int axis_y = p->vel.y;
     int d = p->direction;
     if (axis_x > 0.5 && axis_y > 0.5) return d == PDOWNRIGHT ? -1 : PDOWNRIGHT;
     if (axis_x > 0.5 && axis_y < -0.5) return d == PUPRIGHT ? -1 : PUPRIGHT;
@@ -34,10 +34,11 @@ void change_anim(player *p, int n, float mirror)
 
 void player_direction_management(wininf *inf, player *p)
 {
-    if (inf->time.intro_anim > 0.30f) {
+    if (p->animc > 0.30f) {
         p->r = move_rect_player(*p);
-        inf->time.intro_anim = 0.0f;
+        p->animc = 0.0f;
     }
+    p->animc += inf->time.dt;
     int d = direction_play(inf, p); if (d == -1) return;
     p->direction = d;
     if (d == PDOWNRIGHT) change_anim(p, 1, -1.0f);
@@ -48,5 +49,5 @@ void player_direction_management(wininf *inf, player *p)
     if (d == PRIGHT) change_anim(p, 2, -1.0f);
     if (d == PUP) change_anim(p, 4, 1.0f);
     if (d == PDOWN) change_anim(p, 0, 1.0f);
-    if (d == PNONE_DIRECTION) change_anim(p, 5, 1.0f);
+    // if (d == PNONE_DIRECTION) change_anim(p, 5, 1.0f);
 }

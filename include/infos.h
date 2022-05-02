@@ -24,7 +24,7 @@
     #include <stddef.h>
 
     #define WINDOW_NAME "My RPG"
-    #define SIZE 7.0f
+    #define SIZE 2.0f
     #define RATE 0.15f
     #define FONT_SIZE 15.0f
     #define PORT 7272
