@@ -22,7 +22,7 @@ int receive_hostsync(char **data, int *important, components *all)
     net->other.p = init_player(all->inf, *((int*)*data));
     *data += sizeof(int);
     sfVector2f pos = *((sfVector2f*)*data);
-    sfSprite_setPosition(net->other.p.test, pos);
+    sfSprite_setPosition(net->other.p->test, pos);
     net->other.target = pos;
     *data += sizeof(sfVector2f);
     net->other.cscene = *((int*)*data);
@@ -36,9 +36,9 @@ int receive_clientsync(char **data, int *important, components *all)
     network *net = all->inf.net;
     all->inf.net->other.cscene = all->inf.c_scene;
     all->inf.net->other.p = init_player(all->inf, *((int*)*data));
-    sfVector2f pos = sfSprite_getPosition(all->pla.test);
+    sfVector2f pos = sfSprite_getPosition(all->pla->test);
     all->inf.net->other.target = pos;
-    sfSprite_setPosition(all->inf.net->other.p.test, pos);
+    sfSprite_setPosition(all->inf.net->other.p->test, pos);
     *data += sizeof(int);
     int ans = CSYNC;
     sfPacket_clear(net->packet);
@@ -68,7 +68,7 @@ int receive_connection(char **data, int *important, components *all)
 
 int receive_position(char **data, int *important, components *all)
 {
-    sfSprite_setPosition(all->inf.net->other.p.test, *((sfVector2f*)*data));
+    sfSprite_setPosition(all->inf.net->other.p->test, *((sfVector2f*)*data));
     // all->inf.net->other.target = *((sfVector2f*)*data);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
@@ -77,7 +77,7 @@ int receive_position(char **data, int *important, components *all)
 int receive_setposition(char **data, int *important, components *all)
 {
     sfVector2f np = *((sfVector2f*)*data);
-    sfSprite_setPosition(all->inf.net->other.p.test, np);
+    sfSprite_setPosition(all->inf.net->other.p->test, np);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
 }

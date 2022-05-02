@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "*.c": "c",
-        "rpg.h": "c"
+        "rpg.h": "c",
+        "my.h": "c",
+        "entity.h": "c",
+        "infos.h": "c",
+        "numbers": "c",
+        "dungeon.h": "c",
+        "types.h": "c"
     }
 }

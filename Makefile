@@ -87,9 +87,12 @@ SRC		= 	main.c											\
 			src/menu/init_ig_menus.c						\
 			src/menu/update_playtime.c						\
 			src/dungeon/coordinate.c						\
+			src/dungeon/dungeon_generation.c				\
 			src/dungeon/edge_detection.c					\
 			src/dungeon/draw_dungeons.c						\
 			src/dungeon/map_generator.c						\
+			src/dungeon/enemy/create_enemy.c				\
+			src/dungeon/enemy/update_enemy.c				\
 			src/settings/flags_handling.c					\
 			src/network/connecting_utils.c					\
 			src/network/network_syncing.c					\

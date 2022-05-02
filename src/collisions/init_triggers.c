@@ -107,14 +107,8 @@ void village_to_dittoland(wininf *win, player *p)
 
 void generate_random_dungeon(wininf *win, player *p)
 {
-    sfImage *img = sfImage_createFromFile("result8.png");
-    win->dungeon.inf = generate_map(5, img);
-    win->dungeon.in = 1;
-    for (int i = 0; win->dungeon.inf->map[i]; i++) {
-        printf("%s\n", win->dungeon.inf->map[i]);
-    }
+    create_dungeon(win, "result8.png");
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
-    get_closest_exit(get_current_room(pos, win->dungeon.inf), (sfVector2f){0.0f, 0.0f}, win->dungeon.inf);
     p->nextpos = pos;
     sfVector2f interior = (sfVector2f){10.0f, 10.0f};
     sfVector2f home = (sfVector2f){pos.x, pos.y};
