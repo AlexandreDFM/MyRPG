@@ -11,7 +11,8 @@ void draw_player(wininf *inf, player *p)
 {
     if (!inf->dungeon.in) {
         p->vel = inf->inputs.axis;
-        perform_free_movement(inf, p);
+        if (inf->c_menu == NONE)
+            perform_free_movement(inf, p);
     } else {
         p->vel = inf->inputs.axis;
         perform_dungeon_movement(inf, p);

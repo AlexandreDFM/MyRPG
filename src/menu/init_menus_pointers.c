@@ -33,4 +33,5 @@ void init_options_pointers(wininf *inf)
     inf->change_keys_menu->choices = inf->change_keys_menu->choices->next;
     ((choices *)inf->options_menu->choices->prev->prev->data)->ptrs[0] = go_keybinds;
     ((choices *)inf->options_menu->choices->prev->data)->ptrs[0] = go_main;
+    ((choices *)inf->pause_menu->choices->prev->data)->ptrs[0] = go_others;
 }

@@ -75,3 +75,12 @@ void go_main(wininf *inf)
     inf->current_menu = inf->main_menu;
     inf->c_menu = NONE;
 }
+
+void go_others(wininf *inf)
+{
+    inf->current_menu->focus = 0;
+    inf->current_menu = inf->others_menu;
+    inf->c_menu = OTHERS;
+    inf->options_menu->focus = 0;
+    inf->others_menu->focus = 1;
+}
