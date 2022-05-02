@@ -21,7 +21,8 @@ void update_transition(wininf *inf, player p)
             sfRectangleShape_setFillColor(inf->transi, col);
             return;
         }
-        new_a += inf->time.dt * 3.0f;
+        new_a += inf->time.dt;
+        printf("%f\n", new_a);
     } else {
         if (new_a <= 0.05f) {
             inf->transition = 0; inf->time.transi = 0.0f;
