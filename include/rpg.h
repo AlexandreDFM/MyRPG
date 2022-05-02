@@ -204,6 +204,7 @@ typedef struct dungeon_t {
 typedef struct wininf_t {
     sfEvent event;
     int pressed;
+    float ftransi;
     int key_change;
     int transition;
     int waiting_key;

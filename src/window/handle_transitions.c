@@ -10,7 +10,7 @@
 void update_transition(wininf *inf, player p)
 {
     sfColor col = sfRectangleShape_getFillColor(inf->transi);
-    float new_a = col.a / 255.0f;
+    float new_a = inf->ftransi;
     if (inf->transition == 1) {
         if (new_a > 0.99f) {
             inf->transition = -1; inf->time.transi = 0.0f;
@@ -21,7 +21,7 @@ void update_transition(wininf *inf, player p)
             sfRectangleShape_setFillColor(inf->transi, col);
             return;
         }
-        new_a += inf->time.dt;
+        new_a += inf->time.dt * 3.0f;
     } else {
         if (new_a <= inf->time.dt) {
             inf->transition = 0; inf->time.transi = 0.0f;
@@ -29,5 +29,6 @@ void update_transition(wininf *inf, player p)
         new_a -= inf->time.dt * 3.0f;
     }
     col.a = (int)(new_a * 255.0f);
+    inf->ftransi = new_a;
     sfRectangleShape_setFillColor(inf->transi, col);
 }
