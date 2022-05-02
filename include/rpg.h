@@ -51,6 +51,7 @@ typedef enum main_menu_t {
     LOAD_SAVE,
     ADVENTURE_LOG,
     OPTIONS,
+    OTHERS,
     KEYBINDS_M,
     CHANGING_KEY,
     EXIT,
@@ -75,6 +76,7 @@ typedef enum menu_indx {
     OPTIONS_IDX,
     KEYBINDS_IDX,
     PAUSE_VILLAGE_IDX,
+    OTHERS_IDX,
     PAUSE_DG_IDX,
 }menu_indx;
 
@@ -235,6 +237,7 @@ typedef struct wininf_t {
     struct menus *load_menu;
     struct menus *pause_menu;
     struct menus *change_keys_menu;
+    struct menus *others_menu;
     struct menus *options_menu;
     struct menus *current_menu;
     struct settings_t *settings;
@@ -520,6 +523,8 @@ void my_exit(wininf *inf);
 void yes_but(wininf *inf);
 //Menu pointers
 void go_main(wininf *inf);
+//Menu pointers
+void go_others(wininf *inf);
 //Menu pointers
 void go_keybinds(wininf *inf);
 //Menu pointers
