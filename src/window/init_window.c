@@ -37,7 +37,7 @@ wininf create_window_infos(int ac, char **av)
     get_settings_flags(ac, av, &inf);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
-    inf.c_scene = INTRO;
+    inf.c_scene = QUIZ;
     inf.interacting = 0;
     init_times(&inf);
     create_atlases(&inf);
@@ -78,6 +78,7 @@ wininf create_window_infos(int ac, char **av)
     inf.vol_sound = 100;
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
+    inf.quiz = NULL;
     inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     inf.pressed = 0;
     sfRenderWindow_setFramerateLimit(inf.win, inf.settings->c_fps < 5 ?

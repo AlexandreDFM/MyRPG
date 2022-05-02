@@ -33,6 +33,7 @@ typedef enum scenes_e {
     DITTO,
     DREAM,
     DUNGEON,
+    QUIZ
 } scenes;
 
 typedef enum orders_e {
@@ -241,6 +242,7 @@ typedef struct wininf_t {
     struct intro_assets_t *intro;
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
+    struct quiz_t *quiz;
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
 } wininf;
@@ -309,6 +311,7 @@ char *unix_to_date(long int seconds);
 void set_pokemon(wininf *inf);
 void free_musics(wininf *inf);
 void end_global_free(components *all);
+void my_free_array(char **array);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
