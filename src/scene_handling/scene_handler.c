@@ -65,6 +65,10 @@ void handle_scene(wininf *infos, player *p)
             draw_menu(infos, infos->pause_menu);
             update_playtime(infos);
         }
+        if (infos->c_menu == OTHERS) {
+            center_menu(infos->current_menu, infos, p);
+            draw_menu(infos, infos->others_menu);
+        }
     }
     update_time(infos);
     sfRenderWindow_display(infos->win);
