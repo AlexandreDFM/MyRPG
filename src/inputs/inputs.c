@@ -43,34 +43,26 @@ sfKeyCode check_key_valid(wininf *inf)
     return inf->tmp_key;
 }
 
+void update_temporary_key(wininf *inf)
+{
+    if (inf->key_change == 0) inf->inputs.keys.up = inf->tmp_key;
+    if (inf->key_change == 1) inf->inputs.keys.down = inf->tmp_key;
+    if (inf->key_change == 2) inf->inputs.keys.left = inf->tmp_key;
+    if (inf->key_change == 3) inf->inputs.keys.right = inf->tmp_key;
+    if (inf->key_change == 4) inf->inputs.keys.interact = inf->tmp_key;
+    if (inf->key_change == 5) inf->inputs.keys.inventory = inf->tmp_key;
+    if (inf->key_change == 6) inf->inputs.keys.attack = inf->tmp_key;
+    if (inf->key_change == 7) inf->inputs.keys.back = inf->tmp_key;
+    if (inf->key_change == 8) inf->inputs.keys.mup = inf->tmp_key;
+    if (inf->key_change == 9) inf->inputs.keys.mdown = inf->tmp_key;
+    if (inf->key_change == 10) inf->inputs.keys.mleft = inf->tmp_key;
+    if (inf->key_change == 11) inf->inputs.keys.mright = inf->tmp_key;
+}
+
 void update_key(wininf *inf)
 {
-    if (check_key_valid(inf) >= 0) {
-        if (inf->key_change == 0)
-            inf->inputs.keys.up = inf->tmp_key;
-        if (inf->key_change == 1)
-            inf->inputs.keys.down = inf->tmp_key;
-        if (inf->key_change == 2)
-            inf->inputs.keys.left = inf->tmp_key;
-        if (inf->key_change == 3)
-            inf->inputs.keys.right = inf->tmp_key;
-        if (inf->key_change == 4)
-            inf->inputs.keys.interact = inf->tmp_key;
-        if (inf->key_change == 5)
-            inf->inputs.keys.inventory = inf->tmp_key;
-        if (inf->key_change == 6)
-            inf->inputs.keys.attack = inf->tmp_key;
-        if (inf->key_change == 7)
-            inf->inputs.keys.back = inf->tmp_key;
-        if (inf->key_change == 8)
-            inf->inputs.keys.mup = inf->tmp_key;
-        if (inf->key_change == 9)
-            inf->inputs.keys.mdown = inf->tmp_key;
-        if (inf->key_change == 10)
-            inf->inputs.keys.mleft = inf->tmp_key;
-        if (inf->key_change == 11)
-            inf->inputs.keys.mright = inf->tmp_key;
-    }
+    if (check_key_valid(inf) >= 0)
+        update_temporary_key(inf);
     inf->waiting_key = 38;
     inf->key_change = -1;
     sfText *tmp_t = ((choices *)inf->current_menu->selected->data)->choice;
@@ -97,13 +89,10 @@ void update_inputs(wininf *inf)
         update_joysticks(inf);
     }
     inf->inputs.type = KEYBOARD;
-    update_keyboard(inf);
-    treat_axis(inf);
+    update_keyboard(inf); treat_axis(inf);
     if (old_interact != inf->inputs.interact && old_interact)
         inf->inputs.can_interact = 0;
-    if (inf->interacting) {
-        inf->inputs.axis = (sfVector2f){0.0f, 0.0f};
-    }
+    if (inf->interacting) inf->inputs.axis = (sfVector2f){0.0f, 0.0f};
 }
 
 void treat_axis(wininf *inf)
@@ -136,9 +125,8 @@ void update_joysticks(wininf *inf)
         x = sfJoystick_getAxisPosition(0, sfJoystickX) / 100.0f;
         y = sfJoystick_getAxisPosition(0, sfJoystickY) / 100.0f;
     }
-    if (sfJoystick_getButtonCount(0)) {
+    if (sfJoystick_getButtonCount(0))
         inf->inputs.interact += sfJoystick_isButtonPressed(0, 2);
-    }
     x = fabs(x) > 0.35f ? x : 0.0f;
     y = fabs(y) > 0.35f ? y : 0.0f;
     inf->inputs.axis = (sfVector2f){x, y};
