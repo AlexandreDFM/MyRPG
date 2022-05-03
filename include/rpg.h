@@ -333,6 +333,11 @@ void create_dungeon(wininf *win, char *name);
 void update_enemy(player *enemy, wininf *inf, player *p);
 void create_enemy(wininf *inf, dungeon *d, sfVector2i pos);
 void move_in_tunnel(player *e, wininf *inf, player *p);
+void manage_client(char *arg, wininf *inf);
+void manage_host(char *arg, wininf *inf);
+void manage_lang(char *arg, wininf *inf);
+void manage_fps(char *arg, wininf *inf);
+
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

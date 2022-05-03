@@ -97,6 +97,7 @@ SRC		= 	main.c												\
 			src/dungeon/enemy/create_enemy.c					\
 			src/dungeon/enemy/update_enemy.c					\
 			src/settings/flags_handling.c						\
+			src/settings/manage_flags.c							\
 			src/network/connecting_utils.c						\
 			src/network/network_syncing.c						\
 			src/network/update_network.c						\

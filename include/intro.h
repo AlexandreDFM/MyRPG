@@ -51,5 +51,9 @@ void move_rectintrotop(sfIntRect *rect, int modify, int max_value);
 void move_rectintroleft(sfIntRect *rect, int modify, int max_value);
 void move_rectintroleft2(sfIntRect *rect, int modify, int max_value);
 void move_rectintroleft3(sfIntRect *rect, int modify, int max_value);
+void plan1_clock(wininf *inf, intro_a *rpg);
+void plan2_clock(wininf *inf, intro_a *rpg);
+void plan3_clock(wininf *inf, intro_a *rpg);
+void plan4_clock(wininf *inf, intro_a *rpg);
 
 #endif
