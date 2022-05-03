@@ -7,22 +7,27 @@
 
 #include "rpg.h"
 
-void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
+void test_static_anim(char *name, float *size, char **csv, int *i)
 {
-    int i = 0;
-    float size = 1.0f;
     my_printf("\tLoading ");
     if (name[0] == '_') {
-        size *= -1.0f;
+        (*size) *= -1.0f;
         name += 1;
         my_printf("Reversed ");
     }
     my_printf("%s ", name);
-    for (; csv[i]; i++) {
-        int len = my_strlen(csv[i]);
-        if (!my_strncmp(name, csv[i], len))
+    for (; csv[*i]; (*i) = *i + 1) {
+        int len = my_strlen(csv[*i]);
+        if (!my_strncmp(name, csv[*i], len))
             break;
     }
+}
+
+void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
+{
+    int i = 0;
+    float size = 1.0f;
+    test_static_anim(name, &size, csv, &i);
     char **args = my_strtwa(csv[i], ";\n");
     entity *ne = my_malloc(sizeof(entity));
     ne->width = my_atoi(args[3]);
