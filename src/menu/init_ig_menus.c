@@ -16,14 +16,14 @@ choices *fill_ig_choice(char **arr, int tmp, wininf *inf, int idx)
     pos = (sfVector2f){my_atoi(arr[tmp + 1]) + my_atoi(arr[2]),
     my_atoi(arr[tmp + 2]) + my_atoi(arr[3]) +
     my_atoi(arr[get_arr_len(arr) - 1]) * idx};
-    dline *tmp2 = load_line(arr[tmp], inf->ui.font, size, inf);
+    dline *tmp2 = load_line(arr[tmp], size, inf, my_malloc);
     r.width = tmp2->steps[tmp2->max], r.height = tmp2->height;
     choice->choice = tmp2->sp;
     sfSprite_setTextureRect(choice->choice, r);
     sfSprite_setPosition(choice->choice, pos);
     pos = (sfVector2f){my_atoi(arr[tmp + 4]) + my_atoi(arr[2]),
     my_atoi(arr[tmp + 5]) + my_atoi(arr[3])};
-    tmp2 = load_line(arr[tmp + 3], inf->ui.font, size, inf);
+    tmp2 = load_line(arr[tmp + 3], size, inf, my_malloc);
     r.width = tmp2->steps[tmp2->max], r.height = tmp2->height;
     choice->desc = tmp2->sp;
     sfSprite_setPosition(choice->desc, pos);
@@ -62,7 +62,7 @@ list *fill_ig_texts(char **arr, wininf *inf, int off)
         pos.x = my_atoi(arr[tmp + 1]) + my_atoi(arr[2]);
         pos.y = my_atoi(arr[tmp + 2]) + my_atoi(arr[3]) +
         my_atoi(arr[get_arr_len(arr) - 1]);
-        tmp2 = load_line(arr[tmp], inf->ui.font, size, inf);
+        tmp2 = load_line(arr[tmp], size, inf, my_malloc);
         add_to_list(&texts, tmp2->sp);
         r.width = tmp2->steps[tmp2->max], r.height = tmp2->height;
         sfSprite_setTextureRect(texts->data, r);

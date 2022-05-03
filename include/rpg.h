@@ -365,7 +365,7 @@ sfIntRect find_icons(wininf *inf, char *str);
 //Dialogs Handling
 int treat_balise(char *balise, sfColor *color, wininf *inf);
 //Dialogs Handling
-dline *load_line(char *line, sfFont *font, int size, wininf *inf);
+dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t));
 //Dialogs Handling
 list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
 //Dialogs Handling

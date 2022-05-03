@@ -84,10 +84,10 @@ wininf create_window_infos(int ac, char **av)
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
     inf.quiz = NULL;
-    inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
-    inf.ig_choices[0] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
-    inf.ig_choices[1] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
-    inf.ig_choices[2] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
+    inf.playtime = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.ig_choices[0] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.ig_choices[1] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.ig_choices[2] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
     inf.pressed = 0;
     sfRenderWindow_setFramerateLimit(inf.win, inf.settings->c_fps < 5 ?
     my_atoi(inf.settings->fps[inf.settings->c_fps]) : 0);

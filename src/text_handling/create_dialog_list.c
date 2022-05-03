@@ -15,7 +15,7 @@ list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle)
     poubelle.x -= sfSprite_getTextureRect(inf->ui.background).width / 2 - 10;
     poubelle.y -= sfSprite_getTextureRect(inf->ui.background).height / 2 - 5;
     for (int i = 0; arr[i]; i++) {
-        line = load_line(arr[i], inf->ui.font, FONT_SIZE, inf);
+        line = load_line(arr[i], FONT_SIZE, inf, my_malloc);
         sfSprite_setPosition(line->sp, poubelle);
         push_back(&l, line);
     }
