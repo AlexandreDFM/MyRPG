@@ -24,6 +24,7 @@ void update_playtime(wininf *inf)
     sfVector2f old_pos = sfSprite_getPosition(inf->pause_menu->texts->data);
     sfSprite_destroy(inf->pause_menu->texts->data);
     inf->pause_menu->texts->data = inf->playtime->sp;
-    free(final);
+    free(final);free(inf->playtime->steps);
     sfSprite_setPosition(inf->pause_menu->texts->data, old_pos);
+    free(inf->playtime);
 }

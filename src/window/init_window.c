@@ -28,6 +28,29 @@ void init_key_list(wininf *inf)
         inf->key_list[i] = my_strdup((char *)list[i]);
 }
 
+void init_fps(wininf *inf)
+{
+    sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?
+    my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
+    sfText_setString(
+    ((choices *)inf->options_menu->choices->prev->prev->prev->data)->choice
+    , inf->settings->fps[inf->settings->c_fps]);
+    sfIntRect r; r.top = 0; r.left = 0;
+    sfVector2f old_pos =sfSprite_getPosition(((choices *)inf->ig_options_menu
+    ->choices->prev->prev->data)->choice);
+    inf->ig_choices[2] = load_line(inf->settings->fps[inf->settings->c_fps],
+    inf->ui.font, FONT_SIZE, inf);
+    r.width = inf->ig_choices[2]->steps[inf->ig_choices[2]->max], r.height =
+    inf->ig_choices[2]->height;
+    sfSprite_setTextureRect(inf->ig_choices[2]->sp, r);
+    sfSprite_destroy(((choices *)inf->ig_options_menu->choices->prev->prev
+    ->data)->choice);
+    ((choices *)inf->ig_options_menu->choices->prev->prev->data)->choice =
+    inf->ig_choices[2]->sp;
+    sfSprite_setPosition(((choices *)inf->ig_options_menu->choices->prev->prev
+    ->data)->choice, old_pos);
+}
+
 wininf create_window_infos(int ac, char **av)
 {
     srand(time(0));
@@ -89,11 +112,7 @@ wininf create_window_infos(int ac, char **av)
     inf.ig_choices[1] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     inf.ig_choices[2] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     inf.pressed = 0;
-    sfRenderWindow_setFramerateLimit(inf.win, inf.settings->c_fps < 5 ?
-    my_atoi(inf.settings->fps[inf.settings->c_fps]) : 0);
-    sfText_setString(
-        ((choices *)inf.options_menu->choices->prev->prev->prev->data)->choice
-        , inf.settings->fps[inf.settings->c_fps]);
+    init_fps(&inf);
     init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();
     set_pokemon(&inf);
     return inf;
