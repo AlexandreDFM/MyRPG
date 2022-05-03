@@ -9,7 +9,10 @@
 
 void update_playtime(wininf *inf)
 {
-    if (inf->playtime) sfTexture_destroy(inf->playtime->img);
+    if (inf->playtime) {
+        sfTexture_destroy(inf->playtime->img); free(inf->playtime->steps);
+        free(inf->playtime->sps); free(inf->playtime);
+    }
     char *final = my_strdup("00:00:00", malloc);
     int tmpt = sfClock_getElapsedTime(inf->play_time).microseconds / 1000000;
     int hours = tmpt / 3600; int minutes = (tmpt % 3600) / 60;
@@ -23,8 +26,6 @@ void update_playtime(wininf *inf)
     sfSprite_setTextureRect(inf->playtime->sps[0], r);
     sfVector2f old_pos = sfSprite_getPosition(inf->pause_menu->texts->data);
     sfSprite_destroy(inf->pause_menu->texts->data);
-    inf->pause_menu->texts->data = inf->playtime->sps[0];
-    free(final);free(inf->playtime->steps);
+    inf->pause_menu->texts->data = inf->playtime->sps[0]; free(final);
     sfSprite_setPosition(inf->pause_menu->texts->data, old_pos);
-    free(inf->playtime);
 }
