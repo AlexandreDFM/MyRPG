@@ -9,8 +9,7 @@
 
 choices *fill_ig_choice(char **arr, int tmp, wininf *inf, int idx)
 {
-    int size = my_atoi(arr[1]);
-    sfVector2f pos; sfIntRect r;
+    int size = my_atoi(arr[1]); sfVector2f pos; sfIntRect r;
     r.left = 0, r.top = 0;
     choices *choice = malloc(sizeof(choices));
     pos = (sfVector2f){my_atoi(arr[tmp + 1]) + my_atoi(arr[2]),

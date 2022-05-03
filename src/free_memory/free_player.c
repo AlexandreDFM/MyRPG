@@ -9,5 +9,5 @@
 
 void free_player(wininf *inf)
 {
-    
+
 }

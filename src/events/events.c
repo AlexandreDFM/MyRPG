@@ -39,7 +39,8 @@ void update_events(wininf *inf, player *p)
         }
         if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
             sfKeyboard_isKeyPressed(inf->inputs.keys.back) &&
-            inf->c_menu == NONE && inf->pause_menu->press == 0 && !inf->ui.dialog) {
+            inf->c_menu == NONE && inf->pause_menu->press == 0 &&
+            !inf->ui.dialog) {
             inf->c_menu = PAUSE;
             inf->pause_menu->focus = 1;
             inf->pause_menu->press = 1;

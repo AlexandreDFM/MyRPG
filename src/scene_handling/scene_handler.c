@@ -27,7 +27,8 @@ void handle_scene(wininf *infos, player *p)
                 change_volume(infos);
             }
         }
-        if (infos->c_menu == KEYBINDS_M) draw_menu(infos, infos->change_keys_menu);
+        if (infos->c_menu == KEYBINDS_M)
+            draw_menu(infos, infos->change_keys_menu);
     } else {
         if (infos->c_scene == HOME)
             draw_home(infos);

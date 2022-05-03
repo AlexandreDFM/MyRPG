@@ -44,7 +44,7 @@ bsp *split_container(sfIntRect *main, int iter)
     return root;
 }
 
-int random_btw(int min, int max)
+int rdm_btw(int min, int max)
 {
     return (rand() % (max - min + 1)) + min;
 }
@@ -55,7 +55,7 @@ sfIntRect **random_split(sfIntRect *r, int iter)
     sfIntRect **splits = malloc(sizeof(sfIntRect*) * 2);
     sfIntRect *l = malloc(sizeof(sfIntRect)), *re = malloc(sizeof(sfIntRect));
     if (rand() % 2) {
-        *l = (sfIntRect){r->left, r->top, random_btw(2, r->width - 2), r->height};
+        *l = (sfIntRect){r->left, r->top, rdm_btw(2, r->width - 2), r->height};
         splits[0] = l;
         *re = (sfIntRect){r->left + splits[0]->width, r->top,
             r->width - splits[0]->width, r->height};
@@ -69,7 +69,7 @@ sfIntRect **random_split(sfIntRect *r, int iter)
             return random_split(r, iter--);
         }
     } else {
-        *l = (sfIntRect){r->left, r->top, r->width, random_btw(2, r->height - 2)};
+        *l = (sfIntRect){r->left, r->top, r->width, rdm_btw(2, r->height - 2)};
         splits[0] = l;
         *re = (sfIntRect){r->left, r->top + splits[0]->height, r->width,
             r->height - splits[0]->height};
@@ -97,8 +97,8 @@ sfIntRect generate_room(sfIntRect *rect)
 {
     sfIntRect room = {rect->left, rect->top,
         (float)rect->width / 1.5f, (float)rect->height / 1.5f};
-    room.left += random_btw(0, (float)rect->width / 4.0f);
-    room.top += random_btw(0, (float)rect->height / 4.0f);
+    room.left += rdm_btw(0, (float)rect->width / 4.0f);
+    room.top += rdm_btw(0, (float)rect->height / 4.0f);
     return room;
 }
 

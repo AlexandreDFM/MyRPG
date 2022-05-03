@@ -15,7 +15,7 @@ void create_dungeon(wininf *win, char *name)
     for (int i = 0; win->dungeon.inf->map[i]; i++) {
         printf("%s\n", win->dungeon.inf->map[i]);
     }
-    sfVector2f pos = *(win->dungeon.inf->pos[0]); //TEMP
+    sfVector2f pos = *(win->dungeon.inf->pos[0]);
     sfVector2i lpos = global_to_local(pos);
     create_enemy(win, &win->dungeon, (sfVector2i){lpos.x - 2, lpos.y});
 }

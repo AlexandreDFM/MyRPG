@@ -13,9 +13,8 @@ void plan0_clock(wininf *inf, intro_a *rpg)
     if (inf->time.intro_anim > 0.030f && rpg->plan == PLAN0) {
         rpg->pkmintro[RDMPKM].pos.y -= 7;
         if (rpg->pkmintro[RDMPKM].pos.y <= 550) {
-            rpg->pkmintro[RDMPKM].rect.left = 0;
+            rpg->pkmintro[RDMPKM].rect.left = 0; rpg->plan = PLAN1;
             rpg->pkmintro[BEKIPAN2].rect = (sfIntRect) {92, 58, 28, 21};
-            rpg->plan = PLAN1;
         }
         inf->time.intro_anim = 0.0f;
     }
@@ -24,9 +23,9 @@ void plan0_clock(wininf *inf, intro_a *rpg)
         rpg->pkmintro[RDMPKM].rect.width * 2) {
             rpg->pkmintro[RDMPKM].rect.left = 0;
         } else {
-            rpg->pkmintro[RDMPKM].rect.left += rpg->pkmintro[RDMPKM].rect.width;
-        }
-        move_rectintroleft2(&rpg->pkmintro[BEKIPAN1].rect, 31, 93);
+            rpg->pkmintro[RDMPKM].rect.left +=
+            rpg->pkmintro[RDMPKM].rect.width;
+        } move_rectintroleft2(&rpg->pkmintro[BEKIPAN1].rect, 31, 93);
         move_rectintroleft2(&rpg->pkmintro[BEKIPAN2].rect, 31, 93);
         inf->time.intro_anim2 = 0.0f;
     }
@@ -39,7 +38,8 @@ void plan1_clock(wininf *inf, intro_a *rpg)
             move_rectintrotop(&rpg->b_intro[0].rect, 1, 124);
             rpg->pkmintro[RDMPKM].pos.y += 7;
             rpg->pkmintro[BEKIPAN2].pos.y += 7;
-        } else if (rpg->b_intro[0].rect.top <= 124 && rpg->pkmintro[BEKIPAN1].pos.y >= -29){
+        } else if (rpg->b_intro[0].rect.top <= 124 &&
+        rpg->pkmintro[BEKIPAN1].pos.y >= -29){
             rpg->pkmintro[BEKIPAN1].pos.x += 7;
             rpg->pkmintro[BEKIPAN1].pos.y -= 4;
         } else {
@@ -52,7 +52,8 @@ void plan1_clock(wininf *inf, intro_a *rpg)
     if (inf->time.intro_anim2 > 0.25f && rpg->plan == PLAN1) {
         if (rpg->b_intro[0].rect.top > 124)
             move_rectintroleft2(&rpg->pkmintro[BEKIPAN1].rect, 31, 93);
-        else if (rpg->b_intro[0].rect.top == 124 && rpg->pkmintro[BEKIPAN1].rect.left != 138) {
+        else if (rpg->b_intro[0].rect.top == 124 &&
+        rpg->pkmintro[BEKIPAN1].rect.left != 138) {
             rpg->pkmintro[BEKIPAN1].rect = (sfIntRect) {138, 18, 29, 21};
             move_rectintrotop(&rpg->b_intro[0].rect, 1, 124);
         } else {
@@ -75,7 +76,8 @@ void plan2_clock(wininf *inf, intro_a *rpg)
         move_rectintroleft(&rpg->b_intro[1].rect, 1, 529);
         rpg->pkmintro[BEKIPAN1].pos.x += 7;
         rpg->pkmintro[BEKIPAN1].pos.y -= 4;
-        if (rpg->pkmintro[BEKIPAN1].pos.y < (0 - (rpg->pkmintro[BEKIPAN1].rect.height * 7))) {
+        if (rpg->pkmintro[BEKIPAN1].pos.y < (0 -
+        (rpg->pkmintro[BEKIPAN1].rect.height * 7))) {
             rpg->b_intro[0].rect = (sfIntRect) {0, 465, 240, 160};
             rpg->pkmintro[BEKIPAN1].pos = (sfVector2f) {222 * 7, 63};
             rpg->pkmintro[BEKIPAN1].resize = (sfVector2f) {1, 1};

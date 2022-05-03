@@ -54,7 +54,8 @@ void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
     inf->event.key.code == inf->inputs.keys.mleft) {
         inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
         inf->ig_choices[current] =
-        load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, malloc);
+        load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf,
+        malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
         sfSprite_setTextureRect(inf->ig_choices[current]->sps[0], r);
@@ -75,7 +76,8 @@ void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
     inf->event.key.code == inf->inputs.keys.mright) {
         inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
         inf->ig_choices[current] =
-        load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, malloc);
+        load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf,
+        malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
         sfSprite_setTextureRect(inf->ig_choices[current]->sps[0], r);
@@ -94,7 +96,7 @@ void change_volume_ig(wininf *inf)
 {
     int current = ((choices *)inf->ig_options_menu->selected->data)->ptr;
     sfIntRect r; r.left = 0, r.top = 0;
-    sfVector2f old_pos =sfSprite_getPosition(((choices *)inf->ig_options_menu
+    sfVector2f old_pos = sfSprite_getPosition(((choices *)inf->ig_options_menu
     ->selected->data)->choice);
     left_volume(inf, current, old_pos, r);
     right_volume(inf, current, old_pos, r);

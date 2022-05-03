@@ -10,7 +10,7 @@
 int receive_okay(char **data, int *important, components *all)
 {
     network *net = all->inf.net;
-    int ord_to_remove = *((int*)*data);
+    int ord_to_remove = *((int *)*data);
     *data += sizeof(int);
     net->flags[ord_to_remove] = 0;
     return sizeof(int);
@@ -19,13 +19,13 @@ int receive_okay(char **data, int *important, components *all)
 int receive_hostsync(char **data, int *important, components *all)
 {
     network *net = all->inf.net;
-    net->other.p = init_player(all->inf, *((int*)*data));
+    net->other.p = init_player(all->inf, *((int *)*data));
     *data += sizeof(int);
     sfVector2f pos = *((sfVector2f*)*data);
     sfSprite_setPosition(net->other.p->test, pos);
     net->other.target = pos;
     *data += sizeof(sfVector2f);
-    net->other.cscene = *((int*)*data);
+    net->other.cscene = *((int *)*data);
     all->inf.c_scene = net->other.cscene;
     *data += sizeof(int);
     return sizeof(int) * 3 + sizeof(sfVector2f);
@@ -35,7 +35,7 @@ int receive_clientsync(char **data, int *important, components *all)
 {
     network *net = all->inf.net;
     all->inf.net->other.cscene = all->inf.c_scene;
-    all->inf.net->other.p = init_player(all->inf, *((int*)*data));
+    all->inf.net->other.p = init_player(all->inf, *((int *)*data));
     sfVector2f pos = sfSprite_getPosition(all->pla->test);
     all->inf.net->other.target = pos;
     sfSprite_setPosition(all->inf.net->other.p->test, pos);
@@ -60,7 +60,7 @@ int receive_connection(char **data, int *important, components *all)
     *important = 1;
     sfIpAddress *client_ip = (sfIpAddress*)(*data);
     *data += sizeof(sfIpAddress);
-    int *port = (int*)*data;
+    int *port = (int *)*data;
     all->inf.net->other.ip = *client_ip;
     all->inf.net->other.port = *port;
     return sizeof(int) * 2 + sizeof(sfIpAddress);
@@ -68,7 +68,7 @@ int receive_connection(char **data, int *important, components *all)
 
 int receive_position(char **data, int *important, components *all)
 {
-    sfSprite_setPosition(all->inf.net->other.p->test, *((sfVector2f*)*data));
+    sfSprite_setPosition(all->inf.net->other.p->test, *((sfVector2f *)*data));
     // all->inf.net->other.target = *((sfVector2f*)*data);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
@@ -76,7 +76,7 @@ int receive_position(char **data, int *important, components *all)
 
 int receive_setposition(char **data, int *important, components *all)
 {
-    sfVector2f np = *((sfVector2f*)*data);
+    sfVector2f np = *((sfVector2f *)*data);
     sfSprite_setPosition(all->inf.net->other.p->test, np);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
@@ -84,7 +84,7 @@ int receive_setposition(char **data, int *important, components *all)
 
 int receive_scene(char **data, int *important, components *all)
 {
-    int ord_to_remove = *((int*)*data);
+    int ord_to_remove = *((int *)*data);
     all->inf.net->other.cscene = ord_to_remove;
     all->inf.net->flags[ord_to_remove] = 0;
     *data += sizeof(int);
