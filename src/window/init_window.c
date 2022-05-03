@@ -108,10 +108,10 @@ wininf create_window_infos(int ac, char **av)
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
     inf.quiz = NULL;
-    inf.playtime = load_line("VOID", FONT_SIZE, &inf, my_malloc);
-    inf.ig_choices[0] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
-    inf.ig_choices[1] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
-    inf.ig_choices[2] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.playtime = load_line("VOID", FONT_SIZE, &inf, malloc);
+    inf.ig_choices[0] = load_line("VOID", FONT_SIZE, &inf, malloc);
+    inf.ig_choices[1] = load_line("VOID", FONT_SIZE, &inf, malloc);
+    inf.ig_choices[2] = load_line("VOID", FONT_SIZE, &inf, malloc);
     inf.pressed = 0;
     init_fps(&inf);
     init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();
