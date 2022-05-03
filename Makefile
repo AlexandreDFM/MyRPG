@@ -79,8 +79,12 @@ SRC		= 	main.c												\
 			src/menu/draw_choices.c								\
 			src/menu/move_cursor.c								\
 			src/menu/init_menus_pointers.c						\
-			src/menu/function_pointers/main_menu.c				\
+			src/menu/function_pointers/main_menu_play_option.c	\
+			src/menu/function_pointers/main_menu.c	\
 			src/menu/function_pointers/load_menu_pointers.c		\
+			src/menu/function_pointers/options_goto.c			\
+			src/menu/function_pointers/options_pointers_fps.c	\
+			src/menu/function_pointers/options_pointers_volume.c\
 			src/menu/function_pointers/options_pointers.c		\
 			src/menu/function_pointers/others_pointers.c		\
 			src/menu/set_cursor.c								\
