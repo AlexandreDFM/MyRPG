@@ -26,11 +26,12 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     int height = 0;
     char prev = 0;
     sfImage *font_alpha = sfTexture_copyToImage(sfFont_getTexture(f, size));
-    int len = 0, cond = 0;
+    int len = 0, cond = 0, nb_y = 1;
     int ln = my_strlen(line);
     for (int i = 0; i < ln && line[i] != '\0' && line[i] != '\n'; i++, len++) {
         if (line[i] == '\\' && line[i + 1] == 'n') {
-            i += 2;
+            i ++;
+            nb_y++;
             continue;
         }
         if (line[i] == '<') {
@@ -54,10 +55,10 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     }
     prev = 0;
     sfColor current_color = sfWhite;
-    sfColor bl = sfColor_fromRGBA(0, 0, 0, 0);
-    sfImage *img = sfImage_createFromColor(length, height, bl);
+    sfColor bl = sfColor_fromRGBA(0, 0, 0, 120);
+    sfImage *img = sfImage_createFromColor(length, height * nb_y + 2, bl);
     int *steps = ptr(sizeof(int) * (len + 1));
-    int li = 0;
+    int li = 0, c_height = 0;
     for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++, li++) {
         if (line[i] == '<') {
             int y = 0;
@@ -71,7 +72,7 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
                 li--;
             } else {
                 sfIntRect r = find_icons(inf, 2 + test);
-                sfVector2i pos = (sfVector2i){posx - 1, 1};
+                sfVector2i pos = (sfVector2i){posx - 1, c_height + 3};
                 add_icon(pos, img, r, inf->atlases.atlas);
                 posx += res;
                 steps[li] = posx;
@@ -79,11 +80,13 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
             continue;
         }
         if (line[i] == '\\' && line[i + 1] == 'n') {
-            i += 2;
+            i += 1;
+            posx = 0; c_height += height;
+            li--;
             continue;
         }
         sfGlyph glyph = sfFont_getGlyph(f, line[i], size, sfFalse, 0.0f);
-        int startY = (height - 1) + glyph.bounds.top;
+        int startY = (height - 1) + glyph.bounds.top + c_height;
         for (int y = 0; y < glyph.textureRect.height; y++) {
             for (int x = 0; x < glyph.textureRect.width; x++) {
                 int gx = glyph.textureRect.left + x;
@@ -102,9 +105,16 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     }
     dline *nl = ptr(sizeof(dline));
     nl->img = sfTexture_createFromImage(img, NULL);
-    nl->sp = sfSprite_create();
-    sfSprite_setTexture(nl->sp, nl->img, sfFalse);
-    sfSprite_setTextureRect(nl->sp, (sfIntRect){0, 0, steps[0], height});
+    nl->cline = 0;
+    nl->sps = my_malloc(sizeof(sfSprite *) * nb_y);
+    for (int i = 0; i < nb_y; i++) {
+        nl->sps[i] = sfSprite_create();
+        sfSprite *sp = nl->sps[i];
+        float ch = height * i;
+        sfSprite_setTexture(sp, nl->img, sfFalse);
+        sfSprite_setTextureRect(sp, (sfIntRect){0, ch, 0, height});
+    }
+    nl->nblines = nb_y;
     nl->steps = steps;
     nl->max = li - 1;
     nl->height = height;

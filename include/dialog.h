@@ -16,7 +16,9 @@ typedef struct dialog_line_t {
     int height;
     int *steps;
     float time;
-    sfSprite *sp;
+    int nblines;
+    int cline;
+    sfSprite **sps;
     sfTexture *img;
 } dline;
 

@@ -143,8 +143,6 @@ void interact_pnj(wininf *win, player *p)
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
     else {
         dline *c_line = (dline*)win->ui.dialog->data;
-        sfSprite_setTextureRect(c_line->sp, (sfIntRect){0, 0, c_line->steps[0],
-        c_line->height});
         if (c_line->i == c_line->max) {
             win->ui.dialog = win->ui.dialog->next;
             win->interacting = !win->ui.dialog ? 0 : win->interacting;
