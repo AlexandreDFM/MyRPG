@@ -41,7 +41,7 @@ int treat_balise(char *balise, sfColor *color, wininf *inf)
     int g = my_atoi(balise + length_of_int(r) + 1);
     int b = my_atoi(balise + length_of_int(g) + 2 + length_of_int(r));
     if (balise[0] >= '0' && balise[0] <= '9') {
-        *color = sfColor_fromRGB(r,g,b);
+        *color = sfColor_fromRGB(r, g, b);
     }
     return 0;
 }

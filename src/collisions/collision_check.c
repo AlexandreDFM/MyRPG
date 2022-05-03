@@ -14,7 +14,6 @@ int check_circle_col(collision *s, sfVector2f pos)
     return !(distance((sfVector2f){s->pos.x, s->pos.y}, pos) <= s->radius);
 }
 
-
 int check_rect_col(collision *s, sfVector2f pos)
 {
     int x_cond = pos.x >= s->pos.x && pos.x <= s->pos.x + s->size.x;

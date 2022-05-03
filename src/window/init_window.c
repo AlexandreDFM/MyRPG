@@ -36,7 +36,7 @@ void init_fps(wininf *inf)
     ((choices *)inf->options_menu->choices->prev->prev->prev->data)->choice
     , inf->settings->fps[inf->settings->c_fps]);
     sfIntRect r; r.top = 0; r.left = 0;
-    sfVector2f old_pos =sfSprite_getPosition(((choices *)inf->ig_options_menu
+    sfVector2f old_pos = sfSprite_getPosition(((choices *)inf->ig_options_menu
     ->choices->prev->prev->data)->choice);
     inf->ig_choices[2] = load_line(inf->settings->fps[inf->settings->c_fps],
     FONT_SIZE, inf, my_malloc);
@@ -93,7 +93,7 @@ wininf create_window_infos(int ac, char **av)
     inf.load_menu = init_all_menus(&inf, LOAD_IDX, 0);
     init_load_pointers(&inf);
     inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
-    inf.change_keys_menu = init_all_menus(&inf,KEYBINDS_IDX, 0);                                                                                                                                                                                                         inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
+    inf.change_keys_menu = init_all_menus(&inf, KEYBINDS_IDX, 0);                                                                                                                                                                                                         inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
     inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.others_menu = init_ig_menus(&inf, OTHERS_IDX, 0);
     inf.ig_options_menu = init_ig_menus(&inf, IG_OPTIONS_IDX, 0);
@@ -103,7 +103,7 @@ wininf create_window_infos(int ac, char **av)
     inf.current_menu = inf.main_menu;
     inf.prev_menu = NULL;
     int tmp[2] = {100, 100};
-    inf.volumes = malloc(sizeof (int) * 2);
+    inf.volumes = malloc(sizeof(int) * 2);
     for (int i = 0; i < 2; i++) inf.volumes[i] = tmp[i];
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;

@@ -14,7 +14,7 @@ quiz *create_quiz(wininf *inf)
     qcm->tendance = 0;
     qcm->nature = malloc(sizeof(int) * 13);
     for (int i = 0; i < 13; i++) qcm->nature[i] = 0;
-    qcm->questions = load_csv("./csv/quiz_questions.csv"); qcm->nbquestions = 6;
+    qcm->questions = load_csv("./csv/quiz_questions.csv");qcm->nbquestions = 6;
     // for (; qcm->questions[qcm->nbquestions] != NULL; qcm->nbquestions++);
     qcm->actualquestion = 1;
     return qcm;

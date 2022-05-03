@@ -31,7 +31,7 @@ void update_enemy(player *e, wininf *inf, player *p)
     sfVector2i target = elpos;
     int proom = get_current_room(ppos, mi);
     int eroom = get_current_room(epos, mi);
-    if (proom == -1 ||eroom == -1) {
+    if (proom == -1 || eroom == -1) {
         if (eroom != -1 && mi->map[elpos.y][elpos.x] != 'E') {
             target = get_closest_exit(eroom, ppos, mi);
         } else if (proom == -1) {

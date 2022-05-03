@@ -34,12 +34,12 @@ void receive_ord(network *net, components *all)
     char *castdata = (void *) data;
     if (total < sizeof(int)) return;
     while (scanned < total) {
-        int *ord = (int*) castdata;
+        int *ord = (int *) castdata;
         my_printf("Order received: %d (%dbytes)\n", *ord, total);
         castdata += sizeof(int);
         scanned += sizeof(int);
         if (net->orders[*ord])
-            scanned += net->orders[*ord]((char**)&castdata, &important, all);
+            scanned += net->orders[*ord]((char **)&castdata, &important, all);
         else
             my_printf("Order not implemented ! (%d)\n", *ord);
     }

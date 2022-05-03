@@ -11,9 +11,11 @@
 sfVector2f **get_random_position(sfIntRect **rooms, int count, char ***map)
 {
     int rdm = (rand() % count);
-    sfVector2i start_pos = (sfVector2i){rooms[rdm]->left + rand() % rooms[rdm]->width, rooms[rdm]->top + rand() % rooms[rdm]->height};
+    sfVector2i start_pos = (sfVector2i){rooms[rdm]->left + rand() %
+    rooms[rdm]->width, rooms[rdm]->top + rand() % rooms[rdm]->height};
     int last = (rdm + count) >= count ? (count - rdm) : rdm + count;
-    sfVector2i last_pos = (sfVector2i){rooms[last]->left + rand() % rooms[last]->width, rooms[last]->top + rand() % rooms[last]->height};
+    sfVector2i last_pos = (sfVector2i){rooms[last]->left + rand() %
+    rooms[last]->width, rooms[last]->top + rand() % rooms[last]->height};
     sfVector2f **array = malloc(2 * sizeof(sfVector2f*));
     sfVector2f *start_posf = malloc(sizeof(sfVector2f));
     sfVector2f *last_posf = malloc(sizeof(sfVector2f));

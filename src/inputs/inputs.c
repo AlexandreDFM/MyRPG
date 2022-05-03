@@ -81,6 +81,7 @@ void update_key(wininf *inf)
     inf->key_list[inf->tmp_key] : "Unknown key");
 
 }
+
 void update_inputs(wininf *inf)
 {
     if (inf->waiting_key == 37) {
