@@ -17,8 +17,7 @@ choices *fill_ig_choice(char **arr, int tmp, wininf *inf, int idx)
     my_atoi(arr[get_arr_len(arr) - 1]) * idx};
     dline *tmp2 = load_line(arr[tmp], size, inf, my_malloc);
     r.width = tmp2->steps[tmp2->max], r.height = tmp2->height;
-    choice->choice = tmp2->sp;
-    sfSprite_setTextureRect(choice->choice, r);
+    choice->choice = tmp2->sp; sfSprite_setTextureRect(choice->choice, r);
     sfSprite_setPosition(choice->choice, pos);
     pos = (sfVector2f){my_atoi(arr[tmp + 4]) + my_atoi(arr[2]),
     my_atoi(arr[tmp + 5]) + my_atoi(arr[3])};
@@ -70,22 +69,32 @@ list *fill_ig_texts(char **arr, wininf *inf, int off)
     return texts;
 }
 
+menuss *init_ig2(char **arr, int offset, menuss *menu, wininf *inf)
+{
+    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]),
+    my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
+    menu->base_pos = pos;
+    menu->cursor = set_cursor(inf, (sfVector2f) {my_atof(arr[offset + 2]),
+    my_atof(arr[offset + 3])}, pos);
+    menu->blk = 0, menu->press = 0;
+    menu->max_choice = my_atoi(arr[offset + 4]);
+    menu->type = my_atoi(arr[offset + 6]);
+    return menu;
+}
+
 menuss *init_ig_menus(wininf *inf, int menu_id, int focus)
 {
-    menuss *menu = malloc(sizeof(menuss));
-    char **arr;
+    menuss *menu = malloc(sizeof(menuss)); char **arr;
     if (inf->lang == ENGLISH)
-    arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
+        arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
     else arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");
     menu->offset = my_atoi(arr[get_arr_len(arr) - 1]);
     menu->backgrounds = init_backgrounds(arr, inf);
     int offset = my_atoi(arr[4]) * 5 + 5;
     menu->choices = init_ig_choices(arr, inf, offset);
-    menu->head = menu->choices;
-    menu->selected = menu->choices;
-    if (menu->choices) {
-        offset += my_atoi(arr[offset]) * 7 + 1;
-    } else offset += 1;
+    menu->head = menu->choices; menu->selected = menu->choices;
+    if (menu->choices) offset += my_atoi(arr[offset]) * 7 + 1;
+    else offset += 1;
     menu->texts = fill_ig_texts(arr, inf, offset);
     if (menu->texts) {
         offset += my_atoi(arr[offset]) * 3 + 2;
@@ -93,17 +102,6 @@ menuss *init_ig_menus(wininf *inf, int menu_id, int focus)
     } else {
         if (!arr[offset + 1]) return menu;
         offset += 2;
-    }
-    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]),
-    my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
-    menu->base_pos = pos;
-    menu->cursor = set_cursor(inf, (sfVector2f) {my_atof(arr[offset + 2]),
-    my_atof(arr[offset + 3])}, pos);
-    menu->blk = 0;
-    menu->press = 0;
-    menu->focus = focus;
-    menu->max_choice = my_atoi(arr[offset + 4]);
-    menu->type = my_atoi(arr[offset + 6]);
-    menu->id = menu_id;
-    return menu;
+    } menu->focus = focus, menu->id = menu_id;
+    return init_ig2(arr, offset, menu, inf);
 }
