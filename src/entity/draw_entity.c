@@ -26,8 +26,7 @@ void anim_entity(time_info *time_s, entity *obj)
             obj->sign *= -1.0f;
             obj->rect.left += obj->width;
         }
-    }
-    sfSprite_setTextureRect(obj->sp, obj->rect);
+    } sfSprite_setTextureRect(obj->sp, obj->rect);
 }
 
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win)

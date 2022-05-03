@@ -48,7 +48,6 @@ SRC		= 	main.c												\
 			src/utils/my_strdup_to_char.c						\
 			src/utils/my_checks.c								\
 			src/utils/my_slice_array.c							\
-			src/entity/init_entity.c							\
 			src/scene_handling/draw_home.c						\
 			src/maths/pingpong.c								\
 			src/maths/my_lerp.c									\
