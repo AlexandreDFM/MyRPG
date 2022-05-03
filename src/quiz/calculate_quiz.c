@@ -31,4 +31,5 @@ int chose_line(char **csv, int tendance, int sexe)
     if (tendance == Relaxed) return quiz_result(csv, sexe, 11);
     if (tendance == Lonely) return quiz_result(csv, sexe, 12);
     if (tendance == Quirky) return quiz_result(csv, sexe, 13);
+    return 0;
 }

@@ -55,6 +55,9 @@
         "src/entity/draw_entity.o"
     ],
     "files.associations": {
-        "rpg.h": "c"
+        "rpg.h": "c",
+        "ditto.h": "c",
+        "dream.h": "c",
+        "quiz.h": "c"
     }
 }

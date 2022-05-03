@@ -21,12 +21,12 @@ void create_pnj(char *line, scene *s, atlases atlas)
 {
     char **arr = my_strtwa(line, ";\n");
     place_decorations(line, atlas.atlas, atlas.statics, &(s->animated));
-    pnj *pnj_s = malloc(sizeof(pnj));
-    pnj_s->ent = malloc(sizeof(entity));
+    pnj *pnj_s = my_malloc(sizeof(pnj));
+    pnj_s->ent = my_malloc(sizeof(entity));
     pnj_s->ent = (entity*)s->animated->data;
     pnj_s->pos = sfSprite_getPosition(pnj_s->ent->sp);
     pnj_s->dialog = my_strdup(arr[3], my_malloc);
-    list *nl = malloc(sizeof(list));
+    list *nl = my_malloc(sizeof(list));
     nl->data = pnj_s;
     nl->next = s->pnjs;
     s->pnjs = nl;

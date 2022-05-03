@@ -10,7 +10,6 @@
 
 int main(int argc, char **argv)
 {
-    char *str = unix_to_date(time(0));
     components all = create_all_components(argc, argv);
     if (all.inf.net->is_multi && !all.inf.net->is_host)
         sync_online(&all);

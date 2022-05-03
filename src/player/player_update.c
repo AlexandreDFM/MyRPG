@@ -19,13 +19,14 @@ void draw_player(wininf *inf, player *p)
     }
     if (inf->net->is_multi && inf->net->other.p->test) {
         sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
-        // pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
-        // sfSprite_setPosition(inf->net->other.p.test, pos);
+        pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
+        sfSprite_setPosition(inf->net->other.p->test, pos);
         if (inf->net->other.cscene == inf->c_scene)
             sfRenderWindow_drawSprite(inf->win, inf->net->other.p->test, 0);
     }
     update_camera(inf);
-    sfRenderWindow_drawSprite(inf->win, p->test, 0);
+    sfShader_setFloatUniform(inf->state.shader, "time", inf->time.time);
+    sfRenderWindow_drawSprite(inf->win, p->test, p->shiny ? &inf->state : 0);
 }
 
 void perform_free_movement(wininf *inf, player *p)
@@ -54,7 +55,9 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfVector2i target = global_to_local(p->nextpos);
     int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
     int cond2 = is_same(pos, p->nextpos, 2.0f);
-    if (inf->dungeon.inf->map[np.y][np.x] == ' ' && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
+    char c = inf->dungeon.inf->map[np.y][np.x];
+    int walkable = c == ' ' || c == 'E';
+    if (walkable && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
         p->nextpos = local_to_global(np.x, np.y);
         p->time = 0.0f;
         update_mobs(inf, p);

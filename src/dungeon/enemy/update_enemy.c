@@ -66,7 +66,7 @@ float scanx_tunnel(int y, sfVector2f target, float mdst, sfIntRect *p)
     return mdst;
 }
 
-sfVector2i move_in_tunnel(player *e, wininf *inf, player *p)
+void move_in_tunnel(player *e, wininf *inf, player *p)
 {
     map_inf *mi = inf->dungeon.inf;
     sfVector2i plpos = global_to_local(sfSprite_getPosition(p->test));
@@ -86,7 +86,6 @@ sfVector2i move_in_tunnel(player *e, wininf *inf, player *p)
             }
         }
     }
-    printf("Final: %c0\n", mi->map[final.y][final.x]);
     sfVector2f ffinal = local_to_global(final.x, final.y);
     sfSprite_setPosition(e->test, ffinal);
 }

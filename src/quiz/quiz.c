@@ -7,6 +7,7 @@
 
 #include "rpg.h"
 #include "quiz.h"
+#include "dream.h"
 
 void qcm(wininf *inf)
 {

@@ -29,6 +29,10 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     int len = 0, cond = 0;
     int ln = my_strlen(line);
     for (int i = 0; i < ln && line[i] != '\0' && line[i] != '\n'; i++, len++) {
+        if (line[i] == '\\' && line[i + 1] == 'n') {
+            i += 2;
+            continue;
+        }
         if (line[i] == '<') {
             cond = line[i] != '>' && line[i] != '\0' && line[i] != '\n';
             for (int y = i; cond; y++, i++) {
@@ -72,6 +76,10 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
                 posx += res;
                 steps[li] = posx;
             }
+            continue;
+        }
+        if (line[i] == '\\' && line[i + 1] == 'n') {
+            i += 2;
             continue;
         }
         sfGlyph glyph = sfFont_getGlyph(f, line[i], size, sfFalse, 0.0f);

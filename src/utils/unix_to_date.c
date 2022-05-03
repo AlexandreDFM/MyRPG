@@ -18,7 +18,10 @@ void get_dateinfo(long int ti, date_t *t)
     t->index = 0;
     t->date = 0;
     t->month = 0;
-    t->hours, t->minutes, t->secondss, t->flag = 0;
+    t->hours = 0;
+    t->minutes = 0;
+    t->secondss = 0;
+    t->flag = 0;
     t->daystillnow = ti / (24 * 60 * 60);
     t->extratime = ti % (24 * 60 * 60);
 }
