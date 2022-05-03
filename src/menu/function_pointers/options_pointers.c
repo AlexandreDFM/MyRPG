@@ -18,11 +18,11 @@ void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
             r.width = inf->ig_choices[current]->
             steps[inf->ig_choices[current]->max], r.height =
             inf->ig_choices[current]->height;
-            sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
+            sfSprite_setTextureRect(inf->ig_choices[current]->sps[0], r);
             sfSprite_destroy(((choices *)inf->ig_options_menu->selected->data)
             ->choice);
             ((choices *)inf->ig_options_menu->selected->data)->choice = inf
-            ->ig_choices[current]->sp;
+            ->ig_choices[current]->sps[0];
             sfSprite_setPosition(((choices *)inf->ig_options_menu->selected
             ->data)->choice, old_pos);
         }
@@ -38,11 +38,11 @@ void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
         load_line(my_itoa(inf->volumes[current]), FONT_SIZE, inf, malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
-        sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
+        sfSprite_setTextureRect(inf->ig_choices[current]->sps[0], r);
         sfSprite_destroy(((choices *)inf->ig_options_menu->selected->data)
         ->choice);
         ((choices *)inf->ig_options_menu->selected->data)->choice = inf
-        ->ig_choices[current]->sp;
+        ->ig_choices[current]->sps[0];
         sfSprite_setPosition(((choices *)inf->ig_options_menu->selected
         ->data)->choice, old_pos);
     }
@@ -57,11 +57,11 @@ void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
         load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
-        sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
+        sfSprite_setTextureRect(inf->ig_choices[current]->sps[0], r);
         sfSprite_destroy(((choices *)inf->ig_options_menu->selected->data)
         ->choice);
         ((choices *)inf->ig_options_menu->selected->data)->choice = inf
-        ->ig_choices[current]->sp;
+        ->ig_choices[current]->sps[0];
         sfSprite_setPosition(((choices *)inf->ig_options_menu->selected
         ->data)->choice, old_pos);
         sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?
@@ -78,11 +78,11 @@ void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
         load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
-        sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
+        sfSprite_setTextureRect(inf->ig_choices[current]->sps[0], r);
         sfSprite_destroy(((choices *)inf->ig_options_menu->selected->data)
         ->choice);
         ((choices *)inf->ig_options_menu->selected->data)->choice = inf
-        ->ig_choices[current]->sp;
+        ->ig_choices[current]->sps[0];
         sfSprite_setPosition(((choices *)inf->ig_options_menu->selected
         ->data)->choice, old_pos);
         sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?

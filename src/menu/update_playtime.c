@@ -20,10 +20,10 @@ void update_playtime(wininf *inf)
     inf->playtime = load_line(final, 15, inf, malloc);
     sfIntRect r; r.left = 0, r.top = 0;
     r.width = inf->playtime->steps[inf->playtime->max], r.height = inf->playtime->height;
-    sfSprite_setTextureRect(inf->playtime->sp, r);
+    sfSprite_setTextureRect(inf->playtime->sps[0], r);
     sfVector2f old_pos = sfSprite_getPosition(inf->pause_menu->texts->data);
     sfSprite_destroy(inf->pause_menu->texts->data);
-    inf->pause_menu->texts->data = inf->playtime->sp;
+    inf->pause_menu->texts->data = inf->playtime->sps[0];
     free(final);free(inf->playtime->steps);
     sfSprite_setPosition(inf->pause_menu->texts->data, old_pos);
     free(inf->playtime);

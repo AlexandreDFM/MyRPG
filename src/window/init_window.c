@@ -42,11 +42,11 @@ void init_fps(wininf *inf)
     FONT_SIZE, inf, my_malloc);
     r.width = inf->ig_choices[2]->steps[inf->ig_choices[2]->max], r.height =
     inf->ig_choices[2]->height;
-    sfSprite_setTextureRect(inf->ig_choices[2]->sp, r);
+    sfSprite_setTextureRect(inf->ig_choices[2]->sps[0], r);
     sfSprite_destroy(((choices *)inf->ig_options_menu->choices->prev->prev
     ->data)->choice);
     ((choices *)inf->ig_options_menu->choices->prev->prev->data)->choice =
-    inf->ig_choices[2]->sp;
+    inf->ig_choices[2]->sps[0];
     sfSprite_setPosition(((choices *)inf->ig_options_menu->choices->prev->prev
     ->data)->choice, old_pos);
 }

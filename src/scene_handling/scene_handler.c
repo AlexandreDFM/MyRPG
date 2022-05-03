@@ -48,14 +48,22 @@ void handle_scene(wininf *infos, player *p)
             infos->ui.background, 0);
             if (infos->ui.dialog) {
                 dline *d = infos->ui.dialog->data;
-                if (d && d->sp) {
-                    sfRenderWindow_drawSprite(infos->win, d->sp, 0);
+                if (d && d->sps[d->cline]) {
+                    for (int i = 0; i < d->nblines; i++) {
+                        sfRenderWindow_drawSprite(infos->win,
+                        d->sps[i], 0);
+                    }
                     if (d->time > infos->ui.text_delay && d->i < d->max) {
-                        sfIntRect nr = (sfIntRect){0, 0, d->steps[d->i],
+                        sfIntRect nr = (sfIntRect){0, d->height * d->cline, d->steps[d->i],
                         d->height};
-                        sfSprite_setTextureRect(d->sp, nr);
-                        d->i++;
-                        d->time = 0.0f;
+                        if (d->steps[d->i] > d->steps[d->i + 1]) {
+                            d->cline++;
+                            d->i++;
+                        } else {
+                            sfSprite_setTextureRect(d->sps[d->cline], nr);
+                            d->i++;
+                            d->time = 0.0f;
+                        }
                     }
                     d->time += infos->time.dt;
                 }

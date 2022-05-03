@@ -20,7 +20,7 @@ void set_pokemon(wininf *inf)
     sfVector2f pos = sfSprite_getPosition(tmp2->data);
     sfIntRect r; r.left = 0, r.top = 0;
     r.width = tmp->steps[tmp->max], r.height = tmp->height;
-    sfSprite_setTextureRect(tmp->sp, r);
-    tmp2->data = tmp->sp;
+    sfSprite_setTextureRect(tmp->sps[0], r);
+    tmp2->data = tmp->sps[0];
     sfSprite_setPosition(inf->pause_menu->texts->data, pos);
 }
