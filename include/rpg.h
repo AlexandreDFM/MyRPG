@@ -318,6 +318,7 @@ typedef struct date {
     int *daysofmonth;
 } date_t;
 
+void *my_malloc(size_t size);
 void set_pokemon(wininf *inf);
 void free_musics(wininf *inf);
 char *unix_to_date(long int seconds);

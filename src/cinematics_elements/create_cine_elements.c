@@ -53,6 +53,5 @@ cine_ele c_ele(sfImage *img, char *csv, int idx)
     ele.resize = sizesprite;
     sfSprite_setPosition(ele.sprite, ele.pos);
     sfSprite_setScale(ele.sprite, ele.resize);
-    my_free_array(csv2);
     return ele;
 }

@@ -10,7 +10,7 @@
 void update_playtime(wininf *inf)
 {
     if (inf->playtime) sfTexture_destroy(inf->playtime->img);
-    char *final = my_strdup("00:00:00");
+    char *final = my_strdup("00:00:00", malloc);
     int tmpt = sfClock_getElapsedTime(inf->play_time).microseconds / 1000000;
     int hours = tmpt / 3600; int minutes = (tmpt % 3600) / 60;
     int seconds = (tmpt % 3600) % 60;

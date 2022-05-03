@@ -80,7 +80,7 @@ char *unix_to_date(long int ti)
 {
     ti += 7200;
     date_t t; get_dateinfo(ti, &t);
-    char *ans = malloc(sizeof(char) * 11); my_memset(ans, '\0', 11);
+    char *ans = malloc(sizeof(char) * 20); my_memset(ans, '\0', 20);
     while (t.daystillnow >= 365) {
         if (t.curryear % 400 == 0 || (t.curryear % 4 == 0 && t.curryear % 100 != 0))
             t.daystillnow -= 366;

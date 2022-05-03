@@ -16,6 +16,6 @@ settings *init_settings(void)
     setts->c_fps = 0;
     char *fps[6] = {"30", "60", "120", "144", "300", "Max"};
     setts->fps = malloc(sizeof(char *) * 6);
-    for (int i = 0; i < 6; i++) setts->fps[i] = my_strdup(fps[i]);
+    for (int i = 0; i < 6; i++) setts->fps[i] = my_strdup(fps[i], my_malloc);
     return setts;
 }

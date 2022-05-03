@@ -22,5 +22,6 @@ int main(int argc, char **argv)
     sfRenderWindow_destroy(all.inf.win);
     sfImage_destroy(all.inf.atlases.atlas);
     end_global_free(&all);
+    my_malloc(0);
     return 0;
 }

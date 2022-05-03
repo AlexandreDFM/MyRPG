@@ -8,11 +8,13 @@
 #ifndef MY_H_
     #define MY_H_
 
+    #include <types.h>
+
 int my_isneg(int nb);
 int my_put_nbr(int nb);
 int my_is_prime(int nb);
 void my_putchar(char c);
-char *my_strdup(char *str);
+char *my_strdup(char *str, void *(ptr)(size_t t));
 char *my_revstr(char *str);
 int my_atoi(char const *str);
 void my_swap(int *a, int *b);
