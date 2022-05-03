@@ -23,8 +23,7 @@ void draw_player(wininf *inf, player *p)
         sfSprite_setPosition(inf->net->other.p->test, pos);
         if (inf->net->other.cscene == inf->c_scene)
             sfRenderWindow_drawSprite(inf->win, inf->net->other.p->test, 0);
-    }
-    update_camera(inf);
+    } update_camera(inf);
     sfShader_setFloatUniform((sfShader*)inf->state.shader, "time",
     inf->time.time);
     sfRenderWindow_drawSprite(inf->win, p->test, p->shiny ? &inf->state : 0);
