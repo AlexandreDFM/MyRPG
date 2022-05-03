@@ -108,6 +108,8 @@ SRC		= 	main.c												\
 			src/intro/move_rect_intro.c							\
 			src/intro/my_hsvtorgb.c								\
 			src/intro/plan_intro.c								\
+			src/intro/plan1_2_intro.c							\
+			src/intro/plan3_4_intro.c							\
 			src/intro/delete_intro.c							\
 			src/ditto/create_ditto.c							\
 			src/ditto/ditto.c									\
