@@ -56,6 +56,21 @@ void check_back(wininf *inf, player *p)
     }
 }
 
+void update_keys(wininf *inf, player *p)
+{
+    if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
+    inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown))
+        inf->current_menu->press = 0;
+    manage_intro(inf);
+    if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
+        inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
+    }
+    if (inf->waiting_key == 38 && inf->event.type == sfEvtKeyReleased) {
+        inf->waiting_key = 0;
+        inf->options_menu->focus = 1;
+    }
+}
+
 void update_events(wininf *inf, player *p)
 {
     update_inputs(inf);
@@ -68,17 +83,7 @@ void update_events(wininf *inf, player *p)
         if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
         inf->inputs.keys.back && inf->interacting != 0)
             inf->interacting = 0;
-        if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
-        inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown))
-            inf->current_menu->press = 0;
-        manage_intro(inf);
-        if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
-            inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
-        }
-        if (inf->waiting_key == 38 && inf->event.type == sfEvtKeyReleased) {
-            inf->waiting_key = 0;
-            inf->options_menu->focus = 1;
-        }
+        update_keys(inf, p);
         update_pause(inf, p);
         update_pause2(inf, p);
         check_back(inf, p);

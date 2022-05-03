@@ -26,5 +26,6 @@ void move_cursor(menuss *menu, wininf *inf)
     } if (inf->inputs.interact && inf->inputs.can_interact == 0) {
         ((choices *)menu->selected->data)->ptrs[0](inf);
         inf->inputs.can_interact = 1;
-    } sfSprite_setPosition(menu->cursor, pos);
+    }
+    sfSprite_setPosition(menu->cursor, pos);
 }

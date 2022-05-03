@@ -106,53 +106,75 @@ void change_volume_ig(wininf *inf)
     free(inf->ig_choices[current]);
 }
 
+void left_main_vol(wininf *inf)
+{
+    if (((choices *)inf->current_menu->selected->data)->ptr == 0) {
+        inf->volumes[0] -= inf->volumes[0] > 0 ? 5 : 0;
+        sfText_setString(
+            ((choices *)inf->current_menu->selected->data)->choice,
+            my_itoa(inf->volumes[0]));
+    }
+    if (((choices *)inf->current_menu->selected->data)->ptr == 1) {
+        inf->volumes[1] -= inf->volumes[1] > 0 ? 5 : 0;
+        sfText_setString(
+            ((choices *)inf->current_menu->selected->data)->choice,
+            my_itoa(inf->volumes[1]));
+    }
+}
+
+void right_main_vol(wininf *inf)
+{
+    if (((choices *)inf->current_menu->selected->data)->ptr == 0) {
+        inf->volumes[0] += inf->volumes[0] < 100 ? 5 : 0;
+        sfText_setString(
+            ((choices *)inf->current_menu->selected->data)->choice,
+            my_itoa(inf->volumes[0]));
+    }
+    if (((choices *)inf->current_menu->selected->data)->ptr == 1) {
+        inf->volumes[1] += inf->volumes[1] < 100 ? 5 : 0;
+        sfText_setString(
+            ((choices *)inf->current_menu->selected->data)->choice,
+            my_itoa(inf->volumes[1]));
+    }
+}
+
+void right_main_fps(wininf *inf)
+{
+    if (((choices *)inf->current_menu->selected->data)->ptr == 2) {
+        inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
+        sfText_setString(
+            ((choices *)inf->current_menu->selected->data)->choice,
+            my_itoa(inf->settings->c_fps));
+        sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?
+        my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
+    }
+}
+
+void left_main_fps(wininf *inf)
+{
+    if (((choices *)inf->current_menu->selected->data)->ptr == 2) {
+        inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
+        sfText_setString(
+            ((choices *)inf->current_menu->selected->data)->choice,
+            my_itoa(inf->settings->c_fps));
+        sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?
+        my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
+    }
+}
+
 void change_volume(wininf *inf)
 {
     if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
     inf->inputs.keys.mright && inf->pressed == 0) {
         inf->pressed = 1;
-        if (((choices *)inf->current_menu->selected->data)->ptr == 0) {
-            inf->volumes[0] += inf->volumes[0] < 100 ? 5 : 0;
-            sfText_setString(
-                ((choices *)inf->current_menu->selected->data)->choice,
-                my_itoa(inf->volumes[0]));
-        }
-        if (((choices *)inf->current_menu->selected->data)->ptr == 1) {
-            inf->volumes[1] += inf->volumes[1] < 100 ? 5 : 0;
-            sfText_setString(
-                ((choices *)inf->current_menu->selected->data)->choice,
-                my_itoa(inf->volumes[1]));
-        }
-        if (((choices *)inf->current_menu->selected->data)->ptr == 2) {
-            inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
-            sfText_setString(
-                ((choices *)inf->current_menu->selected->data)->choice,
-                inf->settings->fps[inf->settings->c_fps]);
-                sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps
-                < 5 ? my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
-        }
+        right_main_vol(inf);
+        right_main_fps(inf);
     }
     if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
     inf->inputs.keys.mleft && inf->pressed == 0) {
         inf->pressed = 1;
-        if (((choices *)inf->current_menu->selected->data)->ptr == 0) {
-            inf->volumes[0] -= inf->volumes[0] > 0 ? 5 : 0;
-            sfText_setString(
-                ((choices *)inf->current_menu->selected->data)->choice,
-                my_itoa(inf->volumes[0]));
-        } if (((choices *)inf->current_menu->selected->data)->ptr == 1) {
-            inf->volumes[1] -= inf->volumes[1] > 0 ? 5 : 0;
-            sfText_setString(
-                ((choices *)inf->current_menu->selected->data)->choice,
-                my_itoa(inf->volumes[1]));
-        } if (((choices *)inf->current_menu->selected->data)->ptr == 2) {
-            inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
-            sfText_setString(
-                ((choices *)inf->current_menu->selected->data)->choice,
-                inf->settings->fps[inf->settings->c_fps]);
-                sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps
-                < 5 ? my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
-        }
+        left_main_vol(inf);
+        left_main_fps(inf);
     }
 }
 

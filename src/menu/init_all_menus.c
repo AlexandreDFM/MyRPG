@@ -70,23 +70,33 @@ list *fill_texts(char **arr, wininf *inf, int off)
     return texts;
 }
 
+menuss *init_all2(char **arr, int offset, menuss *menu, wininf *inf)
+{
+    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]),
+    my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
+    menu->base_pos = pos;
+    menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]),
+    my_atoi(arr[offset + 3])}, pos);
+    menu->blk = 0;
+    menu->press = 0;
+    menu->max_choice = my_atoi(arr[offset + 4]);
+    menu->offset = my_atoi(arr[offset + 5]);
+    menu->type = my_atoi(arr[offset + 6]);
+    return menu;
+}
+
 menuss *init_all_menus(wininf *inf, int menu_id, int focus)
 {
-    menuss *menu = malloc(sizeof(menuss));
-    menu->id = menu_id;
-    char **arr;
+    menuss *menu = malloc(sizeof(menuss)); menu->id = menu_id; char **arr;
     if (inf->lang == ENGLISH)
     arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
     else arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");
-
     menu->backgrounds = init_backgrounds(arr, inf);
     int offset = my_atoi(arr[4]) * 5 + 5;
     menu->choices = init_choices(arr, inf, offset);
-    menu->head = menu->choices;
-    menu->selected = menu->choices;
-    if (menu->choices) {
-        offset += my_atoi(arr[offset]) * 7 + 1;
-    } else offset += 1;
+    menu->head = menu->choices; menu->selected = menu->choices;
+    if (menu->choices) offset += my_atoi(arr[offset]) * 7 + 1;
+    else offset += 1;
     menu->texts = fill_texts(arr, inf, offset);
     if (menu->texts) {
         offset += my_atoi(arr[offset]) * 3 + 2;
@@ -95,17 +105,6 @@ menuss *init_all_menus(wininf *inf, int menu_id, int focus)
         if (!arr[offset + 1]) return menu;
         offset += 2;
     }
-    sfVector2f pos = {my_atoi(arr[offset]) + my_atoi(arr[1]),
-    my_atoi(arr[offset + 1]) + my_atoi(arr[2])};
-    menu->base_pos = pos;
-    menu->cursor = set_cursor(inf, (sfVector2f) {my_atoi(arr[offset + 2]),
-    my_atoi(arr[offset + 3])}, pos);
-    menu->blk = 0;
-    menu->press = 0;
     menu->focus = focus;
-    menu->max_choice = my_atoi(arr[offset + 4]);
-    menu->offset = my_atoi(arr[offset + 5]);
-    menu->type = my_atoi(arr[offset + 6]);
-    menu->id = menu_id;
-    return menu;
+    return init_all2(arr, offset, menu, inf);
 }
