@@ -14,6 +14,10 @@ void update_events(wininf *inf, player *p)
 {
     update_inputs(inf);
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
+        if (sfKeyboard_isKeyPressed(sfKeyBack)) {
+            sfVector2f pos = sfSprite_getPosition(p->test);
+            printf("%f %f\n", pos.x, pos.y);
+        }
         if (inf->event.type == sfEvtClosed)
             sfRenderWindow_close(inf->win);
         if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==

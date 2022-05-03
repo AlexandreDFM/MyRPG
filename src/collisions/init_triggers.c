@@ -129,9 +129,9 @@ void interact_pnj(wininf *win, player *p)
     list *l = win->scenes[win->c_scene].pnjs;
     for (list *t = l; t; t = t->next) {
         pnj *cp = t->data;
-        float cmin = manhattan_distance(sfSprite_getPosition(p->test), cp->pos);
-        if (cmin < min) {
-            min = cmin;
+        float cmn = manhattan_distance(sfSprite_getPosition(p->test), cp->pos);
+        if (cmn < min) {
+            min = cmn;
             closest = cp;
         }
     }

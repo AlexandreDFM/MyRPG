@@ -100,6 +100,8 @@ void change_volume_ig(wininf *inf)
     right_volume(inf, current, old_pos, r);
     left_fps(inf, current, old_pos, r);
     right_fps(inf, current, old_pos, r);
+    free(inf->ig_choices[current]->steps);
+    free(inf->ig_choices[current]);
 }
 
 void change_volume(wininf *inf)

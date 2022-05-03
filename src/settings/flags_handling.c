@@ -76,7 +76,9 @@ void change_settings(int opt, char *arg, wininf *inf)
     }
     if (opt == 'f') {
         int i = 0;
-        for (; i < 6 && my_strcmp(arg, inf->settings->fps[i]) != 0; i++);
+        for (; i < 6 && my_strcmp(my_strlowcase(arg),
+        my_strlowcase(inf->settings->fps[i])) != 0; i++);
+        inf->settings->fps[5][0] = 'M';
         if (i == 6) {
             my_printf("Framerate not found, defaulting to 60\n");
             inf->settings->c_fps = 1;
