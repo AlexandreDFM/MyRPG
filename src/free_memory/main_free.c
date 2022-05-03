@@ -7,6 +7,15 @@
 
 #include "rpg.h"
 
+void my_free_array(char **array)
+{
+    int i = 0;
+    for (; array[i]; i++) {
+        free(array[i]);
+    }
+    free(array);
+}
+
 void end_global_free(components *all)
 {
     free_musics(&(all->inf));

@@ -80,6 +80,7 @@ SRC		= 	main.c											\
 			src/menu/function_pointers/main_menu.c			\
 			src/menu/function_pointers/load_menu_pointers.c	\
 			src/menu/function_pointers/options_pointers.c	\
+			src/menu/function_pointers/others_pointers.c	\
 			src/menu/set_cursor.c							\
 			src/menu/center_menu.c							\
 			src/menu/update_player_pokemon.c				\

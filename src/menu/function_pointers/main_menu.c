@@ -47,8 +47,12 @@ void a_log(wininf *inf)
 
 void go_back(wininf *inf)
 {
-    if (inf->c_menu == OPTIONS)
+    if (inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE)
         go_main(inf);
     if (inf->c_menu == KEYBINDS_M)
         options(inf);
+    if (inf->c_menu == OTHERS)
+        go_pause(inf);
+    if (inf->c_menu == IG_OPTIONS)
+        go_others(inf);
 }

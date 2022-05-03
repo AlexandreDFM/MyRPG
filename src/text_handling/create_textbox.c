@@ -25,15 +25,15 @@ dline *load_line(char *line, sfFont *font, int size, wininf *inf)
     int height = 0;
     char prev = 0;
     sfImage *font_alpha = sfTexture_copyToImage(sfFont_getTexture(font, size));
-    int len = 0;
-    int cond = 0;
-    for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++, len++) {
+    int len = 0, cond = 0;
+    int ln = my_strlen(line);
+    for (int i = 0; i < ln && line[i] != '\0' && line[i] != '\n'; i++, len++) {
         if (line[i] == '<') {
             cond = line[i] != '>' && line[i] != '\0' && line[i] != '\n';
             for (int y = i; cond; y++, i++) {
                 cond = line[y] != '>' && line[y] != '\0' && line[y] != '\n';
             }
-            if (line[i + 1] == 'i' && line[i + 2] == '_') len++;
+            if (i < ln && line[i + 1] == 'i' && line[i + 2] == '_') len++;
                 length += 8;
             continue;
         }

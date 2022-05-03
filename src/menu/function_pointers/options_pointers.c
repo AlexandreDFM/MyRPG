@@ -7,6 +7,39 @@
 
 #include "rpg.h"
 
+void change_volume_ig(wininf *inf)
+{
+    int current = ((choices *)inf->ig_options_menu->selected->data)->ptr;
+    // if (inf->ig_choices[current]) sfTexture_destroy(inf->ig_choices[current]->img);
+    sfIntRect r; r.left = 0, r.top = 0;
+    sfVector2f old_pos = sfSprite_getPosition(((choices *)inf->ig_options_menu->selected->data)->choice);
+    if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
+    inf->inputs.keys.mright) {
+        if (current == 0) {
+            inf->vol_sound += inf->vol_sound < 100 ? 5 : 0;
+            inf->ig_choices[current] = load_line(my_itoa(inf->vol_sound), inf->ui.font, FONT_SIZE, inf);
+            r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]->max], r.height = inf->ig_choices[current]->height;
+            sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
+            sfSprite_destroy(((choices *)inf->ig_options_menu->selected->data)->choice);
+            ((choices *)inf->ig_options_menu->selected->data)->choice = inf->ig_choices[current]->sp;
+            sfSprite_setPosition(((choices *)inf->ig_options_menu->selected->data)->choice, old_pos);
+        }
+    }
+    if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
+    inf->inputs.keys.mleft) {
+        if (current == 0) {
+            inf->vol_sound -= inf->vol_sound > 0 ? 5 : 0;
+            inf->ig_choices[current] = load_line(my_itoa(inf->vol_sound), inf->ui.font, FONT_SIZE, inf);
+            r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]->max], r.height = inf->ig_choices[current]->height;
+            ((choices *)inf->ig_options_menu->selected->data)->choice = inf->ig_choices[current]->sp;
+            sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
+            // sfSprite_destroy(((choices *)inf->ig_options_menu->selected->data)->choice);
+            ((choices *)inf->ig_options_menu->selected->data)->choice = inf->ig_choices[current]->sp;
+            sfSprite_setPosition(((choices *)inf->ig_options_menu->selected->data)->choice, old_pos);
+        }
+    }
+}
+
 void change_volume(wininf *inf)
 {
     if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
@@ -79,8 +112,19 @@ void go_main(wininf *inf)
 void go_others(wininf *inf)
 {
     inf->current_menu->focus = 0;
+    inf->current_menu->selected = inf->current_menu->head;
     inf->current_menu = inf->others_menu;
     inf->c_menu = OTHERS;
-    inf->options_menu->focus = 0;
-    inf->others_menu->focus = 1;
+    inf->current_menu->focus = 1;
+    inf->others_menu->press = inf->pressed;
+}
+
+void go_pause(wininf *inf)
+{
+    inf->current_menu->focus = 0;
+    inf->current_menu->selected = inf->current_menu->head;
+    inf->current_menu = inf->pause_menu;
+    inf->c_menu = PAUSE;
+    inf->pause_menu->focus = 1;
+    inf->pause_menu->press = inf->pressed;
 }

@@ -62,4 +62,5 @@ void center_menu(menuss *menu, wininf *inf, player *p)
         offset += my_atoi(arr[offset]) * 7 + 1;
     } else offset += 1;
     center_texts(menu, arr, topl, offset);
+    my_free_array(arr);
 }

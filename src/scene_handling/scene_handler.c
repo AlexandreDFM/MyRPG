@@ -61,9 +61,14 @@ void handle_scene(wininf *infos, player *p)
             draw_menu(infos, infos->pause_menu);
             update_playtime(infos);
         }
-        if (infos->c_menu == OTHERS) {
+        if (infos->c_menu != PAUSE && infos->c_menu != NONE) {
             center_menu(infos->current_menu, infos, p);
-            draw_menu(infos, infos->others_menu);
+            draw_menu(infos, infos->current_menu);
+            if (infos->c_menu == IG_OPTIONS && ((choices *)infos->current_menu->selected->data)->ptr < 3 && infos->pressed == 0 && infos->event.type == sfEvtKeyPressed &&
+            (infos->event.key.code == infos->inputs.keys.mright || infos->event.key.code == infos->inputs.keys.mleft)) {
+                infos->pressed = 1;
+                change_volume_ig(infos);
+            }
         }
     }
     update_time(infos);

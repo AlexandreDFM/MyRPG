@@ -70,6 +70,7 @@ wininf create_window_infos(int ac, char **av)
     inf.change_keys_menu = init_all_menus(&inf,KEYBINDS_IDX, 0);                                                                                                                                                                                                         inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
     inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.others_menu = init_ig_menus(&inf, OTHERS_IDX, 0);
+    inf.ig_options_menu = init_ig_menus(&inf, IG_OPTIONS_IDX, 0);
     init_options_pointers(&inf);
     inf.c_menu = NONE;
     inf.waiting_key = 0;
@@ -80,6 +81,9 @@ wininf create_window_infos(int ac, char **av)
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
     inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
+    inf.ig_choices[0] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
+    inf.ig_choices[1] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
+    inf.ig_choices[2] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     inf.pressed = 0;
     sfRenderWindow_setFramerateLimit(inf.win, inf.settings->c_fps < 5 ?
     my_atoi(inf.settings->fps[inf.settings->c_fps]) : 0);

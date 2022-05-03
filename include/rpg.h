@@ -52,6 +52,7 @@ typedef enum main_menu_t {
     ADVENTURE_LOG,
     OPTIONS,
     OTHERS,
+    IG_OPTIONS,
     KEYBINDS_M,
     CHANGING_KEY,
     EXIT,
@@ -77,6 +78,7 @@ typedef enum menu_indx {
     KEYBINDS_IDX,
     PAUSE_VILLAGE_IDX,
     OTHERS_IDX,
+    IG_OPTIONS_IDX,
     PAUSE_DG_IDX,
 }menu_indx;
 
@@ -217,6 +219,7 @@ typedef struct wininf_t {
     const char **fps;
     const char **key_list;
     dline *playtime;
+    dline *ig_choices[3];
     sfVideoMode mode;
     sfVector2f next_pos;
     sfKeyCode tmp_key;
@@ -239,6 +242,7 @@ typedef struct wininf_t {
     struct menus *pause_menu;
     struct menus *change_keys_menu;
     struct menus *others_menu;
+    struct menus *ig_options_menu;
     struct menus *options_menu;
     struct menus *current_menu;
     struct settings_t *settings;
@@ -525,13 +529,19 @@ void yes_but(wininf *inf);
 //Menu pointers
 void go_main(wininf *inf);
 //Menu pointers
+void go_pause(wininf *inf);
+//Menu pointers
 void go_others(wininf *inf);
 //Menu pointers
 void go_keybinds(wininf *inf);
 //Menu pointers
+void go_ig_options(wininf *inf);
+//Menu pointers
 void change_volume(wininf *inf);
 //Menu pointers
 void change_keybind(wininf *inf);
+//Menu pointers
+void change_volume_ig(wininf *inf);
 //Menu pointers
 void init_load_pointers(wininf *inf);
 //Menu pointers
@@ -610,6 +620,7 @@ void draw_intro(wininf *inf);
 void treat_axis(wininf *inf);
 void draw_dungeon(wininf *inf, player *p);
 
+void my_free_array(char **array);
 int get_int_len(long long int nbr);
 sfIntRect move_rect_player(player p);
 int pos_char(char *string, char *presence);

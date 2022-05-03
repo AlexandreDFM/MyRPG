@@ -12,7 +12,6 @@
 
 void update_events(wininf *inf, player *p)
 {
-    // if (inf->ui.dialog) printf("%d\n", ((dline*)inf->ui.dialog->data)->i);
     update_inputs(inf);
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
         if (inf->event.type == sfEvtClosed)
@@ -57,17 +56,16 @@ void update_events(wininf *inf, player *p)
             inf->pause_menu->selected = inf->pause_menu->head;
             inf->current_menu = inf->main_menu;
         }
-        if (inf->c_scene == MAIN_MENU &&
+        if (inf->c_menu != NONE &&
         sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->pressed == 0) {
             inf->pressed = 1;
             go_back(inf);
         }
-        if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code == inf->inputs.keys.mright || inf->event.key.code ==
-            inf->inputs.keys.mleft)) {
+        if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
+        inf->inputs.keys.mright || inf->event.key.code ==
+        inf->inputs.keys.mleft || inf->event.key.code ==
+        inf->inputs.keys.back)) {
             inf->pressed = 0;
         }
-        if (inf->c_scene == MAIN_MENU && inf->event.type == sfEvtKeyReleased
-        && inf->event.key.code == inf->inputs.keys.back)
-            inf->pressed = 0;
     }
 }

@@ -30,31 +30,31 @@ int nb_not_valid(char const *str, char *limit)
 char **my_alloc_array(char const *str, char *limit, char **dest)
 {
     int nby = 0, nbx = 0;
-    for (int nbc = 0; str[nbc] != '\0'; nbc++, nbx++) {
+    int len = my_strlen(str);
+    for (int nbc = 0; nbc < len; nbc++, nbx++) {
         if (test_lim(str[nbc], limit)) {
             dest[nby] = malloc(sizeof(char) * (nbx + 1));
             dest[nby][nbx] = '\0';
-            nby += 1, nbx = 0;
+            nby += 1, nbx = 0, nbc++;
         }
+        if (nbc >= len) break;
     }
-    dest[nby] = malloc(sizeof(char) * (nbx + 1));
-    dest[nby][nbx] = '\0';
     return dest;
 }
 
 char **my_strtwa(char const *str, char *limit)
 {
-    int nbmax = (nb_not_valid(str, limit) + 1), nby = 0, nbx = 0;
+    int nbmax = (nb_not_valid(str, limit)), nby = 0, nbx = 0;
     char **dest = malloc(sizeof(char *) * (nbmax + 1));
     dest[nbmax] = NULL;
     dest = my_alloc_array(str, limit, dest);
-    for (int nbc = 0; nby < nbmax - 1; nbc++, nbx++) {
+    for (int nbc = 0; nby < nbmax; nbc++, nbx++) {
         if (test_lim(str[nbc], limit)) {
             dest[nby][nbx] = '\0';
             nbx = 0, nby += 1, nbc++;
         }
+        if (nby == nbmax) break;
         dest[nby][nbx] = str[nbc];
     }
-    dest[nby] = 0;
     return dest;
 }
