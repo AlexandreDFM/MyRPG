@@ -55,7 +55,9 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfVector2i target = global_to_local(p->nextpos);
     int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
     int cond2 = is_same(pos, p->nextpos, 2.0f);
-    if (inf->dungeon.inf->map[np.y][np.x] == ' ' && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
+    char c = inf->dungeon.inf->map[np.y][np.x];
+    int walkable = c == ' ' || c == 'E';
+    if (walkable && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
         p->nextpos = local_to_global(np.x, np.y);
         p->time = 0.0f;
         update_mobs(inf, p);

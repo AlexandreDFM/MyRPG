@@ -94,7 +94,6 @@ scene create_home(wininf *infos, int id)
         my_atoi(hinfo[3]), my_atoi(hinfo[4])};
     add_to_list(&scene.statics, atlas_to_sprite(r, atlas));
     sfSprite_setPosition(scene.statics->data, (sfVector2f){163.0f, 81.0f});
-    //FREE hinfo
     hinfo = my_strtwa(arr[0], ";\n");
     r = (sfIntRect){my_atoi(hinfo[1]), my_atoi(hinfo[2]),
         my_atoi(hinfo[3]), my_atoi(hinfo[4])};
@@ -114,7 +113,7 @@ scene create_static_env(wininf *inf, int id)
 {
     scene scene;
     my_printf("Loading Scene %d:\n", id);
-    scene.animated = 0, scene.colls = 0, scene.statics = 0;
+    scene.animated = 0, scene.colls = 0, scene.statics = 0, scene.pnjs = 0;
     char **arr = my_strtwa(inf->atlases.scenes[id], ";\n");
     for (int i = 0; arr[i]; i += 4) {
         sfIntRect r = (sfIntRect){my_atoi(arr[i]), my_atoi(arr[i + 1]),
@@ -124,6 +123,7 @@ scene create_static_env(wininf *inf, int id)
     place_decorations(inf->atlases.scenes[id + 1], inf->atlases.atlas,
         inf->atlases.statics, &scene.animated);
     id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
+    add_pnjs(inf->atlases, id, &scene);
     add_collisions(inf->atlases.collisions[id], &scene.colls);
     return scene;
 }

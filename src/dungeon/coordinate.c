@@ -59,20 +59,17 @@ sfVector2i get_closest_exit(int r, sfVector2f t, map_inf *inf)
     sfIntRect croom = *(inf->rooms[r]);
     float dst = MAP_SIZE * 2;
     sfVector2i lt = global_to_local(t);
-    printf("Target: %d %d\n", lt.x, lt.y);
     sfVector2i endp = (sfVector2i){0, 0};
     for (int y = croom.top; y < croom.top + croom.height + 1; y++) {
         for (int x = croom.left; x < croom.left + croom.width; x++) {
             if (inf->map[y][x] != 'E') continue;
             sfVector2f exi = (sfVector2f){x, y};
             float ndst = distance(exi, (sfVector2f){lt.x, lt.y});
-            printf("Exit: %d %d == %d %d (%f)\n", x, y, endp.x, endp.y, ndst);
             if (dst > ndst) {
                 dst = ndst;
                 endp = (sfVector2i){x, y};
             }
         }
     }
-    printf("\tClosest exit: %d %d\n", endp.x, endp.y);
     return endp;
 }
