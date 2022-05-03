@@ -23,8 +23,8 @@ RM		= rm -f
 LIB		=  -L ./lib/my/ -lmy
 
 SRC		= 	main.c												\
-			src/create_components.c								\
-			src/my_malloc.c										\
+			src/window/create_components.c						\
+			src/utils/my_malloc.c								\
 			src/scene_handling/scene_handler.c					\
 			src/window/init_window.c							\
 			src/window/shader/create_state.c					\
