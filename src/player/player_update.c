@@ -37,8 +37,9 @@ void perform_free_movement(wininf *inf, player *p)
     list *cols = inf->scenes[inf->c_scene].colls;
     nextp.x += p->vel.x; nextp.y += p->vel.y;
     sfVector2f np = my_lerp(po, nextp, p->speed * inf->time.dt);
+    sfFloatRect rect = (sfFloatRect){np.x, np.y, p->vel.x, p->vel.y};
     if (inf->c_scene != DUNGEON)
-        if (!(is_valid(cols, np, &p->vel, inf, p) && !inf->transition))
+        if (!(is_valid(cols, &rect, inf, p) && !inf->transition))
             return;
     sfSprite_setPosition(p->test, np);
     if (!is_same(po, nextp, 0.1f) && inf->net->is_multi) {

@@ -7,6 +7,22 @@
 
 #include "rpg.h"
 
+void check_if_trigger(char **arr, int i, list **l)
+{
+    if (!my_strcmp(arr[i], "Trigger")) {
+        sfVector2f pos = (sfVector2f){my_atoi(arr[i + 1]),
+            my_atoi(arr[i + 2])};
+        sfVector2f size = (sfVector2f){my_atoi(arr[i + 3]),
+            my_atoi(arr[i + 4])};
+        add_rect_col(l, pos, size);
+        collision *n = ((collision*)(*l)->data);
+        n->ptr = my_atoi(arr[i + 5]);
+        n->auto_trigger = my_atoi(arr[i + 6]);
+        sfRectangleShape_setFillColor(n->rect,
+            sfColor_fromRGBA(0, 0, 255, 122));
+    }
+}
+
 void add_collisions(char *str, list **l)
 {
     char **arr = my_strtwa(str, ";\n");
@@ -22,19 +38,9 @@ void add_collisions(char *str, list **l)
                 my_atoi(arr[i + 4])};
             add_rect_col(l, pos, size);
         }
-        if (!my_strcmp(arr[i], "Trigger")) {
-            sfVector2f pos = (sfVector2f){my_atoi(arr[i + 1]),
-                my_atoi(arr[i + 2])};
-            sfVector2f size = (sfVector2f){my_atoi(arr[i + 3]),
-                my_atoi(arr[i + 4])};
-            add_rect_col(l, pos, size);
-            collision *n = ((collision*)(*l)->data);
-            n->ptr = my_atoi(arr[i + 5]);
-            n->auto_trigger = my_atoi(arr[i + 6]);
-            sfRectangleShape_setFillColor(n->rect,
-                sfColor_fromRGBA(0, 0, 255, 122));
-        }
+        check_if_trigger(arr, i, l);
     }
+    my_free_array(arr);
 }
 
 void add_circle_col(list **l, int radius, int x, int y)

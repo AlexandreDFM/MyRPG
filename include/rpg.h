@@ -586,7 +586,7 @@ sfVector2f my_lerp(sfVector2f a, sfVector2f b, float t);
 //Maths Functions
 int is_same(sfVector2f v1, sfVector2f v2, float threshold);
 //Maths Functions
-int is_valid(list *c, sfVector2f pos, sfVector2f *v, wininf *inf, player *p);
+int is_valid(list *c, sfFloatRect *r, wininf *inf, player *p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
