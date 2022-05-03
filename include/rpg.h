@@ -321,13 +321,15 @@ typedef struct date {
 void *my_malloc(size_t size);
 void set_pokemon(wininf *inf);
 void free_musics(wininf *inf);
+void my_free_array(char **array);
 char *unix_to_date(long int seconds);
 void end_global_free(components *all);
-void my_free_array(char **array);
+void draw_quiz(wininf *inf, player *p);
 void update_mobs(wininf *inf, player *p);
+void create_dungeon(wininf *win, char *name);
 void update_enemy(player *enemy, wininf *inf, player *p);
 void create_enemy(wininf *inf, dungeon *d, sfVector2i pos);
-sfVector2i move_in_tunnel(player *e, wininf *inf, player *p);
+void move_in_tunnel(player *e, wininf *inf, player *p);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

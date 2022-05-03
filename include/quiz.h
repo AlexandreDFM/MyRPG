@@ -41,6 +41,8 @@ typedef struct quiz_t {
     char **questions;
 } quiz;
 
+void delete_quiz(wininf *inf);
 quiz *create_quiz(wininf *inf);
+int chose_line(char **csv, int tendance, int sexe);
 
 #endif /* !QUIZ_H_ */

@@ -12,10 +12,8 @@ void update_camera(wininf *inf)
     if (!inf->camera.target) {
         return;
     }
-    float max_x = 958.0f;
-    float max_y = 719.0f;
     sfVector2f pos = sfSprite_getPosition(inf->camera.target);
-    sfVector2f size = sfView_getSize(inf->camera.view);
+    // sfVector2f size = sfView_getSize(inf->camera.view);
     // pos.x = my_clamp(pos.x, size.x / 2.0f, max_x - size.x / 2.0f);
     // pos.y = my_clamp(pos.y, size.y / 2.0f, max_y - size.y / 2.0f);
     if (inf->dungeon.in)

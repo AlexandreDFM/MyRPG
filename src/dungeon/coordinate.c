@@ -55,7 +55,7 @@ int get_current_room(sfVector2f pos, map_inf *inf)
 
 sfVector2i get_closest_exit(int r, sfVector2f t, map_inf *inf)
 {
-    if (r == -1) return;
+    if (r == -1) return (sfVector2i){0, 0};
     sfIntRect croom = *(inf->rooms[r]);
     float dst = MAP_SIZE * 2;
     sfVector2i lt = global_to_local(t);

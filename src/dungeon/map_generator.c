@@ -175,7 +175,6 @@ void get_paths(char ***map, bsp *tree)
     if (diff == 1) {
         min = center_a.x < center_b.x ? center_a.x : center_b.x;
         max = min == center_a.x ? center_b.x : center_a.x;
-        int started = 0;
         for (int i = min; i < max; i++) {
             if ((*map)[center_a.y - 1][i] == '.') {
                 if (out)
@@ -188,7 +187,6 @@ void get_paths(char ***map, bsp *tree)
             }
         }
     } else {
-        int started = 0;
         min = center_a.y < center_b.y ? center_a.y : center_b.y;
         max = min == center_a.y ? center_b.y : center_a.y;
         for (int i = min; i < max; i++) {
