@@ -337,6 +337,15 @@ void manage_client(char *arg, wininf *inf);
 void manage_host(char *arg, wininf *inf);
 void manage_lang(char *arg, wininf *inf);
 void manage_fps(char *arg, wininf *inf);
+void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+void change_volume_ig(wininf *inf);
+void left_main_vol(wininf *inf);
+void right_main_vol(wininf *inf);
+void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+void right_main_fps(wininf *inf);
+void left_main_fps(wininf *inf);
 
 
 ////////////////////////////////////////////////////////////
