@@ -8,6 +8,19 @@
 #include "rpg.h"
 #include "intro.h"
 
+void intro_other_scene(sfRenderWindow *w, intro_a *rpg)
+{
+    if (rpg->plan == PLAN3) display_ele(w, rpg->b_intro[0]);
+    if (rpg->plan == PLAN4) {
+        display_ele(w, rpg->b_intro[0]); display_ele(w, rpg->b_intro[3]);
+    }
+    if (rpg->plan == PLAN5) display_ele(w, rpg->b_intro[3]);
+    if (rpg->plan == PLAN6) {
+        display_ele(w, rpg->b_intro[0]);
+        for (int i = 3; i > 0; i--) display_ele(w, rpg->b_intro[i]);
+    }
+}
+
 void intro(sfRenderWindow *w, intro_a *rpg)
 {
     if (rpg->plan == PLAN0) {
@@ -22,15 +35,7 @@ void intro(sfRenderWindow *w, intro_a *rpg)
         display_ele(w, rpg->b_intro[1]); display_ele(w, rpg->b_intro[2]);
         display_ele(w, rpg->b_intro[0]); display_ele(w, rpg->pkmintro[1]);
     }
-    if (rpg->plan == PLAN3) display_ele(w, rpg->b_intro[0]);
-    if (rpg->plan == PLAN4) {
-        display_ele(w, rpg->b_intro[0]); display_ele(w, rpg->b_intro[3]);
-    }
-    if (rpg->plan == PLAN5) display_ele(w, rpg->b_intro[3]);
-    if (rpg->plan == PLAN6) {
-        display_ele(w, rpg->b_intro[0]);
-        for (int i = 3; i > 0; i--) display_ele(w, rpg->b_intro[i]);
-    }
+    intro_other_scene(w, rpg);
 }
 
 void draw_intro(wininf *inf)
