@@ -10,7 +10,6 @@
 
 void delete_quiz(wininf *inf)
 {
-    my_free_array(inf->quiz->questions);
     free(inf->quiz);
     inf->quiz = NULL;
 }

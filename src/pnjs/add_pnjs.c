@@ -25,7 +25,7 @@ void create_pnj(char *line, scene *s, atlases atlas)
     pnj_s->ent = malloc(sizeof(entity));
     pnj_s->ent = (entity*)s->animated->data;
     pnj_s->pos = sfSprite_getPosition(pnj_s->ent->sp);
-    pnj_s->dialog = my_strdup(arr[3]);
+    pnj_s->dialog = my_strdup(arr[3], my_malloc);
     list *nl = malloc(sizeof(list));
     nl->data = pnj_s;
     nl->next = s->pnjs;

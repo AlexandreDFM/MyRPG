@@ -14,8 +14,7 @@ void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
         if (current == 0 || current == 1) {
             inf->volumes[current] -= inf->volumes[current] > 0 ? 5 : 0;
             inf->ig_choices[current] =
-            load_line(my_itoa(inf->volumes[current]), inf->ui.font,
-            FONT_SIZE, inf);
+            load_line(my_itoa(inf->volumes[current]), FONT_SIZE, inf, malloc);
             r.width = inf->ig_choices[current]->
             steps[inf->ig_choices[current]->max], r.height =
             inf->ig_choices[current]->height;
@@ -36,8 +35,7 @@ void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
     inf->inputs.keys.mright && (current == 0 || current == 1)) {
         inf->volumes[current] += inf->volumes[current] < 100 ? 5 : 0;
         inf->ig_choices[current] =
-        load_line(my_itoa(inf->volumes[current]), inf->ui.font, FONT_SIZE,
-        inf);
+        load_line(my_itoa(inf->volumes[current]), FONT_SIZE, inf, malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
         sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
@@ -56,8 +54,7 @@ void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
     inf->event.key.code == inf->inputs.keys.mleft) {
         inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
         inf->ig_choices[current] =
-        load_line(inf->settings->fps[inf->settings->c_fps], inf->ui.font,
-        FONT_SIZE, inf);
+        load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
         sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);
@@ -78,8 +75,7 @@ void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
     inf->event.key.code == inf->inputs.keys.mright) {
         inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
         inf->ig_choices[current] =
-        load_line(inf->settings->fps[inf->settings->c_fps], inf->ui.font,
-        FONT_SIZE, inf);
+        load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, malloc);
         r.width = inf->ig_choices[current]->steps[inf->ig_choices[current]
         ->max], r.height = inf->ig_choices[current]->height;
         sfSprite_setTextureRect(inf->ig_choices[current]->sp, r);

@@ -39,7 +39,8 @@ void add_collisions(char *str, list **l)
 
 void add_circle_col(list **l, int radius, int x, int y)
 {
-    collision *nc = malloc(sizeof(collision));
+    list *nl = my_malloc(sizeof(list));
+    collision *nc = my_malloc(sizeof(collision));
     nc->check = check_circle_col;
     nc->draw = draw_circle_col;
     nc->ptr = -1;
@@ -50,7 +51,6 @@ void add_circle_col(list **l, int radius, int x, int y)
     sfCircleShape_setPosition(nc->circle, (sfVector2f){x, y});
     nc->radius = radius;
     nc->pos = (sfVector2i){x, y};
-    list *nl = malloc(sizeof(list));
     nl->data = nc;
     nl->next = *l;
     *l = nl;
@@ -58,7 +58,8 @@ void add_circle_col(list **l, int radius, int x, int y)
 
 void add_rect_col(list **l, sfVector2f pos, sfVector2f size)
 {
-    collision *nc = malloc(sizeof(collision));
+    list *nl = my_malloc(sizeof(list));
+    collision *nc = my_malloc(sizeof(collision));
     nc->check = check_rect_col;
     nc->draw = draw_rect_col;
     nc->ptr = -1;
@@ -68,7 +69,6 @@ void add_rect_col(list **l, sfVector2f pos, sfVector2f size)
     sfRectangleShape_setSize(nc->rect, (sfVector2f){size.x, size.y});
     nc->size = (sfVector2i){size.x, size.y};
     nc->pos = (sfVector2i){pos.x, pos.y};
-    list *nl = malloc(sizeof(list));
     nl->data = nc;
     nl->next = *l;
     *l = nl;

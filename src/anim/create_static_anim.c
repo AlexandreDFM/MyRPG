@@ -24,7 +24,7 @@ void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
             break;
     }
     char **args = my_strtwa(csv[i], ";\n");
-    entity *ne = malloc(sizeof(entity));
+    entity *ne = my_malloc(sizeof(entity));
     ne->width = my_atoi(args[3]);
     sfIntRect r = (sfIntRect){my_atoi(args[1]), my_atoi(args[2]),
         my_atoi(args[5]) + ne->width, my_atoi(args[4])};

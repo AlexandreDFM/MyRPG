@@ -25,7 +25,7 @@ void init_key_list(wininf *inf)
     "F9", "F10", "F11", "F12", "F13", "F14", "F15", "Pause"};
     inf->key_list = malloc(sizeof(char *) * 102);
     for (int i = 0; i < 101; i++)
-        inf->key_list[i] = my_strdup((char *)list[i]);
+        inf->key_list[i] = my_strdup((char *)list[i], my_malloc);
 }
 
 void init_fps(wininf *inf)
@@ -107,10 +107,10 @@ wininf create_window_infos(int ac, char **av)
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
     inf.quiz = NULL;
-    inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
-    inf.ig_choices[0] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
-    inf.ig_choices[1] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
-    inf.ig_choices[2] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
+    inf.playtime = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.ig_choices[0] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.ig_choices[1] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
+    inf.ig_choices[2] = load_line("VOID", FONT_SIZE, &inf, my_malloc);
     inf.pressed = 0;
     init_fps(&inf);
     init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();

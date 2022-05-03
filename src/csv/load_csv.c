@@ -12,12 +12,12 @@ char **load_csv(char *filename)
 {
     int lines = get_number_lines(filename);
     FILE *f = fopen(filename, "r");
-    char **array = malloc((lines + 1) * sizeof(char *));
+    char **array = my_malloc((lines + 1) * sizeof(char *));
     char *line = NULL;
     size_t len = 0;
     for (int i = 0; i < lines; i++) {
         getline(&line, &len, f);
-        array[i] = my_strdup(line);
+        array[i] = my_strdup(line, my_malloc);
     }
     array[lines] = 0;
     return array;
