@@ -36,30 +36,43 @@ sfVector2i global_to_local(sfVector2f p) {
     return (sfVector2i){a, b};
 }
 
-int get_current_room(sfVector2f pos, map_inf *inf)
+int get_current_roomlo(sfVector2i pos, map_inf *inf)
 {
-    sfVector2i lpos = global_to_local(pos);
     for (int i = 0; inf->rooms[i]; i++) {
         sfIntRect *rect = inf->rooms[i];
-        if (sfIntRect_contains(rect, lpos.x, lpos.y)) {
-            printf("Player in room %d\n", i);
+        if (sfIntRect_contains(rect, pos.x, pos.y)) {
             return i;
         }
     }
     return -1;
 }
 
-void get_closest_exit(int room, sfVector2f target, map_inf *inf)
+int get_current_room(sfVector2f pos, map_inf *inf)
 {
-    if (room == -1) return;
-    sfIntRect croom = *(inf->rooms[room]);
-    sfVector2i lpos = global_to_local(*(inf->pos[1]));
-    sfVector2f end = (sfVector2f){lpos.x, lpos.y};
-    for (int y = croom.top; y < croom.top + croom.height; y++) {
+    sfVector2i lpos = global_to_local(pos);
+    return get_current_roomlo(lpos, inf);
+}
+
+sfVector2i get_closest_exit(int r, sfVector2f t, map_inf *inf)
+{
+    if (r == -1) return;
+    sfIntRect croom = *(inf->rooms[r]);
+    float dst = MAP_SIZE * 2;
+    sfVector2i lt = global_to_local(t);
+    printf("Target: %d %d\n", lt.x, lt.y);
+    sfVector2i endp = (sfVector2i){0, 0};
+    for (int y = croom.top; y < croom.top + croom.height + 1; y++) {
         for (int x = croom.left; x < croom.left + croom.width; x++) {
             if (inf->map[y][x] != 'E') continue;
             sfVector2f exi = (sfVector2f){x, y};
-            printf("Found exit: %d %d => %f\n", x, y, manhattan_distance(exi, end));
+            float ndst = distance(exi, (sfVector2f){lt.x, lt.y});
+            printf("Exit: %d %d == %d %d (%f)\n", x, y, endp.x, endp.y, ndst);
+            if (dst > ndst) {
+                dst = ndst;
+                endp = (sfVector2i){x, y};
+            }
         }
     }
+    printf("\tClosest exit: %d %d\n", endp.x, endp.y);
+    return endp;
 }

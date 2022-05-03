@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2022
 ** B-MUL-200-NCE-2-1-myrpg-antoine.frankel
 ** File description:
-** display_elements_intro
+** display_elements
 */
 
-#include "intro.h"
+#include "cinematics_elements.h"
 
 void display_ele(sfRenderWindow *window, cine_ele ele)
 {

@@ -15,7 +15,7 @@ void send_sync(components *all)
     sfPacket_clear(net->packet);
     int order = HSYNC;
     sfPacket_append(net->packet, &order, sizeof(int));
-    sfVector2f pos = sfSprite_getPosition(all->pla.test);
+    sfVector2f pos = sfSprite_getPosition(all->pla->test);
     sfPacket_append(net->packet, &pos, sizeof(sfVector2f));
     int poke = all->inf.settings->pokemon;
     sfPacket_append(net->packet, &all->inf.c_scene, sizeof(int));

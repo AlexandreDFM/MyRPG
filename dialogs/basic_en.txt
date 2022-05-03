@@ -1,0 +1,806 @@
+  =========================================================================
+  ===         POKEMON MYSTERY DUNGEON  -  PERSONALITY TEST GUIDE        ===
+  =========================================================================
+                                     v1.00
+
+                   by Terence Fergusson <tf_faq@dsl.pipex.com>
+
+
+Pokemon Copyright 1995-2006 Nintendo/Creatures Inc./GAME FREAK inc.
+Mystery Dungeon Copyright 1993-2006 CHUNSOFT.
+
+This document is entirely my work, and was written and is owned by me,
+Terence Fergusson.  All copyrights and trademarks are acknowledged where not
+specifically mentioned.  If you wish to reproduce this document AS IS, you
+may do so without having to ask my permission, providing that the entire
+document including this copyright notice is left intact, preferably in ASCII
+text format, and is done so for non-profit purposes.  I do, however, reserve
+the right to revoke permission and ask for it to be taken down should I feel
+it necessary.
+
+Please do not e-mail me about this guide.  If you have questions or
+submissions to the knowledge base, please post on the GameFAQs message board;
+the information will get to the correct people quicker this way, and you
+have a far better chance of getting an answer expediently.
+
+
+
+
+
+
+=============================================================================
+                       V E R S I O N   H I S T O R Y
+=============================================================================
+
+v1.00 : 20/09/06 : Original Conversion of Fushigi no Dungeon Guide
+                     into English
+
+
+
+
+
+
+
+=============================================================================
+                        A B O U T   T H E   T E S T
+=============================================================================
+
+To determine your starting Pokemon, you will be given a personality test.
+This will involve a random question from 8 out of 14 Categories, with each
+Category leaning towards a particular personality type.  Once you have been
+asked the full eight questions, you will be given a final question that
+simply asks for your gender.  Once this has been answered, the results are
+all tallied and your final personality and resulting Pokemon is determined.
+
+You will be given a Pokemon relating to the personality type you scored
+highest in.  In the event of a tie between multiple personality types, one
+will be chosen randomly out of those you scored highest in.  Finally, your
+choice of gender dictates which of two Pokemon you will get for that
+personality.
+
+
+                              Male               Female
+               Hardy:      #004 Charmander    #025 Pikachu
+               Docile:     #001 Bulbasaur     #152 Chikorita
+               Brave:      #066 Machop        #004 Charmander
+               Jolly:      #007 Squirtle      #158 Totodile
+               Impish:     #025 Pikachu       #104 Cubone
+               Naive:      #158 Totodile      #133 Eevee
+               Timid:      #155 Cyndaquil     #258 Mudkip
+               Hasty:      #255 Torchic       #300 Skitty
+               Sassy:      #252 Treecko       #255 Torchic
+               Calm:       #258 Mudkip        #001 Bulbasaur
+               Relaxed:    #054 Psyduck       #007 Squirtle
+               Lonely:     #104 Cubone        #054 Psyduck
+               Quirky:     #052 Meowth        #252 Treecko
+
+
+
+Note that this gives a choice of 16 possible Pokemon, with 6 of them unique
+to a particular gender.  Cyndaquil, Machop and Meowth are only available to
+males, while Chikorita, Eevee and Skitty are only available to females.
+
+
+
+Once your Pokemon has been chosen, you will be given a choice of partner.
+The available partners are:
+
+                     Bulbasaur   Charmander  Squirtle
+                     Chikorita   Cyndaquil   Totodile
+                     Treecko     Torchic     Mudkip
+                                 Pikachu
+
+You are unable to choose a partner that matches the Type of your own Pokemon.
+Hence, Bulbasaur, Chikorita and Treecko cannot choose a Grass Type partner;
+Charmander, Cyndaquil and Torchic cannot choose a Fire Type partner; and
+Squirtle, Totodile, Mudkip and Psyduck cannot choose a Water Type partner.
+Furthermore, if you get Pikachu as a result of the personality test, you
+obviously cannot also choose Pikachu as your partner.
+
+
+
+=============================================================================
+                              S T R A T E G Y
+=============================================================================
+
+If you're looking to try to get a particular Pokemon, you should keep the
+following in mind:
+
+   * Remember that six of the 16 possible Pokemon are available to one
+     gender only - you will not be able to get them if you pick the
+     wrong gender.
+
+   * Keep in mind the personality of the Pokemon you're trying to get.
+     You want to always answer questions that increase that personality
+     trait.
+
+   * When you're asked a question that doesn't have an answer for your
+     chosen personality, pick answers that increase traits you haven't
+     answered for yet and have low increases.  It's often better to
+     answer a question with something that increases a bunch of traits
+     by 1 instead of an answer that increases a single trait by 2 or
+     even 3.
+
+
+If you can increase your chosen trait high enough and keep the rest below
+that, then it's not so difficult to get your chosen Pokemon.  Don't be
+discouraged if it doesn't work the first time however - there is some luck
+involved with which questions you will be asked.
+
+
+
+=============================================================================
+                         T H E   Q U E S T I O N S
+=============================================================================
+
+Remember that you will only be asked one question out of any Category chosen,
+unless your answer to a question deliberately redirects you to another
+question within that category.  You will also only be asked questions from
+8 Categories maximum before you are given the final question to determine
+your gender.
+
+
+
+Category #01 - Hardy
+====================
+  Question #1     A test is coming up.
+                  How do you study for it?
+
+  Answers:        Study hard.
+                      +2 Hardy
+                  At the last second.
+                      +2 Relaxed
+                  Ignore it and play.
+                      +2 Impish
+
+
+  Question #2     Can you focus on something you like?
+
+  Answers:        Yes.
+                      +2 Hardy, +1 Docile
+                  No. 
+                      +2 Quirky
+
+
+  Question #3     When the going gets tough, do you get going?
+
+  Answers:        Yes.
+                      +2 Hardy, +2 Brave
+                  No.
+                      +2 Sassy, +2 Quirky
+
+
+  Question #4     There is a bucket. If you put
+                  water in it, how high will you fill it?
+
+  Answers:        Full.
+                      +2 Hardy
+                  Half.
+                      +2 Calm
+                  A little.
+                      +2 Quirky
+
+
+
+
+Category #02 - Docile
+=====================
+  Question #1     You are offered a choice of two gifts. Which one will you take?
+
+  Answers:        Big box.
+                      +2 Docile, +1 Naive
+                  Small box.
+                      +2 Timid, +1 Calm
+
+
+  Question #2     You broke a rotten egg in your room!
+                  What will you do?
+
+  Answers:        Open a window right away.
+                      +2 Docile, +1 Hasty
+                  Take a sniff first.
+                      +2 Naive, +1 Relaxed
+
+
+  Question #3     A friend brought over something you'd
+                  forgotten.
+                  How do you thank your friend?
+
+  Answers:        Say thank you regularly.
+                      +2 Docile
+                  Say thanks with a joke.
+                      +1 Naive, +1 Lonely
+                  Say thanks, but be cool.
+                      +2 Sassy
+
+
+  Question #4     There is a wallet at the side of a road.
+
+  Answers:        Turn it in to the police!
+                      +2 Docile
+                  Yay! Yay!
+                      +2 Naive
+                  Is anyone watching...?
+                      +2 Impish
+
+
+
+
+Category #03 - Brave
+====================
+  Question #1     You're going bungee jumping for the first
+                  time.
+
+                  Since it's scary, you decide to test the
+                  jump with a doll...
+                  And the bungee cord snaps!
+
+                  Will you still try to make a jump anyway?
+
+  Answers:        Yes.
+                      +3 Brave, +1 Impish
+                  No.
+                      +2 Docile, +1 Timid
+
+
+  Question #2     There is an alien invasion!
+                  What will you do?
+
+  Answers:        Fight.
+                      Do Question #2b
+                  Run.
+                      +2 Timid
+                  Ignore it.
+                      +2 Relaxed
+
+
+  Question #2b    You valiantly fight the aliens...
+                  But, you are defeated...
+
+                  An alien says to you...
+
+                  "YOU HAVE IMPRESSED US.
+                  IT WAS A PLEASURE TO SEE.
+
+                  JOIN US, AND TOGETHER WE SHALL
+                  RULE THE WORLD."
+                  What will you do?
+
+  Answers:        Rule with the aliens.
+                      +1 Sassy, +1 Relaxed
+                  Refuse.
+                      +4 Brave
+
+
+  Question #3     There is a scream from behind a door!
+                  How will you react?
+
+  Answers:        Yank open the door.
+                      +1 Hardy, +2 Brave
+                  Scream in unison.
+                      +2 Naive
+
+
+  Question #4     A delinquent is hassling a girl on
+                  a busy city street!
+                  What will you do?
+
+  Answers:        Help without hesitation.
+                      +3 Brave
+                  Help, even if scared.
+                      +2 Hardy, +2 Brave
+                  Call the police.
+                      +1 Docile, +1 Timid, +1 Relaxed
+                  Do nothing out of fear.
+                      +2 Timid
+
+
+
+
+Category #04 - Jolly
+====================
+  Question #1     Are you a cheerful personality?
+
+  Answers:        Yes.
+                      +2 Jolly, +1 Naive
+                  No.
+                      +1 Sassy, +1 Quirky
+
+
+  Question #2     Do you like to noisily enjoy yourself
+                  with others?
+
+  Answers:        Yes.
+                      +2 Jolly, +1 Lonely
+                  No.
+                      +1 Timid
+
+
+  Question #3     It's the summer holidays!
+                  Where would you like to go?
+
+  Answers:        The beach!
+                      +2 Jolly
+                  Spas.
+                      +2 Calm
+                  Anywhere.
+                      +2 Quirky
+
+
+  Question #4     A foreign person has started up a
+                  conversation with you.
+
+                  To be honest, you don't have a clue what
+                  this fellow is saying.
+                  How do you reply?
+
+  Answers:        Haha! Yes. Very funny!
+                      +3 Jolly
+                  Um... Could you say that again?
+                      +2 Hardy
+                  Right... Well, I gotta go.
+                      +2 Timid
+
+
+
+
+Category #05 - Impish
+=====================
+  Question #1     Have you ever made a pitfall trap?
+
+  Answers:        Yes.
+                      +2 Impish, +1 Lonely
+                  No.
+                      +2 Calm
+
+
+  Question #2     Do you like pranks?
+
+  Answers:        Yes.
+                      +2 Impish
+                  No.
+                      +1 Docile, +1 Relaxed
+
+
+  Question #3     Are there many things that you would like
+                  to do?
+
+  Answers:        Yes.
+                      +1 Hardy, +2 Impish
+                  No.
+                      +1 Sassy, +2 Quirky
+
+
+  Question #4     Your friend is being bullied!
+                  What do you do?
+
+  Answers:        Face up to the bully.
+                      +3 Brave
+                  Caution the bully from afar.
+                      +2 Timid
+                  Heckle the bully from behind.
+                      +2 Impish
+
+
+
+
+Category #06 - Naive
+====================
+  Question #1     Do you like groan-inducing puns?
+
+  Answers:        Love them!
+                      +1 Impish, +3 Naive
+                  A little.
+                      +2 Jolly
+                  Spare me.
+                      +2 Sassy
+
+
+  Question #2     Do you tend to laugh a lot?
+
+  Answers:        Yes.
+                      +1 Docile, +2 Naive
+                  No.
+                      +2 Quirky
+
+
+  Question #3     Do others often call you childish?
+
+  Answers:        Yes.
+                      +1 Jolly, +2 Naive
+                  No.
+                      +2 Calm
+
+
+  Question #4     Do you like to imagine things for your
+                  amusement?
+
+  Answers:        Yes.
+                      +2 Naive
+                  No.
+                      +2 Hasty
+
+
+
+
+Category #07 - Timid
+====================
+  Question #1     A human hand extends out of a toilet!
+                  What would you do?
+
+  Answers:        Scream and run.
+                      +2 Timid
+                  Close the lid without a word.
+                      +1 Hardy, +2 Calm
+                  Shake hands with it.
+                      +2 Brave, +1 Impish, +1 Naive
+
+
+  Question #2     Grab any digit on your left hand with your
+                  right hand.
+                  Which digit did you grab?
+
+  Answers:        Thumb.
+                      +2 Timid
+                  Index finger.
+                      +2 Hasty
+                  Middle finger.
+                      +2 Jolly
+                  Ring finger.
+                      +2 Sassy
+                  Little finger.
+                      +2 Lonely
+
+
+  Question #3     You are suddenly locked inside a
+                  pitch-black room!
+                  What do you do?
+
+  Answers:        Kick the door.
+                      +2 Timid
+                  Cry.
+                      +2 Lonely
+                  Clean it.
+                      +2 Impish, +1 Quirky
+
+
+  Question #4     Can you go into a haunted house?
+
+  Answers:        No problem!
+                      +3 Brave
+                  Uh... N-no...
+                      +2 Timid
+                  With someone I like.
+                      +2 Sassy
+
+
+
+
+Category #08 - Hasty
+====================
+  Question #1     You receive a gift!
+                  But you don't know what's in it.
+                  You're curious, so what do you do?
+
+  Answers:        Open it now.
+                      +2 Hasty
+                  Open it later.
+                      +2 Calm
+                  Get someone to open it.
+                      +2 Timid
+
+
+  Question #2     You win a lottery!
+                  What do you do with the money?
+
+  Answers:        Spend it now.
+                      +2 Jolly, +1 Hasty
+                  Save it.
+                      +1 Hardy, +1 Calm
+                  Give it away.
+                      +2 Brave, +2 Quirky
+
+
+  Question #3     You come across a treasure chest!
+                  What do you do?
+
+  Answers:        Open it right away!
+                      +2 Hasty
+                  No... Could be a trap...
+                      +2 Timid
+                  It's going to be empty...
+                      +2 Sassy
+
+
+  Question #4     Your friend fails to show up for a meeting
+                  at the promised time.
+                  What do you do?
+
+  Answers:        Become irritated.
+                      +1 Docile, +2 Hasty
+                  Wait patiently.
+                      +2 Relaxed
+                  Get angry and bail.
+                      +3 Hasty
+
+
+
+
+Category #09 - Sassy
+====================
+  Question #1     Your country's leader is in front of you.
+                  How do you speak to him or her?
+
+  Answers:        Speak calmly.
+                      +2 Hardy
+                  Speak nervously.
+                      +2 Docile
+                  WHATEVER!!
+                      +2 Sassy
+
+
+  Question #2     Do others tell you to watch what you say?
+
+  Answers:        Yes.
+                      +1 Impish, +2 Sassy
+                  No.
+                      +2 Calm
+
+
+  Question #3     Do you think you are cool?
+                  Be honest.
+
+  Answers:        Yes.
+                      +2 Sassy
+                  No.
+                      +2 Relaxed
+
+
+  Question #4     Can you sincerely thank someone when you
+                  feel grateful?
+
+  Answers:        Yes.
+                      +2 Docile, +1 Calm
+                  No.
+                      +2 Sassy, +1 Quirky
+
+
+
+
+Category #10 - Calm
+===================
+  Question #1     Do you occasionally consider yourself
+                  dull and overly cautious?
+
+  Answers:        Yes.
+                      +2 Calm, +1 Lonely
+                  No.
+                      +2 Hardy
+
+
+  Question #2     Do you dream of lounging around idly
+                  without much excitement?
+
+  Answers:        Yes.
+                      +2 Calm
+                  No.
+                      +2 Impish
+
+
+  Question #3     Do you like to fight?
+
+  Answers:        Yes.
+                      +1 Impish, +2 Timid
+                  No.
+                      +2 Calm, +1 Lonely
+
+
+  Question #4     Do you often yawn?
+
+  Answers:        Yes.
+                      +2 Calm, +1 Relaxed
+                  No.
+                      +1 Hardy, +2 Hasty
+
+
+
+
+Category #11 - Relaxed
+======================
+  Question #1     Are you often late for school or meetings?
+
+  Answers:        Yes.
+                      +1 Sassy, +2 Relaxed
+                  No.
+                      +2 Hardy, +1 Hasty
+
+
+  Question #2     Do you get the feeling that you've slowed
+                  down lately?
+
+  Answers:        Yes.
+                      +2 Relaxed
+                  No.
+                      +1 Impish, +2 Hasty
+
+
+  Question #3     It is a pleasant day at the beach.
+                  How do you feel?
+
+  Answers:        This feels great!
+                      +2 Jolly
+                  Snore...
+                      +2 Relaxed
+                  I want to go home soon!
+                      +2 Hasty
+
+
+  Question #4     Do you fall asleep without noticing?
+
+  Answers:        Yes.
+                      +1 Calm, +2 Relaxed
+                  No.
+                      +2 Hardy
+
+
+
+
+Category #12 - Lonely
+=====================
+  Question #1     Do you feel lonesome when you are alone?
+
+  Answers:        Yes.
+                      +1 Timid, +2 Lonely
+                  No.
+                      +2 Sassy
+
+
+  Question #2     Do you hate to be the last person to leave
+                  class at the end of a school day?
+
+  Answers:        Yes.
+                      +1 Timid, +2 Lonely
+                  No.
+                      +3 Brave, +1 Relaxed
+
+
+  Question #3     What do you do with your room's light
+                  when you're going to bed at night?
+
+  Answers:        Leave it on.
+                      +1 Timid, +2 Lonely
+                  Turn it off.
+                      +2 Calm
+
+
+  Question #4     It's a weekend, but no one will play
+                  with you...
+                  What do you do?
+
+  Answers:        Go on a trip.
+                      +1 Jolly, +1 Lonely
+                  Hang around vacantly.
+                      +1 Calm, +2 Relaxed
+                  Huddle in a corner.
+                      +1 Timid, +3 Lonely
+
+
+
+
+Category #13 - Quirky
+=====================
+  Question #1     Do you sometimes run out of things to do
+                  all of a sudden?
+
+  Answers:        Yes.
+                      +2 Quirky
+                  No.
+                      +2 Hardy
+
+
+  Question #2     How quickly do you respond to an e-mail?
+
+  Answers:        Reply right away.
+                      +1 Hardy, +1 Hasty
+                  May reply, may not.
+                      +2 Quirky
+                  Too much trouble.
+                      +2 Sassy
+
+
+  Question #3     There is a person you like...
+                  But there's no opportunity to get close.
+                  What do you do?
+
+  Answers:        Bravely declare my love.
+                      +1 Hardy, +3 Brave
+                  Might say hello...
+                      +2 Quirky
+                  Pull a prank to get attention.
+                      +2 Impish
+                  Look from afar.
+                      +2 Timid
+
+
+  Question #4     The road forks to the right and left.
+                  You are told there is a treasure on the
+                  right side. What do you do?
+
+  Answers:        Instantly go right.
+                      +2 Docile
+                  It's a trap! Go left.
+                      +2 Sassy
+                  Choose either side.
+                      +2 Quirky
+
+
+
+
+Category #14 - Miscellaneous
+============================
+  Question #1     On vacation outings, you want to...
+
+  Answers:        Go alone.
+                      +1 Hasty, +1 Quirky
+                  Go with others.
+                      +1 Jolly, +1 Lonely
+
+
+  Question #2     It's the summer festival!
+                  Do you like carnivals?
+
+  Answers:        Love them!
+                      +2 Jolly
+                  Don't care.
+                      +1 Sassy, +1 Quirky
+
+
+  Question #3     Somebody calls you "weird but funny."
+                  How does that make you feel?
+
+  Answers:        Happy!
+                      +1 Naive, +1 Lonely
+                  Not happy.
+                      +1 Hasty, +1 Sassy
+
+
+
+
+Final Question - Gender
+=======================
+  Question        Are you a boy or a girl?
+
+  Answers:        Boy.
+                      Male
+                  Girl.
+                      Female
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------
+
+Pokemon Dungeon - Personality Test Guide, copyright 2005 Terence Fergusson
+
+
+Restore Page
+
+Cookie Settings

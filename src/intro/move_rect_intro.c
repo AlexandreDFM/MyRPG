@@ -10,7 +10,7 @@
 void move_rectintroleft(sfIntRect *rect, int modify, int max_value)
 {
     if (rect->left >= max_value)
-        rect->left = 4456 + 263;
+        rect->left = 263;
     else
         rect->left += modify;
 }
@@ -18,7 +18,7 @@ void move_rectintroleft(sfIntRect *rect, int modify, int max_value)
 void move_rectintroleft2(sfIntRect *rect, int modify, int max_value)
 {
     if (rect->left >= max_value)
-        rect->left = 4456 + 40;
+        rect->left = 40;
     else
         rect->left += modify;
 }
@@ -26,7 +26,7 @@ void move_rectintroleft2(sfIntRect *rect, int modify, int max_value)
 void move_rectintroleft3(sfIntRect *rect, int modify, int max_value)
 {
     if (rect->left >= max_value)
-        rect->left = 4456 + 138;
+        rect->left = 138;
     else
         rect->left += modify;
 }

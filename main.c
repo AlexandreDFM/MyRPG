@@ -15,8 +15,8 @@ int main(int argc, char **argv)
     if (all.inf.net->is_multi && !all.inf.net->is_host)
         sync_online(&all);
     while (sfRenderWindow_isOpen(all.inf.win)) {
-        handle_scene(&all.inf, &all.pla);
-        update_events(&all.inf, &all.pla);
+        handle_scene(&all.inf, all.pla);
+        update_events(&all.inf, all.pla);
         update_network(&(all.inf), &all);
     }
     sfRenderWindow_destroy(all.inf.win);

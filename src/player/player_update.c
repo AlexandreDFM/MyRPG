@@ -17,12 +17,12 @@ void draw_player(wininf *inf, player *p)
         p->vel = inf->inputs.axis;
         perform_dungeon_movement(inf, p);
     }
-    if (inf->net->other.p.test) {
-        sfVector2f pos = sfSprite_getPosition(inf->net->other.p.test);
+    if (inf->net->is_multi && inf->net->other.p->test) {
+        sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
         // pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
         // sfSprite_setPosition(inf->net->other.p.test, pos);
         if (inf->net->other.cscene == inf->c_scene)
-            sfRenderWindow_drawSprite(inf->win, inf->net->other.p.test, 0);
+            sfRenderWindow_drawSprite(inf->win, inf->net->other.p->test, 0);
     }
     update_camera(inf);
     sfRenderWindow_drawSprite(inf->win, p->test, 0);
@@ -57,7 +57,7 @@ void perform_dungeon_movement(wininf *inf, player *p)
     if (inf->dungeon.inf->map[np.y][np.x] == ' ' && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
         p->nextpos = local_to_global(np.x, np.y);
         p->time = 0.0f;
-        get_current_room(pos, inf->dungeon.inf);
+        update_mobs(inf, p);
     }
     sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
     sfSprite_setPosition(p->test, newp);

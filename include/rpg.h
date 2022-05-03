@@ -21,6 +21,8 @@
     #include "dialog.h"
     #define APPEND -1
 
+typedef struct map_info map_inf;
+
 typedef enum scenes_e {
     HOME,
     VILLAGE,
@@ -33,6 +35,7 @@ typedef enum scenes_e {
     DITTO,
     DREAM,
     DUNGEON,
+    QUIZ
 } scenes;
 
 typedef enum orders_e {
@@ -162,6 +165,7 @@ typedef struct player_t {
     int **rlist;
     sfIntRect r;
     sfVector2i limit;
+    float animc;
     sfSprite *test;
     sfVector2f vel;
     float time;
@@ -190,7 +194,7 @@ typedef struct ui_t {
 } ui;
 
 typedef struct other_t {
-    struct player_t p;
+    struct player_t *p;
     sfVector2f target;
     sfIpAddress ip;
     int cscene;
@@ -201,6 +205,7 @@ typedef struct dungeon_t {
     sfImage *img;
     struct map_info *inf;
     int in;
+    list *enemies;
 } dungeon;
 
 typedef struct wininf_t {
@@ -249,6 +254,7 @@ typedef struct wininf_t {
     struct intro_assets_t *intro;
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
+    struct quiz_t *quiz;
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
 } wininf;
@@ -279,7 +285,7 @@ typedef struct menus {
 
 typedef struct components_t {
     struct wininf_t inf;
-    struct player_t pla;
+    struct player_t *pla;
 } components;
 
 typedef struct network_t {
@@ -311,12 +317,17 @@ typedef struct date {
     long int daystillnow;
     long int extratime;
     int *daysofmonth;
-}date_t;
+} date_t;
 
-char *unix_to_date(long int seconds);
 void set_pokemon(wininf *inf);
 void free_musics(wininf *inf);
+char *unix_to_date(long int seconds);
 void end_global_free(components *all);
+void my_free_array(char **array);
+void update_mobs(wininf *inf, player *p);
+void update_enemy(player *enemy, wininf *inf, player *p);
+void create_enemy(wininf *inf, dungeon *d, sfVector2i pos);
+sfVector2i move_in_tunnel(player *e, wininf *inf, player *p);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
@@ -436,7 +447,7 @@ void create_atlases(wininf *inf);
 //Initializations
 void create_triggers(wininf *inf);
 //Initializations
-player init_player(wininf inf, int id);
+player *init_player(wininf inf, int id);
 //Initializations
 scene create_home(wininf *infos, int id);
 //Initializations

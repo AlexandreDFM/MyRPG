@@ -37,7 +37,7 @@ wininf create_window_infos(int ac, char **av)
     get_settings_flags(ac, av, &inf);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
-    inf.c_scene = INTRO;
+    inf.c_scene = QUIZ;
     inf.interacting = 0;
     init_times(&inf);
     create_atlases(&inf);
@@ -51,8 +51,10 @@ wininf create_window_infos(int ac, char **av)
     inf.camera = init_camera(inf);
     create_triggers(&inf);
     inf.transition = 0;
+    inf.ftransi = 0.0f;
     inf.change_scene = 0;
     dungeon d; d.img = sfImage_createFromFile("result8.png"); d.in = 0;
+    d.enemies = 0;
     inf.dungeon = d;
     inf.transi = sfRectangleShape_create();
     sfRectangleShape_setSize(inf.transi, (sfVector2f){inf.mode.width,
@@ -80,6 +82,7 @@ wininf create_window_infos(int ac, char **av)
     inf.vol_sound = 100;
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
+    inf.quiz = NULL;
     inf.playtime = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     inf.ig_choices[0] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
     inf.ig_choices[1] = load_line("VOID", inf.ui.font, FONT_SIZE, &inf);
