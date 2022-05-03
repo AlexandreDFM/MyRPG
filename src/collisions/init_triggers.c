@@ -139,7 +139,6 @@ void interact_pnj(wininf *win, player *p)
     poubelle.y += 45.0f;
     sfSprite_setPosition(win->ui.background, poubelle);
     win->interacting = 1;
-    printf("INTERACTED\n");
     if (!win->ui.dialog)
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
     else {
