@@ -24,34 +24,35 @@ int check_rect_col(collision *s, sfVector2f pos)
     return 1;
 }
 
-int is_valid(list *col, sfVector2f pos, sfVector2f *v, wininf *inf, player *p)
+int check_collisions_conds(sfVector2i res, sfFloatRect *r, collision *c)
 {
-    int res_x = 0, res_y = 0;
-    int inside = 0;
+    if (!res.x && !res.y)
+        return 1;
+    if (res.x && !res.y)
+        r->height = 0.0f;
+    else if (!res.x && res.y)
+        r->width = 0.0f;
+    return 0;
+}
+
+int is_valid(list *col, sfFloatRect *r, wininf *inf, player *p)
+{
+    int res_x = 0, res_y = 0, inside = 0;
     for (list *t = col; t; t = t->next) {
-        sfVector2f x_axis = (sfVector2f){pos.x + v->x, pos.y};
-        sfVector2f y_axis = (sfVector2f){pos.x, pos.y + v->y};
+        sfVector2f x_axis = (sfVector2f){r->left + r->width, r->top};
+        sfVector2f y_axis = (sfVector2f){r->left, r->top + r->width};
         collision *c = t->data;
-        res_x = c->check(c, x_axis);
-        res_y = c->check(c, y_axis);
+        res_x = c->check(c, x_axis); res_y = c->check(c, y_axis);
         if (res_x != 3 && res_y != 3 && inf->settings->show_collision)
             c->draw(c, inf->win);
-        if (!res_x && !res_y)
+        if (check_collisions_conds((sfVector2i){res_x, res_y}, r, c))
             return 0;
-        if (res_x && !res_y)
-            v->y = 0.0f;
-        else if (!res_x && res_y)
-            v->x = 0.0f;
-        if ((res_x == 2 || res_y == 2) && (c->ptr != -1)) {
-            inside = 1;
-            if (c->auto_trigger && !inf->inputs.interact) continue;
-            if (inf->inputs.can_interact) continue;
-            inf->inputs.can_interact = 1;
-            inf->triggers[c->ptr](inf, p);
-        }
+        if (!((res_x == 2 || res_y == 2) && (c->ptr != -1))) continue;
+        inside = 1;
+        if (c->auto_trigger && !inf->inputs.interact) continue;
+        if (inf->inputs.can_interact) continue;
+        inf->inputs.can_interact = 1; inf->triggers[c->ptr](inf, p);
     }
-    if (!inside) {
-        inf->inputs.can_interact = 0;
-    }
+    if (!inside) inf->inputs.can_interact = 0;
     return 1;
 }
