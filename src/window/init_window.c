@@ -38,8 +38,7 @@ void init_fps(wininf *inf)
     sfIntRect r; r.top = 0; r.left = 0;
     sfVector2f old_pos =sfSprite_getPosition(((choices *)inf->ig_options_menu
     ->choices->prev->prev->data)->choice);
-    inf->ig_choices[2] = load_line(inf->settings->fps[inf->settings->c_fps],
-    inf->ui.font, FONT_SIZE, inf);
+    inf->ig_choices[2] = load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf, my_malloc);
     r.width = inf->ig_choices[2]->steps[inf->ig_choices[2]->max], r.height =
     inf->ig_choices[2]->height;
     sfSprite_setTextureRect(inf->ig_choices[2]->sp, r);
