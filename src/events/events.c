@@ -10,14 +10,56 @@
 #include "intro.h"
 #include "rpg.h"
 
+void update_pause(wininf *inf, player *p)
+{
+    if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
+    sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->c_menu == NONE &&
+    inf->pause_menu->press == 0 && !inf->ui.dialog) {
+        inf->c_menu = PAUSE;
+        inf->pause_menu->focus = 1;
+        inf->pause_menu->press = 1;
+        inf->current_menu = inf->pause_menu;
+        center_menu(inf->pause_menu, inf, p);
+    }
+    if (inf->pause_menu->press == 1 &&
+        inf->event.type == sfEvtKeyReleased &&
+        inf->event.key.code == inf->inputs.keys.back) {
+        inf->pause_menu->press = 0;
+    }
+}
+
+void update_pause2(wininf *inf, player *p)
+{
+    if (inf->c_menu == PAUSE &&
+        sfKeyboard_isKeyPressed(inf->inputs.keys.back)
+        && inf->pause_menu->press == 0) {
+        inf->c_menu = NONE;
+        inf->pause_menu->press = 1;
+        inf->pause_menu->focus = 0;
+        inf->pause_menu->selected = inf->pause_menu->head;
+        inf->current_menu = inf->main_menu;
+    }
+    if (inf->c_menu != NONE &&
+    sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->pressed == 0) {
+        inf->pressed = 1;
+        go_back(inf);
+    }
+}
+
+void check_back(wininf *inf, player *p)
+{
+    if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
+    inf->inputs.keys.mright || inf->event.key.code ==
+    inf->inputs.keys.mleft || inf->event.key.code ==
+    inf->inputs.keys.back)) {
+        inf->pressed = 0;
+    }
+}
+
 void update_events(wininf *inf, player *p)
 {
     update_inputs(inf);
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
-        if (sfKeyboard_isKeyPressed(sfKeyBack)) {
-            sfVector2f pos = sfSprite_getPosition(p->test);
-            printf("%f %f\n", pos.x, pos.y);
-        }
         if (inf->event.type == sfEvtClosed)
             sfRenderWindow_close(inf->win);
         if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
@@ -37,40 +79,8 @@ void update_events(wininf *inf, player *p)
             inf->waiting_key = 0;
             inf->options_menu->focus = 1;
         }
-        if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
-            sfKeyboard_isKeyPressed(inf->inputs.keys.back) &&
-            inf->c_menu == NONE && inf->pause_menu->press == 0 &&
-            !inf->ui.dialog) {
-            inf->c_menu = PAUSE;
-            inf->pause_menu->focus = 1;
-            inf->pause_menu->press = 1;
-            inf->current_menu = inf->pause_menu;
-            center_menu(inf->pause_menu, inf, p);
-        }
-        if (inf->pause_menu->press == 1 &&
-            inf->event.type == sfEvtKeyReleased &&
-            inf->event.key.code == inf->inputs.keys.back) {
-            inf->pause_menu->press = 0;
-        }
-        if (inf->c_menu == PAUSE &&
-            sfKeyboard_isKeyPressed(inf->inputs.keys.back)
-            && inf->pause_menu->press == 0) {
-            inf->c_menu = NONE;
-            inf->pause_menu->press = 1;
-            inf->pause_menu->focus = 0;
-            inf->pause_menu->selected = inf->pause_menu->head;
-            inf->current_menu = inf->main_menu;
-        }
-        if (inf->c_menu != NONE &&
-        sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->pressed == 0) {
-            inf->pressed = 1;
-            go_back(inf);
-        }
-        if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
-        inf->inputs.keys.mright || inf->event.key.code ==
-        inf->inputs.keys.mleft || inf->event.key.code ==
-        inf->inputs.keys.back)) {
-            inf->pressed = 0;
-        }
+        update_pause(inf, p);
+        update_pause2(inf, p);
+        check_back(inf, p);
     }
 }
