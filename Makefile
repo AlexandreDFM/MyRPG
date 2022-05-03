@@ -66,6 +66,7 @@ SRC		= 	main.c												\
 			src/collisions/collision_check.c					\
 			src/collisions/draw_collisions.c					\
 			src/collisions/init_triggers.c						\
+			src/collisions/scene_triggers.c						\
 			src/window/handle_transitions.c						\
 			src/scene_handling/draw_scene.c						\
 			src/pnjs/add_pnjs.c									\
