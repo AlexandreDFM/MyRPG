@@ -166,6 +166,7 @@ typedef struct player_t {
     sfIntRect r;
     sfVector2i limit;
     float animc;
+    int shiny;
     sfSprite *test;
     sfVector2f vel;
     float time;
@@ -249,6 +250,7 @@ typedef struct wininf_t {
     struct menus *ig_options_menu;
     struct menus *options_menu;
     struct menus *current_menu;
+    sfRenderStates state;
     struct settings_t *settings;
     struct intro_assets_t *intro;
     struct ditto_assets_t *ditto;
@@ -324,6 +326,7 @@ void free_musics(wininf *inf);
 void my_free_array(char **array);
 char *unix_to_date(long int seconds);
 void end_global_free(components *all);
+sfRenderStates create_shiny_test(void);
 void draw_quiz(wininf *inf, player *p);
 void update_mobs(wininf *inf, player *p);
 void create_dungeon(wininf *win, char *name);

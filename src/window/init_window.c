@@ -64,6 +64,7 @@ wininf create_window_infos(int ac, char **av)
     init_times(&inf);
     create_atlases(&inf);
     init_inputs(&inf);
+    inf.state = create_shiny_test();
     inf.scenes[0] = create_home(&inf, inf.settings->house);
     inf.scenes[1] = create_static_env(&inf, 0);
     inf.scenes[3] = create_static_env(&inf, 6);

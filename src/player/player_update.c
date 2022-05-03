@@ -25,7 +25,8 @@ void draw_player(wininf *inf, player *p)
             sfRenderWindow_drawSprite(inf->win, inf->net->other.p->test, 0);
     }
     update_camera(inf);
-    sfRenderWindow_drawSprite(inf->win, p->test, 0);
+    sfShader_setFloatUniform(inf->state.shader, "time", inf->time.time);
+    sfRenderWindow_drawSprite(inf->win, p->test, p->shiny ? &inf->state : 0);
 }
 
 void perform_free_movement(wininf *inf, player *p)

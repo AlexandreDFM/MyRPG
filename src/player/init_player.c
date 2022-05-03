@@ -10,9 +10,9 @@
 int **get_player_rects(char **arr)
 {
     int i = 0; for (; arr[i] != NULL; i++);
-    int **rects = malloc(sizeof(int *) * i);
+    int **rects = my_malloc(sizeof(int *) * i);
     for (int j = 0; j < i; j++) {
-        rects[j] = malloc(sizeof(int) * 2);
+        rects[j] = my_malloc(sizeof(int) * 2);
         char *firstnb = my_strdup_to_char(arr[j], "-");
         char *secondnb = my_slice_array(0, arr[j], pos_char(arr[j], "-") + 1);
         int nb1 = my_atoi(firstnb); int nb2 = my_atoi(secondnb);
@@ -24,7 +24,8 @@ int **get_player_rects(char **arr)
 
 player *init_player(wininf inf, int id)
 {
-    player *p = malloc(sizeof(player));
+    player *p = my_malloc(sizeof(player));
+    p->shiny = 1;
     p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
     int i = 0; for (; arr[i] != NULL; i++);
