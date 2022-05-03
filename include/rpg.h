@@ -217,8 +217,7 @@ typedef struct wininf_t {
     int waiting_key;
     int interacting;
     int change_scene;
-    int vol_music;
-    int vol_sound;
+    int *volumes;
     int c_fps;
     sfClock *play_time;
     const char **fps;

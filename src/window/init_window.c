@@ -78,8 +78,9 @@ wininf create_window_infos(int ac, char **av)
     inf.waiting_key = 0;
     inf.current_menu = inf.main_menu;
     inf.prev_menu = NULL;
-    inf.vol_music = 100;
-    inf.vol_sound = 100;
+    int tmp[2] = {100, 100};
+    inf.volumes = malloc(sizeof (int) * 2);
+    for (int i = 0; i < 2; i++) inf.volumes[i] = tmp[i];
     inf.net->timeout.microseconds = 5000;
     inf.intro = NULL; inf.ditto = NULL; inf.dream = NULL;
     inf.quiz = NULL;
