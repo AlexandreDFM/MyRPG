@@ -43,7 +43,7 @@ void ditto(wininf *inf, ditto_a *cditto)
     background_clock(inf, cditto);
     if (sfMusic_getStatus(cditto->conga) == 0) sfMusic_play(cditto->conga);
     sfRenderWindow_clear(inf->win, cditto->color);
-    for (int i = 0; i < 4; i++) display_eles(inf->win, cditto->ditto[i]);
+    for (int i = 0; i < 4; i++) display_ele(inf->win, cditto->ditto[i]);
 }
 
 void draw_ditto(wininf *inf)

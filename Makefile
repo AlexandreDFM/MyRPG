@@ -128,7 +128,6 @@ SRC		= 	main.c												\
 			src/cinematics_elements/create_cine_elements.c		\
 			src/cinematics_elements/create_cine_elements_spe.c	\
 			src/cinematics_elements/display_elements.c			\
-			src/cinematics_elements/display_elements_spe.c		\
 			src/quiz/create_quiz.c								\
 			src/quiz/quiz.c										\
 			src/quiz/calculate_quiz.c							\
