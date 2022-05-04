@@ -10,26 +10,23 @@
 
 void ditto_clock(wininf *inf, ditto_a *cditto)
 {
-    if (inf->time.ditto_anim > 0.1f) {
-        cditto->ditto[1].pos.x -= 56; cditto->ditto[2].pos.x += 56;
-        cditto->ditto[3].pos.x += 56;
-        if (cditto->ditto[1].pos.x <= 0 - 220)
-            cditto->ditto[1].pos.x = 1920 + rand() % 300;
-        if (cditto->ditto[2].pos.x >= 1920 + 220)
-            cditto->ditto[2].pos.x = -220 - rand() % 300;
-        if (cditto->ditto[3].pos.x >= 1920 + 220)
-            cditto->ditto[3].pos.x = -220 - rand() % 300;
-        if (cditto->ditto[0].rect.left >= 220 * 3) {
-            cditto->ditto[0].rect.left = 0; cditto->ditto[1].rect.left = 0;
-            cditto->ditto[2].rect.left = 0; cditto->ditto[3].rect.left = 0;
-        } else {
-            cditto->ditto[0].rect.left += 220;
-            cditto->ditto[1].rect.left += 220;
-            cditto->ditto[2].rect.left += 220;
-            cditto->ditto[3].rect.left += 220;
-        }
-        inf->time.ditto_anim = 0.0f;
+    if (inf->time.ditto_anim < 0.1f) return;
+    cditto->ditto[1].pos.x -= 56; cditto->ditto[2].pos.x += 56;
+    cditto->ditto[3].pos.x += 56;
+    if (cditto->ditto[1].pos.x <= -426)
+        cditto->ditto[1].pos.x = 1920 + rand() % 600;
+    if (cditto->ditto[2].pos.x >= 1920 + 426)
+        cditto->ditto[2].pos.x = -213 - rand() % 600;
+    if (cditto->ditto[3].pos.x >= 1920 + 426)
+        cditto->ditto[3].pos.x = -213 - rand() % 600;
+    if (cditto->ditto[0].rect.left >= 213 * 3) {
+        cditto->ditto[0].rect.left = 0; cditto->ditto[1].rect.left = 0;
+        cditto->ditto[2].rect.left = 0; cditto->ditto[3].rect.left = 0;
+    } else {
+        cditto->ditto[0].rect.left += 213; cditto->ditto[1].rect.left += 213;
+        cditto->ditto[2].rect.left += 213; cditto->ditto[3].rect.left += 213;
     }
+    inf->time.ditto_anim = 0.0f;
 }
 
 void background_clock(wininf *inf, ditto_a *cditto)
