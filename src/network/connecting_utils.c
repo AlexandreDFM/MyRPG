@@ -58,7 +58,7 @@ network *init_network(void)
     net->is_okay = 1;
     net->selector = sfSocketSelector_create();
     sfTime timeout;
-    timeout.microseconds = 30000;
+    timeout.microseconds = 1000000;
     net->timeout = timeout;
     net->other.cscene = -1;
     return net;
