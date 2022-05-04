@@ -14,7 +14,6 @@ void update_network(wininf *inf, components *all)
     sfPacket *p = inf->net->packet;
     sfIpAddress *ip = &(net->other.ip);
     if (sfPacket_getDataSize(p) > 1 || !net->other.connected) {
-        printf("Sending packet of size: %ld\n", sfPacket_getDataSize(p));
         sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
             net->other.port);
         sfPacket_clear(p);

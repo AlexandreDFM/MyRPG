@@ -18,9 +18,9 @@ void draw_player(wininf *inf, player *p)
         perform_dungeon_movement(inf, p);
     }
     if (inf->net->is_multi && inf->net->other.p) {
-        // sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
-        // pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
-        // sfSprite_setPosition(inf->net->other.p->test, pos);
+        sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
+        pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
+        sfSprite_setPosition(inf->net->other.p->test, pos);
         if (inf->net->other.cscene == inf->c_scene)
             sfRenderWindow_drawSprite(inf->win, inf->net->other.p->test, 0);
     } update_camera(inf);
