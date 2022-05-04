@@ -50,8 +50,8 @@ typedef struct quiz_t {
     char **aquestions;
     cine_ele cursor;
     sfSprite *quizbox;
+    q_quiz *aq_quiz;
     q_quiz *questions_quiz;
-    q_quiz *actualquestion_quiz;
 } quiz;
 
 void handle_quiz(wininf *inf);
