@@ -31,16 +31,15 @@ void update_enemy(player *e, wininf *inf, player *p)
     sfVector2i target = elpos;
     int proom = get_current_room(ppos, mi);
     int eroom = get_current_room(epos, mi);
-    if (proom == -1 || eroom == -1) {
-        if (eroom != -1 && mi->map[elpos.y][elpos.x] != 'E') {
-            target = get_closest_exit(eroom, ppos, mi);
-        } else if (proom == -1) {
-            move_in_tunnel(e, inf, p);
-            return;
-        }
+    int enemycond = mi->map[elpos.y][elpos.x] == 'E' || eroom == -1;
+    if (proom == -1 || enemycond) {
+        move_in_tunnel(e, inf, p);
+        return;
     }
-    if (proom == eroom || eroom == -1 || (!target.x && !target.y))
+    if (proom == eroom)
         target = global_to_local(ppos);
+    else
+        target = get_closest_exit(eroom, ppos, mi);
     sfVector2f targetf = (sfVector2f){target.x, target.y};
     sfIntRect final = (sfIntRect){elpos.x, elpos.y, elpos.x, elpos.y};
     float maxdst = 1000;
@@ -76,17 +75,23 @@ void move_in_tunnel(player *e, wininf *inf, player *p)
     for (int y = i.y - 1; y < i.y + 2; y++) {
         for (int x = i.x - 1; x < i.x + 2; x++) {
             sfVector2i lp = (sfVector2i){x, y};
-            if (mi->map[y][x] != 'E' && get_current_roomlo(lp, mi) != -1)
+            if (mi->map[y][x] != 'E' && mi->map[y][x] != ' ')
                 continue;
+            sfVector2f slp = (sfVector2f){lp.x, lp.y};
             float dst = distance((sfVector2f){plpos.x, plpos.y},
-                (sfVector2f){lp.x, lp.y});
-            if (maxdst > dst && mi->map[lp.y][lp.x] != '.') {
+                slp);
+            char c = mi->map[lp.y][lp.x];
+            int isold = lp.x == (int)e->sentpos.x && lp.y == (int)e->sentpos.y;
+            int cond = get_current_room(slp, mi) == -1;
+            if (maxdst > dst && c != '.' && cond && !isold) {
                 maxdst = dst;
                 final.x = lp.x; final.y = lp.y;
             }
         }
     }
     sfVector2f ffinal = local_to_global(final.x, final.y);
+    if (final.x != i.x && final.y != i.y)
+        e->sentpos = (sfVector2f){final.x, final.y};
     sfSprite_setPosition(e->test, ffinal);
 }
 

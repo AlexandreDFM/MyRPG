@@ -17,5 +17,6 @@ void create_dungeon(wininf *win, char *name)
     }
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
     sfVector2i lpos = global_to_local(pos);
-    create_enemy(win, &win->dungeon, (sfVector2i){lpos.x - 2, lpos.y});
+    sfIntRect r = *(win->dungeon.inf->rooms[0]);
+    create_enemy(win, &win->dungeon, (sfVector2i){r.left, r.top});
 }
