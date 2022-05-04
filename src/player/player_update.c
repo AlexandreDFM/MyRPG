@@ -43,9 +43,9 @@ void perform_free_movement(wininf *inf, player *p)
     sfSprite_setPosition(p->test, np);
     if (!is_same(po, nextp, 0.1f) && inf->net->is_multi) {
         network *net = inf->net;
+        printf("\tBefore: %d\n", sfPacket_getDataSize(inf->net->packet));
         add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
-        sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-        net->other.port);
+        printf("\t\tAfter: %d\n", sfPacket_getDataSize(inf->net->packet));
     }
 }
 
