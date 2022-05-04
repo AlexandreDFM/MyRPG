@@ -22,5 +22,6 @@ int main(int argc, char **argv)
     sfImage_destroy(all.inf.atlases.atlas);
     end_global_free(&all);
     my_malloc(0);
+    my_sf_free();
     return 0;
 }

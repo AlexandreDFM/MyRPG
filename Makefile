@@ -24,7 +24,6 @@ LIB		=  -L ./lib/my/ -lmy
 
 SRC		= 	main.c												\
 			src/window/create_components.c						\
-			src/utils/my_malloc.c								\
 			src/scene_handling/scene_handler.c					\
 			src/window/init_window.c							\
 			src/window/shader/create_state.c					\
@@ -36,6 +35,8 @@ SRC		= 	main.c												\
 			src/texture_atlas/create_sprite_from_atlas.c		\
 			src/texture_atlas/init_atlases.c					\
 			src/utils/my_strtwa.c								\
+			src/utils/my_malloc.c								\
+			src/utils/my_sfalloc.c								\
 			src/utils/lists/push_front.c						\
 			src/utils/my_itoa.c									\
 			src/utils/is_same.c									\

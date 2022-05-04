@@ -18,7 +18,8 @@ sfSoundBuffer_destroy);
 #define my_rectangle() my_sfalloc(sfRectangleShape_create,\
 sfRectangleShape_destroy);
 #define my_circle() my_sfalloc(sfCircleShape_create, sfCircleShape_destroy);
-
+#define my_clock() my_sfalloc(sfClock_create, sfClock_destroy);
+#define my_sf_free() my_sfalloc(NULL, NULL);
     #include "infos.h"
     #include "dungeon.h"
     #include "atlas.h"
@@ -394,6 +395,8 @@ char **my_strtwa(char const *str, char *limit);
 char *my_strdup_to_char(char *src, char *delim);
 //Utility functions
 void *my_memset(void *dest, int value, int length);
+//Utility functions
+void *my_sfalloc(void *(create)(void), void *(destroy)(void));
 //Utility functions
 char *my_slice_array(int direction, char *strslice, int nbslice);
 ////////////////////////////////////////////////////////////
