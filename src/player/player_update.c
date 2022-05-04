@@ -42,7 +42,6 @@ void perform_free_movement(wininf *inf, player *p)
             return;
     sfSprite_setPosition(p->test, np);
     if (!is_same(np, p->sentpos, 1.0f) && inf->net->is_multi) {
-        network *net = inf->net;
         p->sentpos = np;
         add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
     }

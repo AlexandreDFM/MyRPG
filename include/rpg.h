@@ -365,6 +365,7 @@ typedef struct inventory_slot {
     void (*use)(wininf *, struct inventory_slot **);
 } invslot;
 
+void init_inventory(player *p, int size);
 void use_apple(wininf *inf, invslot **slot);
 
 ////////////////////////////////////////////////////////////
