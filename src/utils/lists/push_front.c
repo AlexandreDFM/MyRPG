@@ -9,7 +9,7 @@
 
 void add_to_list(list **l, void *new_data)
 {
-    list *new_elem = malloc(sizeof(list));
+    list *new_elem = my_malloc(sizeof(list));
     new_elem->data = new_data;
     new_elem->next = 0;
     if (*l)
@@ -19,7 +19,7 @@ void add_to_list(list **l, void *new_data)
 
 void push_back(list **l, void *new_data)
 {
-    list *new_elem = malloc(sizeof(list));
+    list *new_elem = my_malloc(sizeof(list));
     new_elem->data = new_data;
     new_elem->next = 0;
     if (*l) {
@@ -33,7 +33,7 @@ void push_back(list **l, void *new_data)
 
 void push_back_double(list **l, void *new_data)
 {
-    list *new_elem = malloc(sizeof(list));
+    list *new_elem = my_malloc(sizeof(list));
     new_elem->data = new_data;
     new_elem->next = 0;
     if (*l) {
