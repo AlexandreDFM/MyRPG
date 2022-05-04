@@ -13,7 +13,7 @@ void update_network(wininf *inf, components *all)
     if (!inf->net->is_multi) return;
     sfPacket *p = inf->net->packet;
     sfIpAddress *ip = &(net->other.ip);
-    if (sfPacket_getDataSize(p) > 1) {
+    if (sfPacket_getDataSize(p) > 1 || !net->other.connected) {
         sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
             net->other.port);
         sfPacket_clear(p);
@@ -22,9 +22,9 @@ void update_network(wininf *inf, components *all)
         if (sfSocketSelector_isUdpSocketReady(net->selector, net->socket)) {
             sfUdpSocket_receivePacket(net->socket, p, ip, &net->port);
             receive_ord(net, all);
+            sfPacket_clear(p);
         }
     }
-    sfPacket_clear(p);
 }
 
 void receive_ord(network *net, components *all)

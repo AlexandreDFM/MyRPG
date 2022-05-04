@@ -227,6 +227,7 @@ typedef struct other_t {
     sfIpAddress ip;
     int cscene;
     int port;
+    int connected;
 } other;
 
 typedef struct dungeon_t {

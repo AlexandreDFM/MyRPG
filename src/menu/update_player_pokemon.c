@@ -23,4 +23,5 @@ void set_pokemon(wininf *inf)
     sfSprite_setTextureRect(tmp->sps[0], r);
     tmp2->data = tmp->sps[0];
     sfSprite_setPosition(inf->pause_menu->texts->data, pos);
+    my_free_array(name);
 }

@@ -20,4 +20,5 @@ void place_decorations(char *line, sfImage *atlas, char **csv, list **l)
         sfSprite_setPosition(((entity*)(*l)->data)->sp, p);
         my_printf("at pos %d %d\n", (int)p.x, (int)p.y);
     }
+    my_free_array(arr);
 }
