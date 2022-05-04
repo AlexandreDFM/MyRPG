@@ -50,7 +50,7 @@ void add_circle_col(list **l, int radius, int x, int y)
     nc->check = check_circle_col;
     nc->draw = draw_circle_col;
     nc->ptr = -1;
-    nc->circle = sfCircleShape_create();
+    nc->circle = my_circle();
     sfCircleShape_setFillColor(nc->circle, sfColor_fromRGBA(255, 0, 0, 122));
     sfCircleShape_setRadius(nc->circle, radius);
     sfCircleShape_setOrigin(nc->circle, (sfVector2f){radius, radius});
@@ -69,7 +69,7 @@ void add_rect_col(list **l, sfVector2f pos, sfVector2f size)
     nc->check = check_rect_col;
     nc->draw = draw_rect_col;
     nc->ptr = -1;
-    nc->rect = sfRectangleShape_create();
+    nc->rect = my_rectangle();
     sfRectangleShape_setFillColor(nc->rect, sfColor_fromRGBA(255, 0, 0, 122));
     sfRectangleShape_setPosition(nc->rect, (sfVector2f){pos.x, pos.y});
     sfRectangleShape_setSize(nc->rect, (sfVector2f){size.x, size.y});

@@ -108,7 +108,8 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     nl->cline = 0;
     nl->sps = ptr(sizeof(sfSprite *) * nb_y);
     for (int i = 0; i < nb_y; i++) {
-        nl->sps[i] = sfSprite_create();
+        if (ptr == my_malloc) nl->sps[i] = sfSprite_create();
+        else nl->sps[i] = my_sprite();
         sfSprite *sp = nl->sps[i];
         float ch = height * i;
         sfSprite_setTexture(sp, nl->img, sfFalse);

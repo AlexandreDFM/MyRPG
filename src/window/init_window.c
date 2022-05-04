@@ -80,7 +80,7 @@ wininf create_window_infos(int ac, char **av)
     dungeon d; d.img = sfImage_createFromFile("result8.png"); d.in = 0;
     d.enemies = 0;
     inf.dungeon = d;
-    inf.transi = sfRectangleShape_create();
+    inf.transi = my_rectangle();
     sfRectangleShape_setSize(inf.transi, (sfVector2f){inf.mode.width,
         inf.mode.height});
     sfRectangleShape_setFillColor(inf.transi,

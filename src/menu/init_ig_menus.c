@@ -80,12 +80,13 @@ menuss *init_ig2(char **arr, int offset, menuss *menu, wininf *inf)
     menu->blk = 0, menu->press = 0;
     menu->max_choice = my_atoi(arr[offset + 4]);
     menu->type = my_atoi(arr[offset + 6]);
+    my_free_array(arr);
     return menu;
 }
 
 menuss *init_ig_menus(wininf *inf, int menu_id, int focus)
 {
-    menuss *menu = malloc(sizeof(menuss)); char **arr;
+    menuss *menu = my_malloc(sizeof(menuss)); char **arr;
     if (inf->lang == ENGLISH)
         arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
     else arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");

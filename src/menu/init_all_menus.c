@@ -28,7 +28,7 @@ choices *fill_choice(char **arr, int tmp, wininf *inf)
 {
     int size = my_atoi(arr[1]);
     sfVector2f pos;
-    choices *choice = malloc(sizeof(choices));
+    choices *choice = my_malloc(sizeof(choices));
     pos = (sfVector2f){my_atoi(arr[tmp + 1]) + my_atoi(arr[2]),
     my_atoi(arr[tmp + 2]) + my_atoi(arr[3])};
     choice->choice = init_text(arr[tmp], inf->ui.font, pos, size);

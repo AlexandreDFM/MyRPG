@@ -11,8 +11,8 @@ quiz *create_quiz(wininf *inf)
 {
     quiz *qcm = malloc(sizeof(quiz));
     qcm->destroy = 0; qcm->tendance = 0; qcm->nbquestions = 0;
-    qcm->nature = malloc(sizeof(int) * 13);
-    qcm->addptsnature = malloc(sizeof(int) * 13);
+    qcm->nature = my_malloc(sizeof(int) * 13);
+    qcm->addptsnature = my_malloc(sizeof(int) * 13);
     for (int i = 0; i < 13; i++) {
         qcm->nature[i] = i; qcm->addptsnature[i] = 0;
     }

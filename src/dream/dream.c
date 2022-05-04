@@ -37,5 +37,5 @@ void draw_dream(wininf *inf)
         for (int i = 0; i < 3; i++)
             display_ele(inf->win, inf->dream->b_dream[i]);
     }
-    // if (inf->dream->plan == DELETEDREAM) delete_dream(inf);
+    if (inf->dream->plan == DELETEDREAM) delete_dream(inf);
 }
