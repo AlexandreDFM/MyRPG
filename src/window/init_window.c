@@ -114,7 +114,7 @@ wininf create_window_infos(int ac, char **av)
     inf.ig_choices[2] = load_line("VOID", FONT_SIZE, &inf, malloc);
     inf.pressed = 0;
     init_fps(&inf);
-    init_key_list(&inf); inf.key_change = -1; inf.play_time = sfClock_create();
+    init_key_list(&inf); inf.key_change = -1; inf.play_time = my_clock();
     set_pokemon(&inf);
     return inf;
 }

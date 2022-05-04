@@ -7,19 +7,28 @@
 
 #ifndef RPG_H_
 #define RPG_H_
-#define my_sprite() my_sfalloc(sfSprite_create, sfSprite_destroy);
-#define my_texture() my_sfalloc(sfTexture_create, sfTexture_destroy);
-#define my_font() my_sfalloc(sfFont_createFromFile, sfFont_destroy);
-#define my_music() my_sfalloc(sfMusic_createFromFile, sfMusic_destroy);
-#define my_sound() my_sfalloc(sfSound_create, sfSound_destroy);
-#define my_sound_buffer() my_sfalloc(sfSoundBuffer_createFromFile,\
-sfSoundBuffer_destroy);
-#define my_text() my_sfalloc(sfText_create, sfText_destroy);
-#define my_rectangle() my_sfalloc(sfRectangleShape_create,\
-sfRectangleShape_destroy);
-#define my_circle() my_sfalloc(sfCircleShape_create, sfCircleShape_destroy);
-#define my_clock() my_sfalloc(sfClock_create, sfClock_destroy);
+#define my_sprite() my_sfalloc((void *(*)(void))sfSprite_create,\
+    (void *(*)(void *))sfSprite_destroy);
+#define my_texture() my_sfalloc((void *(*)(void))sfTexture_create,\
+    (void *(*)(void *))sfTexture_destroy);
+#define my_font() my_sfalloc((void *(*)(void))sfFont_createFromFile,\
+    (void *(*)(void *))sfFont_destroy);
+#define my_music() my_sfalloc((void *(*)(void))sfMusic_createFromFile,\
+    (void *(*)(void *))sfMusic_destroy);
+#define my_sound() my_sfalloc((void *(*)(void))sfSound_create,\
+    (void *(*)(void *))sfSound_destroy);
+#define my_sound_buffer() my_sfalloc((void *(*)(void))\
+    sfSoundBuffer_createFromFile, (void *(*)(void *))sfSoundBuffer_destroy);
+#define my_text() my_sfalloc((void *(*)(void))sfText_create,\
+    (void *(*)(void *))sfText_destroy);
+#define my_rectangle() my_sfalloc((void *(*)(void))sfRectangleShape_create,\
+    (void *(*)(void *))sfRectangleShape_destroy);
+#define my_circle() my_sfalloc((void *(*)(void))sfCircleShape_create,\
+    (void *(*)(void *))sfCircleShape_destroy);
+#define my_clock() my_sfalloc((void *(*)(void))sfClock_create,\
+    (void *(*)(void *))sfClock_destroy);
 #define my_sf_free() my_sfalloc(NULL, NULL);
+
     #include "infos.h"
     #include "dungeon.h"
     #include "atlas.h"
@@ -396,7 +405,7 @@ char *my_strdup_to_char(char *src, char *delim);
 //Utility functions
 void *my_memset(void *dest, int value, int length);
 //Utility functions
-void *my_sfalloc(void *(create)(void), void *(destroy)(void));
+void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *));
 //Utility functions
 char *my_slice_array(int direction, char *strslice, int nbslice);
 ////////////////////////////////////////////////////////////

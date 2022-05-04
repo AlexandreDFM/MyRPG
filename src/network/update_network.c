@@ -18,10 +18,7 @@ void update_network(wininf *inf, components *all)
     sfIpAddress *ip = &(net->other.ip);
     sfPacket_clear(p);
     sfUdpSocket_receivePacket(net->socket, p, ip, &net->port);
-    if (sfPacket_canRead(p))
-        receive_ord(net, all);
-    else
-        my_printf("Error on packet received\n");
+    receive_ord(net, all);
     sfPacket_clear(p);
 }
 

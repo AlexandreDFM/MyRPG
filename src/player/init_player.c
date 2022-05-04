@@ -28,7 +28,7 @@ player *init_player(wininf inf, int id)
     p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
     int i = 0; for (; arr[i] != NULL; i++);
-    int *arr1 = malloc(sizeof(int) * i);
+    int *arr1 = my_malloc(sizeof(int) * i);
     for (int j = 0; j < i; j++) arr1[j] = my_atoi(arr[j]);
     char **arr2 = my_strtwa(inf.atlases.pokemons_rect[id], ";\n");
     int **rlist = get_player_rects(arr2);

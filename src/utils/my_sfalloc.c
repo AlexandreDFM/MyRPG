@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void *my_sfalloc(void *(create)(void), void *(destroy)(void))
+void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
 {
     static list *garbage2 = 0;
     int nbfree = 0;
@@ -20,7 +20,7 @@ void *my_sfalloc(void *(create)(void), void *(destroy)(void))
             nbfree++;
         }
         my_printf("Freed %d items from CPP automatically\n", nbfree);
-        return;
+        return NULL;
     }
     cpp_garbage *garbage = malloc(sizeof(cpp_garbage));
     if (garbage) {
