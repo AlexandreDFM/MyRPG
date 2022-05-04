@@ -12,11 +12,12 @@ void update_network(wininf *inf, components *all)
     network *net = inf->net;
     if (!inf->net->is_multi) return;
     sfPacket *p = inf->net->packet;
-    printf("Sending packet of size: %d\n\n", sfPacket_getDataSize(p));
-    sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-        net->other.port);
     sfIpAddress *ip = &(net->other.ip);
-    sfPacket_clear(p);
+    if (sfPacket_getDataSize(p) > 1) {
+        sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
+        net->other.port);
+        sfPacket_clear(p);
+    }
     sfUdpSocket_receivePacket(net->socket, p, ip, &net->port);
     receive_ord(net, all);
     sfPacket_clear(p);
