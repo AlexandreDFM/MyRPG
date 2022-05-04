@@ -38,7 +38,7 @@ void manage_lang(char *arg, wininf *inf)
 void manage_host(char *arg, wininf *inf)
 {
     sfIpAddress ip = sfIpAddress_getLocalAddress();
-    my_printf("Starting server side on your local address at 7878...\n");
+    my_printf("Starting server side on your local address at %d...\n", PORT);
     inf->net->is_host = 1;
     inf->net->is_multi = 1;
     inf->net->packet = sfPacket_create();
