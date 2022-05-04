@@ -9,7 +9,7 @@
 
 settings *init_settings(void)
 {
-    settings *setts = malloc(sizeof(settings));
+    settings *setts = my_malloc(sizeof(settings));
     setts->show_collision = 0;
     setts->house = 1;
     setts->pokemon = 4;

@@ -32,5 +32,6 @@ int get_number_lines(char *filename)
     int count = 0;
     for (; (read = getline(&line, &len, f)) != -1; count++);
     fclose(f);
+    free(line);
     return count;
 }
