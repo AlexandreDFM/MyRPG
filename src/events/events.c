@@ -5,10 +5,11 @@
 ** events
 */
 
-#include "infos.h"
-#include "inputs.h"
-#include "intro.h"
 #include "rpg.h"
+#include "quiz.h"
+#include "infos.h"
+#include "intro.h"
+#include "inputs.h"
 
 void update_pause(wininf *inf, player *p)
 {
@@ -63,6 +64,7 @@ void update_keys(wininf *inf, player *p)
     inf->c_menu != NONE)
         inf->current_menu->press = 0;
     manage_intro(inf);
+    handle_quiz(inf);
     if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
         inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
     }

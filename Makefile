@@ -135,6 +135,10 @@ SRC		= 	main.c												\
 			src/quiz/quiz.c										\
 			src/quiz/calculate_quiz.c							\
 			src/quiz/delete_quiz.c								\
+			src/quiz/create_questions_quiz.c					\
+			src/quiz/move_cursor_quiz.c							\
+			src/quiz/handle_quiz.c								\
+			src/quiz/quiz_choice.c								\
 
 
 
