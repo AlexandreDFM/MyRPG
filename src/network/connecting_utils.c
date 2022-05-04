@@ -48,7 +48,7 @@ int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *p)
 
 network *init_network(void)
 {
-    network *net = malloc(sizeof(network));
+    network *net = my_malloc(sizeof(network));
     net->is_host = 0;
     net->is_multi = 0;
     net->packet = 0;
@@ -58,7 +58,7 @@ network *init_network(void)
     net->other.port = 0;
     net->other.connected = 0;
     net->is_okay = 1;
-    net->selector = sfSocketSelector_create();
+    net->selector = my_sock_select();
     sfTime timeout;
     timeout.microseconds = 1000000;
     net->timeout = timeout;

@@ -18,7 +18,7 @@ int get_int_len(long long int nbr)
 
 char *my_itoa(int num)
 {
-    char *str = malloc(sizeof(char) * get_int_len(num) + 4);
+    char *str = my_malloc(sizeof(char) * get_int_len(num) + 4);
     int i = 0, is_negative = 0;
     if (num == 0) {
         str[i++] = '0';
