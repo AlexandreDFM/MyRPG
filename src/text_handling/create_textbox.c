@@ -104,7 +104,7 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
         steps[li] = posx;
     }
     dline *nl = ptr(sizeof(dline));
-    nl->img = my_texture_from_image(img, NULL);
+    nl->img = sfTexture_createFromImage(img, NULL);
     nl->cline = 0;
     nl->sps = ptr(sizeof(sfSprite *) * nb_y);
     for (int i = 0; i < nb_y; i++) {

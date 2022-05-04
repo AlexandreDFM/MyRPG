@@ -15,17 +15,17 @@ void update_pause(wininf *inf, player *p)
 {
     if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
     sfKeyboard_isKeyPressed(inf->inputs.keys.back) && inf->c_menu == NONE &&
-    inf->pause_menu->press == 0 && !inf->ui.dialog) {
+    inf->pause == 0 && !inf->ui.dialog) {
         inf->c_menu = PAUSE;
         inf->pause_menu->focus = 1;
-        inf->pause_menu->press = 1;
+        inf->pause = 1;
         inf->current_menu = inf->pause_menu;
         center_menu(inf->pause_menu, inf, p);
     }
-    if (inf->pause_menu->press == 1 &&
+    if (inf->pause == 1 &&
         inf->event.type == sfEvtKeyReleased &&
         inf->event.key.code == inf->inputs.keys.back) {
-        inf->pause_menu->press = 0;
+        inf->pause = 0;
     }
 }
 
@@ -33,9 +33,9 @@ void update_pause2(wininf *inf, player *p)
 {
     if (inf->c_menu == PAUSE &&
         sfKeyboard_isKeyPressed(inf->inputs.keys.back)
-        && inf->pause_menu->press == 0) {
+        && inf->pause == 0) {
         inf->c_menu = NONE;
-        inf->pause_menu->press = 1;
+        inf->pause = 1;
         inf->pause_menu->focus = 0;
         inf->pause_menu->selected = inf->pause_menu->head;
         inf->current_menu = inf->main_menu;
@@ -49,19 +49,15 @@ void update_pause2(wininf *inf, player *p)
 
 void check_back(wininf *inf, player *p)
 {
-    if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
-    inf->inputs.keys.mright || inf->event.key.code ==
-    inf->inputs.keys.mleft || inf->event.key.code ==
-    inf->inputs.keys.back)) {
+    if (inf->inputs.axis.x == 0 || inf->inputs.axis.y == 0 ||
+    inf->event.key.code == inf->inputs.keys.back) {
         inf->pressed = 0;
     }
 }
 
 void update_keys(wininf *inf, player *p)
 {
-    if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
-    inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown) &&
-    inf->c_menu != NONE)
+    if (inf->current_menu && (inf->inputs.axis.x == 0 || inf->inputs.axis.y == 0) && inf->c_menu != NONE)
         inf->current_menu->press = 0;
     manage_intro(inf);
     handle_quiz(inf);
@@ -86,6 +82,10 @@ void update_events(wininf *inf, player *p)
         if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
         inf->inputs.keys.back && inf->interacting != 0)
             inf->interacting = 0;
+    }
+    inf->time.cursor += inf->time.dt;
+    if (inf->time.cursor > (inf->c_menu == NONE ? 0.0f : 0.3f)) {
+        inf->time.cursor = 0;
         update_keys(inf, p);
         update_pause(inf, p);
         update_pause2(inf, p);

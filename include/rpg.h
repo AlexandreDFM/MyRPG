@@ -167,6 +167,7 @@ typedef struct time_inft {
     float transi;
     float time;
     float anim;
+    float cursor;
 } time_info;
 
 typedef struct pnj_t {
@@ -258,6 +259,7 @@ typedef struct wininf_t {
     int interacting;
     int change_scene;
     int *volumes;
+    int pause;
     int c_fps;
     sfClock *play_time;
     const char **fps;

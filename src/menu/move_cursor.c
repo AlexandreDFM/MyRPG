@@ -21,7 +21,7 @@ void move_cursor(menuss *menu, wininf *inf)
         ? r.width + 15 : 0), r.top + ((r.height - rc.height) / 2)};
     } if (sfKeyboard_isKeyPressed(inf->inputs.keys.mdown) && !menu->press) {
         menu->selected = menu->selected->next; menu->press = 1; menu->blk = 0;
-    } if (sfKeyboard_isKeyPressed(inf->inputs.keys.mup) && !menu->press) {
+    } if (inf->inputs.axis.y < 0.0f && !menu->press) {
         menu->selected = menu->selected->prev; menu->press = 1; menu->blk = 0;
     } if (inf->inputs.interact && inf->inputs.can_interact == 0) {
         ((choices *)menu->selected->data)->ptrs[0](inf);

@@ -128,6 +128,8 @@ void update_joysticks(wininf *inf)
     if (has_2d) {
         x = sfJoystick_getAxisPosition(0, sfJoystickX) / 100.0f;
         y = sfJoystick_getAxisPosition(0, sfJoystickY) / 100.0f;
+        x += sfJoystick_getAxisPosition(0, sfJoystickPovX) / 100.0f;
+        y += sfJoystick_getAxisPosition(0, sfJoystickPovY) / 100.0f;
     }
     if (sfJoystick_getButtonCount(0))
         inf->inputs.interact += sfJoystick_isButtonPressed(0, 2);

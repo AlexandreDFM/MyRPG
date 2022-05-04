@@ -18,6 +18,7 @@ void init_times(wininf *infos)
     infos->time.intro_anim2 = 0.0f;
     infos->time.ditto_anim = 0.0f;
     infos->time.ditto_anim2 = 0.0f;
+    infos->time.cursor = 0.0f;
 }
 
 void update_time(wininf *infos)
