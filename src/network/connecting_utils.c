@@ -56,6 +56,7 @@ network *init_network(void)
     init_orders(net);
     net->other.ip = sfIpAddress_None;
     net->other.port = 0;
+    net->other.connected = 0;
     net->is_okay = 1;
     net->selector = sfSocketSelector_create();
     sfTime timeout;
