@@ -188,12 +188,6 @@ typedef struct scene_t {
     struct linked_list_t *animated;
 } scene;
 
-typedef struct inventory_slot {
-    struct dialog_line_t *line;
-    int id;
-    void (*use)(struct wininf *, struct inventory_slot **);
-} invslot;
-
 typedef struct inventory_t {
     struct inventory_slot **slots;
     int size;
@@ -365,7 +359,11 @@ typedef struct date {
     int *daysofmonth;
 } date_t;
 
-
+typedef struct inventory_slot {
+    struct dialog_line_t *line;
+    int id;
+    void (*use)(wininf *, struct inventory_slot **);
+} invslot;
 
 void use_apple(wininf *inf, invslot **slot);
 
