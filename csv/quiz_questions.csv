@@ -1,71 +1,71 @@
-Questions;Réponse 1;Réponse 2;Pts 1;Pts 2
-Catégorie #01 - Robuste;///;///;1;1
-Question #1 Un test approche. Comment étudiez-vous pour cela ?;Étudiez dur.;A la dernière seconde.;1;1
-Question #2 Pouvez-vous vous concentrer sur quelque chose que vous aimez ?;Oui;Non;1;1
-Question #3 Quand les choses se compliquent, est-ce que tu y vas ?;Oui;Non;1;1
-///;///;///;1;1
-Catégorie #02 - Docile;///;///;1;1
-Question #1 On vous offre un choix de deux cadeaux. Laquelle allez-vous prendre ?;;;;
-Question #2 Vous avez cassé un oeuf pourri dans votre chambre ! Que vas-tu faire ?;;;;
-Question #3 Un ami a apporté quelque chose que vous oublié. Comment remerciez-vous votre ami ?;;;;
-Question #4 Il y a un portefeuille au bord d'une route.;;;;
-Catégorie #03 – Courageux;;;;
-Question #1 Vous allez faire du saut à l'élastique pour la première fois temps.;;;;
-Question #2 Il y a une invasion extraterrestre ! Que vas-tu faire?;;;;
-Question #3 Il y a un cri derrière une porte ! Comment allez-vous réagir ?;;;;
-Question #4 Un délinquant harcèle une fille une rue animée de la ville ! Que vas-tu faire?;;;;
-Catégorie #04 – Joyeux;;;;
-Question #1 Êtes-vous une personnalité joyeuse ?;;;;
-Question #2 Aimez-vous vous amuser bruyamment avec les autres?;;;;
-Question #3 C'est les vacances d'été ! Où voudrais-tu aller?;;;;
-Question #4 Une personne étrangère a démarré une conversation avec vous.;;;;
-Catégorie #05 – Espiègle;;;;
-Question #1 Avez-vous déjà fabriqué un piège à écueil ?;;;;
-Question #2 Aimez-vous les farces ?;;;;
-Question #3 Y a-t-il beaucoup de choses que vous aimeriez faire ?;;;;
-Question #4 Votre ami est victime d'intimidation ! Que fais-tu?;;;;
-Catégorie #06 – Naïf;;;;
-Question #1 Aimez-vous les jeux de mots qui font gémir ?;;;;
-Question #2 Avez-vous tendance à beaucoup rire ?;;;;
-Question #3 Est-ce que les autres vous traitent souvent d'enfant ?;;;;
-Question #4 Aimez-vous imaginer des choses pour votre amusement?;;;;
-Catégorie #07 – Timide;;;;
-Question #1 Une main humaine sort des toilettes ! Que feriez-vous?;;;;
-Question #2 Saisissez n'importe quel chiffre de votre main gauche avec votre main droite.;;;;
-Question #3 Vous êtes soudainement enfermé dans un chambre noire !;;;;
-Question #4 Pouvez-vous entrer dans une maison hantée ?;;;;
-Catégorie #08 – Hâtive;;;;
-Question #1 Vous recevez un cadeau !;;;;
-Question #2 Vous gagnez à la loterie !;;;;
-Question #3 Vous tombez sur un coffre au trésor ! Que fais-tu?;;;;
-Question #4 Votre ami ne se présente pas à une réunion;;;;
-Catégorie #09 – Impertinent;;;;
-Question #1 Le dirigeant de votre pays est devant vous. Comment lui parlez-vous ?;;;;
-Question #2 Est-ce que les autres vous disent de faire attention à ce que vous dites ?;;;;
-Question #3 Pensez-vous que vous êtes cool ? Être honnête.;;;;
-Question #4 Pouvez-vous sincèrement remercier quelqu'un lorsque vous vous sentir reconnaissant ?;;;;
-Catégorie #10 - Calme;;;;
-Question #1 Vous considérez-vous occasionnellement ennuyeux et trop prudent?;;;;
-Question #2 Vous rêvez de vous prélasser paresseusement sans grande excitation ?;;;;
-Question #3 Aimes-tu te battre ?;;;;
-Question #4 Bâillez-vous souvent ?;;;;
-Catégorie #11 – Détendu;;;;
-Question #1 Êtes-vous souvent en retard à l'école ou aux réunions ?;;;;
-Question #2 Avez-vous l'impression d'avoir ralenti vers le bas ces derniers temps?;;;;
-Question #3 C'est une agréable journée à la plage. Comment vous sentez-vous?;;;;
-Question #4 Vous endormez-vous sans vous en apercevoir ?;;;;
-Catégorie #12 – Solitaire;;;;
-Question #1 Vous sentez-vous seul lorsque vous êtes seul ?;;;;
-Question #2 Détestez-vous être la dernière personne à partir classe à la fin d'une journée d'école?;;;;
-Question #3 Que faites-vous de la lumière de votre pièce quand tu vas te coucher le soir ?;;;;
-Question #4 C'est un week-end, mais personne ne jouera avec vous...;;;;
-Catégorie #13 – Insolite;;;;
-Question #1 Manquez-vous parfois de choses à faire Tout à coup?;;;;
-Question #2 À quelle vitesse répondez-vous à un e-mail ?;;;;
-Question #3 Il y a une personne que tu aimes… Mais il n'y a aucune possibilité de se rapprocher.;;;;
-Question #4 La route bifurque à droite et à gauche. On vous dit qu'il y a un trésor sur le côté droit. Que fais-tu?;;;;
-Catégorie #14 – Divers;;;;
-Question #1 En vacances, vous souhaitez…;;;;
-Question #2 C'est le festival d'été !;;;;
-"Question #3 Quelqu'un vous appelle ""bizarre mais drôle"".";;;;
-Question Es-tu un garçon ou une fille ?;;;;
+Questions;Réponse 1;Réponse 2;Nature;Pts 1;Nature;Pts 2
+Catégorie #01 - Robuste;///;///;///;///;///;///
+Question #1 Un test approche. Comment étudiez-vous pour cela ?;Étudiez dur.;A la dernière seconde.;0;1;10;1
+Question #2 Pouvez-vous vous concentrer sur quelque chose que vous aimez ?;Oui;Non;0;1;12;1
+Question #3 Quand les choses se compliquent, est-ce que tu y vas ?;Oui;Non;0;1;8;1
+///;///;///;///;///;///;///
+Catégorie #02 - Docile;///;///;///;///;///;///
+Question #1 On vous offre un choix de deux cadeaux. Laquelle allez-vous prendre ?;;;;;;
+Question #2 Vous avez cassé un oeuf pourri dans votre chambre ! Que vas-tu faire ?;;;;;;
+Question #3 Un ami a apporté quelque chose que vous oublié. Comment remerciez-vous votre ami ?;;;;;;
+Question #4 Il y a un portefeuille au bord d'une route.;;;;;;
+Catégorie #03 – Courageux;;;;;;
+Question #1 Vous allez faire du saut à l'élastique pour la première fois temps.;;;;;;
+Question #2 Il y a une invasion extraterrestre ! Que vas-tu faire?;;;;;;
+Question #3 Il y a un cri derrière une porte ! Comment allez-vous réagir ?;;;;;;
+Question #4 Un délinquant harcèle une fille une rue animée de la ville ! Que vas-tu faire?;;;;;;
+Catégorie #04 – Joyeux;;;;;;
+Question #1 Êtes-vous une personnalité joyeuse ?;;;;;;
+Question #2 Aimez-vous vous amuser bruyamment avec les autres?;;;;;;
+Question #3 C'est les vacances d'été ! Où voudrais-tu aller?;;;;;;
+Question #4 Une personne étrangère a démarré une conversation avec vous.;;;;;;
+Catégorie #05 – Espiègle;;;;;;
+Question #1 Avez-vous déjà fabriqué un piège à écueil ?;;;;;;
+Question #2 Aimez-vous les farces ?;;;;;;
+Question #3 Y a-t-il beaucoup de choses que vous aimeriez faire ?;;;;;;
+Question #4 Votre ami est victime d'intimidation ! Que fais-tu?;;;;;;
+Catégorie #06 – Naïf;;;;;;
+Question #1 Aimez-vous les jeux de mots qui font gémir ?;;;;;;
+Question #2 Avez-vous tendance à beaucoup rire ?;;;;;;
+Question #3 Est-ce que les autres vous traitent souvent d'enfant ?;;;;;;
+Question #4 Aimez-vous imaginer des choses pour votre amusement?;;;;;;
+Catégorie #07 – Timide;;;;;;
+Question #1 Une main humaine sort des toilettes ! Que feriez-vous?;;;;;;
+Question #2 Saisissez n'importe quel chiffre de votre main gauche avec votre main droite.;;;;;;
+Question #3 Vous êtes soudainement enfermé dans un chambre noire !;;;;;;
+Question #4 Pouvez-vous entrer dans une maison hantée ?;;;;;;
+Catégorie #08 – Hâtive;;;;;;
+Question #1 Vous recevez un cadeau !;;;;;;
+Question #2 Vous gagnez à la loterie !;;;;;;
+Question #3 Vous tombez sur un coffre au trésor ! Que fais-tu?;;;;;;
+Question #4 Votre ami ne se présente pas à une réunion;;;;;;
+Catégorie #09 – Impertinent;;;;;;
+Question #1 Le dirigeant de votre pays est devant vous. Comment lui parlez-vous ?;;;;;;
+Question #2 Est-ce que les autres vous disent de faire attention à ce que vous dites ?;;;;;;
+Question #3 Pensez-vous que vous êtes cool ? Être honnête.;;;;;;
+Question #4 Pouvez-vous sincèrement remercier quelqu'un lorsque vous vous sentir reconnaissant ?;;;;;;
+Catégorie #10 - Calme;;;;;;
+Question #1 Vous considérez-vous occasionnellement ennuyeux et trop prudent?;;;;;;
+Question #2 Vous rêvez de vous prélasser paresseusement sans grande excitation ?;;;;;;
+Question #3 Aimes-tu te battre ?;;;;;;
+Question #4 Bâillez-vous souvent ?;;;;;;
+Catégorie #11 – Détendu;;;;;;
+Question #1 Êtes-vous souvent en retard à l'école ou aux réunions ?;;;;;;
+Question #2 Avez-vous l'impression d'avoir ralenti vers le bas ces derniers temps?;;;;;;
+Question #3 C'est une agréable journée à la plage. Comment vous sentez-vous?;;;;;;
+Question #4 Vous endormez-vous sans vous en apercevoir ?;;;;;;
+Catégorie #12 – Solitaire;;;;;;
+Question #1 Vous sentez-vous seul lorsque vous êtes seul ?;;;;;;
+Question #2 Détestez-vous être la dernière personne à partir classe à la fin d'une journée d'école?;;;;;;
+Question #3 Que faites-vous de la lumière de votre pièce quand tu vas te coucher le soir ?;;;;;;
+Question #4 C'est un week-end, mais personne ne jouera avec vous...;;;;;;
+Catégorie #13 – Insolite;;;;;;
+Question #1 Manquez-vous parfois de choses à faire Tout à coup?;;;;;;
+Question #2 À quelle vitesse répondez-vous à un e-mail ?;;;;;;
+Question #3 Il y a une personne que tu aimes… Mais il n'y a aucune possibilité de se rapprocher.;;;;;;
+Question #4 La route bifurque à droite et à gauche. On vous dit qu'il y a un trésor sur le côté droit. Que fais-tu?;;;;;;
+Catégorie #14 – Divers;;;;;;
+Question #1 En vacances, vous souhaitez…;;;;;;
+Question #2 C'est le festival d'été !;;;;;;
+"Question #3 Quelqu'un vous appelle ""bizarre mais drôle"".";;;;;;
+Question Es-tu un garçon ou une fille ?;;;;;;

@@ -37,8 +37,12 @@ typedef struct quiz_t {
     int tendance;
     int nbquestions;
     int actualquestion;
+    char **aquestions;
     int *nature;
+    int *addptsnature;
     char **questions;
+    sfSprite *quizbox;
+    sfText *text;
 } quiz;
 
 void delete_quiz(wininf *inf);
