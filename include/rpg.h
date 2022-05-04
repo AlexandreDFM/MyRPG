@@ -320,36 +320,16 @@ typedef struct date {
     int *daysofmonth;
 } date_t;
 
-void *my_malloc(size_t size);
-void draw_dream(wininf *inf);
-void set_pokemon(wininf *inf);
-void free_musics(wininf *inf);
-void my_free_array(char **array);
-char *unix_to_date(long int seconds);
-void end_global_free(components *all);
-sfRenderStates create_shiny_test(void);
-void draw_quiz(wininf *inf, player *p);
-void update_mobs(wininf *inf, player *p);
-void create_dungeon(wininf *win, char *name);
-void update_enemy(player *enemy, wininf *inf, player *p);
-void create_enemy(wininf *inf, dungeon *d, sfVector2i pos);
-void move_in_tunnel(player *e, wininf *inf, player *p);
-void manage_client(char *arg, wininf *inf);
-void manage_host(char *arg, wininf *inf);
-void manage_lang(char *arg, wininf *inf);
-void manage_fps(char *arg, wininf *inf);
-void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
-void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
-void change_volume_ig(wininf *inf);
-void left_main_vol(wininf *inf);
-void right_main_vol(wininf *inf);
-void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
-void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
-void right_main_fps(wininf *inf);
-void left_main_fps(wininf *inf);
-
 
 ////////////////////////////////////////////////////////////
+//Flags Handling
+void manage_fps(char *arg, wininf *inf);
+//Flags Handling
+void manage_host(char *arg, wininf *inf);
+//Flags Handling
+void manage_lang(char *arg, wininf *inf);
+//Flags Handling
+void manage_client(char *arg, wininf *inf);
 //Flags Handling
 void change_settings(int opt, char *arg, wininf *inf);
 //Flags Handling
@@ -357,6 +337,8 @@ int get_settings_flags(int ac, char **av, wininf *win);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Dungeon Generation
+void create_dungeon(wininf *win, char *name);
 //Dungeon Generation
 int search(int array[], int x, int started);
 //Dungeon Generation
@@ -374,9 +356,29 @@ int get_arr_len(char **arr);
 //Utility functions
 float my_atof(char *number);
 //Utility functions
+void *my_malloc(size_t size);
+//Utility functions
+void free_musics(wininf *inf);
+//Utility functions
+void my_free_array(char **array);
+//Utility functions
+void my_free_array(char **array);
+//Utility functions
+int get_int_len(long long int nbr);
+//Utility functions
+char *unix_to_date(long int seconds);
+//Utility functions
+void end_global_free(components *all);
+//Utility functions
+int pos_char(char *string, char *presence);
+//Utility functions
 char **my_strtwa(char const *str, char *limit);
 //Utility functions
+char *my_strdup_to_char(char *src, char *delim);
+//Utility functions
 void *my_memset(void *dest, int value, int length);
+//Utility functions
+char *my_slice_array(int direction, char *strslice, int nbslice);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -428,7 +430,15 @@ void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 //Drawing functions
 void draw_home(wininf *inf);
 //Drawing functions
+void draw_intro(wininf *inf);
+//Drawing functions
+void draw_dream(wininf *inf);
+//Drawing functions
+void draw_quiz(wininf *inf, player *p);
+//Drawing functions
 void draw_player(wininf *inf, player *p);
+//Drawing functions
+void draw_dungeon(wininf *inf, player *p);
 //Drawing functions
 void draw_menu(wininf *inf, menuss *menu);
 //Drawing functions
@@ -439,6 +449,8 @@ void handle_scene(wininf *infos, player *p);
 void draw_static_scene(wininf *inf, scene s);
 //Drawing functions
 void update_transition(wininf *inf, player p);
+//Drawing functions
+void center_menu(menuss *menu, wininf *inf, player *p);
 //Drawing functions
 void draw_rect_col(collision *self, sfRenderWindow *win);
 //Drawing functions
@@ -451,7 +463,11 @@ void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
 
 ////////////////////////////////////////////////////////////
 //Initializations
+void init_fps(wininf *inf);
+//Initializations
 network *init_network(void);
+//Initializations
+void set_pokemon(wininf *inf);
 //Initializations
 settings *init_settings(void);
 //Initializations
@@ -466,6 +482,8 @@ camera init_camera(wininf inf);
 void create_atlases(wininf *inf);
 //Initializations
 void create_triggers(wininf *inf);
+//Initializations
+sfRenderStates create_shiny_test(void);
 //Initializations
 player *init_player(wininf inf, int id);
 //Initializations
@@ -485,6 +503,8 @@ components create_all_components(int ac, char **argv);
 //Initializations
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 //Initializations
+void create_enemy(wininf *inf, dungeon *d, sfVector2i pos);
+//Initializations
 void place_decorations(char *line, sfImage *atlas, char **csv, list **l);
 //Initializations
 void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
@@ -492,7 +512,11 @@ void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
 
 ////////////////////////////////////////////////////////////
 //Updates
+void treat_axis(wininf *inf);
+//Updates
 void update_inputs(wininf *inf);
+//Updates
+void update_camera(wininf *inf);
 //Updates
 void update_time(wininf *infos);
 //Updates
@@ -500,9 +524,11 @@ void update_keyboard(wininf *inf);
 //Updates
 void update_joysticks(wininf *inf);
 //Updates
+void update_mobs(wininf *inf, player *p);
+//Updates
 void update_events(wininf *inf, player *p);
 //Updates
-void update_camera(wininf *inf);
+void update_enemy(player *enemy, wininf *inf, player *p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -539,8 +565,6 @@ void village_to_dittoland(wininf *win, player *p);
 void generate_random_dungeon(wininf *win, player *p);
 ////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////
 //Menu pointers
@@ -568,7 +592,15 @@ void go_keybinds(wininf *inf);
 //Menu pointers
 void go_ig_options(wininf *inf);
 //Menu pointers
+void left_main_vol(wininf *inf);
+//Menu pointers
+void left_main_fps(wininf *inf);
+//Menu pointers
 void change_volume(wininf *inf);
+//Menu pointers
+void right_main_vol(wininf *inf);
+//Menu pointers
+void right_main_fps(wininf *inf);
 //Menu pointers
 void change_keybind(wininf *inf);
 //Menu pointers
@@ -579,6 +611,14 @@ void init_load_pointers(wininf *inf);
 void init_options_pointers(wininf *inf);
 //Menu pointers
 void init_main_menu_pointers(wininf *inf);
+//Menu pointers
+void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+//Menu pointers
+void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+//Menu pointers
+void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
+//Menu pointers
+void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -647,19 +687,20 @@ int receive_hostsync(char **data, int *important, components *all);
 int receive_setposition(char **data, int *important, components *all);
 ////////////////////////////////////////////////////////////
 
-void draw_intro(wininf *inf);
-void treat_axis(wininf *inf);
-void draw_dungeon(wininf *inf, player *p);
-
-void my_free_array(char **array);
-int get_int_len(long long int nbr);
+////////////////////////////////////////////////////////////
+//Movement
 sfIntRect move_rect_player(player p);
-int pos_char(char *string, char *presence);
-char *my_strdup_to_char(char *src, char *delim);
+//Movement
 void perform_free_movement(wininf *inf, player *p);
+//Movement
 void perform_dungeon_movement(wininf *inf, player *p);
-void center_menu(menuss *menu, wininf *inf, player *p);
+//Movement
+void move_in_tunnel(player *e, wininf *inf, player *p);
+//Movement
 void player_direction_management(wininf *inf, player *p);
-char *my_slice_array(int direction, char *strslice, int nbslice);
+////////////////////////////////////////////////////////////
+
+
+
 
 #endif

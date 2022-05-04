@@ -14,6 +14,7 @@ void yes_but(wininf *inf)
     inf->c_scene = HOME;
     inf->c_menu = NONE;
     inf->current_menu = NULL;
+    init_fps(inf);
 }
 
 void no_but(wininf *inf)

@@ -57,7 +57,7 @@ void right_main_fps(wininf *inf)
         inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
-            my_itoa(inf->settings->c_fps));
+            inf->settings->fps[inf->settings->c_fps]);
         sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?
         my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
     }
@@ -69,7 +69,7 @@ void left_main_fps(wininf *inf)
         inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
-            my_itoa(inf->settings->c_fps));
+            inf->settings->fps[inf->settings->c_fps]);
         sfRenderWindow_setFramerateLimit(inf->win, inf->settings->c_fps < 5 ?
         my_atoi(inf->settings->fps[inf->settings->c_fps]) : 0);
     }
