@@ -207,6 +207,7 @@ typedef struct player_t {
     sfSprite *test;
     sfVector2f vel;
     sfVector2f sentpos;
+    sfVector2f target;
     float time;
     sfVector2f nextpos;
     struct inventory_t *inv;
@@ -369,6 +370,7 @@ typedef struct inventory_slot {
 
 void init_inventory(player *p, int size);
 void use_apple(wininf *inf, invslot **slot);
+int is_valid_move(wininf *inf, sfVector2i np, int target);
 sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
 sfImage *my_image_from_file(char *path);
 sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);

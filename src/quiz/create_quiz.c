@@ -25,6 +25,6 @@ quiz *create_quiz(wininf *inf)
     sfSprite_setPosition(qcm->quizbox, (sfVector2f) {200, 720});
     sfSprite_setScale(qcm->quizbox, (sfVector2f) {4, 4});
     qcm->questions_quiz = create_questions_quiz(inf, qcm->questions, qcm->nbquestions);
-    qcm->actualquestion_quiz = qcm->questions_quiz->next;
+    qcm->aq_quiz = qcm->questions_quiz->next;
     return qcm;
 }

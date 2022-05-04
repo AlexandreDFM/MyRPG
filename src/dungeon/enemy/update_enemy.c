@@ -27,28 +27,35 @@ void update_enemy(player *e, wininf *inf, player *p)
     sfVector2f ppos = sfSprite_getPosition(p->test);
     sfVector2f epos = sfSprite_getPosition(e->test);
     sfVector2i elpos = global_to_local(epos);
-    sfVector2i plpos = global_to_local(ppos);
-    sfVector2i target = elpos;
+    sfVector2i nextp = global_to_local(p->nextpos);
+    sfVector2i plpos = global_to_local(ppos); sfVector2i target = elpos;
     int proom = get_current_room(ppos, mi);
     int eroom = get_current_room(epos, mi);
-    int enemycond = mi->map[elpos.y][elpos.x] == 'E' || eroom == -1;
-    if (proom == -1 || enemycond) {
+    int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
+    int enemycond = (mi->map[elpos.y][elpos.x] == 'E' && old != -1);
+    if (enemycond || eroom == -1) {
         move_in_tunnel(e, inf, p);
         return;
     }
-    if (proom == eroom)
-        target = global_to_local(ppos);
-    else
-        target = get_closest_exit(eroom, ppos, mi);
+    if (proom == eroom) target = global_to_local(ppos);
+    else target = get_closest_exit(eroom, ppos, mi);
     sfVector2f targetf = (sfVector2f){target.x, target.y};
     sfIntRect final = (sfIntRect){elpos.x, elpos.y, elpos.x, elpos.y};
+    sfVector2f oldprevpos = e->sentpos;
+    e->sentpos = (sfVector2f){(float)final.width, (float)final.height};
     float maxdst = 1000;
-    for (int y = -1; y < 2; y++) {
+    for (int y = -1; y < 2; y++)
         maxdst = get_neighbours_enemy(y, targetf, maxdst, &final);
-    }
     if (final.width == plpos.x && final.height == plpos.y) return;
+    if (final.width == nextp.x && final.height == nextp.y) return;
+    int count = is_valid_move(inf, (sfVector2i){final.width, final.height}, 1);
+    if (count) {
+        e->sentpos = oldprevpos;
+        return;
+    }
     sfVector2f vec = local_to_global(final.width, final.height);
-    sfSprite_setPosition(e->test, vec);
+    e->target = vec;
+    e->vel = (sfVector2f){vec.x - epos.x, vec.y - epos.y};
 }
 
 float scanx_tunnel(int y, sfVector2f target, float mdst, sfIntRect *p)
@@ -68,21 +75,24 @@ float scanx_tunnel(int y, sfVector2f target, float mdst, sfIntRect *p)
 void move_in_tunnel(player *e, wininf *inf, player *p)
 {
     map_inf *mi = inf->dungeon.inf;
+    sfVector2f epos = sfSprite_getPosition(e->test);
     sfVector2i plpos = global_to_local(sfSprite_getPosition(p->test));
-    sfVector2i i = global_to_local(sfSprite_getPosition(e->test));
+    sfVector2i i = global_to_local(epos);
     float maxdst = 1000.0f;
+    sfVector2f oldprevpos = e->sentpos;
+    e->sentpos = (sfVector2f){i.x, i.y};
     sfVector2i final = (sfVector2i){i.x, i.y};
     for (int y = i.y - 1; y < i.y + 2; y++) {
         for (int x = i.x - 1; x < i.x + 2; x++) {
             sfVector2i lp = (sfVector2i){x, y};
-            if (mi->map[y][x] != 'E' && mi->map[y][x] != ' ')
-                continue;
+            char c = mi->map[y][x];
+            if (c != 'E' && c != ' ') continue;
             sfVector2f slp = (sfVector2f){lp.x, lp.y};
             float dst = distance((sfVector2f){plpos.x, plpos.y},
                 slp);
-            char c = mi->map[lp.y][lp.x];
             int isold = lp.x == (int)e->sentpos.x && lp.y == (int)e->sentpos.y;
-            int cond = get_current_room(slp, mi) == -1;
+            int count = get_current_roomlo(lp, mi);
+            int cond = count == -1 || c == 'E';
             if (maxdst > dst && c != '.' && cond && !isold) {
                 maxdst = dst;
                 final.x = lp.x; final.y = lp.y;
@@ -90,9 +100,13 @@ void move_in_tunnel(player *e, wininf *inf, player *p)
         }
     }
     sfVector2f ffinal = local_to_global(final.x, final.y);
-    if (final.x != i.x && final.y != i.y)
-        e->sentpos = (sfVector2f){final.x, final.y};
-    sfSprite_setPosition(e->test, ffinal);
+    int count = is_valid_move(inf, (sfVector2i){final.x, final.y}, 1);
+    if (count) {
+        e->sentpos = oldprevpos;
+        return;
+    }
+    e->vel = (sfVector2f){ffinal.x - epos.x, ffinal.y - epos.y};
+    e->target = ffinal;
 }
 
 void update_mobs(wininf *inf, player *p)

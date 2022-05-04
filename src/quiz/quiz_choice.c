@@ -19,14 +19,15 @@ int add_pts(wininf *inf, char *nature)
 void quiz_choice(wininf *inf)
 {
     int idx = 0;
-    if (inf->quiz->clicked == 0 && inf->quiz->aquestions != NULL && inf->inputs.interact == 1) {
+    if (inf->quiz->clicked == 0 && inf->quiz->aquestions != NULL
+    && inf->inputs.interact == 1) {
         if (inf->quiz->cursor.pos.x == 400)
             idx = add_pts(inf, inf->quiz->aquestions[3]);
         else
             idx = add_pts(inf, inf->quiz->aquestions[5]);
         inf->quiz->addptsnature[idx] += 1; inf->quiz->actualquestion += 1;
         my_free_array(inf->quiz->aquestions); inf->quiz->aquestions = NULL;
-        inf->quiz->actualquestion_quiz = inf->quiz->actualquestion_quiz->next;
+        inf->quiz->aq_quiz = inf->quiz->aq_quiz->next;
         inf->quiz->clicked = 1;
     }
 }

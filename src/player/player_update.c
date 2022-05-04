@@ -47,6 +47,20 @@ void perform_free_movement(wininf *inf, player *p)
     }
 }
 
+int is_valid_move(wininf *inf, sfVector2i np, int target)
+{
+    int encountered = 0;
+    for (list *t = inf->dungeon.enemies; t; t = t->next) {
+        player *enemy = t->data;
+        sfVector2f tg = target ? enemy->target :
+            sfSprite_getPosition(enemy->test);
+        sfVector2i ep = global_to_local(tg);
+        if (np.x == ep.x && np.y == ep.y)
+            encountered++;
+    }
+    return encountered;
+}
+
 void perform_dungeon_movement(wininf *inf, player *p)
 {
     sfVector2f pos = sfSprite_getPosition(p->test);
@@ -59,11 +73,13 @@ void perform_dungeon_movement(wininf *inf, player *p)
     int cond2 = is_same(pos, p->nextpos, 2.0f);
     char c = inf->dungeon.inf->map[np.y][np.x];
     int walkable = c == ' ' || c == 'E';
-    if (walkable && !cond && cond2 && (np.x != target.x || np.y != target.y)) {
+    sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
+    sfSprite_setPosition(p->test, newp);
+    int valid = !is_valid_move(inf, np, 0);
+    int poscond = (np.x != target.x || np.y != target.y) && valid;
+    if (walkable && !cond && cond2 && poscond) {
         p->nextpos = local_to_global(np.x, np.y);
         p->time = 0.0f;
         update_mobs(inf, p);
     }
-    sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
-    sfSprite_setPosition(p->test, newp);
 }
