@@ -12,10 +12,12 @@ void update_network(wininf *inf, components *all)
     network *net = inf->net;
     if (!inf->net->is_multi) return;
     sfPacket *p = inf->net->packet;
-    sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
-        net->other.port);
     sfIpAddress *ip = &(net->other.ip);
-    sfPacket_clear(p);
+    if (sfPacket_getDataSize(p) > 1) {
+        sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
+            net->other.port);
+        sfPacket_clear(p);
+    }
     if (sfSocketSelector_wait(net->selector, net->timeout)) {
         if (sfSocketSelector_isUdpSocketReady(net->selector, net->socket)) {
             sfUdpSocket_receivePacket(net->socket, p, ip, &net->port);
