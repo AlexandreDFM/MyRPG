@@ -50,7 +50,6 @@ typedef struct quiz_t {
     char **aquestions;
     cine_ele cursor;
     sfSprite *quizbox;
-    sfText *text;
     q_quiz *questions_quiz;
     q_quiz *actualquestion_quiz;
 } quiz;

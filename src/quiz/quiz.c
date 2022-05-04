@@ -29,7 +29,6 @@ void qcm(wininf *inf)
     if (inf->quiz->aquestions == NULL) {
         inf->quiz->aquestions =
         my_strtwa(inf->quiz->questions[inf->quiz->actualquestion], ";\n");
-        sfText_setString(inf->quiz->text, inf->quiz->aquestions[0]);
     }
     quiz_choice(inf);
     move_cursor_quiz(inf, &inf->quiz->cursor);
