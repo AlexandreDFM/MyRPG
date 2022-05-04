@@ -42,7 +42,10 @@ void perform_free_movement(wininf *inf, player *p)
             return;
     sfSprite_setPosition(p->test, np);
     if (!is_same(po, nextp, 0.1f) && inf->net->is_multi) {
+        network *net = inf->net;
         add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
+        sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
+        net->other.port);
     }
 }
 
