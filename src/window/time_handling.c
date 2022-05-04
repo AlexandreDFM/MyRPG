@@ -9,7 +9,7 @@
 
 void init_times(wininf *infos)
 {
-    infos->time.dt_cal = sfClock_create();
+    infos->time.dt_cal = my_clock();
     infos->time.anim = 0.0f;
     infos->time.dt = 0.0f;
     infos->time.transi = 0.0f;
