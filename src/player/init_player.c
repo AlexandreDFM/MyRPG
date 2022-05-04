@@ -24,7 +24,7 @@ int **get_player_rects(char **arr)
 
 player *init_player(wininf inf, int id)
 {
-    player *p = my_malloc(sizeof(player));p->shiny = rand () % 2;
+    player *p = my_malloc(sizeof(player));p->shiny = rand () % 10 == 1 ? 1 : 0;
     p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
     p->target = (sfVector2f){0.0f, 0.0f};
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");

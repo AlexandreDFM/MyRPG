@@ -9,7 +9,7 @@
 
 void get_dateinfo(long int ti, date_t *t)
 {
-    int *arr = malloc(sizeof(int) * 12);
+    int *arr = my_malloc(sizeof(int) * 12);
     int arri[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     for (int i = 0; i < 12; i++) arr[i] = arri[i];
     t->daysofmonth = arr;
@@ -83,7 +83,7 @@ char *unix_to_date(long int ti)
 {
     ti += 7200;
     date_t t; get_dateinfo(ti, &t);
-    char *ans = malloc(sizeof(char) * 20); my_memset(ans, '\0', 20);
+    char *ans = my_malloc(sizeof(char) * 20); my_memset(ans, '\0', 20);
     while (t.daystillnow >= 365) {
         if (t.curryear % 400 == 0 ||
         (t.curryear % 4 == 0 && t.curryear % 100 != 0))
