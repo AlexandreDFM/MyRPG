@@ -16,6 +16,8 @@ void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
             list *ne = garbage2->next;
             ((cpp_garbage *)garbage2->data)->destroy(
                 ((cpp_garbage *)garbage2->data)->data);
+            free(garbage2->data);
+            free(garbage2);
             garbage2 = ne;
             nbfree++;
         }
@@ -25,11 +27,9 @@ void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
     cpp_garbage *garbage = malloc(sizeof(cpp_garbage));
     if (garbage) {
         list *nl = malloc(sizeof(list));
-        garbage->create = create;
-        garbage->destroy = destroy;
+        garbage->create = create, garbage->destroy = destroy;
         garbage->data = garbage->create();
-        nl->data = garbage;
-        nl->next = garbage2;
+        nl->data = garbage, nl->next = garbage2;
         garbage2 = nl;
     } return garbage->data;
 }
