@@ -23,7 +23,7 @@ void init_key_list(wininf *inf)
     "Numpad 2", "Numpad 3", "Numpad 4", "Numpad 5", "Numpad 6", "Numpad 7",
     "Numpad 8", "Numpad 9", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8",
     "F9", "F10", "F11", "F12", "F13", "F14", "F15", "Pause"};
-    inf->key_list = malloc(sizeof(char *) * 102);
+    inf->key_list = my_malloc(sizeof(char *) * 102);
     for (int i = 0; i < 101; i++)
         inf->key_list[i] = my_strdup((char *)list[i], my_malloc);
 }
@@ -77,7 +77,7 @@ wininf create_window_infos(int ac, char **av)
     inf.transition = 0;
     inf.ftransi = 0.0f;
     inf.change_scene = 0;
-    dungeon d; d.img = sfImage_createFromFile("result8.png"); d.in = 0;
+    dungeon d; d.img = my_image_from_file("result8.png"); d.in = 0;
     d.enemies = 0;
     inf.dungeon = d;
     inf.transi = my_rectangle();

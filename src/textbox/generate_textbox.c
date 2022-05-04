@@ -20,7 +20,8 @@ sfSprite *generate_textbox(sfVector2i size, sfImage *atlas)
         (sfVector2i){size.x - 9, size.y - 6}, (sfVector2i){1447, 846});
     leftright_border(size, new);
     topbot_border(size, new); sfSprite *sp = my_sprite();
-    sfSprite_setTexture(sp, sfTexture_createFromImage(new, 0), sfFalse);
+    sfTexture *tmp = my_texture_from_image(new, 0);
+    sfSprite_setTexture(sp, tmp, sfFalse);
     sfImage_destroy(new); return sp;
 }
 

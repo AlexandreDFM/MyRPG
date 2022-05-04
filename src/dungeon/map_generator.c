@@ -224,7 +224,7 @@ map_inf *generate_map(int iter, sfImage *atlas)
     populate_map(&map, tree, &rects, &count);
     get_paths(&map, tree);
     sfImage *img = generate_map_image(map, MAP_SIZE + 2, atlas);
-    sfTexture *tex = sfTexture_createFromImage(img, NULL);
+    sfTexture *tex = my_texture_from_image(img, NULL);
     sfSprite *sp = sfSprite_create();
     sfSprite_setTexture(sp, tex, sfFalse);
     sfImage_destroy(img);
