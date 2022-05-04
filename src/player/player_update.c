@@ -17,7 +17,7 @@ void draw_player(wininf *inf, player *p)
         p->vel = inf->inputs.axis;
         perform_dungeon_movement(inf, p);
     }
-    if (inf->net->is_multi && inf->net->other.p->test) {
+    if (inf->net->is_multi && inf->net->other.p) {
         sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
         pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
         sfSprite_setPosition(inf->net->other.p->test, pos);
