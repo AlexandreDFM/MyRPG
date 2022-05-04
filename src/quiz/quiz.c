@@ -23,7 +23,7 @@ int chose_tendance(wininf *inf)
 
 void qcm(wininf *inf)
 {
-    if (inf->quiz->actualquestion_quiz->next == NULL) {
+    if (inf->quiz->aq_quiz->next == NULL) {
         inf->quiz->destroy = 1; return;
     }
     if (inf->quiz->aquestions == NULL) {
@@ -33,15 +33,16 @@ void qcm(wininf *inf)
     quiz_choice(inf);
     move_cursor_quiz(inf, &inf->quiz->cursor);
     sfRenderWindow_drawSprite(inf->win, inf->quiz->quizbox, NULL);
-    sfRenderWindow_drawText(inf->win, inf->quiz->actualquestion_quiz->question, NULL);
-    sfRenderWindow_drawText(inf->win, inf->quiz->actualquestion_quiz->answer1, NULL);
-    sfRenderWindow_drawText(inf->win, inf->quiz->actualquestion_quiz->answer2, NULL);
+    sfRenderWindow_drawText(inf->win, inf->quiz->aq_quiz->question, NULL);
+    sfRenderWindow_drawText(inf->win, inf->quiz->aq_quiz->answer1, NULL);
+    sfRenderWindow_drawText(inf->win, inf->quiz->aq_quiz->answer2, NULL);
     display_ele(inf->win, inf->quiz->cursor);
 }
 
 void draw_quiz(wininf *inf, player *p)
 {
     if (inf->quiz == NULL) inf->quiz = create_quiz(inf);
+    if (sfKeyboard_isKeyPressed(sfKeyRControl)) inf->c_scene = MAIN_MENU;
     draw_dream(inf);
     qcm(inf);
     if (inf->quiz->destroy == 1) {
