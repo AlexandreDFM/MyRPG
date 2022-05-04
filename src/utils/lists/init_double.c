@@ -10,7 +10,7 @@
 choices *create_choice(char **arr, int index, wininf *inf, sfVector2f pos)
 {
     int size = my_atoi(arr[1]);
-    choices *choice = malloc(sizeof(choices));
+    choices *choice = my_malloc(sizeof(choices));
     choice->ptr = my_atoi(arr[index + 2]);
     choice->choice = init_text(arr[index], inf->ui.font, pos, size);
     choice->desc = init_text(arr[index + 1], inf->ui.font,
@@ -23,7 +23,7 @@ list *init_circular(char **arr, wininf *inf, sfVector2f pos, sfVector2f pos2)
 {
     pos.x += 50; pos.y -= 15;
     list *n_first;
-    list *node = malloc(sizeof(list));
+    list *node = my_malloc(sizeof(list));
     if (!node) return NULL;
     node->data = create_choice(arr, 6, inf, pos);
     node->next = NULL; node->prev = NULL; n_first = node;

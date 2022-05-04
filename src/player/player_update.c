@@ -18,9 +18,9 @@ void draw_player(wininf *inf, player *p)
         perform_dungeon_movement(inf, p);
     }
     if (inf->net->is_multi && inf->net->other.p) {
-        // sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
-        // pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
-        // sfSprite_setPosition(inf->net->other.p->test, pos);
+        sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
+        pos = my_lerp(pos, inf->net->other.target, inf->time.dt * 40.0f);
+        sfSprite_setPosition(inf->net->other.p->test, pos);
         if (inf->net->other.cscene == inf->c_scene)
             sfRenderWindow_drawSprite(inf->win, inf->net->other.p->test, 0);
     } update_camera(inf);
@@ -41,8 +41,7 @@ void perform_free_movement(wininf *inf, player *p)
         if (!(is_valid(cols, &rect, inf, p) && !inf->transition))
             return;
     sfSprite_setPosition(p->test, np);
-    if (!is_same(np, p->sentpos, 0.1f) && inf->net->is_multi) {
-        network *net = inf->net;
+    if (!is_same(np, p->sentpos, 1.0f) && inf->net->is_multi) {
         p->sentpos = np;
         add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
     }

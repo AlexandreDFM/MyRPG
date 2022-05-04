@@ -24,7 +24,7 @@ int **get_player_rects(char **arr)
 
 player *init_player(wininf inf, int id)
 {
-    player *p = my_malloc(sizeof(player));p->shiny = rand () % 2;
+    player *p = my_malloc(sizeof(player));p->shiny = rand () % 10 == 1 ? 1 : 0;
     p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
     int i = 0; for (; arr[i] != NULL; i++);
@@ -41,7 +41,8 @@ player *init_player(wininf inf, int id)
     sfSprite_setOrigin(p->test, (sfVector2f){11.0f, 25.0f});
     sfSprite_setPosition(p->test, (sfVector2f){520.0f, 320.0f});
     p->nextpos = (sfVector2f){-1.0f, -1.0f};
+    init_inventory(p, 10);
     p->sentpos = (sfVector2f){-1.0f, -1.0f}; p->time = 0.0f;
     sfSprite_setTextureRect(p->test, p->r);
-    my_free_array(arr); return p;
+    my_free_array(arr); my_free_array(arr2); return p;
 }

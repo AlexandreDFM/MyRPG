@@ -15,7 +15,7 @@ settings *init_settings(void)
     setts->pokemon = 4;
     setts->c_fps = 1;
     char *fps[6] = {"30", "60", "120", "144", "300", "Max"};
-    setts->fps = malloc(sizeof(char *) * 6);
+    setts->fps = my_malloc(sizeof(char *) * 6);
     for (int i = 0; i < 6; i++) setts->fps[i] = my_strdup(fps[i], my_malloc);
     return setts;
 }

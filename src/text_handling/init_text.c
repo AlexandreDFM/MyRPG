@@ -9,7 +9,7 @@
 
 sfText *init_text(char *str, sfFont *font, sfVector2f pos, int size)
 {
-    sfText *text = sfText_create();
+    sfText *text = my_text();
     sfText_setString(text, str);
     sfText_setFont(text, font);
     sfText_setCharacterSize(text, size);

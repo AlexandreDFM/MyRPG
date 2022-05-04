@@ -64,7 +64,7 @@ intro_a *create_intro(wininf *inf)
     intro->i_music1 =
     sfMusic_createFromFile("music/01_pkm_red_rescue_team_theme.ogg");
     intro->i_music2 = sfMusic_createFromFile("music/02_title_screen.ogg");
-    sfMusic_setVolume(intro->i_music1, 0);
-    sfMusic_setVolume(intro->i_music2, 0);
+    sfMusic_setVolume(intro->i_music1, 0.0f);
+    sfMusic_setVolume(intro->i_music2, 0.0f);
     return intro;
 }

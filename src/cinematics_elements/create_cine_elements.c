@@ -11,7 +11,7 @@
 sfSprite *atlas_to_sprite_full(sfIntRect rect, sfImage *atlas)
 {
     sfSprite *sprite = sfSprite_create();
-    sfTexture *texture = sfTexture_createFromImage(atlas, NULL);
+    sfTexture *texture = my_texture_from_image(atlas, NULL);
     sfSprite_setTexture(sprite, texture, sfFalse);
     return sprite;
 }

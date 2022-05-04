@@ -6,7 +6,6 @@
 */
 
 #include "infos.h"
-#include "scenes.h"
 
 int main(int argc, char **argv)
 {
@@ -21,7 +20,9 @@ int main(int argc, char **argv)
     sfRenderWindow_destroy(all.inf.win);
     sfImage_destroy(all.inf.atlases.atlas);
     end_global_free(&all);
-    my_malloc(0);
-    my_sf_free();
+    my_malloc(0); my_sf_free();
+    my_texture_from_image(NULL, NULL);
+    my_image_from_file(NULL);
+    my_shader_from_file(NULL, NULL, NULL);
     return 0;
 }

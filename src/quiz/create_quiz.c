@@ -12,8 +12,8 @@ quiz *create_quiz(wininf *inf)
     quiz *qcm = malloc(sizeof(quiz));
     qcm->clicked = 0;
     qcm->destroy = 0; qcm->tendance = 0; qcm->nbquestions = 0;
-    qcm->nature = malloc(sizeof(int) * 15);
-    qcm->addptsnature = malloc(sizeof(int) * 15);
+    qcm->nature = my_malloc(sizeof(int) * 15);
+    qcm->addptsnature = my_malloc(sizeof(int) * 15);
     qcm->cursor = c_ele(inf->atlases.atlas, "./csv/quiz_cursor.csv", 1);
     for (int i = 0; i < 15; i++) {
         qcm->nature[i] = i; qcm->addptsnature[i] = 0;

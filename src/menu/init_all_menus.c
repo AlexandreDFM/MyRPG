@@ -28,7 +28,7 @@ choices *fill_choice(char **arr, int tmp, wininf *inf)
 {
     int size = my_atoi(arr[1]);
     sfVector2f pos;
-    choices *choice = malloc(sizeof(choices));
+    choices *choice = my_malloc(sizeof(choices));
     pos = (sfVector2f){my_atoi(arr[tmp + 1]) + my_atoi(arr[2]),
     my_atoi(arr[tmp + 2]) + my_atoi(arr[3])};
     choice->choice = init_text(arr[tmp], inf->ui.font, pos, size);
@@ -42,7 +42,7 @@ choices *fill_choice(char **arr, int tmp, wininf *inf)
 list *init_choices(char **arr, wininf *inf, int off)
 {
     if (my_atoi(arr[off]) == 0) return NULL;
-    list *choices_l = malloc(sizeof(list));
+    list *choices_l = my_malloc(sizeof(list));
     choices_l->data = fill_choice(arr, off + 1, inf);
     choices_l->next = NULL;
     choices_l->prev = NULL;
@@ -82,12 +82,13 @@ menuss *init_all2(char **arr, int offset, menuss *menu, wininf *inf)
     menu->max_choice = my_atoi(arr[offset + 4]);
     menu->offset = my_atoi(arr[offset + 5]);
     menu->type = my_atoi(arr[offset + 6]);
+    my_free_array(arr);
     return menu;
 }
 
 menuss *init_all_menus(wininf *inf, int menu_id, int focus)
 {
-    menuss *menu = malloc(sizeof(menuss)); menu->id = menu_id; char **arr;
+    menuss *menu = my_malloc(sizeof(menuss)); menu->id = menu_id; char **arr;
     if (inf->lang == ENGLISH)
     arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
     else arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");

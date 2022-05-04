@@ -15,6 +15,7 @@ void add_pnjs(atlases atlas, int idx, scene *s)
             create_pnj(atlas.pnjs[my_atoi(arr[i + 1])], s, atlas);
         }
     }
+    my_free_array(arr);
 }
 
 void create_pnj(char *line, scene *s, atlases atlas)
@@ -30,4 +31,5 @@ void create_pnj(char *line, scene *s, atlases atlas)
     nl->data = pnj_s;
     nl->next = s->pnjs;
     s->pnjs = nl;
+    my_free_array(arr);
 }

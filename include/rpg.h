@@ -8,26 +8,30 @@
 #ifndef RPG_H_
 #define RPG_H_
 #define my_sprite() my_sfalloc((void *(*)(void))sfSprite_create,\
-    (void *(*)(void *))sfSprite_destroy);
+    (void *(*)(void *))sfSprite_destroy)
 #define my_texture() my_sfalloc((void *(*)(void))sfTexture_create,\
-    (void *(*)(void *))sfTexture_destroy);
+    (void *(*)(void *))sfTexture_destroy)
 #define my_font() my_sfalloc((void *(*)(void))sfFont_createFromFile,\
-    (void *(*)(void *))sfFont_destroy);
+    (void *(*)(void *))sfFont_destroy)
 #define my_music() my_sfalloc((void *(*)(void))sfMusic_createFromFile,\
-    (void *(*)(void *))sfMusic_destroy);
+    (void *(*)(void *))sfMusic_destroy)
 #define my_sound() my_sfalloc((void *(*)(void))sfSound_create,\
-    (void *(*)(void *))sfSound_destroy);
-#define my_sound_buffer() my_sfalloc((void *(*)(void))\
-    sfSoundBuffer_createFromFile, (void *(*)(void *))sfSoundBuffer_destroy);
+    (void *(*)(void *))sfSound_destroy)
 #define my_text() my_sfalloc((void *(*)(void))sfText_create,\
-    (void *(*)(void *))sfText_destroy);
+    (void *(*)(void *))sfText_destroy)
 #define my_rectangle() my_sfalloc((void *(*)(void))sfRectangleShape_create,\
     (void *(*)(void *))sfRectangleShape_destroy);
 #define my_circle() my_sfalloc((void *(*)(void))sfCircleShape_create,\
-    (void *(*)(void *))sfCircleShape_destroy);
+    (void *(*)(void *))sfCircleShape_destroy)
 #define my_clock() my_sfalloc((void *(*)(void))sfClock_create,\
-    (void *(*)(void *))sfClock_destroy);
-#define my_sf_free() my_sfalloc(NULL, NULL);
+    (void *(*)(void *))sfClock_destroy)
+#define my_view() my_sfalloc((void *(*)(void))sfView_create,\
+    (void *(*)(void *))sfView_destroy)
+#define my_socket() my_sfalloc((void *(*)(void))sfSocket_create,\
+    (void *(*)(void *))sfSocket_destroy)
+#define my_sock_select() my_sfalloc((void *(*)(void))sfSocketSelector_create,\
+    (void *(*)(void *))sfSocketSelector_destroy)
+#define my_sf_free() my_sfalloc(NULL, NULL)
 
     #include "infos.h"
     #include "dungeon.h"
@@ -37,7 +41,7 @@
     #include "my.h"
     #include "math.h"
     #include "printf.h"
-    #include "scenes.h"
+    #include "items.h"
     #include "types.h"
     #include "dialog.h"
     #define APPEND -1
@@ -184,6 +188,11 @@ typedef struct scene_t {
     struct linked_list_t *animated;
 } scene;
 
+typedef struct inventory_t {
+    struct inventory_slot **slots;
+    int size;
+} inventory;
+
 typedef struct player_t {
     int offset;
     enum direction_t direction;
@@ -199,6 +208,7 @@ typedef struct player_t {
     sfVector2f sentpos;
     float time;
     sfVector2f nextpos;
+    struct inventory_t *inv;
 } player;
 
 typedef struct camera_t {
@@ -349,6 +359,17 @@ typedef struct date {
     int *daysofmonth;
 } date_t;
 
+typedef struct inventory_slot {
+    struct dialog_line_t *line;
+    int id;
+    void (*use)(wininf *, struct inventory_slot **);
+} invslot;
+
+void init_inventory(player *p, int size);
+void use_apple(wininf *inf, invslot **slot);
+sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
+sfImage *my_image_from_file(char *path);
+sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

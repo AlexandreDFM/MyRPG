@@ -6,7 +6,6 @@
 */
 
 #include "rpg.h"
-#include "scenes.h"
 
 void handle_scene(wininf *infos, player *p)
 {

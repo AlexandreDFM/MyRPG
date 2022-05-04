@@ -20,6 +20,7 @@ char **load_csv(char *filename)
         array[i] = my_strdup(line, my_malloc);
     }
     array[lines] = 0;
+    free(line);
     return array;
 }
 
