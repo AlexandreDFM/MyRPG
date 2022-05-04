@@ -74,6 +74,7 @@ void draw_quiz(wininf *inf, player *p)
         *p = *(init_player(*(inf), inf->settings->pokemon));
         inf->camera.target = p->test;
         // my_printf("Print 2 :%d\n", p->r.width);
-        delete_quiz(inf); delete_dream(inf); inf->c_scene = MAIN_MENU;
+        // delete_quiz(inf); delete_dream(inf);
+        inf->c_scene = MAIN_MENU;
     }
 }

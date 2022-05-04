@@ -9,7 +9,7 @@
 
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas)
 {
-    sfSprite *sprite = sfSprite_create();
+    sfSprite *sprite = my_sprite();
     sfTexture *texture = sfTexture_createFromImage(atlas, &rect);
     sfSprite_setTexture(sprite, texture, sfFalse);
     return sprite;

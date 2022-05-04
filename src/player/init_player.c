@@ -43,5 +43,5 @@ player *init_player(wininf inf, int id)
     p->nextpos = (sfVector2f){-1.0f, -1.0f};
     p->sentpos = (sfVector2f){-1.0f, -1.0f}; p->time = 0.0f;
     sfSprite_setTextureRect(p->test, p->r);
-    my_free_array(arr); return p;
+    my_free_array(arr); my_free_array(arr2); return p;
 }

@@ -30,4 +30,5 @@ void create_pnj(char *line, scene *s, atlases atlas)
     nl->data = pnj_s;
     nl->next = s->pnjs;
     s->pnjs = nl;
+    my_free_array(arr);
 }

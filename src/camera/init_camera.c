@@ -13,7 +13,7 @@ camera init_camera(wininf inf)
     ca.static_p = (sfVector2f){250.0f, 250.0f};
     ca.target = 0;
     ca.speed = 4.0f;
-    ca.view = sfView_create();
+    ca.view = my_view();
     sfView_setCenter(ca.view, (sfVector2f){0.0f, 0.0f});
     sfView_setSize(ca.view, (sfVector2f){inf.mode.width, inf.mode.height});
     sfView_zoom(ca.view, 1.0f / SIZE);

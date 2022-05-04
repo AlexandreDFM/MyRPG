@@ -1,1405 +1,1202 @@
-==23142== Memcheck, a memory error detector
-==23142== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==23142== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==23142== Command: ./my_rpg -f Max
-==23142== Parent PID: 3950
-==23142== 
-==23142== 
-==23142== HEAP SUMMARY:
-==23142==     in use at exit: 2,366,431 bytes in 10,281 blocks
-==23142==   total heap usage: 181,644 allocs, 171,363 frees, 1,627,383,043 bytes allocated
-==23142== 
-==23142== 48 bytes in 1 blocks are definitely lost in loss record 501 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x414A34: init_settings (init_settings.c:18)
-==23142==    by 0x404E51: create_window_infos (init_window.c:58)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 52 bytes in 1 blocks are definitely lost in loss record 502 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4179E2: create_quiz (create_quiz.c:14)
-==23142==    by 0x418053: draw_quiz (quiz.c:63)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 52 bytes in 1 blocks are definitely lost in loss record 503 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4179F7: create_quiz (create_quiz.c:15)
-==23142==    by 0x418053: draw_quiz (quiz.c:63)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 573 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C22D: load_line (create_textbox.c:107)
-==23142==    by 0x4103CC: fill_ig_choice (init_ig_menus.c:18)
-==23142==    by 0x410664: init_ig_choices (init_ig_menus.c:43)
-==23142==    by 0x410BAB: init_ig_menus (init_ig_menus.c:95)
-==23142==    by 0x405560: create_window_infos (init_window.c:99)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 574 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C22D: load_line (create_textbox.c:107)
-==23142==    by 0x404D30: init_fps (init_window.c:41)
-==23142==    by 0x4056DE: create_window_infos (init_window.c:116)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 92 (64 direct, 28 indirect) bytes in 1 blocks are definitely lost in loss record 693 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x40B864: create_pnj (add_pnjs.c:23)
-==23142==    by 0x40B7F2: add_pnjs (add_pnjs.c:15)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 93 (48 direct, 45 indirect) bytes in 1 blocks are definitely lost in loss record 694 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B844: create_pnj (add_pnjs.c:22)
-==23142==    by 0x40B7F2: add_pnjs (add_pnjs.c:15)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 99 (64 direct, 35 indirect) bytes in 1 blocks are definitely lost in loss record 723 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 99 (64 direct, 35 indirect) bytes in 1 blocks are definitely lost in loss record 724 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 750 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406AD3: create_atlases (init_atlases.c:14)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 751 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406AD3: create_atlases (init_atlases.c:14)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 752 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406AE8: create_atlases (init_atlases.c:15)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 753 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406AE8: create_atlases (init_atlases.c:15)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 754 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B27: create_atlases (init_atlases.c:18)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 755 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B27: create_atlases (init_atlases.c:18)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 756 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B51: create_atlases (init_atlases.c:20)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 757 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B51: create_atlases (init_atlases.c:20)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 758 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B66: create_atlases (init_atlases.c:21)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 759 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B66: create_atlases (init_atlases.c:21)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 760 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406BA5: create_atlases (init_atlases.c:24)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 761 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406BA5: create_atlases (init_atlases.c:24)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 762 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x4180A8: draw_quiz (quiz.c:68)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 120 bytes in 1 blocks are definitely lost in loss record 763 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4B01933: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x4180A8: draw_quiz (quiz.c:68)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 136 (88 direct, 48 indirect) bytes in 1 blocks are definitely lost in loss record 778 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x409113: init_player (init_player.c:33)
-==23142==    by 0x403A7A: create_all_components (create_components.c:14)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 142 (88 direct, 54 indirect) bytes in 1 blocks are definitely lost in loss record 780 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x409113: init_player (init_player.c:33)
-==23142==    by 0x418133: draw_quiz (quiz.c:74)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 168 bytes in 1 blocks are definitely lost in loss record 802 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4910C20: sfView_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x409E41: init_camera (init_camera.c:16)
-==23142==    by 0x4051EF: create_window_infos (init_window.c:75)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 168 (48 direct, 120 indirect) bytes in 3 blocks are definitely lost in loss record 803 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A82: atlas_to_sprite (create_sprite_from_atlas.c:13)
-==23142==    by 0x417779: c_ele (create_cine_elements.c:49)
-==23142==    by 0x416FA2: create_dream (create_dream.c:16)
-==23142==    by 0x41722C: draw_dream (dream.c:32)
-==23142==    by 0x41806A: draw_quiz (quiz.c:64)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 176 (72 direct, 104 indirect) bytes in 1 blocks are definitely lost in loss record 807 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4EF0A5F: std::pair<std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_emplace_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>&&) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x4EEDF35: sf::Shader::getUniformLocation(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x4EEE3E9: sf::Shader::setUniform(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, float) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x490B641: sfShader_setFloatUniform (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x409463: draw_player (player_update.c:27)
-==23142==    by 0x403D1B: handle_scene (scene_handler.c:41)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 177 (128 direct, 49 indirect) bytes in 1 blocks are definitely lost in loss record 808 of 1,236
-==23142==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
-==23142==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FB769: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FA1EE: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40105C8: call_init (dl-init.c:60)
-==23142==    by 0x40105C8: call_init (dl-init.c:30)
-==23142==    by 0x40106FB: _dl_init (dl-init.c:121)
-==23142==    by 0x4BC6474: _dl_catch_exception (in /usr/lib64/libc-2.33.so)
-==23142== 
-==23142== 240 bytes in 1 blocks are definitely lost in loss record 834 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x417A7F: create_quiz (create_quiz.c:20)
-==23142==    by 0x418053: draw_quiz (quiz.c:63)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 240 bytes in 1 blocks are definitely lost in loss record 835 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x417A7F: create_quiz (create_quiz.c:20)
-==23142==    by 0x418053: draw_quiz (quiz.c:63)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 895 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4041DF: create_home (scene_handler.c:103)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 896 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4042D3: create_home (scene_handler.c:109)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 897 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4045B2: create_static_env (scene_handler.c:131)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 898 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x40B864: create_pnj (add_pnjs.c:23)
-==23142==    by 0x40B7F2: add_pnjs (add_pnjs.c:15)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 899 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4045B2: create_static_env (scene_handler.c:131)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 900 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 901 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4045B2: create_static_env (scene_handler.c:131)
-==23142==    by 0x4050CF: create_window_infos (init_window.c:72)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 902 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4045B2: create_static_env (scene_handler.c:131)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 903 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 904 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x4045B2: create_static_env (scene_handler.c:131)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 905 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x40B956: init_textbox (create_textbox.c:13)
-==23142==    by 0x405449: create_window_infos (init_window.c:90)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 906 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410120: init_all_menus (init_all_menus.c:94)
-==23142==    by 0x4054C0: create_window_infos (init_window.c:95)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 907 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410120: init_all_menus (init_all_menus.c:94)
-==23142==    by 0x4054E0: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 908 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410120: init_all_menus (init_all_menus.c:94)
-==23142==    by 0x405500: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 909 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C293: load_line (create_textbox.c:111)
-==23142==    by 0x41083C: fill_ig_texts (init_ig_menus.c:64)
-==23142==    by 0x410C2A: init_ig_menus (init_ig_menus.c:99)
-==23142==    by 0x405540: create_window_infos (init_window.c:98)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 910 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C293: load_line (create_textbox.c:111)
-==23142==    by 0x40F743: set_pokemon (update_player_pokemon.c:17)
-==23142==    by 0x40571C: create_window_infos (init_window.c:118)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 911 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x40918C: init_player (init_player.c:37)
-==23142==    by 0x403A7A: create_all_components (create_components.c:14)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 912 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x417B10: create_quiz (create_quiz.c:23)
-==23142==    by 0x418053: draw_quiz (quiz.c:63)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 913 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x40918C: init_player (init_player.c:37)
-==23142==    by 0x418133: draw_quiz (quiz.c:74)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 472 (200 direct, 272 indirect) bytes in 1 blocks are definitely lost in loss record 933 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x413E4D: init_network (connecting_utils.c:51)
-==23142==    by 0x404E5D: create_window_infos (init_window.c:59)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 948 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40C212: load_line (create_textbox.c:106)
-==23142==    by 0x40564F: create_window_infos (init_window.c:111)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 949 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40C212: load_line (create_textbox.c:106)
-==23142==    by 0x405674: create_window_infos (init_window.c:112)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 950 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40C212: load_line (create_textbox.c:106)
-==23142==    by 0x405699: create_window_infos (init_window.c:113)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 951 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40C212: load_line (create_textbox.c:106)
-==23142==    by 0x4056BE: create_window_infos (init_window.c:114)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 970 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A081: check_if_trigger (add_collisions.c:17)
-==23142==    by 0x40A313: add_collisions (add_collisions.c:41)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 971 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A081: check_if_trigger (add_collisions.c:17)
-==23142==    by 0x40A313: add_collisions (add_collisions.c:41)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x4050CF: create_window_infos (init_window.c:72)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 972 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A081: check_if_trigger (add_collisions.c:17)
-==23142==    by 0x40A313: add_collisions (add_collisions.c:41)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 973 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x4052C0: create_window_infos (init_window.c:83)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 547 (320 direct, 227 indirect) bytes in 5 blocks are definitely lost in loss record 975 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 558 bytes in 1 blocks are definitely lost in loss record 978 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B7B: create_atlases (init_atlases.c:22)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 558 bytes in 1 blocks are definitely lost in loss record 979 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B7B: create_atlases (init_atlases.c:22)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 628 bytes in 1 blocks are definitely lost in loss record 986 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B90: create_atlases (init_atlases.c:23)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 628 bytes in 1 blocks are definitely lost in loss record 987 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B90: create_atlases (init_atlases.c:23)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 631 (128 direct, 503 indirect) bytes in 1 blocks are definitely lost in loss record 988 of 1,236
-==23142==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
-==23142==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FB769: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F8718: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F9D9C: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x740A572: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40105C8: call_init (dl-init.c:60)
-==23142==    by 0x40105C8: call_init (dl-init.c:30)
-==23142==    by 0x40106FB: _dl_init (dl-init.c:121)
-==23142== 
-==23142== 692 (456 direct, 236 indirect) bytes in 1 blocks are definitely lost in loss record 993 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x410AFA: init_ig_menus (init_ig_menus.c:90)
-==23142==    by 0x405540: create_window_infos (init_window.c:98)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 710 (432 direct, 278 indirect) bytes in 1 blocks are definitely lost in loss record 994 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x4100DC: init_all_menus (init_all_menus.c:92)
-==23142==    by 0x405462: create_window_infos (init_window.c:91)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 720 bytes in 3 blocks are definitely lost in loss record 996 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x41769D: c_ele (create_cine_elements.c:44)
-==23142==    by 0x416FA2: create_dream (create_dream.c:16)
-==23142==    by 0x41722C: draw_dream (dream.c:32)
-==23142==    by 0x41806A: draw_quiz (quiz.c:64)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 720 bytes in 3 blocks are definitely lost in loss record 997 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x41769D: c_ele (create_cine_elements.c:44)
-==23142==    by 0x416FA2: create_dream (create_dream.c:16)
-==23142==    by 0x41722C: draw_dream (dream.c:32)
-==23142==    by 0x41806A: draw_quiz (quiz.c:64)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 737 bytes in 1 blocks are definitely lost in loss record 999 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B12: create_atlases (init_atlases.c:17)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 737 bytes in 1 blocks are definitely lost in loss record 1,000 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B12: create_atlases (init_atlases.c:17)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 749 (520 direct, 229 indirect) bytes in 1 blocks are definitely lost in loss record 1,002 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x4100DC: init_all_menus (init_all_menus.c:92)
-==23142==    by 0x4054C0: create_window_infos (init_window.c:95)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 749 (520 direct, 229 indirect) bytes in 1 blocks are definitely lost in loss record 1,003 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x4100DC: init_all_menus (init_all_menus.c:92)
-==23142==    by 0x405500: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 771 (528 direct, 243 indirect) bytes in 1 blocks are definitely lost in loss record 1,004 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x410AFA: init_ig_menus (init_ig_menus.c:90)
-==23142==    by 0x405560: create_window_infos (init_window.c:99)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 797 (528 direct, 269 indirect) bytes in 1 blocks are definitely lost in loss record 1,005 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x4100DC: init_all_menus (init_all_menus.c:92)
-==23142==    by 0x405491: create_window_infos (init_window.c:93)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 816 bytes in 1 blocks are definitely lost in loss record 1,009 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x404B93: init_key_list (init_window.c:26)
-==23142==    by 0x4056ED: create_window_infos (init_window.c:117)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 848 (736 direct, 112 indirect) bytes in 2 blocks are definitely lost in loss record 1,013 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410120: init_all_menus (init_all_menus.c:94)
-==23142==    by 0x405462: create_window_infos (init_window.c:91)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 848 (736 direct, 112 indirect) bytes in 2 blocks are definitely lost in loss record 1,014 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410B6D: init_ig_menus (init_ig_menus.c:93)
-==23142==    by 0x405540: create_window_infos (init_window.c:98)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 848 (736 direct, 112 indirect) bytes in 2 blocks are definitely lost in loss record 1,015 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410B6D: init_ig_menus (init_ig_menus.c:93)
-==23142==    by 0x405560: create_window_infos (init_window.c:99)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,088 (848 direct, 240 indirect) bytes in 2 blocks are definitely lost in loss record 1,077 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A081: check_if_trigger (add_collisions.c:17)
-==23142==    by 0x40A313: add_collisions (add_collisions.c:41)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,092 bytes in 1 blocks are definitely lost in loss record 1,078 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406AFD: create_atlases (init_atlases.c:16)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,092 bytes in 1 blocks are definitely lost in loss record 1,079 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406AFD: create_atlases (init_atlases.c:16)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,135 (736 direct, 399 indirect) bytes in 1 blocks are definitely lost in loss record 1,086 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x410AFA: init_ig_menus (init_ig_menus.c:90)
-==23142==    by 0x405520: create_window_infos (init_window.c:97)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,247 (832 direct, 415 indirect) bytes in 13 blocks are definitely lost in loss record 1,089 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x40431C: create_home (scene_handler.c:110)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,272 (1,104 direct, 168 indirect) bytes in 3 blocks are definitely lost in loss record 1,090 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410120: init_all_menus (init_all_menus.c:94)
-==23142==    by 0x405491: create_window_infos (init_window.c:93)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,272 (1,104 direct, 168 indirect) bytes in 3 blocks are definitely lost in loss record 1,091 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40CD85: generate_textbox (generate_textbox.c:22)
-==23142==    by 0x40F967: init_backgrounds (init_all_menus.c:21)
-==23142==    by 0x410B6D: init_ig_menus (init_ig_menus.c:93)
-==23142==    by 0x405520: create_window_infos (init_window.c:97)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,312 (32 direct, 1,280 indirect) bytes in 1 blocks are definitely lost in loss record 1,096 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40F9EF: fill_choice (init_all_menus.c:31)
-==23142==    by 0x40FC91: init_choices (init_all_menus.c:51)
-==23142==    by 0x41015E: init_all_menus (init_all_menus.c:96)
-==23142==    by 0x405491: create_window_infos (init_window.c:93)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,318 (768 direct, 550 indirect) bytes in 12 blocks are definitely lost in loss record 1,097 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404444: create_home (scene_handler.c:116)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,416 (88 direct, 1,328 indirect) bytes in 1 blocks are definitely lost in loss record 1,100 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410AC1: init_ig_menus (init_ig_menus.c:88)
-==23142==    by 0x405520: create_window_infos (init_window.c:97)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,416 (88 direct, 1,328 indirect) bytes in 1 blocks are definitely lost in loss record 1,101 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410AC1: init_ig_menus (init_ig_menus.c:88)
-==23142==    by 0x405540: create_window_infos (init_window.c:98)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,416 (88 direct, 1,328 indirect) bytes in 1 blocks are definitely lost in loss record 1,102 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410AC1: init_ig_menus (init_ig_menus.c:88)
-==23142==    by 0x405560: create_window_infos (init_window.c:99)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,528 (88 direct, 1,440 indirect) bytes in 1 blocks are definitely lost in loss record 1,108 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410099: init_all_menus (init_all_menus.c:90)
-==23142==    by 0x4054C0: create_window_infos (init_window.c:95)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,528 (88 direct, 1,440 indirect) bytes in 1 blocks are definitely lost in loss record 1,109 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410099: init_all_menus (init_all_menus.c:90)
-==23142==    by 0x4054E0: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,528 (88 direct, 1,440 indirect) bytes in 1 blocks are definitely lost in loss record 1,110 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410099: init_all_menus (init_all_menus.c:90)
-==23142==    by 0x405500: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,548 (1,440 direct, 108 indirect) bytes in 3 blocks are definitely lost in loss record 1,111 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C9B4: init_text (init_text.c:12)
-==23142==    by 0x40FE3F: fill_texts (init_all_menus.c:68)
-==23142==    by 0x4101DD: init_all_menus (init_all_menus.c:100)
-==23142==    by 0x4054C0: create_window_infos (init_window.c:95)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,548 (1,440 direct, 108 indirect) bytes in 3 blocks are definitely lost in loss record 1,112 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C9B4: init_text (init_text.c:12)
-==23142==    by 0x40FE3F: fill_texts (init_all_menus.c:68)
-==23142==    by 0x4101DD: init_all_menus (init_all_menus.c:100)
-==23142==    by 0x405500: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,632 (1,272 direct, 360 indirect) bytes in 3 blocks are definitely lost in loss record 1,115 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A2FE: add_collisions (add_collisions.c:39)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,696 (1,472 direct, 224 indirect) bytes in 4 blocks are definitely lost in loss record 1,116 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C293: load_line (create_textbox.c:111)
-==23142==    by 0x41083C: fill_ig_texts (init_ig_menus.c:64)
-==23142==    by 0x410C2A: init_ig_menus (init_ig_menus.c:99)
-==23142==    by 0x405560: create_window_infos (init_window.c:99)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,734 (1,184 direct, 550 indirect) bytes in 1 blocks are definitely lost in loss record 1,117 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x4100DC: init_all_menus (init_all_menus.c:92)
-==23142==    by 0x4054E0: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 1,893 (184 direct, 1,709 indirect) bytes in 1 blocks are definitely lost in loss record 1,120 of 1,236
-==23142==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
-==23142==    by 0xA4C0D3F: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4C2CDA: _dbus_message_loader_queue_messages (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4CB19F: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4CB2DC: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4CD130: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4CD61C: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4B223C: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4C673B: dbus_pending_call_block (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4B400D: dbus_connection_send_with_reply_and_block (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4B42AB: dbus_bus_register (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142==    by 0xA4B4563: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
-==23142== 
-==23142== 2,120 (1,840 direct, 280 indirect) bytes in 5 blocks are definitely lost in loss record 1,134 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 2,168 (88 direct, 2,080 indirect) bytes in 1 blocks are definitely lost in loss record 1,135 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410099: init_all_menus (init_all_menus.c:90)
-==23142==    by 0x405491: create_window_infos (init_window.c:93)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 2,640 (96 direct, 2,544 indirect) bytes in 3 blocks are definitely lost in loss record 1,140 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4102D7: fill_ig_choice (init_ig_menus.c:14)
-==23142==    by 0x410664: init_ig_choices (init_ig_menus.c:43)
-==23142==    by 0x410BAB: init_ig_menus (init_ig_menus.c:95)
-==23142==    by 0x405520: create_window_infos (init_window.c:97)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 2,640 (96 direct, 2,544 indirect) bytes in 3 blocks are definitely lost in loss record 1,141 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4102D7: fill_ig_choice (init_ig_menus.c:14)
-==23142==    by 0x410664: init_ig_choices (init_ig_menus.c:43)
-==23142==    by 0x410BAB: init_ig_menus (init_ig_menus.c:95)
-==23142==    by 0x405540: create_window_infos (init_window.c:98)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 2,640 (96 direct, 2,544 indirect) bytes in 3 blocks are definitely lost in loss record 1,142 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x4102D7: fill_ig_choice (init_ig_menus.c:14)
-==23142==    by 0x410664: init_ig_choices (init_ig_menus.c:43)
-==23142==    by 0x410BAB: init_ig_menus (init_ig_menus.c:95)
-==23142==    by 0x405560: create_window_infos (init_window.c:99)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 2,720 (2,120 direct, 600 indirect) bytes in 5 blocks are definitely lost in loss record 1,143 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A081: check_if_trigger (add_collisions.c:17)
-==23142==    by 0x40A313: add_collisions (add_collisions.c:41)
-==23142==    by 0x404350: create_home (scene_handler.c:112)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 2,720 (2,120 direct, 600 indirect) bytes in 5 blocks are definitely lost in loss record 1,144 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A081: check_if_trigger (add_collisions.c:17)
-==23142==    by 0x40A313: add_collisions (add_collisions.c:41)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 3,355 (952 direct, 2,403 indirect) bytes in 17 blocks are definitely lost in loss record 1,151 of 1,236
-==23142==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
-==23142==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F89BB: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FC8C2: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FAB79: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40105C8: call_init (dl-init.c:60)
-==23142==    by 0x40105C8: call_init (dl-init.c:30)
-==23142==    by 0x40106FB: _dl_init (dl-init.c:121)
-==23142== 
-==23142== 3,355 (952 direct, 2,403 indirect) bytes in 17 blocks are definitely lost in loss record 1,152 of 1,236
-==23142==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
-==23142==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F89BB: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FC8C2: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FAB79: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x5E0C426: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E0C567: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E452F8: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E34906: glXCreateContextAttribsARB (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x4C759A3: ??? (in /usr/lib64/libGLX.so.0.0.0)
-==23142==    by 0x4F2BB9B: sf::priv::GlxContext::createContext(sf::priv::GlxContext*) (in /usr/local/lib/libsfml-window.so.2.5.1)
-==23142== 
-==23142== 3,572 (2,368 direct, 1,204 indirect) bytes in 37 blocks are definitely lost in loss record 1,156 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x408B34: create_static_anim (create_static_anim.c:31)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 4,064 (128 direct, 3,936 indirect) bytes in 4 blocks are definitely lost in loss record 1,161 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40F9EF: fill_choice (init_all_menus.c:31)
-==23142==    by 0x40FC91: init_choices (init_all_menus.c:51)
-==23142==    by 0x41015E: init_all_menus (init_all_menus.c:96)
-==23142==    by 0x4054C0: create_window_infos (init_window.c:95)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 4,064 (128 direct, 3,936 indirect) bytes in 4 blocks are definitely lost in loss record 1,162 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40F9EF: fill_choice (init_all_menus.c:31)
-==23142==    by 0x40FC91: init_choices (init_all_menus.c:51)
-==23142==    by 0x41015E: init_all_menus (init_all_menus.c:96)
-==23142==    by 0x405500: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 4,352 (3,392 direct, 960 indirect) bytes in 8 blocks are definitely lost in loss record 1,173 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A2FE: add_collisions (add_collisions.c:39)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x4050CF: create_window_infos (init_window.c:72)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 4,664 (4,048 direct, 616 indirect) bytes in 11 blocks are definitely lost in loss record 1,174 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C293: load_line (create_textbox.c:111)
-==23142==    by 0x41083C: fill_ig_texts (init_ig_menus.c:64)
-==23142==    by 0x410C2A: init_ig_menus (init_ig_menus.c:99)
-==23142==    by 0x405520: create_window_infos (init_window.c:97)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 5,088 (4,416 direct, 672 indirect) bytes in 12 blocks are definitely lost in loss record 1,177 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404444: create_home (scene_handler.c:116)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 5,199 (3,448 direct, 1,751 indirect) bytes in 1 blocks are definitely lost in loss record 1,179 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B754: add_pnjs (add_pnjs.c:12)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 5,290 (3,424 direct, 1,866 indirect) bytes in 1 blocks are definitely lost in loss record 1,180 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B754: add_pnjs (add_pnjs.c:12)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 5,512 (4,784 direct, 728 indirect) bytes in 13 blocks are definitely lost in loss record 1,181 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x40431C: create_home (scene_handler.c:110)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 5,984 (4,664 direct, 1,320 indirect) bytes in 11 blocks are definitely lost in loss record 1,184 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A2FE: add_collisions (add_collisions.c:39)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 6,208 (5,760 direct, 448 indirect) bytes in 12 blocks are definitely lost in loss record 1,185 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C9B4: init_text (init_text.c:12)
-==23142==    by 0x40FE3F: fill_texts (init_all_menus.c:68)
-==23142==    by 0x4101DD: init_all_menus (init_all_menus.c:100)
-==23142==    by 0x4054E0: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 6,540 bytes in 1 blocks are definitely lost in loss record 1,186 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x406A2C: get_number_lines (load_csv.c:33)
-==23142==    by 0x40691C: load_csv (load_csv.c:13)
-==23142==    by 0x406B3C: create_atlases (init_atlases.c:19)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 6,540 bytes in 1 blocks are definitely lost in loss record 1,187 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x4B0198D: getdelim (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40697C: load_csv (load_csv.c:19)
-==23142==    by 0x406B3C: create_atlases (init_atlases.c:19)
-==23142==    by 0x404F00: create_window_infos (init_window.c:66)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 6,755 (4,488 direct, 2,267 indirect) bytes in 1 blocks are definitely lost in loss record 1,188 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B754: add_pnjs (add_pnjs.c:12)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 7,840 (96 direct, 7,744 indirect) bytes in 3 blocks are definitely lost in loss record 1,193 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40F9EF: fill_choice (init_all_menus.c:31)
-==23142==    by 0x40FC91: init_choices (init_all_menus.c:51)
-==23142==    by 0x41015E: init_all_menus (init_all_menus.c:96)
-==23142==    by 0x405462: create_window_infos (init_window.c:91)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 8,096 (88 direct, 8,008 indirect) bytes in 1 blocks are definitely lost in loss record 1,194 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x410099: init_all_menus (init_all_menus.c:90)
-==23142==    by 0x405462: create_window_infos (init_window.c:91)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 8,270 (5,448 direct, 2,822 indirect) bytes in 1 blocks are definitely lost in loss record 1,196 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B754: add_pnjs (add_pnjs.c:12)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x4050CF: create_window_infos (init_window.c:72)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 9,637 (6,368 direct, 3,269 indirect) bytes in 1 blocks are definitely lost in loss record 1,200 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B754: add_pnjs (add_pnjs.c:12)
-==23142==    by 0x4043B3: create_home (scene_handler.c:113)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 11,316 (480 direct, 10,836 indirect) bytes in 1 blocks are definitely lost in loss record 1,203 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x417BA3: create_quiz (create_quiz.c:26)
-==23142==    by 0x418053: draw_quiz (quiz.c:63)
-==23142==    by 0x403B6E: handle_scene (scene_handler.c:18)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 12,164 (384 direct, 11,780 indirect) bytes in 12 blocks are definitely lost in loss record 1,205 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x40F9EF: fill_choice (init_all_menus.c:31)
-==23142==    by 0x40FC91: init_choices (init_all_menus.c:51)
-==23142==    by 0x41015E: init_all_menus (init_all_menus.c:96)
-==23142==    by 0x4054E0: create_window_infos (init_window.c:96)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 13,823 (9,136 direct, 4,687 indirect) bytes in 1 blocks are definitely lost in loss record 1,206 of 1,236
-==23142==    at 0x484086F: malloc (vg_replace_malloc.c:381)
-==23142==    by 0x406D98: my_strtwa (my_strtwa.c:48)
-==23142==    by 0x40B754: add_pnjs (add_pnjs.c:12)
-==23142==    by 0x4046C3: create_static_env (scene_handler.c:136)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 15,204 (3,360 direct, 11,844 indirect) bytes in 7 blocks are definitely lost in loss record 1,207 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40C9B4: init_text (init_text.c:12)
-==23142==    by 0x40FE3F: fill_texts (init_all_menus.c:68)
-==23142==    by 0x4101DD: init_all_menus (init_all_menus.c:100)
-==23142==    by 0x405491: create_window_infos (init_window.c:93)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 15,232 (11,872 direct, 3,360 indirect) bytes in 28 blocks are definitely lost in loss record 1,208 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A2FE: add_collisions (add_collisions.c:39)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 15,688 (13,616 direct, 2,072 indirect) bytes in 37 blocks are definitely lost in loss record 1,209 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x406A6B: atlas_to_sprite (create_sprite_from_atlas.c:12)
-==23142==    by 0x408BF4: create_static_anim (create_static_anim.c:37)
-==23142==    by 0x408D99: place_decorations (handle_decorations.c:17)
-==23142==    by 0x404630: create_static_env (scene_handler.c:133)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 16,864 (13,144 direct, 3,720 indirect) bytes in 31 blocks are definitely lost in loss record 1,212 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A2FE: add_collisions (add_collisions.c:39)
-==23142==    by 0x404350: create_home (scene_handler.c:112)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 28,133 (6,024 direct, 22,109 indirect) bytes in 1 blocks are definitely lost in loss record 1,215 of 1,236
-==23142==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
-==23142==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FD1A5: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F8700: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F9D9C: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x740A572: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40105C8: call_init (dl-init.c:60)
-==23142==    by 0x40105C8: call_init (dl-init.c:30)
-==23142==    by 0x40106FB: _dl_init (dl-init.c:121)
-==23142== 
-==23142== 52,224 (40,704 direct, 11,520 indirect) bytes in 96 blocks are definitely lost in loss record 1,219 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A544: add_rect_col (add_collisions.c:72)
-==23142==    by 0x40A2FE: add_collisions (add_collisions.c:39)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 97,552 (39,312 direct, 58,240 indirect) bytes in 91 blocks are definitely lost in loss record 1,225 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A3A8: add_circle_col (add_collisions.c:53)
-==23142==    by 0x40A1F4: add_collisions (add_collisions.c:31)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405079: create_window_infos (init_window.c:71)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 106,128 (42,768 direct, 63,360 indirect) bytes in 99 blocks are definitely lost in loss record 1,228 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A3A8: add_circle_col (add_collisions.c:53)
-==23142==    by 0x40A1F4: add_collisions (add_collisions.c:31)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405186: create_window_infos (init_window.c:74)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 109,066 (80 direct, 108,986 indirect) bytes in 1 blocks are definitely lost in loss record 1,229 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4EC02AB: std::pair<std::_Rb_tree_iterator<std::pair<unsigned long long const, sf::Glyph> >, bool> std::_Rb_tree<unsigned long long, std::pair<unsigned long long const, sf::Glyph>, std::_Select1st<std::pair<unsigned long long const, sf::Glyph> >, std::less<unsigned long long>, std::allocator<std::pair<unsigned long long const, sf::Glyph> > >::_M_emplace_unique<std::pair<unsigned long long, sf::Glyph> >(std::pair<unsigned long long, sf::Glyph>&&) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x4EC026D: sf::Font::getGlyph(unsigned int, unsigned int, bool, float) const (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x4EF83FE: sf::Text::ensureGeometryUpdate() const (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x4EF890A: sf::Text::draw(sf::RenderTarget&, sf::RenderStates) const (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x4EEAFC8: sf::RenderTarget::draw(sf::Drawable const&, sf::RenderStates const&) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
-==23142==    by 0x490947B: sfRenderWindow_drawText (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40D617: draw_choices (draw_choices.c:24)
-==23142==    by 0x40D43F: draw_menu (draw_menu.c:32)
-==23142==    by 0x403BA0: handle_scene (scene_handler.c:20)
-==23142==    by 0x40395D: main (main.c:17)
-==23142== 
-==23142== 110,416 (44,496 direct, 65,920 indirect) bytes in 103 blocks are definitely lost in loss record 1,230 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A3A8: add_circle_col (add_collisions.c:53)
-==23142==    by 0x40A1F4: add_collisions (add_collisions.c:31)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405125: create_window_infos (init_window.c:73)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 161,872 (65,232 direct, 96,640 indirect) bytes in 151 blocks are definitely lost in loss record 1,231 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A3A8: add_circle_col (add_collisions.c:53)
-==23142==    by 0x40A1F4: add_collisions (add_collisions.c:31)
-==23142==    by 0x404350: create_home (scene_handler.c:112)
-==23142==    by 0x404FCD: create_window_infos (init_window.c:69)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 167,232 (67,392 direct, 99,840 indirect) bytes in 156 blocks are definitely lost in loss record 1,232 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A3A8: add_circle_col (add_collisions.c:53)
-==23142==    by 0x40A1F4: add_collisions (add_collisions.c:31)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x405023: create_window_infos (init_window.c:70)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 169,376 (68,256 direct, 101,120 indirect) bytes in 158 blocks are definitely lost in loss record 1,233 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x40A3A8: add_circle_col (add_collisions.c:53)
-==23142==    by 0x40A1F4: add_collisions (add_collisions.c:31)
-==23142==    by 0x4046F4: create_static_env (scene_handler.c:137)
-==23142==    by 0x4050CF: create_window_infos (init_window.c:72)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== 198,385 (1,536 direct, 196,849 indirect) bytes in 1 blocks are definitely lost in loss record 1,234 of 1,236
-==23142==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
-==23142==    by 0x74054AA: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73FB800: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x73F8E6E: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x740B897: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
-==23142==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
-==23142==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
-==23142==    by 0x40105C8: call_init (dl-init.c:60)
-==23142==    by 0x40105C8: call_init (dl-init.c:30)
-==23142==    by 0x40106FB: _dl_init (dl-init.c:121)
-==23142==    by 0x4BC6474: _dl_catch_exception (in /usr/lib64/libc-2.33.so)
-==23142== 
-==23142== 649,760 (32 direct, 649,728 indirect) bytes in 1 blocks are definitely lost in loss record 1,236 of 1,236
-==23142==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
-==23142==    by 0x4906998: sfImage_createFromFile (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
-==23142==    by 0x405267: create_window_infos (init_window.c:80)
-==23142==    by 0x403A29: create_all_components (create_components.c:13)
-==23142==    by 0x40391B: main (main.c:13)
-==23142== 
-==23142== LEAK SUMMARY:
-==23142==    definitely lost: 541,470 bytes in 1,307 blocks
-==23142==    indirectly lost: 1,601,511 bytes in 8,097 blocks
-==23142==      possibly lost: 0 bytes in 0 blocks
-==23142==    still reachable: 223,450 bytes in 877 blocks
-==23142==         suppressed: 0 bytes in 0 blocks
-==23142== Reachable blocks (those to which a pointer was found) are not shown.
-==23142== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==23142== 
-==23142== For lists of detected and suppressed errors, rerun with: -s
-==23142== ERROR SUMMARY: 145 errors from 145 contexts (suppressed: 0 from 0)
+==35687== Memcheck, a memory error detector
+==35687== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==35687== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==35687== Command: ./my_rpg -f Max
+==35687== Parent PID: 3950
+==35687== 
+==35687== 
+==35687== Process terminating with default action of signal 6 (SIGABRT): dumping core
+==35687==    at 0x4AC82A2: raise (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x4AB18A3: abort (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x4AB1788: __assert_fail_base.cold (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x4AC0A15: __assert_fail (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x53A3B3E: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x538A5A4: alGetSourcei (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x5195C05: sf::SoundSource::getStatus() const (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x51968EC: sf::SoundStream::streamData() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x4F450C7: sf::priv::ThreadImpl::entryPoint(void*) (in /usr/local/lib/libsfml-system.so.2.5.1)
+==35687==    by 0x51CD2A4: start_thread (in /usr/lib64/libpthread-2.33.so)
+==35687==    by 0x4B8B322: clone (in /usr/lib64/libc-2.33.so)
+==35687== 
+==35687== HEAP SUMMARY:
+==35687==     in use at exit: 14,998,970 bytes in 12,019 blocks
+==35687==   total heap usage: 106,912 allocs, 94,893 frees, 1,625,534,532 bytes allocated
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 951 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4041F6: create_home (scene_handler.c:103)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 952 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4042EA: create_home (scene_handler.c:109)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 953 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4045C9: create_static_env (scene_handler.c:131)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 954 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x40B8F8: create_pnj (add_pnjs.c:23)
+==35687==    by 0x40B886: add_pnjs (add_pnjs.c:15)
+==35687==    by 0x4046DA: create_static_env (scene_handler.c:136)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 955 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4045C9: create_static_env (scene_handler.c:131)
+==35687==    by 0x405090: create_window_infos (init_window.c:71)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 956 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x404647: create_static_env (scene_handler.c:133)
+==35687==    by 0x405090: create_window_infos (init_window.c:71)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 957 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4045C9: create_static_env (scene_handler.c:131)
+==35687==    by 0x4050E6: create_window_infos (init_window.c:72)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 958 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4045C9: create_static_env (scene_handler.c:131)
+==35687==    by 0x40513C: create_window_infos (init_window.c:73)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 959 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x404647: create_static_env (scene_handler.c:133)
+==35687==    by 0x40513C: create_window_infos (init_window.c:73)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 960 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4045C9: create_static_env (scene_handler.c:131)
+==35687==    by 0x40519D: create_window_infos (init_window.c:74)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 961 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40B9F6: init_textbox (create_textbox.c:13)
+==35687==    by 0x405460: create_window_infos (init_window.c:90)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 962 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410073: init_all2 (init_all_menus.c:78)
+==35687==    by 0x410330: init_all_menus (init_all_menus.c:109)
+==35687==    by 0x405479: create_window_infos (init_window.c:91)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 963 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410073: init_all2 (init_all_menus.c:78)
+==35687==    by 0x410330: init_all_menus (init_all_menus.c:109)
+==35687==    by 0x4054A8: create_window_infos (init_window.c:93)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 964 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410073: init_all2 (init_all_menus.c:78)
+==35687==    by 0x410330: init_all_menus (init_all_menus.c:109)
+==35687==    by 0x4054D7: create_window_infos (init_window.c:95)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 965 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410073: init_all2 (init_all_menus.c:78)
+==35687==    by 0x410330: init_all_menus (init_all_menus.c:109)
+==35687==    by 0x4054F7: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 966 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410073: init_all2 (init_all_menus.c:78)
+==35687==    by 0x410330: init_all_menus (init_all_menus.c:109)
+==35687==    by 0x405517: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 967 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410AC5: init_ig2 (init_ig_menus.c:78)
+==35687==    by 0x410D87: init_ig_menus (init_ig_menus.c:107)
+==35687==    by 0x405537: create_window_infos (init_window.c:97)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 968 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410AC5: init_ig2 (init_ig_menus.c:78)
+==35687==    by 0x410D87: init_ig_menus (init_ig_menus.c:107)
+==35687==    by 0x405557: create_window_infos (init_window.c:98)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 969 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40C2CD: load_line (create_textbox.c:107)
+==35687==    by 0x41046C: fill_ig_choice (init_ig_menus.c:18)
+==35687==    by 0x410704: init_ig_choices (init_ig_menus.c:43)
+==35687==    by 0x410C4B: init_ig_menus (init_ig_menus.c:95)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 970 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x40EFE6: set_cursor (set_cursor.c:13)
+==35687==    by 0x410AC5: init_ig2 (init_ig_menus.c:78)
+==35687==    by 0x410D87: init_ig_menus (init_ig_menus.c:107)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 971 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40C2CD: load_line (create_textbox.c:107)
+==35687==    by 0x404D47: init_fps (init_window.c:41)
+==35687==    by 0x4056F5: create_window_infos (init_window.c:116)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 972 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4091D1: init_player (init_player.c:37)
+==35687==    by 0x403A8A: create_all_components (create_components.c:14)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 56 (16 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 973 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4091D1: init_player (init_player.c:37)
+==35687==    by 0x418168: draw_quiz (quiz.c:74)
+==35687==    by 0x403B7E: handle_scene (scene_handler.c:18)
+==35687==    by 0x40396D: main (main.c:17)
+==35687== 
+==35687== 168 (48 direct, 120 indirect) bytes in 3 blocks are definitely lost in loss record 1,342 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x4177AE: c_ele (create_cine_elements.c:49)
+==35687==    by 0x41704D: create_dream (create_dream.c:16)
+==35687==    by 0x4172D7: draw_dream (dream.c:32)
+==35687==    by 0x41809F: draw_quiz (quiz.c:64)
+==35687==    by 0x403B7E: handle_scene (scene_handler.c:18)
+==35687==    by 0x40396D: main (main.c:17)
+==35687== 
+==35687== 176 (104 direct, 72 indirect) bytes in 1 blocks are definitely lost in loss record 1,347 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490A593: sfShader_createFromFile (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x4057A4: create_shiny_test (create_state.c:14)
+==35687==    by 0x404F35: create_window_infos (init_window.c:68)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 177 (128 direct, 49 indirect) bytes in 1 blocks are definitely lost in loss record 1,348 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FB769: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FA1EE: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687==    by 0x40106FB: _dl_init (dl-init.c:121)
+==35687==    by 0x4BC6474: _dl_catch_exception (in /usr/lib64/libc-2.33.so)
+==35687== 
+==35687== 184 bytes in 1 blocks are definitely lost in loss record 1,354 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x416FF2: create_dream (create_dream.c:13)
+==35687==    by 0x4172D7: draw_dream (dream.c:32)
+==35687==    by 0x41809F: draw_quiz (quiz.c:64)
+==35687==    by 0x403B7E: handle_scene (scene_handler.c:18)
+==35687==    by 0x40396D: main (main.c:17)
+==35687== 
+==35687== 280 (80 direct, 200 indirect) bytes in 5 blocks are definitely lost in loss record 1,442 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x404647: create_static_env (scene_handler.c:133)
+==35687==    by 0x40519D: create_window_infos (init_window.c:74)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 384 bytes in 1 blocks are possibly lost in loss record 1,487 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x401364B: UnknownInlinedFun (rtld-malloc.h:44)
+==35687==    by 0x401364B: allocate_dtv (dl-tls.c:366)
+==35687==    by 0x401364B: _dl_allocate_tls (dl-tls.c:612)
+==35687==    by 0x51CE008: pthread_create@@GLIBC_2.2.5 (in /usr/lib64/libpthread-2.33.so)
+==35687==    by 0xCA40233: pa_thread_new (in /usr/lib64/pulseaudio/libpulsecommon-14.2.so)
+==35687==    by 0xC9C3B26: pa_threaded_mainloop_start (in /usr/lib64/libpulse.so.0.23.0)
+==35687==    by 0x53C220A: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x538E3E5: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x51D4CA7: __pthread_once_slow (in /usr/lib64/libpthread-2.33.so)
+==35687==    by 0x5390317: alcOpenDevice (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x5191D2D: sf::priv::AudioDevice::AudioDevice() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x5191C7A: sf::AlResource::AlResource() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x5195C3E: sf::SoundSource::SoundSource() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687== 
+==35687== 384 bytes in 1 blocks are possibly lost in loss record 1,488 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x401364B: UnknownInlinedFun (rtld-malloc.h:44)
+==35687==    by 0x401364B: allocate_dtv (dl-tls.c:366)
+==35687==    by 0x401364B: _dl_allocate_tls (dl-tls.c:612)
+==35687==    by 0x51CE008: pthread_create@@GLIBC_2.2.5 (in /usr/lib64/libpthread-2.33.so)
+==35687==    by 0x53C52A3: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x53C5354: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x5398721: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x53997EF: alcCreateContext (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x5191D47: sf::priv::AudioDevice::AudioDevice() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x5191C7A: sf::AlResource::AlResource() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x5195C3E: sf::SoundSource::SoundSource() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x519629E: sf::SoundStream::SoundStream() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x519278F: sf::Music::Music() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687== 
+==35687== 384 bytes in 1 blocks are possibly lost in loss record 1,489 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x401364B: UnknownInlinedFun (rtld-malloc.h:44)
+==35687==    by 0x401364B: allocate_dtv (dl-tls.c:366)
+==35687==    by 0x401364B: _dl_allocate_tls (dl-tls.c:612)
+==35687==    by 0x51CE008: pthread_create@@GLIBC_2.2.5 (in /usr/lib64/libpthread-2.33.so)
+==35687==    by 0x53C52A3: ??? (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x5399AFA: alcCreateContext (in /usr/lib64/libopenal.so.1.19.1)
+==35687==    by 0x5191D47: sf::priv::AudioDevice::AudioDevice() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x5191C7A: sf::AlResource::AlResource() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x5195C3E: sf::SoundSource::SoundSource() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x519629E: sf::SoundStream::SoundStream() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x519278F: sf::Music::Music() (in /usr/local/lib/libsfml-audio.so.2.5.1)
+==35687==    by 0x492DC33: sfMusic_createFromFile (in /usr/local/lib/libcsfml-audio.so.2.5.0)
+==35687==    by 0x41711D: create_dream (create_dream.c:24)
+==35687== 
+==35687== 384 bytes in 1 blocks are possibly lost in loss record 1,490 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x401364B: UnknownInlinedFun (rtld-malloc.h:44)
+==35687==    by 0x401364B: allocate_dtv (dl-tls.c:366)
+==35687==    by 0x401364B: _dl_allocate_tls (dl-tls.c:612)
+==35687==    by 0x51CE008: pthread_create@@GLIBC_2.2.5 (in /usr/lib64/libpthread-2.33.so)
+==35687==    by 0x4F450EB: sf::priv::ThreadImpl::ThreadImpl(sf::Thread*) (in /usr/local/lib/libsfml-system.so.2.5.1)
+==35687==    by 0x4F445C3: sf::Thread::launch() (in /usr/local/lib/libsfml-system.so.2.5.1)
+==35687==    by 0x417331: draw_dream (dream.c:35)
+==35687==    by 0x41809F: draw_quiz (quiz.c:64)
+==35687==    by 0x403B7E: handle_scene (scene_handler.c:18)
+==35687==    by 0x40396D: main (main.c:17)
+==35687== 
+==35687== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 1,501 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x4101C0: init_all_menus (init_all_menus.c:94)
+==35687==    by 0x4054D7: create_window_infos (init_window.c:95)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 1,502 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x4101C0: init_all_menus (init_all_menus.c:94)
+==35687==    by 0x4054F7: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 1,503 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x4101C0: init_all_menus (init_all_menus.c:94)
+==35687==    by 0x405517: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 1,504 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40C333: load_line (create_textbox.c:111)
+==35687==    by 0x4108DC: fill_ig_texts (init_ig_menus.c:64)
+==35687==    by 0x410CCA: init_ig_menus (init_ig_menus.c:99)
+==35687==    by 0x405557: create_window_infos (init_window.c:98)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 424 (368 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 1,505 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40C333: load_line (create_textbox.c:111)
+==35687==    by 0x40F7E3: set_pokemon (update_player_pokemon.c:17)
+==35687==    by 0x405733: create_window_infos (init_window.c:118)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 472 (200 direct, 272 indirect) bytes in 1 blocks are definitely lost in loss record 1,529 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x413EED: init_network (connecting_utils.c:51)
+==35687==    by 0x404E74: create_window_infos (init_window.c:59)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 1,547 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40C2B2: load_line (create_textbox.c:106)
+==35687==    by 0x405666: create_window_infos (init_window.c:111)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 1,548 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40C2B2: load_line (create_textbox.c:106)
+==35687==    by 0x40568B: create_window_infos (init_window.c:112)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 1,549 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40C2B2: load_line (create_textbox.c:106)
+==35687==    by 0x4056B0: create_window_infos (init_window.c:113)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 508 (56 direct, 452 indirect) bytes in 1 blocks are definitely lost in loss record 1,550 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40C2B2: load_line (create_textbox.c:106)
+==35687==    by 0x4056D5: create_window_infos (init_window.c:114)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 1,617 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A115: check_if_trigger (add_collisions.c:17)
+==35687==    by 0x40A3A7: add_collisions (add_collisions.c:41)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x405090: create_window_infos (init_window.c:71)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 1,618 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A115: check_if_trigger (add_collisions.c:17)
+==35687==    by 0x40A3A7: add_collisions (add_collisions.c:41)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x4050E6: create_window_infos (init_window.c:72)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 1,619 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A115: check_if_trigger (add_collisions.c:17)
+==35687==    by 0x40A3A7: add_collisions (add_collisions.c:41)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40513C: create_window_infos (init_window.c:73)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 544 (424 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 1,620 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x4052D7: create_window_infos (init_window.c:83)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 631 (128 direct, 503 indirect) bytes in 1 blocks are definitely lost in loss record 1,632 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FB769: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F8718: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F9D9C: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740A572: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687==    by 0x40106FB: _dl_init (dl-init.c:121)
+==35687== 
+==35687== 672 (192 direct, 480 indirect) bytes in 12 blocks are definitely lost in loss record 1,640 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x40445B: create_home (scene_handler.c:116)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 692 (456 direct, 236 indirect) bytes in 1 blocks are definitely lost in loss record 1,642 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x410B9A: init_ig_menus (init_ig_menus.c:90)
+==35687==    by 0x405557: create_window_infos (init_window.c:98)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 710 (432 direct, 278 indirect) bytes in 1 blocks are definitely lost in loss record 1,645 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x41017C: init_all_menus (init_all_menus.c:92)
+==35687==    by 0x405479: create_window_infos (init_window.c:91)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 728 (208 direct, 520 indirect) bytes in 13 blocks are definitely lost in loss record 1,648 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x404333: create_home (scene_handler.c:110)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 749 (520 direct, 229 indirect) bytes in 1 blocks are definitely lost in loss record 1,651 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x41017C: init_all_menus (init_all_menus.c:92)
+==35687==    by 0x4054D7: create_window_infos (init_window.c:95)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 749 (520 direct, 229 indirect) bytes in 1 blocks are definitely lost in loss record 1,652 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x41017C: init_all_menus (init_all_menus.c:92)
+==35687==    by 0x405517: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 771 (528 direct, 243 indirect) bytes in 1 blocks are definitely lost in loss record 1,653 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x410B9A: init_ig_menus (init_ig_menus.c:90)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 797 (528 direct, 269 indirect) bytes in 1 blocks are definitely lost in loss record 1,656 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x41017C: init_all_menus (init_all_menus.c:92)
+==35687==    by 0x4054A8: create_window_infos (init_window.c:93)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 816 bytes in 1 blocks are definitely lost in loss record 1,662 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x404BAA: init_key_list (init_window.c:26)
+==35687==    by 0x405704: create_window_infos (init_window.c:117)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 848 (736 direct, 112 indirect) bytes in 2 blocks are definitely lost in loss record 1,666 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x4101C0: init_all_menus (init_all_menus.c:94)
+==35687==    by 0x405479: create_window_infos (init_window.c:91)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 848 (736 direct, 112 indirect) bytes in 2 blocks are definitely lost in loss record 1,667 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x410C0D: init_ig_menus (init_ig_menus.c:93)
+==35687==    by 0x405557: create_window_infos (init_window.c:98)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 848 (736 direct, 112 indirect) bytes in 2 blocks are definitely lost in loss record 1,668 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x410C0D: init_ig_menus (init_ig_menus.c:93)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 992 (88 direct, 904 indirect) bytes in 1 blocks are definitely lost in loss record 1,784 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410B61: init_ig_menus (init_ig_menus.c:88)
+==35687==    by 0x405537: create_window_infos (init_window.c:97)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 992 (88 direct, 904 indirect) bytes in 1 blocks are definitely lost in loss record 1,785 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410B61: init_ig_menus (init_ig_menus.c:88)
+==35687==    by 0x405557: create_window_infos (init_window.c:98)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 992 (88 direct, 904 indirect) bytes in 1 blocks are definitely lost in loss record 1,786 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410B61: init_ig_menus (init_ig_menus.c:88)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,088 (848 direct, 240 indirect) bytes in 2 blocks are definitely lost in loss record 1,808 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A115: check_if_trigger (add_collisions.c:17)
+==35687==    by 0x40A3A7: add_collisions (add_collisions.c:41)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40519D: create_window_infos (init_window.c:74)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,104 (88 direct, 1,016 indirect) bytes in 1 blocks are definitely lost in loss record 1,814 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410139: init_all_menus (init_all_menus.c:90)
+==35687==    by 0x4054D7: create_window_infos (init_window.c:95)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,104 (88 direct, 1,016 indirect) bytes in 1 blocks are definitely lost in loss record 1,815 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410139: init_all_menus (init_all_menus.c:90)
+==35687==    by 0x4054F7: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,104 (88 direct, 1,016 indirect) bytes in 1 blocks are definitely lost in loss record 1,816 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410139: init_all_menus (init_all_menus.c:90)
+==35687==    by 0x405517: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,135 (736 direct, 399 indirect) bytes in 1 blocks are definitely lost in loss record 1,819 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x410B9A: init_ig_menus (init_ig_menus.c:90)
+==35687==    by 0x405537: create_window_infos (init_window.c:97)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,272 (1,104 direct, 168 indirect) bytes in 3 blocks are definitely lost in loss record 1,822 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x4101C0: init_all_menus (init_all_menus.c:94)
+==35687==    by 0x4054A8: create_window_infos (init_window.c:93)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,272 (1,104 direct, 168 indirect) bytes in 3 blocks are definitely lost in loss record 1,823 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CE25: generate_textbox (generate_textbox.c:22)
+==35687==    by 0x40FA07: init_backgrounds (init_all_menus.c:21)
+==35687==    by 0x410C0D: init_ig_menus (init_ig_menus.c:93)
+==35687==    by 0x405537: create_window_infos (init_window.c:97)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,312 (32 direct, 1,280 indirect) bytes in 1 blocks are definitely lost in loss record 1,832 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40FA8F: fill_choice (init_all_menus.c:31)
+==35687==    by 0x40FD31: init_choices (init_all_menus.c:51)
+==35687==    by 0x4101FE: init_all_menus (init_all_menus.c:96)
+==35687==    by 0x4054A8: create_window_infos (init_window.c:93)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,548 (1,440 direct, 108 indirect) bytes in 3 blocks are definitely lost in loss record 1,846 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CA54: init_text (init_text.c:12)
+==35687==    by 0x40FEDF: fill_texts (init_all_menus.c:68)
+==35687==    by 0x41027D: init_all_menus (init_all_menus.c:100)
+==35687==    by 0x4054D7: create_window_infos (init_window.c:95)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,548 (1,440 direct, 108 indirect) bytes in 3 blocks are definitely lost in loss record 1,847 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CA54: init_text (init_text.c:12)
+==35687==    by 0x40FEDF: fill_texts (init_all_menus.c:68)
+==35687==    by 0x41027D: init_all_menus (init_all_menus.c:100)
+==35687==    by 0x405517: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,632 (1,272 direct, 360 indirect) bytes in 3 blocks are definitely lost in loss record 1,852 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A392: add_collisions (add_collisions.c:39)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40519D: create_window_infos (init_window.c:74)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,696 (1,472 direct, 224 indirect) bytes in 4 blocks are definitely lost in loss record 1,853 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40C333: load_line (create_textbox.c:111)
+==35687==    by 0x4108DC: fill_ig_texts (init_ig_menus.c:64)
+==35687==    by 0x410CCA: init_ig_menus (init_ig_menus.c:99)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,734 (1,184 direct, 550 indirect) bytes in 1 blocks are definitely lost in loss record 1,854 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x41017C: init_all_menus (init_all_menus.c:92)
+==35687==    by 0x4054F7: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,744 (88 direct, 1,656 indirect) bytes in 1 blocks are definitely lost in loss record 1,855 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410139: init_all_menus (init_all_menus.c:90)
+==35687==    by 0x4054A8: create_window_infos (init_window.c:93)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 1,792 bytes in 2 blocks are possibly lost in loss record 1,857 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FB769: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F87FE: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FCDC7: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FAB79: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687== 
+==35687== 1,893 (184 direct, 1,709 indirect) bytes in 1 blocks are definitely lost in loss record 1,860 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0xA4C0D3F: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4C2CDA: _dbus_message_loader_queue_messages (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4CB19F: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4CB2DC: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4CD130: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4CD61C: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4B223C: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4C673B: dbus_pending_call_block (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4B400D: dbus_connection_send_with_reply_and_block (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4B42AB: dbus_bus_register (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687==    by 0xA4B4563: ??? (in /usr/lib64/libdbus-1.so.3.19.13)
+==35687== 
+==35687== 2,072 (592 direct, 1,480 indirect) bytes in 37 blocks are definitely lost in loss record 1,874 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490F799: sfTexture_createFromImage (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x406ABB: atlas_to_sprite (create_sprite_from_atlas.c:13)
+==35687==    by 0x408C2D: create_static_anim (create_static_anim.c:37)
+==35687==    by 0x408DDE: place_decorations (handle_decorations.c:17)
+==35687==    by 0x404647: create_static_env (scene_handler.c:133)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 2,640 (96 direct, 2,544 indirect) bytes in 3 blocks are definitely lost in loss record 1,882 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410377: fill_ig_choice (init_ig_menus.c:14)
+==35687==    by 0x410704: init_ig_choices (init_ig_menus.c:43)
+==35687==    by 0x410C4B: init_ig_menus (init_ig_menus.c:95)
+==35687==    by 0x405537: create_window_infos (init_window.c:97)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 2,640 (96 direct, 2,544 indirect) bytes in 3 blocks are definitely lost in loss record 1,883 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410377: fill_ig_choice (init_ig_menus.c:14)
+==35687==    by 0x410704: init_ig_choices (init_ig_menus.c:43)
+==35687==    by 0x410C4B: init_ig_menus (init_ig_menus.c:95)
+==35687==    by 0x405557: create_window_infos (init_window.c:98)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 2,640 (96 direct, 2,544 indirect) bytes in 3 blocks are definitely lost in loss record 1,884 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410377: fill_ig_choice (init_ig_menus.c:14)
+==35687==    by 0x410704: init_ig_choices (init_ig_menus.c:43)
+==35687==    by 0x410C4B: init_ig_menus (init_ig_menus.c:95)
+==35687==    by 0x405577: create_window_infos (init_window.c:99)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 2,720 (2,120 direct, 600 indirect) bytes in 5 blocks are definitely lost in loss record 1,889 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A115: check_if_trigger (add_collisions.c:17)
+==35687==    by 0x40A3A7: add_collisions (add_collisions.c:41)
+==35687==    by 0x404367: create_home (scene_handler.c:112)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 2,720 (2,120 direct, 600 indirect) bytes in 5 blocks are definitely lost in loss record 1,890 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A115: check_if_trigger (add_collisions.c:17)
+==35687==    by 0x40A3A7: add_collisions (add_collisions.c:41)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 3,355 (952 direct, 2,403 indirect) bytes in 17 blocks are definitely lost in loss record 1,905 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F89BB: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FC8C2: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FAB79: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687==    by 0x40106FB: _dl_init (dl-init.c:121)
+==35687== 
+==35687== 3,355 (952 direct, 2,403 indirect) bytes in 17 blocks are definitely lost in loss record 1,906 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F89BB: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FC8C2: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FAB79: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740A5A8: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E0C426: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E0C567: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E452F8: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E34906: glXCreateContextAttribsARB (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4C759A3: ??? (in /usr/lib64/libGLX.so.0.0.0)
+==35687==    by 0x4F2BB9B: sf::priv::GlxContext::createContext(sf::priv::GlxContext*) (in /usr/local/lib/libsfml-window.so.2.5.1)
+==35687== 
+==35687== 4,064 (128 direct, 3,936 indirect) bytes in 4 blocks are definitely lost in loss record 1,915 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40FA8F: fill_choice (init_all_menus.c:31)
+==35687==    by 0x40FD31: init_choices (init_all_menus.c:51)
+==35687==    by 0x4101FE: init_all_menus (init_all_menus.c:96)
+==35687==    by 0x4054D7: create_window_infos (init_window.c:95)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 4,064 (128 direct, 3,936 indirect) bytes in 4 blocks are definitely lost in loss record 1,916 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40FA8F: fill_choice (init_all_menus.c:31)
+==35687==    by 0x40FD31: init_choices (init_all_menus.c:51)
+==35687==    by 0x4101FE: init_all_menus (init_all_menus.c:96)
+==35687==    by 0x405517: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 4,352 (3,392 direct, 960 indirect) bytes in 8 blocks are definitely lost in loss record 1,945 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A392: add_collisions (add_collisions.c:39)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x4050E6: create_window_infos (init_window.c:72)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 4,664 (4,048 direct, 616 indirect) bytes in 11 blocks are definitely lost in loss record 1,948 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E070: sfSprite_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40C333: load_line (create_textbox.c:111)
+==35687==    by 0x4108DC: fill_ig_texts (init_ig_menus.c:64)
+==35687==    by 0x410CCA: init_ig_menus (init_ig_menus.c:99)
+==35687==    by 0x405537: create_window_infos (init_window.c:97)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 5,199 (3,448 direct, 1,751 indirect) bytes in 1 blocks are definitely lost in loss record 1,954 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x40B7E8: add_pnjs (add_pnjs.c:12)
+==35687==    by 0x4046DA: create_static_env (scene_handler.c:136)
+==35687==    by 0x40519D: create_window_infos (init_window.c:74)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 5,290 (3,424 direct, 1,866 indirect) bytes in 1 blocks are definitely lost in loss record 1,955 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x40B7E8: add_pnjs (add_pnjs.c:12)
+==35687==    by 0x4046DA: create_static_env (scene_handler.c:136)
+==35687==    by 0x405090: create_window_infos (init_window.c:71)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 5,984 (4,664 direct, 1,320 indirect) bytes in 11 blocks are definitely lost in loss record 1,960 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A392: add_collisions (add_collisions.c:39)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x405090: create_window_infos (init_window.c:71)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 6,208 (5,760 direct, 448 indirect) bytes in 12 blocks are definitely lost in loss record 1,963 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CA54: init_text (init_text.c:12)
+==35687==    by 0x40FEDF: fill_texts (init_all_menus.c:68)
+==35687==    by 0x41027D: init_all_menus (init_all_menus.c:100)
+==35687==    by 0x4054F7: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 6,755 (4,488 direct, 2,267 indirect) bytes in 1 blocks are definitely lost in loss record 1,966 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x40B7E8: add_pnjs (add_pnjs.c:12)
+==35687==    by 0x4046DA: create_static_env (scene_handler.c:136)
+==35687==    by 0x40513C: create_window_infos (init_window.c:73)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 7,672 (88 direct, 7,584 indirect) bytes in 1 blocks are definitely lost in loss record 1,973 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x410139: init_all_menus (init_all_menus.c:90)
+==35687==    by 0x405479: create_window_infos (init_window.c:91)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 7,840 (96 direct, 7,744 indirect) bytes in 3 blocks are definitely lost in loss record 1,974 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40FA8F: fill_choice (init_all_menus.c:31)
+==35687==    by 0x40FD31: init_choices (init_all_menus.c:51)
+==35687==    by 0x4101FE: init_all_menus (init_all_menus.c:96)
+==35687==    by 0x405479: create_window_infos (init_window.c:91)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 8,270 (5,448 direct, 2,822 indirect) bytes in 1 blocks are definitely lost in loss record 1,978 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x40B7E8: add_pnjs (add_pnjs.c:12)
+==35687==    by 0x4046DA: create_static_env (scene_handler.c:136)
+==35687==    by 0x4050E6: create_window_infos (init_window.c:72)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 9,637 (6,368 direct, 3,269 indirect) bytes in 1 blocks are definitely lost in loss record 1,985 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x40B7E8: add_pnjs (add_pnjs.c:12)
+==35687==    by 0x4043CA: create_home (scene_handler.c:113)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 11,916 (72 direct, 11,844 indirect) bytes in 1 blocks are definitely lost in loss record 1,991 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x4179E8: create_quiz (create_quiz.c:12)
+==35687==    by 0x418088: draw_quiz (quiz.c:63)
+==35687==    by 0x403B7E: handle_scene (scene_handler.c:18)
+==35687==    by 0x40396D: main (main.c:17)
+==35687== 
+==35687== 12,164 (384 direct, 11,780 indirect) bytes in 12 blocks are definitely lost in loss record 1,992 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x40FA8F: fill_choice (init_all_menus.c:31)
+==35687==    by 0x40FD31: init_choices (init_all_menus.c:51)
+==35687==    by 0x4101FE: init_all_menus (init_all_menus.c:96)
+==35687==    by 0x4054F7: create_window_infos (init_window.c:96)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 13,823 (9,136 direct, 4,687 indirect) bytes in 1 blocks are definitely lost in loss record 1,998 of 2,062
+==35687==    at 0x484086F: malloc (vg_replace_malloc.c:381)
+==35687==    by 0x406DD1: my_strtwa (my_strtwa.c:48)
+==35687==    by 0x40B7E8: add_pnjs (add_pnjs.c:12)
+==35687==    by 0x4046DA: create_static_env (scene_handler.c:136)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 15,204 (3,360 direct, 11,844 indirect) bytes in 7 blocks are definitely lost in loss record 2,002 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x490E630: sfText_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40CA54: init_text (init_text.c:12)
+==35687==    by 0x40FEDF: fill_texts (init_all_menus.c:68)
+==35687==    by 0x41027D: init_all_menus (init_all_menus.c:100)
+==35687==    by 0x4054A8: create_window_infos (init_window.c:93)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 15,232 (11,872 direct, 3,360 indirect) bytes in 28 blocks are definitely lost in loss record 2,003 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A392: add_collisions (add_collisions.c:39)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40513C: create_window_infos (init_window.c:73)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 16,864 (13,144 direct, 3,720 indirect) bytes in 31 blocks are definitely lost in loss record 2,012 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A392: add_collisions (add_collisions.c:39)
+==35687==    by 0x404367: create_home (scene_handler.c:112)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 28,133 (6,024 direct, 22,109 indirect) bytes in 1 blocks are definitely lost in loss record 2,020 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FD1A5: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F8700: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F9D9C: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740A572: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687==    by 0x40106FB: _dl_init (dl-init.c:121)
+==35687== 
+==35687== 52,224 (40,704 direct, 11,520 indirect) bytes in 96 blocks are definitely lost in loss record 2,028 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4907280: sfRectangleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A5D8: add_rect_col (add_collisions.c:72)
+==35687==    by 0x40A392: add_collisions (add_collisions.c:39)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 97,552 (39,312 direct, 58,240 indirect) bytes in 91 blocks are definitely lost in loss record 2,038 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A43C: add_circle_col (add_collisions.c:53)
+==35687==    by 0x40A288: add_collisions (add_collisions.c:31)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x405090: create_window_infos (init_window.c:71)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 107,200 (43,200 direct, 64,000 indirect) bytes in 100 blocks are definitely lost in loss record 2,042 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A43C: add_circle_col (add_collisions.c:53)
+==35687==    by 0x40A288: add_collisions (add_collisions.c:31)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40519D: create_window_infos (init_window.c:74)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 107,994 (80 direct, 107,914 indirect) bytes in 1 blocks are definitely lost in loss record 2,043 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4EC02AB: std::pair<std::_Rb_tree_iterator<std::pair<unsigned long long const, sf::Glyph> >, bool> std::_Rb_tree<unsigned long long, std::pair<unsigned long long const, sf::Glyph>, std::_Select1st<std::pair<unsigned long long const, sf::Glyph> >, std::less<unsigned long long>, std::allocator<std::pair<unsigned long long const, sf::Glyph> > >::_M_emplace_unique<std::pair<unsigned long long, sf::Glyph> >(std::pair<unsigned long long, sf::Glyph>&&) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
+==35687==    by 0x4EC026D: sf::Font::getGlyph(unsigned int, unsigned int, bool, float) const (in /usr/local/lib/libsfml-graphics.so.2.5.1)
+==35687==    by 0x4EF83FE: sf::Text::ensureGeometryUpdate() const (in /usr/local/lib/libsfml-graphics.so.2.5.1)
+==35687==    by 0x4EF890A: sf::Text::draw(sf::RenderTarget&, sf::RenderStates) const (in /usr/local/lib/libsfml-graphics.so.2.5.1)
+==35687==    by 0x4EEAFC8: sf::RenderTarget::draw(sf::Drawable const&, sf::RenderStates const&) (in /usr/local/lib/libsfml-graphics.so.2.5.1)
+==35687==    by 0x490947B: sfRenderWindow_drawText (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40D6EA: draw_choices (draw_choices.c:28)
+==35687==    by 0x40D4DF: draw_menu (draw_menu.c:32)
+==35687==    by 0x403BB0: handle_scene (scene_handler.c:20)
+==35687==    by 0x40396D: main (main.c:17)
+==35687== 
+==35687== 110,416 (44,496 direct, 65,920 indirect) bytes in 103 blocks are definitely lost in loss record 2,044 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A43C: add_circle_col (add_collisions.c:53)
+==35687==    by 0x40A288: add_collisions (add_collisions.c:31)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40513C: create_window_infos (init_window.c:73)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 161,872 (65,232 direct, 96,640 indirect) bytes in 151 blocks are definitely lost in loss record 2,049 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A43C: add_circle_col (add_collisions.c:53)
+==35687==    by 0x40A288: add_collisions (add_collisions.c:31)
+==35687==    by 0x404367: create_home (scene_handler.c:112)
+==35687==    by 0x404FE4: create_window_infos (init_window.c:69)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 167,232 (67,392 direct, 99,840 indirect) bytes in 156 blocks are definitely lost in loss record 2,051 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A43C: add_circle_col (add_collisions.c:53)
+==35687==    by 0x40A288: add_collisions (add_collisions.c:31)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x40503A: create_window_infos (init_window.c:70)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 169,376 (68,256 direct, 101,120 indirect) bytes in 158 blocks are definitely lost in loss record 2,052 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4904340: sfCircleShape_create (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40A43C: add_circle_col (add_collisions.c:53)
+==35687==    by 0x40A288: add_collisions (add_collisions.c:31)
+==35687==    by 0x40470B: create_static_env (scene_handler.c:137)
+==35687==    by 0x4050E6: create_window_infos (init_window.c:72)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== 196,593 (1,536 direct, 195,057 indirect) bytes in 1 blocks are definitely lost in loss record 2,055 of 2,062
+==35687==    at 0x48456AF: realloc (vg_replace_malloc.c:1437)
+==35687==    by 0x74054AA: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73FB800: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x73F8E6E: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x740B897: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E08D68: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687==    by 0x40106FB: _dl_init (dl-init.c:121)
+==35687==    by 0x4BC6474: _dl_catch_exception (in /usr/lib64/libc-2.33.so)
+==35687== 
+==35687== 307,271 bytes in 1 blocks are possibly lost in loss record 2,057 of 2,062
+==35687==    at 0x4845464: calloc (vg_replace_malloc.c:1328)
+==35687==    by 0x740626F: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x741B3EA: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x70F806A: ??? (in /usr/lib64/libnvidia-glcore.so.510.60.02)
+==35687==    by 0x5E4069F: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E48C5E: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E08E6A: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E6F0A5: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x5E082E2: ??? (in /usr/lib64/libGLX_nvidia.so.510.60.02)
+==35687==    by 0x4A9AEF7: ??? (in /usr/lib64/libc-2.33.so)
+==35687==    by 0x40105C8: call_init (dl-init.c:60)
+==35687==    by 0x40105C8: call_init (dl-init.c:30)
+==35687==    by 0x40106FB: _dl_init (dl-init.c:121)
+==35687== 
+==35687== 649,760 (32 direct, 649,728 indirect) bytes in 1 blocks are definitely lost in loss record 2,060 of 2,062
+==35687==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==35687==    by 0x4906998: sfImage_createFromFile (in /usr/local/lib/libcsfml-graphics.so.2.5.0)
+==35687==    by 0x40527E: create_window_infos (init_window.c:80)
+==35687==    by 0x403A39: create_all_components (create_components.c:13)
+==35687==    by 0x40392B: main (main.c:13)
+==35687== 
+==35687== LEAK SUMMARY:
+==35687==    definitely lost: 485,576 bytes in 1,207 blocks
+==35687==    indirectly lost: 1,593,214 bytes in 7,487 blocks
+==35687==      possibly lost: 310,599 bytes in 7 blocks
+==35687==    still reachable: 12,609,581 bytes in 3,318 blocks
+==35687==                       of which reachable via heuristic:
+==35687==                         newarray           : 16 bytes in 1 blocks
+==35687==                         multipleinheritance: 192 bytes in 1 blocks
+==35687==         suppressed: 0 bytes in 0 blocks
+==35687== Reachable blocks (those to which a pointer was found) are not shown.
+==35687== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==35687== 
+==35687== For lists of detected and suppressed errors, rerun with: -s
+==35687== ERROR SUMMARY: 117 errors from 117 contexts (suppressed: 0 from 0)

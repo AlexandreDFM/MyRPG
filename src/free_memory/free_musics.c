@@ -13,7 +13,7 @@
 
 void free_musics(wininf *inf)
 {
-    if (inf->intro != NULL) delete_intro(inf);
-    if (inf->ditto != NULL) delete_ditto(inf);
-    if (inf->dream != NULL) delete_dream(inf);
+    // if (inf->intro != NULL) delete_intro(inf);
+    // if (inf->ditto != NULL) delete_ditto(inf);
+    // if (inf->dream != NULL) delete_dream(inf);
 }

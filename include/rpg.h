@@ -27,6 +27,8 @@
     (void *(*)(void *))sfCircleShape_destroy);
 #define my_clock() my_sfalloc((void *(*)(void))sfClock_create,\
     (void *(*)(void *))sfClock_destroy);
+#define my_view() my_sfalloc((void *(*)(void))sfView_create,\
+    (void *(*)(void *))sfView_destroy);
 #define my_sf_free() my_sfalloc(NULL, NULL);
 
     #include "infos.h"
