@@ -16,6 +16,7 @@ void update_network(wininf *inf, components *all)
     if (sfPacket_getDataSize(p) > 1 || !net->other.connected) {
         sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
             net->other.port);
+        net->other.connected = 1;
         sfPacket_clear(p);
     }
     if (sfSocketSelector_wait(net->selector, net->timeout)) {

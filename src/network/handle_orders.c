@@ -63,7 +63,6 @@ int receive_connection(char **data, int *important, components *all)
     int *port = (int *)*data;
     all->inf.net->other.ip = *client_ip;
     all->inf.net->other.port = *port;
-    all->inf.net->other.connected = 1;
     return sizeof(int) * 2 + sizeof(sfIpAddress);
 }
 
