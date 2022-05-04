@@ -59,7 +59,8 @@ void check_back(wininf *inf, player *p)
 void update_keys(wininf *inf, player *p)
 {
     if (inf->event.type == sfEvtKeyReleased && (inf->event.key.code ==
-    inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown))
+    inf->inputs.keys.mup || inf->event.key.code == inf->inputs.keys.mdown) &&
+    inf->c_menu != NONE)
         inf->current_menu->press = 0;
     manage_intro(inf);
     if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
