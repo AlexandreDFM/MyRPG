@@ -38,7 +38,7 @@ int receive_with_timeout(network *net, sfIpAddress *ip, short unsigned int *p)
         if (!res) {
             net->other.ip = *ip;
             net->other.port = *p;
-            // net->other.connected = 1;
+            net->other.connected = 1;
             my_printf("Successfully connected!\n");
             return 1;
         }
