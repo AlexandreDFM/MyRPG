@@ -321,6 +321,7 @@ typedef struct date {
 } date_t;
 
 void *my_malloc(size_t size);
+void draw_dream(wininf *inf);
 void set_pokemon(wininf *inf);
 void free_musics(wininf *inf);
 void my_free_array(char **array);

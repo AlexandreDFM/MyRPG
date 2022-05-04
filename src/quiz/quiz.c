@@ -46,13 +46,13 @@ void qcm(wininf *inf)
         int idx = add_pts(inf, inf->quiz->aquestions[3]);
         inf->quiz->addptsnature[idx] += 1; inf->quiz->actualquestion += 1;
         my_free_array(inf->quiz->aquestions); inf->quiz->aquestions = NULL;
-        sleep(1);
+        // sleep(1);
     }
     if (inf->quiz->aquestions != NULL && sfKeyboard_isKeyPressed(sfKeyLControl)) {
         int idx = add_pts(inf, inf->quiz->aquestions[5]);
         inf->quiz->addptsnature[idx] += 1; inf->quiz->actualquestion += 1;
         my_free_array(inf->quiz->aquestions); inf->quiz->aquestions = NULL;
-        sleep(1);
+        // sleep(1);
     }
     sfRenderWindow_drawSprite(inf->win, inf->quiz->quizbox, NULL);
     sfRenderWindow_drawText(inf->win, inf->quiz->text, NULL);

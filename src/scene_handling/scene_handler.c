@@ -11,12 +11,11 @@
 void handle_scene(wininf *infos, player *p)
 {
     sfRenderWindow_clear(infos->win, sfBlack);
-    // if (infos->c_scene == INTRO) {
-    //     draw_intro(infos);
-    // if (infos->c_scene == DREAM) {
-    //     draw_dream(infos);
-    if (infos->c_scene == QUIZ) {
-        draw_quiz(infos, p);
+    if (infos->c_scene == INTRO || infos->c_scene == QUIZ
+    || infos->c_scene == DREAM) {
+        if (infos->c_scene == INTRO) draw_intro(infos);
+        if (infos->c_scene == DREAM) draw_dream(infos);
+        if (infos->c_scene == QUIZ) draw_quiz(infos, p);
     } else if (infos->c_scene == MAIN_MENU) {
         draw_menu(infos, infos->main_menu);
         if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->current_menu);

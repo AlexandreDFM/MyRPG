@@ -23,7 +23,6 @@ typedef struct dream_assets_t {
     sfMusic *music;
 } dream_a;
 
-void draw_dream(wininf *inf);
 void delete_dream(wininf *inf);
 dream_a *create_dream(wininf *inf);
 
