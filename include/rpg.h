@@ -196,6 +196,7 @@ typedef struct player_t {
     int shiny;
     sfSprite *test;
     sfVector2f vel;
+    sfVector2f sentpos;
     float time;
     sfVector2f nextpos;
 } player;
