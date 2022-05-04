@@ -6,7 +6,6 @@
 */
 
 #include "infos.h"
-#include "scenes.h"
 
 int main(int argc, char **argv)
 {

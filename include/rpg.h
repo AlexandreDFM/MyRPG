@@ -39,7 +39,7 @@
     #include "my.h"
     #include "math.h"
     #include "printf.h"
-    #include "scenes.h"
+    #include "items.h"
     #include "types.h"
     #include "dialog.h"
     #define APPEND -1
@@ -186,6 +186,17 @@ typedef struct scene_t {
     struct linked_list_t *animated;
 } scene;
 
+typedef struct inventory_slot {
+    struct dialog_line_t *line;
+    int id;
+    void (*use)(struct wininf *, struct inventory_slot **);
+} invslot;
+
+typedef struct inventory_t {
+    struct inventory_slot **slots;
+    int size;
+} inventory;
+
 typedef struct player_t {
     int offset;
     enum direction_t direction;
@@ -201,6 +212,7 @@ typedef struct player_t {
     sfVector2f sentpos;
     float time;
     sfVector2f nextpos;
+    struct inventory_t *inv;
 } player;
 
 typedef struct camera_t {
@@ -351,6 +363,9 @@ typedef struct date {
     int *daysofmonth;
 } date_t;
 
+
+
+void use_apple(wininf *inf, invslot **slot);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
