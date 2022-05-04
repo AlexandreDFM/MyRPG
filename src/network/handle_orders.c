@@ -61,8 +61,14 @@ int receive_connection(char **data, int *important, components *all)
     sfIpAddress *client_ip = (sfIpAddress*)(*data);
     *data += sizeof(sfIpAddress);
     int *port = (int *)*data;
-    all->inf.net->other.ip = *client_ip;
-    all->inf.net->other.port = *port;
+    network *net = all->inf.net;
+    net->other.ip = *client_ip;
+    net->other.port = *port;
+    net->other.connected = 1;
+    sfPacket_append(all->inf.net->packet, port, sizeof(int));
+    sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
+        net->other.port);
+    sfPacket_clear(net->packet);
     return sizeof(int) * 2 + sizeof(sfIpAddress);
 }
 

@@ -13,10 +13,10 @@ void update_network(wininf *inf, components *all)
     if (!inf->net->is_multi) return;
     sfPacket *p = inf->net->packet;
     sfIpAddress *ip = &(net->other.ip);
-    if (sfPacket_getDataSize(p) > 1 || !net->other.connected) {
+    printf("Connected: %d\n", net->other.connected);
+    if (sfPacket_getDataSize(p) > 1) {
         sfUdpSocket_sendPacket(net->socket, net->packet, net->other.ip,
             net->other.port);
-        net->other.connected = 1;
         sfPacket_clear(p);
     }
     if (sfSocketSelector_wait(net->selector, net->timeout)) {
