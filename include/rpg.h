@@ -7,6 +7,17 @@
 
 #ifndef RPG_H_
 #define RPG_H_
+#define my_sprite() my_sfalloc(sfSprite_create, sfSprite_destroy);
+#define my_texture() my_sfalloc(sfTexture_create, sfTexture_destroy);
+#define my_font() my_sfalloc(sfFont_createFromFile, sfFont_destroy);
+#define my_music() my_sfalloc(sfMusic_createFromFile, sfMusic_destroy);
+#define my_sound() my_sfalloc(sfSound_create, sfSound_destroy);
+#define my_sound_buffer() my_sfalloc(sfSoundBuffer_createFromFile,\
+sfSoundBuffer_destroy);
+#define my_text() my_sfalloc(sfText_create, sfText_destroy);
+#define my_rectangle() my_sfalloc(sfRectangleShape_create,\
+sfRectangleShape_destroy);
+#define my_circle() my_sfalloc(sfCircleShape_create, sfCircleShape_destroy);
 
     #include "infos.h"
     #include "dungeon.h"
@@ -90,6 +101,12 @@ typedef enum language {
     ENGLISH,
     FRANCAIS,
 }language;
+
+typedef struct cpp_garbage {
+    void *data;
+    void *(*create)(void);
+    void *(*destroy)(void *);
+} cpp_garbage;
 
 typedef struct settings_t {
     int show_collision;
