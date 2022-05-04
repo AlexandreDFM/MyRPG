@@ -28,9 +28,10 @@ invslot *get_item_from_id(int id, wininf *inf)
 
 void init_inventory(player *p, int size)
 {
-    inventory **inv = my_malloc(sizeof(inventory*) * (size + 1));
+    inventory *inv = my_malloc(sizeof(inventory));
+    inv->slots = malloc(sizeof(invslot *) * (size + 1));
     for (int i = 0; i <= size; i++) {
-        inv[i] = 0;
+        inv->slots[i] = 0;
     }
     p->inv = inv;
 }

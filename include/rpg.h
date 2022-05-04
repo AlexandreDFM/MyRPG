@@ -208,7 +208,7 @@ typedef struct player_t {
     sfVector2f sentpos;
     float time;
     sfVector2f nextpos;
-    struct inventory_t *inv;
+    struct inventory_t **inv;
 } player;
 
 typedef struct camera_t {
