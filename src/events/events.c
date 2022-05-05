@@ -28,7 +28,6 @@ void update_pause2(wininf *inf, player *p)
 {
     if (inf->c_menu == PAUSE && inf->inputs.back && inf->inputs.can_back && inf->inputs.can_pause) {
         inf->c_menu = NONE;
-        printf("depasue\n");
         inf->inputs.can_back = 0;
         inf->pause_menu->focus = 0;
         inf->pause_menu->selected = inf->pause_menu->head;
@@ -36,7 +35,6 @@ void update_pause2(wininf *inf, player *p)
     }
     if (inf->c_menu != NONE && inf->c_menu != PAUSE && inf->inputs.pause && inf->inputs.can_pause) {
         inf->inputs.can_pause = 0;
-        printf("pause\n");
         go_back(inf);
     }
 }
