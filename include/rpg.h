@@ -32,6 +32,7 @@
 #define my_sock_select() my_sfalloc((void *(*)(void))sfSocketSelector_create,\
     (void *(*)(void *))sfSocketSelector_destroy)
 #define my_sf_free() my_sfalloc(NULL, NULL)
+#define XOR(a,b) ((!(a && b)) && (a || b))
 
     #include "infos.h"
     #include "dungeon.h"
