@@ -196,6 +196,7 @@ typedef struct scene_t {
 typedef struct inventory_t {
     struct inventory_slot **slots;
     int size;
+    int filled;
 } inventory;
 
 typedef struct stats_t {
@@ -388,8 +389,8 @@ typedef struct date {
 } date_t;
 
 typedef struct inventory_slot {
-    struct dialog_line_t *line;
     int id;
+    struct dialog_line_t *line;
     void (*use)(wininf *, struct inventory_slot **);
 } invslot;
 
@@ -402,6 +403,9 @@ sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
 sfImage *my_image_from_file(char *path);
 sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 void draw_ditto(wininf *inf);
+void add_to_inventory(wininf *inf, inventory *inv, int id);
+void draw_ig_menu(wininf *inf, menuss *menu);
+void draw_inv(inventory *inv, wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

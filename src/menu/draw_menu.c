@@ -13,7 +13,7 @@ void draw_ig_menu(wininf *inf, menuss *menu)
     if (menu->choices)  {
         draw_choices(inf, menu->choices, menu->head);
         sfText *text = ((choices*)menu->selected->data)->desc;
-        sfRenderWindow_drawText(inf->win, text, NULL);
+        if (text) sfRenderWindow_drawText(inf->win, text, NULL);
     }
     if (menu->texts) draw_list(menu->texts, inf->win);
     if (menu->choices && menu->focus == 1 ) {
@@ -31,7 +31,7 @@ void draw_menu(wininf *inf, menuss *menu)
     if (menu->choices)  {
         draw_choices(inf, menu->choices, menu->head);
         sfText *text = ((choices*)menu->selected->data)->desc;
-        sfRenderWindow_drawText(inf->win, text, NULL);
+        if (text) sfRenderWindow_drawText(inf->win, text, NULL);
     }
     if (menu->texts) draw_list(menu->texts, inf->win);
     if (menu->choices && menu->focus == 1 ) {

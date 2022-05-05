@@ -12,15 +12,15 @@ invslot *get_item_from_id(int id, wininf *inf)
     invslot *slot = malloc(sizeof(invslot));
     slot->id = id;
     if (id == APPLE) {
-        slot->line = load_line("<lApple> Apple", FONT_SIZE, inf, malloc);
+        slot->line = load_line("Apple <i_lApple>", FONT_SIZE, inf, malloc);
         slot->use = use_apple;
     }
-    if (id == ALMOND) {
-        slot->line = load_line("<lChestnut> Apple", FONT_SIZE, inf, malloc);
+    if (id == CHESTNUT) {
+        slot->line = load_line("Chestnut <i_lChestnut>", FONT_SIZE, inf, malloc);
         slot->use = 0;
     }
     if (id == BANANA) {
-        slot->line = load_line("<lBanana> Apple", FONT_SIZE, inf, malloc);
+        slot->line = load_line("Banana <i_lBanana>", FONT_SIZE, inf, malloc);
         slot->use = 0;
     }
     return slot;
@@ -33,15 +33,33 @@ void init_inventory(player *p, int size)
     for (int i = 0; i <= size; i++) {
         inv->slots[i] = 0;
     }
+    inv->filled = 0;
+    inv->size = size;
     p->inv = inv;
+}
+
+void change_slot(list *choice, invslot *slot)
+{
+    sfIntRect r; r.left = 0, r.top = 0;
+    r.width = slot->line->steps[slot->line->max];
+    r.height = slot->line->height;
+    sfSprite_setTextureRect(slot->line->sps[0], r);
+    sfVector2f old_pos = sfSprite_getPosition(((choices *)choice->data)->choice);
+    sfSprite_destroy(((choices *)choice->data)->choice);
+    ((choices *)choice->data)->choice = slot->line->sps[0];
+    sfSprite_setPosition(((choices *)choice->data)->choice, old_pos);
+
 }
 
 void add_to_inventory(wininf *inf, inventory *inv, int id)
 {
     invslot *slot = get_item_from_id(id, inf);
-    for (int i = 0 ; inv->size; i++) {
+    list *tmp = inf->inventory_menu->head;
+    for (int i = 0; i < inv->size; i++, tmp = tmp->next) {
         if (!inv->slots[i]) {
             inv->slots[i] = slot;
+            inv->filled++;
+            change_slot(tmp, slot);
             break;
         }
     }
