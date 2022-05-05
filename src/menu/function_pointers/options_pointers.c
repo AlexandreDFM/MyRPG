@@ -9,14 +9,12 @@
 
 void change_volume(wininf *inf)
 {
-    if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
-    inf->inputs.keys.mright && inf->pressed == 0) {
+    if (inf->inputs.axis.x > 0) {
         inf->pressed = 1;
         right_main_vol(inf);
         right_main_fps(inf);
     }
-    if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
-    inf->inputs.keys.mleft && inf->pressed == 0) {
+    if (inf->inputs.axis.x < 0) {
         inf->pressed = 1;
         left_main_vol(inf);
         left_main_fps(inf);

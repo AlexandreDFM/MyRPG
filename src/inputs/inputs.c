@@ -83,9 +83,8 @@ void update_inputs(wininf *inf)
     inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
     int old_interact = inf->inputs.interact, old_attack = inf->inputs.attack;
     int old_back = inf->inputs.back, old_pause = inf->inputs.pause;
-    inf->inputs.interact = 0;
-    inf->inputs.attack = 0;
-    inf->inputs.back = 0;
+    inf->inputs.interact = 0; inf->inputs.attack = 0;
+    inf->inputs.back = 0; inf->inputs.pause = 0;
     sfJoystick_update();
     if (sfJoystick_isConnected(0)) {
         inf->inputs.type = CONTROLLER;
@@ -146,7 +145,7 @@ void update_joysticks(wininf *inf)
     if (sfJoystick_getButtonCount(0)) {
         inf->inputs.interact += sfJoystick_isButtonPressed(0, 2);
         inf->inputs.attack += sfJoystick_isButtonPressed(0, 0);
-        inf->inputs.back += sfJoystick_isButtonPressed(0, 1);
+        inf->inputs.pause += sfJoystick_isButtonPressed(0, 1);
         inf->inputs.back += sfJoystick_isButtonPressed(0, 7);
     }
     x = fabs(x) > 0.35f ? x : 0.0f;

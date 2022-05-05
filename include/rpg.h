@@ -82,6 +82,7 @@ typedef enum main_menu_t {
     OPTIONS,
     OTHERS,
     IG_OPTIONS,
+    INVENTORY,
     KEYBINDS_M,
     CHANGING_KEY,
     EXIT,
@@ -108,6 +109,7 @@ typedef enum menu_indx {
     PAUSE_VILLAGE_IDX,
     OTHERS_IDX,
     IG_OPTIONS_IDX,
+    INVENTORY_IDX,
     PAUSE_DG_IDX,
 }menu_indx;
 
@@ -288,10 +290,11 @@ typedef struct wininf_t {
     struct menus *main_menu;
     struct menus *load_menu;
     struct menus *pause_menu;
-    struct menus *change_keys_menu;
     struct menus *others_menu;
-    struct menus *ig_options_menu;
     struct menus *options_menu;
+    struct menus *inventory_menu;
+    struct menus *ig_options_menu;
+    struct menus *change_keys_menu;
     struct menus *current_menu;
     sfRenderStates state;
     struct settings_t *settings;
@@ -631,6 +634,8 @@ void play(wininf *inf);
 void a_log(wininf *inf);
 //Menu pointers
 void no_but(wininf *inf);
+//Menu pointers
+void go_inv(wininf *inf);
 //Menu pointers
 void go_back(wininf *inf);
 //Menu pointers

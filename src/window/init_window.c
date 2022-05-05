@@ -97,6 +97,7 @@ wininf create_window_infos(int ac, char **av)
     inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.others_menu = init_ig_menus(&inf, OTHERS_IDX, 0);
     inf.ig_options_menu = init_ig_menus(&inf, IG_OPTIONS_IDX, 0);
+    inf.inventory_menu = init_ig_menus(&inf, INVENTORY_IDX, 0);
     init_options_pointers(&inf);
     inf.c_menu = NONE;
     inf.waiting_key = 0;

@@ -7,6 +7,30 @@
 
 #include "rpg.h"
 
+sfSoundBuffer *my_buffer_from_file(char *path)
+{
+    static list *garbage2 = 0;
+    int nbfree = 0;
+    if (!path) {
+        while (garbage2) {
+            list *ne = garbage2->next;
+            sfSoundBuffer_destroy(garbage2->data);
+            free(garbage2);
+            garbage2 = ne;
+            nbfree++;
+        }
+        my_printf("Freed %d buffer%s automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
+        return NULL;
+    }
+    void *data = sfSoundBuffer_createFromFile(path);
+    if (data) {
+        list *nl = malloc(sizeof(list));
+        nl->data = data; nl->next = garbage2;
+        garbage2 = nl;
+    } return data;
+}
+
 sfShader *my_shader_from_file(char *vertex, char *geometry, char *path)
 {
     static list *garbage2 = 0; int nbfree = 0;
@@ -17,7 +41,8 @@ sfShader *my_shader_from_file(char *vertex, char *geometry, char *path)
             free(garbage2); garbage2 = ne;
             nbfree++;
         }
-        my_printf("Freed %d shader automatically\n", nbfree);
+        my_printf("Freed %d shader%s automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     }
     void *data = sfShader_createFromFile(vertex, geometry, path);
@@ -40,7 +65,8 @@ sfImage *my_image_from_file(char *path)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf("Freed %d images automatically\n", nbfree);
+        my_printf("Freed %d image%s automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     }
     void *data = sfImage_createFromFile(path);
@@ -63,7 +89,8 @@ sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf("Freed %d textures automatically\n", nbfree);
+        my_printf("Freed %d texture%s automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     }
     void *data = sfTexture_createFromImage(image, r);
@@ -86,7 +113,8 @@ void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
             free(garbage2);
             garbage2 = ne;
             nbfree++;
-        } my_printf("Freed %d items from CPP automatically\n", nbfree);
+        } my_printf("Freed %d item%s from CPP automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     } cpp_garbage *garbage = malloc(sizeof(cpp_garbage));
     if (garbage) {

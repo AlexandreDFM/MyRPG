@@ -9,8 +9,7 @@
 
 void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
-    if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
-    inf->inputs.keys.mleft) {
+    if (inf->inputs.axis.x < 0) {
         if (current == 0 || current == 1) {
             inf->volumes[current] -= inf->volumes[current] > 0 ? 5 : 0;
             inf->ig_choices[current] =
@@ -31,8 +30,7 @@ void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 
 void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
-    if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
-    inf->inputs.keys.mright && (current == 0 || current == 1)) {
+    if (inf->inputs.axis.x > 0 && (current == 0 || current == 1)) {
         inf->volumes[current] += inf->volumes[current] < 100 ? 5 : 0;
         inf->ig_choices[current] =
         load_line(my_itoa(inf->volumes[current]), FONT_SIZE, inf, malloc);
