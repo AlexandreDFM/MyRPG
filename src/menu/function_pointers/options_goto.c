@@ -18,7 +18,6 @@ void go_main(wininf *inf)
 
 void go_others(wininf *inf)
 {
-    printf("go_others\n");
     inf->current_menu->focus = 0;
     inf->current_menu->selected = inf->current_menu->head;
     inf->current_menu = inf->others_menu;
@@ -29,7 +28,6 @@ void go_others(wininf *inf)
 
 void go_pause(wininf *inf)
 {
-    printf("go_pause\n");
     inf->current_menu->focus = 0;
     inf->current_menu->selected = inf->current_menu->head;
     inf->current_menu = inf->pause_menu;

@@ -24,8 +24,8 @@ void init_inputs(wininf *inf)
     in.keys.mleft = sfKeyLeft;
     in.keys.mright = sfKeyRight;
     in.axis = (sfVector2f){0.0f, 0.0f};
-    in.interact = 0;
-    in.can_interact = 0;
+    in.interact = 0; in.back = 0; in.pause = 0; in.attack = 0;
+    in.can_interact = 0; in.can_attack = 1; in.can_back = 1; in.can_pause = 1;
     in.interact_callback = -1;
     inf->inputs = in;
 }
@@ -95,7 +95,7 @@ void update_inputs(wininf *inf)
     if (old_interact != inf->inputs.interact && old_interact)
         inf->inputs.can_interact = 0;
     if (old_attack != inf->inputs.attack && old_attack)
-        inf->inputs.can_attack = 0;
+        inf->inputs.can_attack = 1;
     if (old_back != inf->inputs.back && old_back)
         inf->inputs.can_back = 1;
     if (old_pause != inf->inputs.pause && old_pause)
