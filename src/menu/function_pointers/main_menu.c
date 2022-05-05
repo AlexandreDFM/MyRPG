@@ -34,7 +34,7 @@ void go_back(wininf *inf)
         go_main(inf);
     if (inf->c_menu == KEYBINDS_M)
         options(inf);
-    if (inf->c_menu == OTHERS)
+    if (inf->c_menu == OTHERS || inf->c_menu == INVENTORY)
         go_pause(inf);
     if (inf->c_menu == IG_OPTIONS)
         go_others(inf);
