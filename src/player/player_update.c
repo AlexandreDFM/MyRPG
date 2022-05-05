@@ -86,6 +86,7 @@ void perform_dungeon_movement(wininf *inf, player *p)
 {
     sfVector2f pos = sfSprite_getPosition(p->test);
     if (p->attacking) {
+        printf("Attacking\n");
         p->time += inf->time.dt * 6.0f;
         sfVector2f np = my_lerp(p->nextpos, p->attack_pos, my_pingpong(p->time, 1.0f));
         sfSprite_setPosition(p->test, np);

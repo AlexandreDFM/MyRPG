@@ -7,10 +7,25 @@
 
 #include "rpg.h"
 
-void add_log(wininf *inf, char *msg)
+char *print_log(wininf *inf, char *msg, va_list ap)
 {
+    my_fprintf_log(stdout, "Hello world %s %d\n", ap);
+    char * line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    int count = 0;
+    read = getline(&line, &len, inf->log_file);
+    return line;
+}
+
+void add_log(wininf *inf, char *msg, ...)
+{
+    va_list ap;
+    va_start(ap, msg);
     list *nl = malloc(sizeof(list));
-    dline *line = load_line(msg, FONT_SIZE, inf, malloc);
+    char *result = print_log(inf, msg, ap);
+    dline *line = load_line(result, FONT_SIZE, inf, malloc);
+    free(result);
     logline *nlog = malloc(sizeof(logline));
     nlog->line = line;
     nlog->target = (sfVector2f){0, 1070.0f};

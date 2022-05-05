@@ -45,6 +45,7 @@
     #include "items.h"
     #include "types.h"
     #include "dialog.h"
+    #include <stdarg.h>
     #define APPEND -1
 
 typedef struct map_info map_inf;
@@ -296,6 +297,7 @@ typedef struct wininf_t {
     enum scenes_e c_scene;
     enum main_menu_t c_menu;
     enum scenes_e next_scene;
+    FILE *log_file;
     struct ui_t ui;
     struct list_t *logs;
     struct network_t *net;

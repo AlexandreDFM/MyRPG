@@ -8,8 +8,8 @@
 #include <unistd.h>
 #include "../printf.h"
 
-int my_putchar_disp(int file, char *c)
+int my_putchar_disp(FILE *file, char *c)
 {
-    write(file, c, 1);
+    fwrite(c, 1, sizeof(char), file);
     return 0;
 }

@@ -7,7 +7,7 @@
 
 #include "../printf.h"
 
-int my_putstrprintf(int file, char *str)
+int my_putstrprintf(FILE *file, char *str)
 {
     int counter = 0;
     while (str[counter] != 0) {

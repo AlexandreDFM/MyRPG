@@ -93,7 +93,7 @@ void handle_scene(wininf *infos, player *p)
 
 scene create_home(wininf *infos, int id)
 {
-    my_printf(1, "Loading HOME Scene:\n");
+    my_printf(stderr, "Loading HOME Scene:\n");
     scene scene;
     scene.statics = 0; scene.animated = 0; scene.colls = 0; scene.pnjs = 0;
     sfImage *atlas = infos->atlases.atlas;
@@ -123,7 +123,7 @@ scene create_home(wininf *infos, int id)
 scene create_static_env(wininf *inf, int id)
 {
     scene scene;
-    my_printf(1, "Loading Scene %d:\n", id);
+    my_printf(stderr, "Loading Scene %d:\n", id);
     scene.animated = 0, scene.colls = 0, scene.statics = 0, scene.pnjs = 0;
     char **arr = my_strtwa(inf->atlases.scenes[id], ";\n");
     for (int i = 0; arr[i]; i += 4) {

@@ -24,7 +24,6 @@ void move_cursor(menuss *menu, wininf *inf)
     } if (inf->inputs.axis.y < 0.0f && !menu->press) {
         menu->selected = menu->selected->prev; menu->press = 1; menu->blk = 0;
     } if (inf->inputs.interact && inf->inputs.can_interact == 0) {
-        printf("%d\n",((choices *)menu->selected->data)->ptr);
         ((choices *)menu->selected->data)->ptrs[0](inf);
         inf->inputs.can_interact = 1;
     }

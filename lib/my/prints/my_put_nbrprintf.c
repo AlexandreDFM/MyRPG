@@ -7,7 +7,7 @@
 
 #include "../printf.h"
 
-int my_put_nbrprintf(int file, int number)
+int my_put_nbrprintf(FILE *file, int number)
 {
     int number2;
     if (number < 0) {

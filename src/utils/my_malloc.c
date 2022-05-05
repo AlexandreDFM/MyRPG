@@ -18,7 +18,7 @@ void *my_malloc(size_t size)
             free(garbage);
             garbage = ne;
             nbfree++;
-        } my_printf(1, "Freed %d items automatically\n", nbfree);
+        } my_printf(stderr, "Freed %d items automatically\n", nbfree);
         return 0;
     }
     void *data = malloc(size);

@@ -37,13 +37,13 @@ void receive_ord(network *net, components *all)
     if (total < sizeof(int)) return;
     while (scanned < total) {
         int *ord = (int *) castdata;
-        my_printf(1, "Order received: %d (%dbytes)\n", *ord, total);
+        my_printf(stderr, "Order received: %d (%dbytes)\n", *ord, total);
         castdata += sizeof(int);
         scanned += sizeof(int);
         if (net->orders[*ord])
             scanned += net->orders[*ord]((char **)&castdata, &important, all);
         // else
-            my_printf(1, "Order not implemented ! (%d)\n", *ord);
+            my_printf(stderr, "Order not implemented ! (%d)\n", *ord);
     }
     sfPacket_clear(net->packet);
 }

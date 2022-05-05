@@ -45,12 +45,10 @@ int check(char *c, int i)
     return (0);
 }
 
-int my_printf(int file, char *str, ...)
+int my_fprintf_log(FILE *file, char *str, va_list ap)
 {
     int (*print[160])();
     init_pointer(print);
-    va_list ap;
-    va_start(ap, str);
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] == '%' && str[i + 1] == 'c') {
             char c = va_arg(ap, int);
@@ -64,5 +62,12 @@ int my_printf(int file, char *str, ...)
             my_putchar_disp(file, &str[i]);
         }
     }
+}
+
+int my_printf(FILE *file, char *str, ...)
+{
+    va_list ap;
+    va_start(ap, str);
+    my_fprintf_log(file, str, ap);
     return (0);
 }

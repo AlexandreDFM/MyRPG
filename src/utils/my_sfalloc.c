@@ -19,7 +19,7 @@ sfSoundBuffer *my_buffer_from_file(char *path)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf(1, "Freed %d buffer%s automatically\n", nbfree,
+        my_printf(stderr, "Freed %d buffer%s automatically\n", nbfree,
         (nbfree > 1 ? "s" : ""));
         return NULL;
     }
@@ -41,7 +41,7 @@ sfShader *my_shader_from_file(char *vertex, char *geometry, char *path)
             free(garbage2); garbage2 = ne;
             nbfree++;
         }
-        my_printf(1, "Freed %d shader automatically\n", nbfree);
+        my_printf(stderr, "Freed %d shader automatically\n", nbfree);
         return NULL;
     }
     void *data = sfShader_createFromFile(vertex, geometry, path);
@@ -64,7 +64,7 @@ sfImage *my_image_from_file(char *path)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf(1, "Freed %d images automatically\n", nbfree);
+        my_printf(stderr, "Freed %d images automatically\n", nbfree);
         return NULL;
     }
     void *data = sfImage_createFromFile(path);
@@ -87,7 +87,7 @@ sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf(1, "Freed %d textures automatically\n", nbfree);
+        my_printf(stderr, "Freed %d textures automatically\n", nbfree);
         return NULL;
     }
     void *data = sfTexture_createFromImage(image, r);
@@ -110,7 +110,7 @@ void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
             free(garbage2);
             garbage2 = ne;
             nbfree++;
-        } my_printf(1, "Freed %d items from CPP automatically\n", nbfree);
+        } my_printf(stderr, "Freed %d items from CPP automatically\n", nbfree);
         return NULL;
     } cpp_garbage *garbage = malloc(sizeof(cpp_garbage));
     if (garbage) {

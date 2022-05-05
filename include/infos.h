@@ -22,6 +22,9 @@
     #include <stdlib.h>
     #include <stdbool.h>
     #include <stddef.h>
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <fcntl.h>
 
     #define WINDOW_NAME "My RPG"
     #define SIZE 7.0f

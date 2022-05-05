@@ -67,6 +67,9 @@
         "utility": "c",
         "printf.h": "c",
         "unistd.h": "c",
-        "stdarg.h": "c"
+        "stdarg.h": "c",
+        "inputs.h": "c",
+        "infos.h": "c",
+        "sstream": "c"
     }
 }
