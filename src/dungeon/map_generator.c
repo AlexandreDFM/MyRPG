@@ -21,12 +21,12 @@ char **empty_map(int size)
 
 void display_map(char **map)
 {
-    for (int y = 0; map[y] != 0; y++) {
-        for (int x = 0; map[y][x] != '\0'; x++) {
-            my_printf("%c", map[y][x]);
-        }
-        my_printf("\n");
-    }
+    // for (int y = 0; map[y] != 0; y++) {
+    //     for (int x = 0; map[y][x] != '\0'; x++) {
+    //         my_printf("%c", map[y][x]);
+    //     }
+    //     my_printf("\n");
+    // }
 }
 
 bsp *split_container(sfIntRect *main, int iter)

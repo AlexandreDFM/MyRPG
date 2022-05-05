@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/my_rpg",
             "args": ["-f", "Max"],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

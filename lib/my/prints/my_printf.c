@@ -11,9 +11,9 @@
 void init_pointer(int (**print)())
 {
     print[(int)('%')] = &my_putchar_disp;
-    print[(int)('d')] = &my_put_nbr;
-    print[(int)('i')] = &my_put_nbr;
-    print[(int)('s')] = &my_putstr;
+    print[(int)('d')] = &my_put_nbrprintf;
+    print[(int)('i')] = &my_put_nbrprintf;
+    print[(int)('s')] = &my_putstrprintf;
     print[(int)('S')] = &my_put_special;
     print[(int)('x')] = &my_putnbr_hexalow;
     print[(int)('X')] = &my_putnbr_hexaup;
@@ -45,7 +45,7 @@ int check(char *c, int i)
     return (0);
 }
 
-int my_printf(char *str, ...)
+int my_printf(int file, char *str, ...)
 {
     int (*print[160])();
     init_pointer(print);
@@ -54,14 +54,14 @@ int my_printf(char *str, ...)
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] == '%' && str[i + 1] == 'c') {
             char c = va_arg(ap, int);
-            my_putchar_disp(&c);
+            my_putchar_disp(file, &c);
             i = i + 1;
         } else if (str[i] == '%' && (check(str, i) == 1
         || check(str, i) == 2)) {
-            (*print[(int)(str[i + 1])])(va_arg(ap, char *));
+            (*print[(int)(str[i + 1])])(file, va_arg(ap, char *));
             i = i + (check(str, i));
         } else {
-            my_putchar_disp(&str[i]);
+            my_putchar_disp(file, &str[i]);
         }
     }
     return (0);

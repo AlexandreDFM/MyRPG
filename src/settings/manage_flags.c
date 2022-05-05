@@ -16,7 +16,7 @@ void manage_fps(char *arg, wininf *inf)
     my_strlowcase(inf->settings->fps[i])) != 0; i++);
     inf->settings->fps[5][0] = 'M';
     if (i == 6) {
-        my_printf("Framerate not found, defaulting to 60\n");
+        my_printf(1, "Framerate not found, defaulting to 60\n");
         inf->settings->c_fps = 1;
     } else {
         inf->settings->c_fps = i;
@@ -31,14 +31,14 @@ void manage_lang(char *arg, wininf *inf)
         inf->lang = FRANCAIS;
     } else {
         inf->lang = DEFAULT;
-        my_printf("Language not found, defaulting to English\n");
+        my_printf(1, "Language not found, defaulting to English\n");
     }
 }
 
 void manage_host(char *arg, wininf *inf)
 {
     sfIpAddress ip = sfIpAddress_getLocalAddress();
-    my_printf("Starting server side on your local address at %d...\n", PORT);
+    my_printf(1, "Starting server side on your local address at %d...\n", PORT);
     inf->net->is_host = 1;
     inf->net->is_multi = 1;
     inf->net->packet = sfPacket_create();

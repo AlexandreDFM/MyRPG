@@ -11,16 +11,19 @@ int my_put_unsigned(unsigned int number)
 {
     int number2;
     if (number < 0) {
-        my_putchar('-');
+        char minus = '-';
+        my_putchar_disp(0, &minus);
         number = number * (-1);
     }
     if (number >= 10) {
         number2 = number % 10;
         number = number / 10;
-        my_put_nbr(number);
-        my_putchar(number2 + 48);
+        my_put_nbrprintf(0, number);
+        number2 += '0';
+        my_putchar_disp(0, (char *)(&number2));
     } else {
-        my_putchar(number + 48);
+        number += '0';
+        my_putchar_disp(0, (char *)(&number));
     }
     return (0);
 }

@@ -194,6 +194,16 @@ typedef struct inventory_t {
     int size;
 } inventory;
 
+typedef struct stats_t {
+    int health;
+    int attack;
+    int defense;
+    int spe_att;
+    int spe_def;
+    int speed;
+    int lvl;
+} stats;
+
 typedef struct player_t {
     int offset;
     enum direction_t direction;
@@ -210,6 +220,9 @@ typedef struct player_t {
     sfVector2f target;
     float time;
     sfVector2f nextpos;
+    sfVector2f attack_pos;
+    int attacking;
+    struct stats_t st;
     struct inventory_t *inv;
 } player;
 
@@ -242,6 +255,11 @@ typedef struct other_t {
     int port;
     int connected;
 } other;
+
+typedef struct logline_t {
+    struct dline *line;
+    sfVector2f target;
+} logline;
 
 typedef struct dungeon_t {
     sfImage *img;
@@ -276,6 +294,7 @@ typedef struct wininf_t {
     enum main_menu_t c_menu;
     enum scenes_e next_scene;
     struct ui_t ui;
+    struct list_t *logs;
     struct network_t *net;
     struct time_inft time;
     struct camera_t camera;
@@ -368,6 +387,8 @@ typedef struct inventory_slot {
     void (*use)(wininf *, struct inventory_slot **);
 } invslot;
 
+void draw_logs(wininf *inf);
+void add_log(wininf *inf, char *msg);
 void init_inventory(player *p, int size);
 void use_apple(wininf *inf, invslot **slot);
 int is_valid_move(wininf *inf, sfVector2i np, int target);

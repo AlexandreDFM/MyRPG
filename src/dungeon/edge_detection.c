@@ -134,10 +134,3 @@ int search(int array[], int x, int started) {
     }
     return 0;
 }
-
-void display_bits(int a)
-{
-    for (int i = 0; i < 8; i++) {
-        my_printf("%d", !!((a << i) & 0x80));
-    }
-}

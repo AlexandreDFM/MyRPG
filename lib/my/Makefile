@@ -41,8 +41,8 @@ SRC	=	my_putchar.c 					\
 		my_rev_params.c 				\
 		./prints/my_printf.c			\
 		./prints/my_putchar.c			\
-	 	./prints/my_putstr.c			\
-	 	./prints/my_put_nbr.c			\
+	 	./prints/my_putstrprintf.c		\
+	 	./prints/my_put_nbrprintf.c		\
 	 	./prints/my_putnbr_bin.c		\
 	 	./prints/my_putnbr_hexalow.c	\
 	 	./prints/my_putnbr_hexaup.c		\

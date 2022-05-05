@@ -81,7 +81,7 @@ void update_inputs(wininf *inf)
         return;
     }
     inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
-    int old_interact = inf->inputs.interact, old_attack = inf->inputs.interact;
+    int old_interact = inf->inputs.interact, old_attack = inf->inputs.attack;
     int old_back = inf->inputs.back;
     inf->inputs.interact = 0;
     inf->inputs.attack = 0;
@@ -96,7 +96,7 @@ void update_inputs(wininf *inf)
     if (old_interact != inf->inputs.interact && old_interact)
         inf->inputs.can_interact = 0;
     if (old_attack != inf->inputs.attack && old_attack)
-        inf->inputs.can_attack = 0;
+        inf->inputs.can_attack = 1;
     if (old_interact != inf->inputs.interact && old_interact)
         inf->inputs.can_interact = 0;
     if (inf->interacting) inf->inputs.axis = (sfVector2f){0.0f, 0.0f};

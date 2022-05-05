@@ -14,7 +14,6 @@ void draw_player(wininf *inf, player *p)
         if (inf->c_menu == NONE)
             perform_free_movement(inf, p);
     } else {
-        p->vel = inf->inputs.axis;
         perform_dungeon_movement(inf, p);
     }
     if (inf->net->is_multi && inf->net->other.p) {
@@ -52,6 +51,7 @@ int is_valid_move(wininf *inf, sfVector2i np, int target)
     int encountered = 0;
     for (list *t = inf->dungeon.enemies; t; t = t->next) {
         player *enemy = t->data;
+        if (enemy->st.health <= 0) continue;
         sfVector2f tg = target ? enemy->target :
             sfSprite_getPosition(enemy->test);
         sfVector2i ep = global_to_local(tg);
@@ -61,13 +61,50 @@ int is_valid_move(wininf *inf, sfVector2i np, int target)
     return encountered;
 }
 
+void perform_attack(wininf *inf, player *p, sfVector2f pos)
+{
+    p->attack_pos = (sfVector2f){pos.x + p->vel.x * 24.0f,
+        p->vel.y * 24.0f + pos.y};
+    p->attacking = 2;
+}
+
+void deal_dmg(wininf *inf, player *p)
+{
+    for (list *t = inf->dungeon.enemies; t; t = t->next) {
+        player *enemy = t->data;
+        sfVector2f epos = sfSprite_getPosition(enemy->test);
+        if (!is_same(p->attack_pos, epos, 12.0f)) continue;
+        int A = p->st.attack, B = p->st.lvl, C = enemy->st.defense;
+        int D = ((A - C) / 8) + (B * 43690 / 65536);
+        int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
+        enemy->st.health -= dmg;
+        printf("Dealt: %d => %dhp\n", dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
+    }
+}
+
 void perform_dungeon_movement(wininf *inf, player *p)
 {
     sfVector2f pos = sfSprite_getPosition(p->test);
-    sfVector2f axis = inf->inputs.axis;
-    if (inf->inputs.attack) {
-
+    if (p->attacking) {
+        p->time += inf->time.dt * 6.0f;
+        sfVector2f np = my_lerp(p->nextpos, p->attack_pos, my_pingpong(p->time, 1.0f));
+        sfSprite_setPosition(p->test, np);
+        if (p->time >= 1.0f && p->attacking == 2) {
+            deal_dmg(inf, p);
+            p->attacking -= 1;
+        }
+        if (p->time >= 2.0f) {
+            p->attacking = 0;
+            p->time = 0.0f;
+        }
+        return;
     }
+    if (inf->inputs.attack && inf->inputs.can_attack) {
+        perform_attack(inf, p, pos);
+        inf->inputs.can_attack = 0;
+        return;
+    }
+    sfVector2f axis = inf->inputs.axis;
     sfVector2f input = (sfVector2f){pos.x + axis.x * 24.0f,
         axis.y * 24.0f + pos.y};
     sfVector2i np = global_to_local(input);
@@ -80,9 +117,10 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfSprite_setPosition(p->test, newp);
     int valid = !is_valid_move(inf, np, 0);
     int poscond = (np.x != target.x || np.y != target.y) && valid;
-    if (walkable && !cond && cond2 && poscond) {
+    if (!is_same(inf->inputs.axis, (sfVector2f){0.0f, 0.0f}, 0.1f))
+        p->vel = inf->inputs.axis;
+    if (walkable && !cond && cond2 && poscond && !inf->inputs.back) {
         p->nextpos = local_to_global(np.x, np.y);
-        p->time = 0.0f;
         update_mobs(inf, p);
     }
 }

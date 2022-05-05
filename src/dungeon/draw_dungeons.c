@@ -12,6 +12,7 @@ void draw_dungeon(wininf *inf, player *p)
     sfRenderWindow_drawSprite(inf->win, inf->dungeon.inf->sp, 0);
     for (list *t = inf->dungeon.enemies; t; t = t->next) {
         player *enemy = t->data;
+        if (enemy->st.health <= 0) continue;
         sfVector2f np = my_lerp(sfSprite_getPosition(enemy->test),
             enemy->target, inf->time.dt * 6.0f);
         sfSprite_setPosition(enemy->test, np);

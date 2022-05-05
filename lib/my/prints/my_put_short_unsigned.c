@@ -11,16 +11,19 @@ int my_put_short_unsigned(short int number)
 {
     int number2;
     if (number < 0) {
-        my_putchar('-');
+        int minus = '-';
+        my_putchar_disp((char*)(&minus), 0);
         number = number * (-1);
     }
     if (number >= 10) {
         number2 = number % 10;
         number = number / 10;
         my_put_nbr(number);
-        my_putchar(number2 + 48);
+        number2 += '0';
+        my_putchar_disp((char*)(&number2), 0);
     } else {
-        my_putchar(number + 48);
+        number += '0';
+        my_putchar_disp((char*)(&number), 0);
     }
     return (0);
 }

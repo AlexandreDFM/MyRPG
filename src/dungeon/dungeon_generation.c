@@ -17,10 +17,10 @@ void create_dungeon(wininf *win, char *name)
     }
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
     sfVector2i lpos = global_to_local(pos);
-    for (int i = 0; i < 100; i++) {
-        sfIntRect r = *(win->dungeon.inf->rooms[rand() % win->dungeon.inf->nbr_rooms]);
-        int y = rand() % ((r.height - 1) * (r.width - 1));
-        // create_enemy(win, &win->dungeon, (sfVector2i){r.left, r.top});
-        create_enemy(win, &win->dungeon, (sfVector2i){r.left + (y % (r.width - 1)), r.top + (y / (r.width - 1))});
-    }
+    create_enemy(win, &win->dungeon, (sfVector2i){lpos.x + 2, lpos.y + 2});
+    // for (int i = 0; i < 100; i++) {
+    //     sfIntRect r = *(win->dungeon.inf->rooms[rand() % win->dungeon.inf->nbr_rooms]);
+    //     int y = rand() % ((r.height - 1) * (r.width - 1));
+    //     create_enemy(win, &win->dungeon, (sfVector2i){r.left + (y % (r.width - 1)), r.top + (y / (r.width - 1))});
+    // }
 }

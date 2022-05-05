@@ -9,13 +9,13 @@
 
 void test_static_anim(char *name, float *size, char **csv, int *i)
 {
-    my_printf("\tLoading ");
+    my_printf(1, "\tLoading ");
     if (name[0] == '_') {
         (*size) *= -1.0f;
         name += 1;
-        my_printf("Reversed ");
+        my_printf(1, "Reversed ");
     }
-    my_printf("%s ", name);
+    my_printf(1, "%s ", name);
     for (; csv[*i]; (*i) = *i + 1) {
         int len = my_strlen(csv[*i]);
         if (!my_strncmp(name, csv[*i], len))

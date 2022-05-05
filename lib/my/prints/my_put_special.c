@@ -9,18 +9,19 @@
 
 int my_put_specialarg(char str)
 {
+    char backslash = '\\';
     if (str < 8) {
-        my_putchar('\\');
-        my_putstr("00");
+        my_putchar_disp(0, &backslash);
+        my_putstrprintf(0, "00");
         my_putnbr_oct(str);
     }
     if (str >= 8 && str < 32) {
-        my_putchar('\\');
-        my_putstr("0");
+        my_putchar_disp(0, &backslash);
+        my_putstrprintf(0, "0");
         my_putnbr_oct(str);
     }
     if (str == 127) {
-        my_putchar('\\');
+        my_putchar_disp(0, &backslash);
         my_putnbr_oct(str);
     }
 }

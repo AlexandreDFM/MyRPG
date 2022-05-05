@@ -7,20 +7,23 @@
 
 #include "../printf.h"
 
-int my_put_nbr(int number)
+int my_put_nbrprintf(int file, int number)
 {
     int number2;
     if (number < 0) {
-        my_putchar('-');
+        int minus = '-';
+        my_putchar_disp(file, (char*)(&minus));
         number = number * (-1);
     }
     if (number >= 10) {
         number2 = number % 10;
         number = number / 10;
-        my_put_nbr(number);
-        my_putchar(number2 + 48);
+        my_put_nbrprintf(file, number);
+        number2 += '0';
+        my_putchar_disp(file, (char*)(&number2));
     } else {
-        my_putchar(number + 48);
+        number += '0';
+        my_putchar_disp(file, (char*)(&number));
     }
     return (0);
 }

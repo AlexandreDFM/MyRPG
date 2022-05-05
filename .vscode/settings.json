@@ -64,6 +64,9 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "utility": "c"
+        "utility": "c",
+        "printf.h": "c",
+        "unistd.h": "c",
+        "stdarg.h": "c"
     }
 }

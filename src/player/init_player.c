@@ -22,12 +22,24 @@ int **get_player_rects(char **arr)
     return rects;
 }
 
+void fill_stat(char **arr, player *p)
+{
+    p->st.health = my_atoi(arr[6]) + rand() % 31;
+    p->st.defense = my_atoi(arr[7]) + rand() % 31;
+    p->st.attack = my_atoi(arr[8]) + rand() % 31;
+    p->st.spe_att = my_atoi(arr[9]) + rand() % 31;
+    p->st.spe_def = my_atoi(arr[10]) + rand() % 31;
+    p->st.speed = my_atoi(arr[11]) + rand() % 31;
+    p->st.lvl = 100;
+}
+
 player *init_player(wininf inf, int id)
 {
     player *p = my_malloc(sizeof(player));p->shiny = rand () % 10 == 1 ? 1 : 0;
     p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
-    p->target = (sfVector2f){0.0f, 0.0f};
+    p->target = (sfVector2f){0.0f, 0.0f}; p->attacking = 0;
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
+    fill_stat(arr, p);
     int i = 0; for (; arr[i] != NULL; i++);
     int *arr1 = my_malloc(sizeof(int) * i);
     for (int j = 0; j < i; j++) arr1[j] = my_atoi(arr[j]);
@@ -36,9 +48,9 @@ player *init_player(wininf inf, int id)
     p->slist = arr1; p->rlist = rlist; p->direction = PNONE_DIRECTION;
     sfIntRect r = (sfIntRect) {arr1[1], arr1[2], arr1[5], arr1[4]};
     p->test = atlas_to_sprite(r, inf.atlases.atlas); p->offset = arr1[3];
-    p->r = (sfIntRect) {0, 0, arr1[3], arr1[4]};
     p->limit = (sfVector2i) {arr1[3] * rlist[5][0], arr1[3] * rlist[5][1]};
-    p->speed = 120.0f; p->vel = (sfVector2f){0.0f, 0.0f};
+    p->r = (sfIntRect) {0, 0, arr1[3], arr1[4]};
+    p->speed = 120.0f;
     sfSprite_setOrigin(p->test, (sfVector2f){11.0f, 25.0f});
     sfSprite_setPosition(p->test, (sfVector2f){520.0f, 320.0f});
     p->nextpos = (sfVector2f){-1.0f, -1.0f};
