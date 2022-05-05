@@ -133,6 +133,7 @@ void update_joysticks(wininf *inf)
     }
     if (sfJoystick_getButtonCount(0))
         inf->inputs.interact += sfJoystick_isButtonPressed(0, 2);
+        // inf->inputs.
     x = fabs(x) > 0.35f ? x : 0.0f;
     y = fabs(y) > 0.35f ? y : 0.0f;
     inf->inputs.axis = (sfVector2f){x, y};

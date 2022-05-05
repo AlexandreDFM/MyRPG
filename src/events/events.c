@@ -84,11 +84,11 @@ void update_events(wininf *inf, player *p)
             inf->interacting = 0;
     }
     inf->time.cursor += inf->time.dt;
-    if (inf->time.cursor > (inf->c_menu == NONE ? 0.0f : 0.3f)) {
-        inf->time.cursor = 0;
-        update_keys(inf, p);
-        update_pause(inf, p);
-        update_pause2(inf, p);
-        check_back(inf, p);
+    if (inf->time.cursor > (inf->c_menu == NONE ? 0.0f :
+    (!sfJoystick_isConnected(0) || inf->event.type == sfEvtKeyPressed) ?
+    0.35f : 0.45f)) {
+        inf->time.cursor = 0.0f;
+        update_keys(inf, p); update_pause(inf, p);
+        update_pause2(inf, p); check_back(inf, p);
     }
 }

@@ -32,6 +32,9 @@ typedef struct keybinds_t {
 
 typedef struct inputs_t {
     sfVector2f axis;
+    int back;
+    int pause;
+    int attack;
     int interact;
     int can_interact;
     int interact_callback;
