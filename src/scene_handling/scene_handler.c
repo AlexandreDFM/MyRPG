@@ -86,7 +86,7 @@ void handle_scene(wininf *infos, player *p)
             }
         }
     }
-    // draw_logs(infos);
+    draw_logs(infos);
     update_time(infos);
     sfRenderWindow_display(infos->win);
 }

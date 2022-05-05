@@ -26,6 +26,7 @@ SRC		= 	main.c												\
 			src/window/create_components.c						\
 			src/scene_handling/scene_handler.c					\
 			src/window/init_window.c							\
+			src/window/log_system.c								\
 			src/window/shader/create_state.c					\
 			src/entity/draw_entity.c							\
 			src/window/time_handling.c							\

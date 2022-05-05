@@ -261,8 +261,11 @@ typedef struct other_t {
 } other;
 
 typedef struct logline_t {
-    struct dline *line;
+    dline *line;
     sfVector2f target;
+    sfVector2f oldtarget;
+    float time;
+    int alive;
 } logline;
 
 typedef struct dungeon_t {
@@ -285,8 +288,10 @@ typedef struct wininf_t {
     int pause;
     int c_fps;
     sfClock *play_time;
+    sfSprite *logs_textbox;
     const char **fps;
     const char **key_list;
+    char *log_path;
     dline *playtime;
     dline *ig_choices[3];
     sfVideoMode mode;
@@ -299,7 +304,7 @@ typedef struct wininf_t {
     enum scenes_e next_scene;
     FILE *log_file;
     struct ui_t ui;
-    struct list_t *logs;
+    struct linked_list_t *logs;
     struct network_t *net;
     struct time_inft time;
     struct camera_t camera;
@@ -394,7 +399,7 @@ typedef struct inventory_slot {
 } invslot;
 
 void draw_logs(wininf *inf);
-void add_log(wininf *inf, char *msg);
+void add_log(wininf *inf, char *msg, ...);
 void init_inventory(player *p, int size);
 void use_apple(wininf *inf, invslot **slot);
 int is_valid_move(wininf *inf, sfVector2i np, int target);
