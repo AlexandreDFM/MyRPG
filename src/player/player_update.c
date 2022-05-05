@@ -78,7 +78,7 @@ void deal_dmg(wininf *inf, player *p)
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         enemy->st.health -= dmg;
-        printf("Dealt: %d => %dhp\n", dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
+        add_log(inf, "Dealt: %d => %dhp\n", dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
     }
 }
 

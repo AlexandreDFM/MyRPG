@@ -65,7 +65,8 @@ wininf create_window_infos(int ac, char **av)
     init_times(&inf);
     create_atlases(&inf);
     init_inputs(&inf);
-    inf.logs = 0; inf.log_file = fopen("logs", "w+");
+    inf.logs = 0;
+    inf.log_path = "logs01"; inf.log_file = fopen(inf.log_path, "w+");
     inf.state = create_shiny_test();
     inf.scenes[0] = create_home(&inf, inf.settings->house);
     inf.scenes[1] = create_static_env(&inf, 0);
@@ -119,5 +120,8 @@ wininf create_window_infos(int ac, char **av)
     init_fps(&inf);
     init_key_list(&inf); inf.key_change = -1; inf.play_time = my_clock();
     set_pokemon(&inf);
+    inf.logs_textbox = generate_textbox((sfVector2i){205, 40},
+        inf.atlases.atlas);
+    sfSprite_setOrigin(inf.logs_textbox, (sfVector2f){100.0f, -25.0f});
     return inf;
 }
