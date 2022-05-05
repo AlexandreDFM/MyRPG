@@ -37,6 +37,9 @@ typedef struct inputs_t {
     int attack;
     int interact;
     int can_interact;
+    int can_back;
+    int can_attack;
+    int can_pause;
     int interact_callback;
     enum input_types_t type;
     struct keybinds_t keys;

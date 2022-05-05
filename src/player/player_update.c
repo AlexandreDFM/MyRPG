@@ -65,6 +65,9 @@ void perform_dungeon_movement(wininf *inf, player *p)
 {
     sfVector2f pos = sfSprite_getPosition(p->test);
     sfVector2f axis = inf->inputs.axis;
+    if (inf->inputs.attack) {
+
+    }
     sfVector2f input = (sfVector2f){pos.x + axis.x * 24.0f,
         axis.y * 24.0f + pos.y};
     sfVector2i np = global_to_local(input);

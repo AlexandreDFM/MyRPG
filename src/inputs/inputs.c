@@ -82,8 +82,10 @@ void update_inputs(wininf *inf)
     }
     inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
     int old_interact = inf->inputs.interact, old_attack = inf->inputs.interact;
+    int old_back = inf->inputs.back;
     inf->inputs.interact = 0;
     inf->inputs.attack = 0;
+    inf->inputs.back = 0;
     sfJoystick_update();
     if (sfJoystick_isConnected(0)) {
         inf->inputs.type = CONTROLLER;
@@ -95,6 +97,8 @@ void update_inputs(wininf *inf)
         inf->inputs.can_interact = 0;
     if (old_attack != inf->inputs.attack && old_attack)
         inf->inputs.can_attack = 0;
+    if (old_interact != inf->inputs.interact && old_interact)
+        inf->inputs.can_interact = 0;
     if (inf->interacting) inf->inputs.axis = (sfVector2f){0.0f, 0.0f};
 }
 
@@ -120,7 +124,8 @@ void update_keyboard(wininf *i)
     i->inputs.axis.x += (float)sfKeyboard_isKeyPressed(i->inputs.keys.mright);
     int inter = (int)sfKeyboard_isKeyPressed(i->inputs.keys.interact);
     int attack = (int)sfKeyboard_isKeyPressed(i->inputs.keys.attack);
-    i->inputs.interact += inter; i->inputs.attack = attack;
+    i->inputs.attack = attack, i->inputs.interact += inter;
+    i->inputs.back += (int)sfKeyboard_isKeyPressed(i->inputs.keys.back);
 }
 
 void update_joysticks(wininf *inf)
@@ -138,6 +143,7 @@ void update_joysticks(wininf *inf)
     if (sfJoystick_getButtonCount(0)) {
         inf->inputs.interact += sfJoystick_isButtonPressed(0, 2);
         inf->inputs.attack += sfJoystick_isButtonPressed(0, 0);
+        inf->inputs.back += sfJoystick_isButtonPressed(0, 1);
     }
     x = fabs(x) > 0.35f ? x : 0.0f;
     y = fabs(y) > 0.35f ? y : 0.0f;
