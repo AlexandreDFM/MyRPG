@@ -7,14 +7,26 @@
 
 #include "rpg.h"
 
-void create_dungeon(wininf *win, char *name)
+sfImage *get_dungeon_image(sfImage *atlas, int id)
 {
-    sfImage *img = sfImage_createFromFile(name);
+    sfIntRect r = (sfIntRect){5992 + 144 * id, 0, 144, 1128};
+    sfTexture *tex = sfTexture_createFromImage(atlas, &r);
+    sfImage *cdungeon = sfTexture_copyToImage(tex);
+    sfTexture_destroy(tex);
+    return cdungeon;
+}
+
+void create_dungeon(wininf *win, int id)
+{
+    sfImage *img = get_dungeon_image(win->atlases.atlas, id);
     win->dungeon.inf = generate_map(3, img);
+    sfImage_destroy(img);
+    sfSprite *sp = win->dungeon.inf->sp;
+    win->dungeon.inf->sp = 0;
+    add_ord(DUNGEONSYNC, win->dungeon.inf, sizeof(win->dungeon.inf),
+        win->net->packet);
+    add_ord(APPEND, &id, sizeof(int), win->net->packet);
     win->dungeon.in = 1;
-    for (int i = 0; win->dungeon.inf->map[i]; i++) {
-        printf("%s\n", win->dungeon.inf->map[i]);
-    }
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
     sfVector2i lpos = global_to_local(pos);
     create_enemy(win, &win->dungeon, (sfVector2i){lpos.x + 2, lpos.y + 2});

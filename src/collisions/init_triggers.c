@@ -37,7 +37,8 @@ void ta_mere(wininf *win, player *p)
 
 void generate_random_dungeon(wininf *win, player *p)
 {
-    create_dungeon(win, "result8.png");
+    int id = rand() % 12;
+    create_dungeon(win, id);
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
     p->nextpos = pos;
     sfVector2f interior = (sfVector2f){10.0f, 10.0f};

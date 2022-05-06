@@ -75,4 +75,5 @@ void init_orders(network *net)
     net->orders[POSITION] = receive_position;
     net->orders[CHANGE_SCENE] = receive_scene;
     net->orders[SETPOS] = receive_setposition;
+    net->orders[DUNGEONSYNC] = receive_dungeon_info;
 }

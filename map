@@ -1,0 +1,82 @@
+Loading HOME Scene:
+	Loading Yellow Flowers at pos 130 120
+	Loading Yellow Flowers at pos 256 55
+	Loading Yellow Flowers at pos 425 136
+	Loading Yellow Flowers at pos 480 240
+	Loading Yellow Flowers at pos 428 377
+	Loading Red Flowers at pos 27 290
+	Loading Red Flowers at pos 120 150
+	Loading Red Flowers at pos 200 54
+	Loading Red Flowers at pos 320 57
+	Loading Red Flowers at pos 468 208
+	Loading Red Flowers at pos 442 251
+	Loading Red Flowers at pos 330 465
+	Loading Red Flowers at pos 229 355
+	Loading Outside Fire Hut Firepit at pos 168 137
+	Loading Outside Fire Hut Firepit at pos 360 137
+	Loading Outside Fire Hut Firepit at pos 192 233
+	Loading Outside Fire Hut Firepit at pos 336 233
+	Loading Outside Fire Hut Firepost at pos 217 256
+	Loading Outside Fire Hut Firepost at pos 321 256
+	Loading Outside Fire Hut Wall Torch at pos 176 176
+	Loading Outside Fire Hut Wall Torch at pos 176 216
+	Loading Outside Fire Hut Wall Torch at pos 368 216
+	Loading Outside Fire Hut Wall Torch at pos 368 176
+	Loading Outside Fire Hut Wall Torch at pos 368 256
+	Loading Outside Fire Hut Wall Torch at pos 176 256
+Loading Scene 0:
+	Loading Water 1 at pos 51 31
+	Loading Water 2 at pos 139 199
+	Loading Water 3 at pos 139 368
+	Loading Water 4 at pos 200 539
+	Loading Water 5 at pos 259 559
+	Loading Yellow Flower at pos 33 234
+	Loading Yellow Flower at pos 97 234
+	Loading Yellow Flower at pos 73 258
+	Loading Yellow Flower at pos 217 346
+	Loading Yellow Flower at pos 377 282
+	Loading Yellow Flower at pos 345 570
+	Loading Yellow Flower at pos 328 602
+	Loading Yellow Flower at pos 432 545
+	Loading Yellow Flower at pos 465 561
+	Loading Yellow Flower at pos 441 154
+	Loading Yellow Flower at pos 465 130
+	Loading Yellow Flower at pos 537 90
+	Loading Yellow Flower at pos 545 130
+	Loading Yellow Flower at pos 545 194
+	Loading Yellow Flower at pos 729 714
+	Loading Yellow Flower at pos 737 226
+	Loading Yellow Flower at pos 937 370
+	Loading Red Flower at pos 65 226
+	Loading Red Flower at pos 65 282
+	Loading Red Flower at pos 249 346
+	Loading Red Flower at pos 313 578
+	Loading Red Flower at pos 425 570
+	Loading Red Flower at pos 441 234
+	Loading Red Flower at pos 465 66
+	Loading Red Flower at pos 465 98
+	Loading Red Flower at pos 545 170
+	Loading Red Flower at pos 593 162
+	Loading Red Flower at pos 697 474
+	Loading Red Flower at pos 841 370
+	Loading Red Flower at pos 841 426
+	Loading Yellow Flower at pos 729 514
+	Loading Yellow Flower at pos 849 450
+	Loading Test Pnj at pos 287 215
+Loading Scene 6:
+	Loading Yellow Flower at pos 432 545
+Loading Scene 2:
+Loading Scene 4:
+	Loading Yellow Flower at pos 432 545
+Loading Scene 8:
+	Loading Inside Fire Hut Chimney at pos 134 9
+	Loading Inside Fire Hut Fireplace at pos 105 85
+	Loading Inside Fire Hut Fireplace at pos 81 101
+	Loading Inside Fire Hut Fireplace at pos 233 101
+	Loading Inside Fire Hut Fireplace at pos 209 85
+Freed 3298 items automatically
+Freed 1151 items from CPP automatically
+Freed 113 textures automatically
+Freed 0 images automatically
+Freed 1 shader automatically
+AL lib: (EE) alc_cleanup: 1 device not closed

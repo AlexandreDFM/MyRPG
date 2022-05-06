@@ -73,6 +73,7 @@ typedef enum orders_e {
     CHANGE_SCENE,
     HSYNC,
     SETPOS,
+    DUNGEONSYNC,
     COUNT,
 } orders;
 
@@ -269,7 +270,6 @@ typedef struct logline_t {
 } logline;
 
 typedef struct dungeon_t {
-    sfImage *img;
     struct map_info *inf;
     int in;
     list *enemies;
@@ -425,7 +425,7 @@ int get_settings_flags(int ac, char **av, wininf *win);
 
 ////////////////////////////////////////////////////////////
 //Dungeon Generation
-void create_dungeon(wininf *win, char *name);
+void create_dungeon(wininf *win, int name);
 //Dungeon Generation
 int search(int array[], int x, int started);
 //Dungeon Generation
@@ -764,6 +764,8 @@ sfText *init_text(char *str, sfFont *font, sfVector2f pos, int size);
 ////////////////////////////////////////////////////////////
 //Network pointers
 int receive_okay(char **data, int *important, components *all);
+//Network pointers
+int receive_dungeon_info(char **data, int *important, components *all);
 //Network pointers
 int receive_scene(char **data, int *important, components *all);
 //Network pointers

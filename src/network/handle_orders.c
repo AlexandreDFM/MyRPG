@@ -82,6 +82,7 @@ int receive_position(char **data, int *important, components *all)
 int receive_setposition(char **data, int *important, components *all)
 {
     sfVector2f np = *((sfVector2f *)*data);
+    all->inf.net->other.p->target = np;
     sfSprite_setPosition(all->inf.net->other.p->test, np);
     *data += sizeof(sfVector2f);
     return sizeof(int) + sizeof(sfVector2f);
@@ -94,4 +95,17 @@ int receive_scene(char **data, int *important, components *all)
     all->inf.net->flags[ord_to_remove] = 0;
     *data += sizeof(int);
     return sizeof(int) * 2;
+}
+
+int receive_dungeon_info(char **data, int *important, components *all)
+{
+    map_inf *inf = ((map_inf *)*data);
+    *data += sizeof(map_inf);
+    int id = *((int *)*data);
+    *data += sizeof(int);
+    printf("Received map of id: %d\n", id);
+    for (int i = 0; inf->map[i]; i++) {
+        printf("%s\n", inf->map[i]);
+    }
+    return sizeof(int) + sizeof(map_inf);
 }

@@ -79,7 +79,7 @@ wininf create_window_infos(int ac, char **av)
     inf.transition = 0;
     inf.ftransi = 0.0f;
     inf.change_scene = 0;
-    dungeon d; d.img = my_image_from_file("result8.png"); d.in = 0;
+    dungeon d; d.in = 0;
     d.enemies = 0;
     inf.dungeon = d;
     inf.transi = my_rectangle();

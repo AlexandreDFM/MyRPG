@@ -78,7 +78,7 @@ void deal_dmg(wininf *inf, player *p)
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         enemy->st.health -= dmg;
-        add_log(inf, "Dealt: %d => %dhp\n", dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
+        add_log(inf, "Dealt: %d hp\n", dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
     }
 }
 
@@ -111,6 +111,8 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfVector2i target = global_to_local(p->nextpos);
     int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
     int cond2 = is_same(pos, p->nextpos, 2.0f);
+    if (!(inf->dungeon.inf->map[np.y]) ||
+        np.x > my_strlen(inf->dungeon.inf->map[0])) return;
     char c = inf->dungeon.inf->map[np.y][np.x];
     int walkable = c == ' ' || c == 'E';
     sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
