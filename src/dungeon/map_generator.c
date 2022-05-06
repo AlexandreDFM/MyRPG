@@ -39,41 +39,36 @@ int rdm_btw(int min, int max)
     return (rand() % (max - min + 1)) + min;
 }
 
+void fill_lre(sfIntRect *l, sfIntRect *re, sfIntRect *r, sfIntRect** splits)
+{
+    l->left = r->left; l->top = r->top; l->width = rdm_btw(2, r->width - 2);
+    l->height = r->height;
+    splits[0] = l;
+    re->left = r->left + splits[0]->width; re->top = r->top;
+    re->width = r->width - splits[0]->width; re->height = r->height;
+    splits[1] = re;
+}
+
 sfIntRect **random_split(sfIntRect *r, int iter)
 {
     if (!iter) return 0;
     sfIntRect **splits = malloc(sizeof(sfIntRect*) * 2);
     sfIntRect *l = malloc(sizeof(sfIntRect)), *re = malloc(sizeof(sfIntRect));
     if (rand() % 2) {
-        *l = (sfIntRect){r->left, r->top, rdm_btw(2, r->width - 2), r->height};
-        splits[0] = l;
-        *re = (sfIntRect){r->left + splits[0]->width, r->top,
-            r->width - splits[0]->width, r->height};
-        splits[1] = re;
-        float left_ratio = (float)l->width / (float)l->height;
-        float right_ratio = (float)re->width / (float)re->height;
-        if (left_ratio < W_RATIO || right_ratio < W_RATIO) {
-            free(splits);
-            free(l);
-            free(re);
-            return random_split(r, iter--);
-        }
-    } else {
-        *l = (sfIntRect){r->left, r->top, r->width, rdm_btw(2, r->height - 2)};
-        splits[0] = l;
-        *re = (sfIntRect){r->left, r->top + splits[0]->height, r->width,
-            r->height - splits[0]->height};
-        splits[1] = re;
-        float left_ratio = (float)l->height / (float)l->width;
-        float right_ratio = (float)re->height / (float)re->width;
-        if (left_ratio < H_RATIO || right_ratio < H_RATIO) {
-            free(splits);
-            free(l);
-            free(re);
-            return random_split(r, iter--);
-        }
+        fill_lre(l, re, r, splits);
+        float lr = (float)l->width / (float)l->height;
+        float rr = (float)re->width / (float)re->height;
+        if (!(lr < W_RATIO || rr < W_RATIO)) return splits;
+        free(splits); free(l); free(re); return random_split(r, iter--);
     }
-    return splits;
+    *l = (sfIntRect){r->left, r->top, r->width, rdm_btw(2, r->height - 2)};
+    splits[0] = l;
+    *re = (sfIntRect){r->left, r->top + splits[0]->height, r->width,
+        r->height - splits[0]->height}; splits[1] = re;
+    float left_ratio = (float)l->height / (float)l->width;
+    float right_ratio = (float)re->height / (float)re->width;
+    if (!(left_ratio < H_RATIO || right_ratio < H_RATIO)) return splits;
+    free(splits); free(l); free(re); return random_split(r, iter--);
 }
 
 bsp *build_bsp(int size, int iter)
@@ -94,19 +89,22 @@ sfIntRect generate_room(sfIntRect *rect)
 
 void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count)
 {
-    if (tree && is_leaf(tree)) return;
-    sfIntRect rect = generate_room(tree->rect);
-    for (int y = rect.top; y < rect.top + rect.height; y++) {
-        for (int i = rect.left; i < rect.left + rect.width; i++) {
-            (*map)[y][i] = ' ';
+    if (tree) {
+        if (is_leaf(tree)) {
+            sfIntRect rect = generate_room(tree->rect);
+            for (int y = rect.top; y < rect.top + rect.height; y++) {
+                for (int i = rect.left; i < rect.left + rect.width; i++) {
+                    (*map)[y][i] = ' ';
+                }
+            }
+            sfIntRect *malloced = malloc(sizeof(sfIntRect));
+            *malloced = rect;
+            append_list(rects, malloced);
+            (*count)++;
         }
+        populate_map(map, tree->left, rects, count);
+        populate_map(map, tree->right, rects, count);
     }
-    sfIntRect *malloced = malloc(sizeof(sfIntRect));
-    *malloced = rect;
-    append_list(rects, malloced);
-    (*count)++;
-    populate_map(map, tree->left, rects, count);
-    populate_map(map, tree->right, rects, count);
 }
 
 void free_list(sfIntRect **rects) {
@@ -147,43 +145,6 @@ void clean_map(char ***mapref)
     }
 }
 
-void is_diff(char ***map, sfVector2i center_a, sfVector2i center_b)
-{
-    int out = 1;
-    int min = center_a.x < center_b.x ? center_a.x : center_b.x;
-    int max = min == center_a.x ? center_b.x : center_a.x;
-    for (int i = min; i < max; i++) {
-        char *line = (*map)[center_a.y - 1];
-        if (line[i] == '.') {
-            line[i - 1] = out ? 'E' : line[i - 1];
-            line[i] = 'T';
-            out = 0;
-        } else if (!out) {
-            line[i] = 'E';
-            out = 1;
-        }
-    }
-}
-
-void is_not_diff(char ***map, sfVector2i center_a, sfVector2i center_b)
-{
-    int out = 1;
-    int min = center_a.y < center_b.y ? center_a.y : center_b.y;
-    int max = min == center_a.y ? center_b.y : center_a.y;
-    for (int i = min; i < max; i++) {
-        char *pl = (*map)[i];
-        if ((*map)[i][center_a.x] == '.') {
-            char *line = (*map)[i - 1];
-            line[center_a.x - 1] = out ? 'E' : line[center_a.x - 1];
-            (*map)[i][center_a.x - 1] = 'T';
-            out = 0;
-        } else if (pl[center_a.x - 1] == ' ') {
-            pl[center_a.x - 1] = !out ? 'E' : pl[center_a.x - 1];
-            out = 1;
-        }
-    }
-}
-
 void get_paths(char ***map, bsp *tree)
 {
     if (!tree->left || !tree->right)
@@ -195,10 +156,37 @@ void get_paths(char ***map, bsp *tree)
     sfVector2i center_b = (sfVector2i){(float)r->left + (float)r->width / 2.0f,
         (float)r->top + (float)r->height / 2.0f};
     int diff = center_a.x == center_b.x ? -1 : 1;
+    int min = 0, max = 0, out = 1;
     if (diff == 1) {
-        is_diff(map, center_a, center_b);
+        min = center_a.x < center_b.x ? center_a.x : center_b.x;
+        max = min == center_a.x ? center_b.x : center_a.x;
+        for (int i = min; i < max; i++) {
+            if ((*map)[center_a.y - 1][i] == '.') {
+                if (out)
+                    (*map)[center_a.y - 1][i - 1] = 'E';
+                (*map)[center_a.y - 1][i] = 'T';
+                out = 0;
+            } else if (!out) {
+                (*map)[center_a.y - 1][i] = 'E';
+                out = 1;
+            }
+        }
     } else {
-        is_not_diff(map, center_a, center_b);
+        min = center_a.y < center_b.y ? center_a.y : center_b.y;
+        max = min == center_a.y ? center_b.y : center_a.y;
+        for (int i = min; i < max; i++) {
+            if ((*map)[i][center_a.x] == '.') {
+                if (out)
+                    (*map)[i - 1][center_a.x - 1] = 'E';
+                (*map)[i][center_a.x - 1] = 'T';
+                out = 0;
+            } else if ((*map)[i][center_a.x - 1] == ' ') {
+                if (!out) {
+                    (*map)[i][center_a.x - 1] = 'E';
+                }
+                out = 1;
+            }
+        }
     }
     get_paths(map, tree->left);
     get_paths(map, tree->right);

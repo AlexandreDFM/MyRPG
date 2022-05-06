@@ -14,7 +14,7 @@ void draw_player(wininf *inf, player *p)
         if (inf->c_menu == NONE)
             perform_free_movement(inf, p);
     } else {
-        perform_dungeon_movement(inf, p);
+        // perform_dungeon_movement(inf, p);
     }
     if (inf->net->is_multi && inf->net->other.p) {
         sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
@@ -96,8 +96,7 @@ void perform_dungeon_movement(wininf *inf, player *p)
         if (p->time >= 2.0f) {
             p->attacking = 0;
             p->time = 0.0f;
-        }
-        return;
+        }return;
     }
     if (inf->inputs.attack && inf->inputs.can_attack) {
         perform_attack(inf, p, pos);
@@ -111,8 +110,6 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfVector2i target = global_to_local(p->nextpos);
     int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
     int cond2 = is_same(pos, p->nextpos, 2.0f);
-    if (!(inf->dungeon.inf->map[np.y]) ||
-        np.x > my_strlen(inf->dungeon.inf->map[0]) - 1) return;
     char c = inf->dungeon.inf->map[np.y][np.x];
     int walkable = c == ' ' || c == 'E';
     sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
