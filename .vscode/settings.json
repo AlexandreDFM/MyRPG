@@ -71,6 +71,7 @@
         "stdarg.h": "c",
         "inputs.h": "c",
         "infos.h": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "limits": "c"
     }
 }

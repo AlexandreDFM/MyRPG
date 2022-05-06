@@ -10,7 +10,7 @@
 
 typedef enum items_e {
     APPLE,
-    ALMOND,
+    CHESTNUT,
     BANANA,
     NB_ITEMS
 } items;

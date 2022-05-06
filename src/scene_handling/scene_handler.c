@@ -76,6 +76,8 @@ void handle_scene(wininf *infos, player *p)
         if (infos->c_menu != PAUSE && infos->c_menu != NONE) {
             center_menu(infos->current_menu, infos, p);
             draw_menu(infos, infos->current_menu);
+            if (infos->c_menu == INVENTORY)
+                draw_inv(p->inv, infos);
             if (infos->c_menu == IG_OPTIONS && ((choices *)infos->current_menu
             ->selected->data)->ptr < 3 && infos->pressed == 0 &&
             infos->event.type == sfEvtKeyPressed && (infos->event.key.code ==

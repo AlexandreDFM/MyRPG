@@ -125,7 +125,7 @@ void update_keyboard(wininf *i)
     i->inputs.axis.x += (float)sfKeyboard_isKeyPressed(i->inputs.keys.mright);
     int inter = (int)sfKeyboard_isKeyPressed(i->inputs.keys.interact);
     int attack = (int)sfKeyboard_isKeyPressed(i->inputs.keys.attack);
-    i->inputs.attack = attack, i->inputs.interact += inter;
+    i->inputs.attack += attack, i->inputs.interact += inter;
     i->inputs.back += (int)sfKeyboard_isKeyPressed(i->inputs.keys.back);
     i->inputs.pause += (int)sfKeyboard_isKeyPressed(i->inputs.keys.back);
 }

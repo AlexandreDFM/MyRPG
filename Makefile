@@ -80,6 +80,7 @@ SRC		= 	main.c												\
 			src/text_handling/create_dialog_list.c				\
 			src/textbox/generate_textbox.c						\
 			src/menu/draw_menu.c								\
+			src/menu/draw_inv.c									\
 			src/menu/draw_choices.c								\
 			src/menu/move_cursor.c								\
 			src/menu/init_menus_pointers.c						\
