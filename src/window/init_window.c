@@ -6,6 +6,7 @@
 */
 
 #include "infos.h"
+#include "music.h"
 #include "inputs.h"
 #include "sounds.h"
 
@@ -125,6 +126,6 @@ wininf create_window_infos(int ac, char **av)
     inf.logs_textbox = generate_textbox((sfVector2i){205, 40},
         inf.atlases.atlas);
     sfSprite_setOrigin(inf.logs_textbox, (sfVector2f){100.0f, -25.0f});
-    inf.sounds = init_sounds();
+    inf.sounds = init_sounds(); inf.music = init_musics();
     return inf;
 }

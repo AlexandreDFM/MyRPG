@@ -141,6 +141,8 @@ SRC		= 	main.c												\
 			src/quiz/handle_quiz.c								\
 			src/quiz/quiz_choice.c								\
 			src/sounds/init_sounds.c							\
+			src/music/init_music.c								\
+			src/music/music_handler.c							\
 
 
 
