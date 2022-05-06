@@ -435,8 +435,7 @@ int search(int array[], int x, int started);
 //Dungeon Generation
 void append_list(sfIntRect ***rects, sfIntRect *new_alloc);
 //Dungeon Generation
-void insert_into(sfUint8 **pixels, int index, int start_x,
-int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
+void insert_into(sfUint8 **pxs, const sfUint8 *ptr, sfIntRect r, sfVector2i v);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////

@@ -55,23 +55,31 @@ int get_current_room(sfVector2f pos, map_inf *inf)
     return get_current_roomlo(lpos, inf);
 }
 
+void get_closest_exitx(sfIntRect croom, map_inf *inf, sfVector2f *dsty, sfIntRect *endplt)
+{
+    for (int x = croom.left; x < croom.left + croom.width; x++) {
+        if (inf->map[(int)dsty->y][x] != 'E') continue;
+        sfVector2f exi = (sfVector2f){x, dsty->y};
+        float nds = distance(exi, (sfVector2f){endplt->width, endplt->height});
+        if (dsty->x > nds) {
+            dsty->x = nds;
+            sfVector2i nd = (sfVector2i){x, dsty->y};
+            endplt->left = nd.x;
+            endplt->top = nd.y;
+        }
+    }
+}
+
 sfVector2i get_closest_exit(int r, sfVector2f t, map_inf *inf)
 {
     if (r == -1) return (sfVector2i){0, 0};
     sfIntRect croom = *(inf->rooms[r]);
-    float dst = MAP_SIZE * 2;
+    sfVector2f dsty = (sfVector2f){MAP_SIZE * 2, 0};
     sfVector2i lt = global_to_local(t);
-    sfVector2i endp = (sfVector2i){0, 0};
+    sfIntRect endplt = (sfIntRect){0, 0, lt.x, lt.y};
     for (int y = croom.top; y < croom.top + croom.height + 1; y++) {
-        for (int x = croom.left; x < croom.left + croom.width; x++) {
-            if (inf->map[y][x] != 'E') continue;
-            sfVector2f exi = (sfVector2f){x, y};
-            float ndst = distance(exi, (sfVector2f){lt.x, lt.y});
-            if (dst > ndst) {
-                dst = ndst;
-                endp = (sfVector2i){x, y};
-            }
-        }
+        dsty.y = (float)y;
+        get_closest_exitx(croom, inf, &dsty, &endplt);
     }
-    return endp;
+    return (sfVector2i){endplt.left, endplt.top};
 }
