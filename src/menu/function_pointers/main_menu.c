@@ -38,4 +38,6 @@ void go_back(wininf *inf)
         go_pause(inf);
     if (inf->c_menu == IG_OPTIONS)
         go_others(inf);
+    if (inf->c_menu == USE_ITEM)
+        go_inv(inf);
 }

@@ -85,6 +85,7 @@ typedef enum main_menu_t {
     OTHERS,
     IG_OPTIONS,
     INVENTORY,
+    USE_ITEM,
     KEYBINDS_M,
     CHANGING_KEY,
     EXIT,
@@ -112,6 +113,7 @@ typedef enum menu_indx {
     OTHERS_IDX,
     IG_OPTIONS_IDX,
     INVENTORY_IDX,
+    USE_ITEM_IDX,
     PAUSE_DG_IDX,
 }menu_indx;
 
@@ -320,6 +322,7 @@ typedef struct wininf_t {
     struct menus *others_menu;
     struct menus *options_menu;
     struct menus *inventory_menu;
+    struct menus *use_item_menu;
     struct menus *ig_options_menu;
     struct menus *change_keys_menu;
     struct menus *current_menu;
@@ -339,7 +342,7 @@ typedef struct choices_t {
     void *choice;
     void *desc;
     int ptr;
-    void (*ptrs[1])(struct wininf_t *);
+    void (*ptrs[2])(struct wininf_t *);
 } choices;
 
 typedef struct menus {
@@ -688,6 +691,8 @@ void go_pause(wininf *inf);
 void go_others(wininf *inf);
 //Menu pointers
 void go_keybinds(wininf *inf);
+//Menu pointers
+void go_use_item(wininf *inf);
 //Menu pointers
 void go_ig_options(wininf *inf);
 //Menu pointers

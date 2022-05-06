@@ -76,14 +76,11 @@ void handle_scene(wininf *infos, player *p)
         if (infos->c_menu != PAUSE && infos->c_menu != NONE) {
             center_menu(infos->current_menu, infos, p);
             draw_menu(infos, infos->current_menu);
-            if (infos->c_menu == INVENTORY)
-                draw_inv(p->inv, infos);
-            if (infos->c_menu == IG_OPTIONS && ((choices *)infos->current_menu
-            ->selected->data)->ptr < 3 && infos->pressed == 0 &&
-            infos->event.type == sfEvtKeyPressed && (infos->event.key.code ==
-            infos->inputs.keys.mright || infos->event.key.code ==
-            infos->inputs.keys.mleft)) {
-                infos->pressed = 1;
+            if (infos->c_menu == USE_ITEM) {
+                center_menu(infos->inventory_menu, infos, p);
+                draw_menu(infos, infos->inventory_menu);
+            }
+            if (infos->c_menu == IG_OPTIONS && infos->pressed == 0) {
                 change_volume_ig(infos);
             }
         }
