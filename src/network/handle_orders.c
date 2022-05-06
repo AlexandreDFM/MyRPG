@@ -56,7 +56,7 @@ int receive_clientsync(char **data, int *important, components *all)
 
 int receive_connection(char **data, int *important, components *all)
 {
-    my_printf(stderr, "Incomming connection...\n");
+    my_printf(stdout, "Incomming connection...\n");
     *important = 1;
     sfIpAddress *client_ip = (sfIpAddress*)(*data);
     *data += sizeof(sfIpAddress);

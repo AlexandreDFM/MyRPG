@@ -9,7 +9,7 @@
 
 void use_apple(wininf *inf, invslot **slot)
 {
-    my_printf(stderr, "Eaten an apple\n");
+    my_printf(stdout, "Eaten an apple\n");
     sfTexture_destroy((*slot)->line->img);
     free((*slot)->line->steps);
     sfSprite_destroy((*slot)->line->sps[0]);
@@ -20,5 +20,5 @@ void use_apple(wininf *inf, invslot **slot)
 
 void drop_item(int id)
 {
-    my_printf(stderr, "Dropped a %d\n");
+    my_printf(stdout, "Dropped a %d\n");
 }

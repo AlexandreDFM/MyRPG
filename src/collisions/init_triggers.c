@@ -23,7 +23,7 @@ void create_triggers(wininf *inf)
 
 void ta_mere(wininf *win, player *p)
 {
-    my_printf(stderr, "Eh non ta mère :D\n");
+    my_printf(stdout, "Eh non ta mère :D\n");
     sfVector2f mid = (sfVector2f){520.0f, 320.0f};
     win->next_scene = VILLAGE;
     win->next_pos = mid;
@@ -85,7 +85,7 @@ void interact_pnj(wininf *win, player *p)
 
 void sleep_and_save(wininf *win, player *p)
 {
-    my_printf(stderr, "Saving...\n");
+    my_printf(stdout, "Saving...\n");
     win->change_scene = 0;
     win->transition = 1;
 }

@@ -21,11 +21,14 @@ void create_dungeon(wininf *win, int id)
     sfImage *img = get_dungeon_image(win->atlases.atlas, id);
     win->dungeon.inf = generate_map(3, img);
     sfImage_destroy(img);
-    sfSprite *sp = win->dungeon.inf->sp;
-    win->dungeon.inf->sp = 0;
-    add_ord(DUNGEONSYNC, win->dungeon.inf, sizeof(win->dungeon.inf),
-        win->net->packet);
-    add_ord(APPEND, &id, sizeof(int), win->net->packet);
+    if (win->net->is_multi) {
+        sfSprite *sp = win->dungeon.inf->sp;
+        win->dungeon.inf->sp = 0;
+        add_ord(DUNGEONSYNC, win->dungeon.inf, sizeof(win->dungeon.inf),
+            win->net->packet);
+        add_ord(APPEND, &id, sizeof(int), win->net->packet);
+        win->dungeon.inf->sp = sp;
+    }
     win->dungeon.in = 1;
     sfVector2f pos = *(win->dungeon.inf->pos[0]);
     sfVector2i lpos = global_to_local(pos);

@@ -11,7 +11,7 @@ void send_sync(components *all)
 {
     network *net = all->inf.net;
     sfPacket_clear(net->packet);
-    my_printf(stderr, "Asked to sync...\n");
+    my_printf(stdout, "Asked to sync...\n");
     sfPacket_clear(net->packet);
     int order = HSYNC;
     sfPacket_append(net->packet, &order, sizeof(int));
