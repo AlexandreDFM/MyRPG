@@ -9,8 +9,9 @@
 
 void go_use_item(wininf *inf)
 {
+    inf->slot_id = ((choices *)inf->current_menu->selected->data)->ptr;
+    if (inf->inv->slots[inf->slot_id] == 0) return;
     inf->current_menu->focus = 0;
-    inf->current_menu->selected = inf->current_menu->head;
     inf->current_menu = inf->use_item_menu;
     inf->c_menu = USE_ITEM;
     inf->current_menu->focus = 1;

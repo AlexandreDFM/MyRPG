@@ -17,8 +17,3 @@ void use_apple(wininf *inf, invslot **slot)
     free(*slot);
     *slot = 0;
 }
-
-void drop_item(int id)
-{
-    my_printf(stdout, "Dropped a %d\n");
-}

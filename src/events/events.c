@@ -16,12 +16,7 @@ void update_pause(wininf *inf, player *p)
     if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
     inf->inputs.back && inf->inputs.can_back && inf->c_menu == NONE
     && !inf->ui.dialog) {
-        add_to_inventory(inf, p->inv, APPLE);
-        add_to_inventory(inf, p->inv, APPLE);
-        add_to_inventory(inf, p->inv, BANANA);
-        add_to_inventory(inf, p->inv, CHESTNUT);
-        add_to_inventory(inf, p->inv, APPLE);
-        add_to_inventory(inf, p->inv, BANANA);
+        add_to_inventory(inf, inf->inv, rand() % 3);
         inf->c_menu = PAUSE;
         inf->pause_menu->focus = 1;
         inf->current_menu = inf->pause_menu;

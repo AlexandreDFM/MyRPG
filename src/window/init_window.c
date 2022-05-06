@@ -126,5 +126,6 @@ wininf create_window_infos(int ac, char **av)
         inf.atlases.atlas);
     sfSprite_setOrigin(inf.logs_textbox, (sfVector2f){100.0f, -25.0f});
     inf.sounds = init_sounds();
+    init_inventory(&inf, 10);
     return inf;
 }
