@@ -14,5 +14,5 @@ void append_to_choices(list *choices, char *name)
 
 void add_to_inv(wininf *inf, int id)
 {
-    
+
 }

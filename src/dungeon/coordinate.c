@@ -55,17 +55,17 @@ int get_current_room(sfVector2f pos, map_inf *inf)
     return get_current_roomlo(lpos, inf);
 }
 
-void get_closest_exitx(sfIntRect croom, map_inf *inf, sfVector2f *dsty, sfIntRect *endplt)
+void get_closest_exitx(sfIntRect cr, map_inf *i, sfVector2f *dy, sfIntRect *e)
 {
-    for (int x = croom.left; x < croom.left + croom.width; x++) {
-        if (inf->map[(int)dsty->y][x] != 'E') continue;
-        sfVector2f exi = (sfVector2f){x, dsty->y};
-        float nds = distance(exi, (sfVector2f){endplt->width, endplt->height});
-        if (dsty->x > nds) {
-            dsty->x = nds;
-            sfVector2i nd = (sfVector2i){x, dsty->y};
-            endplt->left = nd.x;
-            endplt->top = nd.y;
+    for (int x = cr.left; x < cr.left + cr.width; x++) {
+        if (i->map[(int)dy->y][x] != 'E') continue;
+        sfVector2f exi = (sfVector2f){x, dy->y};
+        float nds = distance(exi, (sfVector2f){e->width, e->height});
+        if (dy->x > nds) {
+            dy->x = nds;
+            sfVector2i nd = (sfVector2i){x, dy->y};
+            e->left = nd.x;
+            e->top = nd.y;
         }
     }
 }

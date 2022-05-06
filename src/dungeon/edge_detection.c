@@ -7,7 +7,6 @@
 
 #include "dungeon.h"
 
-
 void texture_line(char **tab, sfVector2i ve, sfUint8 **pxs, const sfUint8 *ptr)
 {
     int indexes[47] = {11, 31, 22, 107, 255, 214, 104, 248, 208, 10, 24, 18,

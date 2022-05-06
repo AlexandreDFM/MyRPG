@@ -49,5 +49,4 @@ void player_direction_management(wininf *inf, player *p)
     if (d == PRIGHT) change_anim(p, 2, -1.0f);
     if (d == PUP) change_anim(p, 4, 1.0f);
     if (d == PDOWN) change_anim(p, 0, 1.0f);
-    // if (d == PNONE_DIRECTION) change_anim(p, 5, 1.0f);
 }

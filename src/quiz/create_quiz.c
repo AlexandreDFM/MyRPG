@@ -21,10 +21,12 @@ quiz *create_quiz(wininf *inf)
     qcm->questions = load_csv("./csv/quiz_questions.csv");
     for (; qcm->questions[qcm->nbquestions] != NULL; qcm->nbquestions++);
     qcm->actualquestion = 1; qcm->aquestions = NULL;
-    qcm->quizbox = generate_textbox((sfVector2i) {385, 50}, inf->atlases.atlas);
+    qcm->quizbox = generate_textbox((sfVector2i) {385, 50},
+        inf->atlases.atlas);
     sfSprite_setPosition(qcm->quizbox, (sfVector2f) {200, 720});
     sfSprite_setScale(qcm->quizbox, (sfVector2f) {4, 4});
-    qcm->questions_quiz = create_questions_quiz(inf, qcm->questions, qcm->nbquestions);
+    qcm->questions_quiz = create_questions_quiz(inf, qcm->questions,
+        qcm->nbquestions);
     qcm->aq_quiz = qcm->questions_quiz->next;
     return qcm;
 }
