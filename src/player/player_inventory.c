@@ -43,6 +43,7 @@ void change_slot(list *choice, invslot *slot)
     sfIntRect r; r.left = 0, r.top = 0;
     r.width = slot->line->steps[slot->line->max];
     r.height = slot->line->height;
+    ((choices *)choice->data)->ptrs[0] = go_use_item;
     sfSprite_setTextureRect(slot->line->sps[0], r);
     sfVector2f old_pos = sfSprite_getPosition(((choices *)choice->data)->choice);
     sfSprite_destroy(((choices *)choice->data)->choice);

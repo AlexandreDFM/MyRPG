@@ -11,6 +11,7 @@ void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
     if (inf->inputs.axis.x < 0) {
         if (current == 0 || current == 1) {
+        inf->pressed = 1;
             inf->volumes[current] -= inf->volumes[current] > 0 ? 5 : 0;
             inf->ig_choices[current] =
             load_line(my_itoa(inf->volumes[current]), FONT_SIZE, inf, malloc);
@@ -31,6 +32,7 @@ void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
     if (inf->inputs.axis.x > 0 && (current == 0 || current == 1)) {
+        inf->pressed = 1;
         inf->volumes[current] += inf->volumes[current] < 100 ? 5 : 0;
         inf->ig_choices[current] =
         load_line(my_itoa(inf->volumes[current]), FONT_SIZE, inf, malloc);
@@ -56,8 +58,6 @@ void change_volume_ig(wininf *inf)
     right_volume(inf, current, old_pos, r);
     left_fps(inf, current, old_pos, r);
     right_fps(inf, current, old_pos, r);
-    free(inf->ig_choices[current]->steps);
-    free(inf->ig_choices[current]);
 }
 
 void left_main_vol(wininf *inf)

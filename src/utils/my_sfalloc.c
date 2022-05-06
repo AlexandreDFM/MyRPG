@@ -88,7 +88,8 @@ sfImage *my_image_from_file(char *path)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf(stdout, "Freed %d images automatically\n", nbfree);
+        my_printf(stdout, "Freed %d image%s automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     }
     void *data = sfImage_createFromFile(path);
@@ -111,7 +112,8 @@ sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r)
             garbage2 = ne;
             nbfree++;
         }
-        my_printf(stdout, "Freed %d textures automatically\n", nbfree);
+        my_printf(stdout, "Freed %d texture%s automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     }
     void *data = sfTexture_createFromImage(image, r);
@@ -134,7 +136,8 @@ void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
             free(garbage2);
             garbage2 = ne;
             nbfree++;
-        } my_printf(stdout, "Freed %d items from CPP automatically\n", nbfree);
+        } my_printf(stdout, "Freed %d items from CPP automatically\n", nbfree,
+        (nbfree > 1 ? "s" : ""));
         return NULL;
     } cpp_garbage *garbage = malloc(sizeof(cpp_garbage));
     if (garbage) {
