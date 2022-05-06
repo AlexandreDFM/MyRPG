@@ -51,6 +51,6 @@ void draw_quiz(wininf *inf, player *p)
         inf->settings->pokemon = chose_line(csv, inf->quiz->tendance, inf->quiz->addptsnature[13] ? 1 : 0);
         *p = *(init_player(*(inf), inf->settings->pokemon));
         inf->camera.target = p->test;
-        delete_quiz(inf); delete_dream(inf); inf->c_scene = MAIN_MENU;
+        inf->c_scene = HOME;
     }
 }

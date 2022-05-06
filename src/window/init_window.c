@@ -7,6 +7,7 @@
 
 #include "infos.h"
 #include "inputs.h"
+#include "sounds.h"
 
 void init_key_list(wininf *inf)
 {
@@ -60,7 +61,7 @@ wininf create_window_infos(int ac, char **av)
     get_settings_flags(ac, av, &inf);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
-    inf.c_scene = QUIZ;
+    inf.c_scene = INTRO;
     inf.interacting = 0;
     init_times(&inf);
     create_atlases(&inf);
@@ -123,5 +124,6 @@ wininf create_window_infos(int ac, char **av)
     inf.logs_textbox = generate_textbox((sfVector2i){205, 40},
         inf.atlases.atlas);
     sfSprite_setOrigin(inf.logs_textbox, (sfVector2f){100.0f, -25.0f});
+    inf.sounds = init_sounds();
     return inf;
 }

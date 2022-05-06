@@ -7,11 +7,13 @@
 
 #include "rpg.h"
 #include "quiz.h"
+#include "sounds.h"
 
 void handle_quiz(wininf *inf)
 {
     if (inf->c_scene != QUIZ) return;
     if (inf->inputs.interact == 0 && inf->quiz->clicked == 1) {
+        sfSound_play(inf->sounds->sounds_board[MENU_SELECT]);
         inf->quiz->clicked = 0;
     }
 }

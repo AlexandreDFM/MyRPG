@@ -21,7 +21,7 @@ dream_a *create_dream(wininf *inf)
         sfSprite_setColor(dream->b_dream[i].sprite, changecolor);
     }
     dream->music =
-    sfMusic_createFromFile("music/04_welcome_to_the_world_of_pokemon.ogg");
+    my_music_from_file("music/04_welcome_to_the_world_of_pokemon.ogg");
     sfMusic_setLoop(dream->music, sfTrue);
     return dream;
 }

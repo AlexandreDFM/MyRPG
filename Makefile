@@ -127,8 +127,6 @@ SRC		= 	main.c												\
 			src/dream/create_dream.c							\
 			src/dream/dream.c									\
 			src/dream/delete_dream.c							\
-			src/free_memory/main_free.c							\
-			src/free_memory/free_musics.c						\
 			src/free_memory/my_free_array.c						\
 			src/cinematics_elements/create_cine_elements.c		\
 			src/cinematics_elements/create_cine_elements_spe.c	\
@@ -141,6 +139,7 @@ SRC		= 	main.c												\
 			src/quiz/move_cursor_quiz.c							\
 			src/quiz/handle_quiz.c								\
 			src/quiz/quiz_choice.c								\
+			src/sounds/init_sounds.c							\
 
 
 

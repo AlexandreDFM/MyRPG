@@ -1,0 +1,10 @@
+Sound;Enum
+./sounds/attack/attack_basic.ogg;ATTACK_BASIC
+./sounds/menu/cancel_menu.ogg;MENU_CANCEL
+./sounds/menu/move_cursor.ogg;MENU_MOVE
+./sounds/menu/open_menu.ogg;MENU_OPEN
+./sounds/menu/select_in_menu.ogg;MENU_SELECT
+./sounds/special/big_reward.ogg;BIG_REWARD
+./sounds/special/level_up.ogg;LEVEL_UP
+./sounds/special/rank_up.ogg;RANK_UP
+./sounds/special/reward.ogg;REWARD

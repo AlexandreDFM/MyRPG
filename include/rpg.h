@@ -329,6 +329,7 @@ typedef struct wininf_t {
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
     struct quiz_t *quiz;
+    struct s_sounds_t *sounds;
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
 } wininf;
@@ -400,6 +401,8 @@ typedef struct inventory_slot {
 } invslot;
 
 void draw_logs(wininf *inf);
+sfMusic *my_music_from_file(char *path);
+sfSoundBuffer *my_buffer_from_file(char *path);
 void add_log(wininf *inf, char *msg, ...);
 void init_inventory(player *p, int size);
 void use_apple(wininf *inf, invslot **slot);
