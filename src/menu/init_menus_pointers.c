@@ -39,4 +39,5 @@ void init_options_pointers(wininf *inf)
     ((choices *)inf->others_menu->choices->data)->ptrs[0] = go_ig_options;
     ((choices *)inf->others_menu->choices->prev->data)->ptrs[0] = go_back;
     ((choices *)inf->ig_options_menu->choices->prev->data)->ptrs[0] = go_back;
+    ((choices *)inf->use_item_menu->choices->next->data)->ptrs[0] = drop_item;
 }

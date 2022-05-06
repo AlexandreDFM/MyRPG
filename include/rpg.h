@@ -297,6 +297,9 @@ typedef struct wininf_t {
     char *log_path;
     dline *playtime;
     dline *ig_choices[3];
+    dline *ig_slots[10];
+    int slot_id;
+    inventory *inv;
     sfVideoMode mode;
     sfVector2f next_pos;
     sfKeyCode tmp_key;
@@ -410,7 +413,7 @@ void draw_logs(wininf *inf);
 sfMusic *my_music_from_file(char *path);
 sfSoundBuffer *my_buffer_from_file(char *path);
 void add_log(wininf *inf, char *msg, ...);
-void init_inventory(player *p, int size);
+void init_inventory(wininf *inf, int size);
 void use_apple(wininf *inf, invslot **slot);
 int is_valid_move(wininf *inf, sfVector2i np, int target);
 sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
@@ -694,6 +697,8 @@ void yes_but(wininf *inf);
 void go_main(wininf *inf);
 //Menu pointers
 void go_pause(wininf *inf);
+//Menu pointers
+void drop_item(wininf *inf);
 //Menu pointers
 void go_others(wininf *inf);
 //Menu pointers

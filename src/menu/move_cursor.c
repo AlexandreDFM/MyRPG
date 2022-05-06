@@ -10,10 +10,13 @@
 
 void move_cursor_up_down(menuss *menu, wininf *inf)
 {
+    printf("%d\n", menu->press);
     if (inf->inputs.axis.y > 0.0f && !menu->press) {
+        printf("Moved cursor\n");
         sfSound_play(inf->sounds->sounds_board[MENU_MOVE]);
         menu->selected = menu->selected->next; menu->press = 1; menu->blk = 0;
     } if (inf->inputs.axis.y < 0.0f && !menu->press) {
+        printf("Moved cursor\n");
         sfSound_play(inf->sounds->sounds_board[MENU_MOVE]);
         menu->selected = menu->selected->prev; menu->press = 1; menu->blk = 0;
     }

@@ -126,6 +126,7 @@ wininf create_window_infos(int ac, char **av)
     inf.logs_textbox = generate_textbox((sfVector2i){205, 40},
         inf.atlases.atlas);
     sfSprite_setOrigin(inf.logs_textbox, (sfVector2f){100.0f, -25.0f});
+    init_inventory(&inf, 10);
     inf.sounds = init_sounds(); inf.music = init_musics();
     set_backs_menu(&inf);
     return inf;

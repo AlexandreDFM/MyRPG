@@ -16,12 +16,7 @@ void update_pause(wininf *inf, player *p)
     if (inf->c_scene != INTRO && inf->c_scene != MAIN_MENU &&
     inf->inputs.back && inf->inputs.can_back && inf->c_menu == NONE
     && !inf->ui.dialog) {
-        add_to_inventory(inf, p->inv, APPLE);
-        add_to_inventory(inf, p->inv, APPLE);
-        add_to_inventory(inf, p->inv, BANANA);
-        add_to_inventory(inf, p->inv, CHESTNUT);
-        add_to_inventory(inf, p->inv, APPLE);
-        add_to_inventory(inf, p->inv, BANANA);
+        add_to_inventory(inf, inf->inv, rand() % 3);
         inf->c_menu = PAUSE;
         inf->pause_menu->focus = 1;
         inf->current_menu = inf->pause_menu;
@@ -57,8 +52,8 @@ void check_back(wininf *inf, player *p)
 
 void update_keys(wininf *inf, player *p)
 {
-    int all_axis = inf->inputs.axis.x == 0 || inf->inputs.axis.y;
-    if (inf->current_menu && (all_axis == 0))
+    if (inf->current_menu && (inf->inputs.axis.x == 0 ||
+    inf->inputs.axis.y == 0))
         inf->current_menu->press = 0;
     if (inf->c_scene == QUIZ) handle_quiz(inf);
     if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
