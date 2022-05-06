@@ -100,7 +100,7 @@ void update_inputs(wininf *inf)
     }
     inf->inputs.type = KEYBOARD;
     update_keyboard(inf); treat_axis(inf);
-    uptdate_olds((sfIntRect){o_int, old_attack, old_back, old_pause}, inf);
+    update_olds((sfIntRect){o_int, old_attack, old_back, old_pause}, inf);
 }
 
 void treat_axis(wininf *inf)

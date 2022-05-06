@@ -410,6 +410,7 @@ sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 void draw_ditto(wininf *inf);
 void add_to_inventory(wininf *inf, inventory *inv, int id);
 void draw_ig_menu(wininf *inf, menuss *menu);
+void update_olds(sfIntRect r, wininf *inf);
 void draw_inv(inventory *inv, wininf *inf);
 
 ////////////////////////////////////////////////////////////
