@@ -42,7 +42,10 @@ void qcm(wininf *inf)
 void draw_quiz(wininf *inf, player *p)
 {
     if (inf->quiz == NULL) inf->quiz = create_quiz(inf);
-    if (sfKeyboard_isKeyPressed(sfKeyRControl)) inf->c_scene = HOME;
+    if (sfKeyboard_isKeyPressed(sfKeyRControl)) {
+        sfMusic_stop(inf->dream->music);
+        inf->c_scene = HOME;
+    }
     draw_dream(inf);
     qcm(inf);
     if (inf->quiz->destroy == 1) {
