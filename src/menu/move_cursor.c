@@ -6,6 +6,18 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
+
+void move_cursor_up_down(menuss *menu, wininf *inf)
+{
+    if (inf->inputs.axis.y > 0.0f && !menu->press) {
+        sfSound_play(inf->sounds->sounds_board[MENU_MOVE]);
+        menu->selected = menu->selected->next; menu->press = 1; menu->blk = 0;
+    } if (inf->inputs.axis.y < 0.0f && !menu->press) {
+        sfSound_play(inf->sounds->sounds_board[MENU_MOVE]);
+        menu->selected = menu->selected->prev; menu->press = 1; menu->blk = 0;
+    }
+}
 
 void move_cursor(menuss *menu, wininf *inf)
 {
@@ -19,11 +31,10 @@ void move_cursor(menuss *menu, wininf *inf)
     } else {
         pos = (sfVector2f){r.left - 7 + (sfSprite_getScale(menu->cursor).x < 0
         ? r.width + 15 : 0), r.top + ((r.height - rc.height) / 2)};
-    } if (inf->inputs.axis.y > 0.0f  && !menu->press) {
-        menu->selected = menu->selected->next; menu->press = 1; menu->blk = 0;
-    } if (inf->inputs.axis.y < 0.0f && !menu->press) {
-        menu->selected = menu->selected->prev; menu->press = 1; menu->blk = 0;
-    } if (inf->inputs.interact && inf->inputs.can_interact == 0) {
+    }
+    move_cursor_up_down(menu, inf);
+    if (inf->inputs.interact && inf->inputs.can_interact == 0) {
+        sfSound_play(inf->sounds->sounds_board[MENU_SELECT]);
         ((choices *)menu->selected->data)->ptrs[0](inf);
         inf->inputs.can_interact = 1;
     }

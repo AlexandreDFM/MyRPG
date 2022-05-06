@@ -19,7 +19,8 @@ enum soundsidx {
     BIG_REWARD,
     LEVEL_UP,
     RANK_UP,
-    REWARD
+    REWARD,
+    COUNTSOUNDS
 };
 
 typedef struct s_sounds_t {

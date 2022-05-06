@@ -329,6 +329,7 @@ typedef struct wininf_t {
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
     struct quiz_t *quiz;
+    struct s_music_t *music;
     struct s_sounds_t *sounds;
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
