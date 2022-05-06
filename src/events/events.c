@@ -59,8 +59,7 @@ void update_keys(wininf *inf, player *p)
 {
     if (inf->current_menu && (inf->inputs.axis.x == 0 || inf->inputs.axis.y == 0))
         inf->current_menu->press = 0;
-    manage_intro(inf);
-    handle_quiz(inf);
+    if (inf->c_scene == QUIZ) handle_quiz(inf);
     if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
         inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
     }
@@ -92,6 +91,7 @@ void update_events(wininf *inf, player *p)
         update = (inf->c_menu == NONE ? 0.0f : (!sfJoystick_isConnected(0) ||
         inf->event.type == sfEvtKeyPressed) ? 0.35f : 0.45f);
     }
+    if (inf->c_scene == INTRO) manage_intro(inf);
     if (inf->time.cursor > update) {
         inf->time.cursor = 0.0f;
         update_keys(inf, p); check_back(inf, p);

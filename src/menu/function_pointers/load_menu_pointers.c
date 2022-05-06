@@ -11,7 +11,7 @@ void yes_but(wininf *inf)
 {
     inf->main_menu->focus = 1;
     inf->load_menu->focus = 0;
-    inf->c_scene = HOME;
+    inf->c_scene = QUIZ;
     inf->c_menu = NONE;
     inf->current_menu = NULL;
     init_fps(inf);

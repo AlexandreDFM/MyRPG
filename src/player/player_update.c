@@ -112,7 +112,7 @@ void perform_dungeon_movement(wininf *inf, player *p)
     int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
     int cond2 = is_same(pos, p->nextpos, 2.0f);
     if (!(inf->dungeon.inf->map[np.y]) ||
-        np.x > my_strlen(inf->dungeon.inf->map[0])) return;
+        np.x > my_strlen(inf->dungeon.inf->map[0]) - 1) return;
     char c = inf->dungeon.inf->map[np.y][np.x];
     int walkable = c == ' ' || c == 'E';
     sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);

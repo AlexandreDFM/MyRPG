@@ -52,8 +52,8 @@ void draw_intro(wininf *inf)
         intro(inf->win, inf->intro);
     }
     if (inf->intro->plan == DELETEINTRO) {
-        delete_intro(inf);
+        sfMusic_stop(inf->intro->i_music1);
+        sfMusic_stop(inf->intro->i_music2);
         inf->c_scene = MAIN_MENU;
-        inf->intro = NULL;
     }
 }

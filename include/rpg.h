@@ -332,6 +332,7 @@ typedef struct wininf_t {
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
     struct quiz_t *quiz;
+    struct s_sounds_t *sounds;
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
 } wininf;
@@ -403,6 +404,8 @@ typedef struct inventory_slot {
 } invslot;
 
 void draw_logs(wininf *inf);
+sfMusic *my_music_from_file(char *path);
+sfSoundBuffer *my_buffer_from_file(char *path);
 void add_log(wininf *inf, char *msg, ...);
 void init_inventory(player *p, int size);
 void use_apple(wininf *inf, invslot **slot);
@@ -413,6 +416,7 @@ sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 void draw_ditto(wininf *inf);
 void add_to_inventory(wininf *inf, inventory *inv, int id);
 void draw_ig_menu(wininf *inf, menuss *menu);
+void update_olds(sfIntRect r, wininf *inf);
 void draw_inv(inventory *inv, wininf *inf);
 
 ////////////////////////////////////////////////////////////
@@ -438,8 +442,7 @@ int search(int array[], int x, int started);
 //Dungeon Generation
 void append_list(sfIntRect ***rects, sfIntRect *new_alloc);
 //Dungeon Generation
-void insert_into(sfUint8 **pixels, int index, int start_x,
-int start_y, const sfUint8 *ptr, int y, int line_len, int ref_len);
+void insert_into(sfUint8 **pxs, const sfUint8 *ptr, sfIntRect r, sfVector2i v);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////

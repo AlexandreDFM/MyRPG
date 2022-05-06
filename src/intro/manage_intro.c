@@ -11,22 +11,15 @@
 void manage_intro(wininf *inf)
 {
     if (inf->intro == NULL) return;
-    if (inf->intro->valid == 0 && inf->c_scene == INTRO
-    && inf->intro->plan != PLAN6) {
-        if (inf->event.type == sfEvtKeyPressed
-        && inf->event.key.code == sfKeySpace) {
+    if (inf->intro->plan != PLAN6) {
+        if (inf->inputs.attack && inf->inputs.can_attack) {
+            inf->inputs.can_attack = 0;
             inf->intro->plan = PLAN5;
         }
     }
-    if (inf->intro->valid == 1 && (inf->event.type == sfEvtKeyReleased
-    && inf->event.key.code == sfKeySpace)) {
-        inf->intro->valid += 1;
-    }
-    if (inf->intro->valid != 0 && inf->c_scene == INTRO
-    && inf->intro->plan == PLAN6) {
-        if (inf->intro->valid >= 2 &&
-        (inf->event.type == sfEvtKeyPressed
-        && inf->event.key.code == sfKeySpace)) {
+    if (inf->intro->plan == PLAN6) {
+        if (inf->inputs.attack && inf->inputs.can_attack) {
+            inf->inputs.can_attack = 0;
             inf->intro->plan = DELETEINTRO;
         }
     }

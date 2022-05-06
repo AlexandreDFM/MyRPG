@@ -11,16 +11,11 @@
 void init_inputs(wininf *inf)
 {
     inputs in;
-    in.keys.up = sfKeyZ;
-    in.keys.down = sfKeyS;
-    in.keys.left = sfKeyQ;
-    in.keys.right = sfKeyD;
-    in.keys.interact = sfKeyE;
-    in.keys.inventory = sfKeyI;
-    in.keys.attack = sfKeySpace;
-    in.keys.back = sfKeyEscape;
-    in.keys.mup = sfKeyUp;
-    in.keys.mdown = sfKeyDown;
+    in.keys.up = sfKeyZ; in.keys.down = sfKeyS;
+    in.keys.left = sfKeyQ; in.keys.right = sfKeyD;
+    in.keys.interact = sfKeyE; in.keys.inventory = sfKeyI;
+    in.keys.attack = sfKeySpace; in.keys.back = sfKeyEscape;
+    in.keys.mup = sfKeyUp; in.keys.mdown = sfKeyDown;
     in.keys.mleft = sfKeyLeft;
     in.keys.mright = sfKeyRight;
     in.axis = (sfVector2f){0.0f, 0.0f};
@@ -74,6 +69,19 @@ void update_key(wininf *inf)
 
 }
 
+void update_olds(sfIntRect r, wininf *inf)
+{
+    if (r.left != inf->inputs.interact && r.left)
+        inf->inputs.can_interact = 0;
+    if (r.top != inf->inputs.attack && r.top)
+        inf->inputs.can_attack = 1;
+    if (r.width != inf->inputs.back && r.width)
+        inf->inputs.can_back = 1;
+    if (r.height != inf->inputs.pause && r.height)
+        inf->inputs.can_pause = 1;
+    if (inf->interacting) inf->inputs.axis = (sfVector2f){0.0f, 0.0f};
+}
+
 void update_inputs(wininf *inf)
 {
     if (inf->waiting_key == 37) {
@@ -81,7 +89,7 @@ void update_inputs(wininf *inf)
         return;
     }
     inf->inputs.axis.x = 0.0f; inf->inputs.axis.y = 0.0f;
-    int old_interact = inf->inputs.interact, old_attack = inf->inputs.attack;
+    int o_int = inf->inputs.interact, old_attack = inf->inputs.attack;
     int old_back = inf->inputs.back, old_pause = inf->inputs.pause;
     inf->inputs.interact = 0; inf->inputs.attack = 0;
     inf->inputs.back = 0; inf->inputs.pause = 0;
@@ -92,15 +100,7 @@ void update_inputs(wininf *inf)
     }
     inf->inputs.type = KEYBOARD;
     update_keyboard(inf); treat_axis(inf);
-    if (old_interact != inf->inputs.interact && old_interact)
-        inf->inputs.can_interact = 0;
-    if (old_attack != inf->inputs.attack && old_attack)
-        inf->inputs.can_attack = 1;
-    if (old_back != inf->inputs.back && old_back)
-        inf->inputs.can_back = 1;
-    if (old_pause != inf->inputs.pause && old_pause)
-        inf->inputs.can_pause = 1;
-    if (inf->interacting) inf->inputs.axis = (sfVector2f){0.0f, 0.0f};
+    update_olds((sfIntRect){o_int, old_attack, old_back, old_pause}, inf);
 }
 
 void treat_axis(wininf *inf)
@@ -148,7 +148,6 @@ void update_joysticks(wininf *inf)
         inf->inputs.pause += sfJoystick_isButtonPressed(0, 1);
         inf->inputs.back += sfJoystick_isButtonPressed(0, 7);
     }
-    x = fabs(x) > 0.35f ? x : 0.0f;
-    y = fabs(y) > 0.35f ? y : 0.0f;
+    x = fabs(x) > 0.35f ? x : 0.0f; y = fabs(y) > 0.35f ? y : 0.0f;
     inf->inputs.axis = (sfVector2f){x, y};
 }

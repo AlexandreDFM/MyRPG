@@ -46,12 +46,10 @@ sfIntRect move_in_room(sfIntRect r, player *p, player *e, wininf *inf)
 
 void update_enemy(player *e, wininf *inf, player *p)
 {
-    map_inf *mi = inf->dungeon.inf;
-    sfIntRect final;
+    map_inf *mi = inf->dungeon.inf; sfIntRect final;
     sfVector2f ppos = sfSprite_getPosition(p->test);
     sfVector2f epos = sfSprite_getPosition(e->test);
-    sfVector2i elpos = global_to_local(epos);
-    sfVector2i plpos = global_to_local(ppos);
+    sfVector2i elpos = global_to_local(epos), plpos = global_to_local(ppos);
     int proom = get_current_room(ppos, mi), eroom = get_current_room(epos, mi);
     sfIntRect rect = (sfIntRect){proom, eroom, elpos.x, elpos.y};
     int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
@@ -60,7 +58,6 @@ void update_enemy(player *e, wininf *inf, player *p)
         move_in_tunnel(e, inf, p); return;
     } else {
         final = move_in_room(rect, p, e, inf);
-        printf("%d %d %d %d\n", final.left, final.top, final.width, final.height);
         if (final.left == -1) return;
         if (final.width == plpos.x && final.height == plpos.y) return;
         e->target = local_to_global(final.width, final.height);

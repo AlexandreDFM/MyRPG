@@ -19,16 +19,6 @@ char **empty_map(int size)
     return new;
 }
 
-void display_map(char **map)
-{
-    // for (int y = 0; map[y] != 0; y++) {
-    //     for (int x = 0; map[y][x] != '\0'; x++) {
-    //         my_printf("%c", map[y][x]);
-    //     }
-    //     my_printf("\n");
-    // }
-}
-
 bsp *split_container(sfIntRect *main, int iter)
 {
     bsp *root = malloc(sizeof(bsp));
@@ -104,22 +94,19 @@ sfIntRect generate_room(sfIntRect *rect)
 
 void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count)
 {
-    if (tree) {
-        if (is_leaf(tree)) {
-            sfIntRect rect = generate_room(tree->rect);
-            for (int y = rect.top; y < rect.top + rect.height; y++) {
-                for (int i = rect.left; i < rect.left + rect.width; i++) {
-                    (*map)[y][i] = ' ';
-                }
-            }
-            sfIntRect *malloced = malloc(sizeof(sfIntRect));
-            *malloced = rect;
-            append_list(rects, malloced);
-            (*count)++;
+    if (tree && is_leaf(tree)) return;
+    sfIntRect rect = generate_room(tree->rect);
+    for (int y = rect.top; y < rect.top + rect.height; y++) {
+        for (int i = rect.left; i < rect.left + rect.width; i++) {
+            (*map)[y][i] = ' ';
         }
-        populate_map(map, tree->left, rects, count);
-        populate_map(map, tree->right, rects, count);
     }
+    sfIntRect *malloced = malloc(sizeof(sfIntRect));
+    *malloced = rect;
+    append_list(rects, malloced);
+    (*count)++;
+    populate_map(map, tree->left, rects, count);
+    populate_map(map, tree->right, rects, count);
 }
 
 void free_list(sfIntRect **rects) {
@@ -160,6 +147,43 @@ void clean_map(char ***mapref)
     }
 }
 
+void is_diff(char ***map, sfVector2i center_a, sfVector2i center_b)
+{
+    int out = 1;
+    int min = center_a.x < center_b.x ? center_a.x : center_b.x;
+    int max = min == center_a.x ? center_b.x : center_a.x;
+    for (int i = min; i < max; i++) {
+        char *line = (*map)[center_a.y - 1];
+        if (line[i] == '.') {
+            line[i - 1] = out ? 'E' : line[i - 1];
+            line[i] = 'T';
+            out = 0;
+        } else if (!out) {
+            line[i] = 'E';
+            out = 1;
+        }
+    }
+}
+
+void is_not_diff(char ***map, sfVector2i center_a, sfVector2i center_b)
+{
+    int out = 1;
+    int min = center_a.y < center_b.y ? center_a.y : center_b.y;
+    int max = min == center_a.y ? center_b.y : center_a.y;
+    for (int i = min; i < max; i++) {
+        char *pl = (*map)[i];
+        if ((*map)[i][center_a.x] == '.') {
+            char *line = (*map)[i - 1];
+            line[center_a.x - 1] = out ? 'E' : line[center_a.x - 1];
+            (*map)[i][center_a.x - 1] = 'T';
+            out = 0;
+        } else if (pl[center_a.x - 1] == ' ') {
+            pl[center_a.x - 1] = !out ? 'E' : pl[center_a.x - 1];
+            out = 1;
+        }
+    }
+}
+
 void get_paths(char ***map, bsp *tree)
 {
     if (!tree->left || !tree->right)
@@ -171,37 +195,10 @@ void get_paths(char ***map, bsp *tree)
     sfVector2i center_b = (sfVector2i){(float)r->left + (float)r->width / 2.0f,
         (float)r->top + (float)r->height / 2.0f};
     int diff = center_a.x == center_b.x ? -1 : 1;
-    int min = 0, max = 0, out = 1;
     if (diff == 1) {
-        min = center_a.x < center_b.x ? center_a.x : center_b.x;
-        max = min == center_a.x ? center_b.x : center_a.x;
-        for (int i = min; i < max; i++) {
-            if ((*map)[center_a.y - 1][i] == '.') {
-                if (out)
-                    (*map)[center_a.y - 1][i - 1] = 'E';
-                (*map)[center_a.y - 1][i] = 'T';
-                out = 0;
-            } else if (!out) {
-                (*map)[center_a.y - 1][i] = 'E';
-                out = 1;
-            }
-        }
+        is_diff(map, center_a, center_b);
     } else {
-        min = center_a.y < center_b.y ? center_a.y : center_b.y;
-        max = min == center_a.y ? center_b.y : center_a.y;
-        for (int i = min; i < max; i++) {
-            if ((*map)[i][center_a.x] == '.') {
-                if (out)
-                    (*map)[i - 1][center_a.x - 1] = 'E';
-                (*map)[i][center_a.x - 1] = 'T';
-                out = 0;
-            } else if ((*map)[i][center_a.x - 1] == ' ') {
-                if (!out) {
-                    (*map)[i][center_a.x - 1] = 'E';
-                }
-                out = 1;
-            }
-        }
+        is_not_diff(map, center_a, center_b);
     }
     get_paths(map, tree->left);
     get_paths(map, tree->right);
