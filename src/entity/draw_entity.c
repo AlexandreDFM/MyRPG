@@ -13,20 +13,16 @@ void anim_entity(time_info *time_s, entity *obj)
     if (obj->rect.left < obj->max && obj->sign == 1) {
         obj->rect.left += obj->width;
     } else if (obj->sign == 1) {
-        if (obj->loop_type) {
-            obj->sign *= -1;
-        } else {
-            obj->rect.left = 0;
-        }
+            obj->sign *= obj->loop_type ? -1 : 1;
+            obj->rect.left = !obj->loop_type ? 0 : obj->rect.left;
     }
     if (obj->rect.left >= obj->width && obj->sign == -1) {
         obj->rect.left -= obj->width;
     } else if (obj->sign == -1) {
-        if (obj->loop_type) {
-            obj->sign *= -1.0f;
-            obj->rect.left += obj->width;
-        }
-    } sfSprite_setTextureRect(obj->sp, obj->rect);
+        obj->sign *= obj->loop_type ? -1.0f : 1.0f;
+        obj->rect.left += obj->loop_type ? obj->width : 0;
+    }
+    sfSprite_setTextureRect(obj->sp, obj->rect);
 }
 
 void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win)
