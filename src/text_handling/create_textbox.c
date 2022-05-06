@@ -19,45 +19,46 @@ void init_textbox(wininf *win)
     load_alphabet(win->ui.font, FONT_SIZE);
 }
 
-dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
+void parse_line(char *line, sfFont *f, sfIntRect *r)
 {
-    int length = 0, posx = 0;
-    sfFont *f = inf->ui.font;
-    int height = 0;
-    char prev = 0;
-    sfImage *font_alpha = sfTexture_copyToImage(sfFont_getTexture(f, size));
-    int len = 0, cond = 0, nb_y = 1;
-    int ln = my_strlen(line);
-    for (int i = 0; i < ln && line[i] != '\0' && line[i] != '\n'; i++, len++) {
+    int ln = my_strlen(line); char prev = 0;
+    for (int i = 0; i < ln && line[i] != '\0' && line[i] != '\n'; i++, r->left++) {
         if (line[i] == '\\' && line[i + 1] == 'n') {
-            i ++;
-            nb_y++;
+            i++;
+            r->top++;
             continue;
         }
         if (line[i] == '<') {
-            cond = line[i] != '>' && line[i] != '\0' && line[i] != '\n';
+            int cond = line[i] != '>' && line[i] != '\0' && line[i] != '\n';
             for (int y = i; cond; y++, i++) {
                 cond = line[y] != '>' && line[y] != '\0' && line[y] != '\n';
             }
-            if (i < ln && line[i + 1] == 'i' && line[i + 2] == '_') len++;
-                length += 8;
+            if (i < ln && line[i + 1] == 'i' && line[i + 2] == '_') r->left++;
+                r->width += 8;
             continue;
         }
-        sfGlyph glyph = sfFont_getGlyph(f, line[i], size, sfFalse, 0.0f);
-        length += (int)glyph.advance;
+        sfGlyph glyph = sfFont_getGlyph(f, line[i], FONT_SIZE, sfFalse, 0.0f);
+        r->width += (int)glyph.advance;
         int yoffset = (glyph.textureRect.height + glyph.bounds.top);
         int nh = glyph.textureRect.height + yoffset;
-        height = nh > height ? nh + 1 : height;
+        r->height = nh > r->height ? nh + 1 : r->height;
         if (prev) {
-            length -= sfFont_getKerning(f, prev, line[i], size);
+            r->width -= sfFont_getKerning(f, prev, line[i], FONT_SIZE);
         }
         prev = line[i];
     }
-    prev = 0;
+}
+
+// len, nb_y, length, height
+dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
+{
+    sfFont *f = inf->ui.font; int posx = 0; char prev = 0;
+    sfIntRect r = (sfIntRect) {0, 1, 0, 0}; parse_line(line, f, &r);
+    sfImage *font_alpha = sfTexture_copyToImage(sfFont_getTexture(f, size));
     sfColor current_color = sfWhite;
-    sfColor bl = sfColor_fromRGBA(0, 0, 0, 120);
-    sfImage *img = sfImage_createFromColor(length, height * nb_y + 2, bl);
-    int *steps = ptr(sizeof(int) * (len + 1));
+    sfColor bl = sfColor_fromRGBA(0, 0, 0, 0);
+    sfImage *img = sfImage_createFromColor(r.width, r.height * r.top + 2, bl);
+    int *steps = ptr(sizeof(int) * (r.left + 1));
     int li = 0, c_height = 0;
     for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++, li++) {
         if (line[i] == '<') {
@@ -81,12 +82,12 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
         }
         if (line[i] == '\\' && line[i + 1] == 'n') {
             i += 1;
-            posx = 0; c_height += height;
+            posx = 0; c_height += r.height;
             li--;
             continue;
         }
         sfGlyph glyph = sfFont_getGlyph(f, line[i], size, sfFalse, 0.0f);
-        int startY = (height - 1) + glyph.bounds.top + c_height;
+        int startY = (r.height - 1) + glyph.bounds.top + c_height;
         for (int y = 0; y < glyph.textureRect.height; y++) {
             for (int x = 0; x < glyph.textureRect.width; x++) {
                 int gx = glyph.textureRect.left + x;
@@ -106,18 +107,18 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     dline *nl = ptr(sizeof(dline));
     nl->img = sfTexture_createFromImage(img, NULL);
     nl->cline = 0;
-    nl->sps = ptr(sizeof(sfSprite *) * nb_y);
-    for (int i = 0; i < nb_y; i++) {
+    nl->sps = ptr(sizeof(sfSprite *) * r.top);
+    for (int i = 0; i < r.top; i++) {
         nl->sps[i] = sfSprite_create();
         sfSprite *sp = nl->sps[i];
-        float ch = height * i;
+        float ch = r.height * i;
         sfSprite_setTexture(sp, nl->img, sfFalse);
-        sfSprite_setTextureRect(sp, (sfIntRect){0, ch, 0, height});
+        sfSprite_setTextureRect(sp, (sfIntRect){0, ch, 0, r.height});
     }
-    nl->nblines = nb_y;
+    nl->nblines = r.top;
     nl->steps = steps;
     nl->max = li - 1;
-    nl->height = height;
+    nl->height = r.height;
     nl->i = 1;
     nl->time = 0;
     sfImage_destroy(font_alpha);
