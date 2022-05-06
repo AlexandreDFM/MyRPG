@@ -12,82 +12,108 @@ void handle_scene(wininf *infos, player *p)
     sfRenderWindow_clear(infos->win, sfBlack);
     if (infos->c_scene == INTRO || infos->c_scene == QUIZ
     || infos->c_scene == DREAM || infos->c_scene == DITTO) {
-        if (infos->c_scene == INTRO) draw_intro(infos);
-        if (infos->c_scene == DREAM) draw_dream(infos);
-        if (infos->c_scene == QUIZ) draw_quiz(infos, p);
-        if (infos->c_scene == DITTO) draw_ditto(infos);
+        draw_special_scene(infos, p);
     } else if (infos->c_scene == MAIN_MENU) {
         draw_menu(infos, infos->main_menu);
-        if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->current_menu);
-        if (infos->c_menu == OPTIONS){
-            draw_menu(infos, infos->current_menu);
-            if (((choices *)infos->current_menu->selected->data)->ptr < 3
-                && infos->pressed == 0) {
-                change_volume(infos);
-            }
-        }
-        if (infos->c_menu == KEYBINDS_M)
-            draw_menu(infos, infos->change_keys_menu);
+        draw_submenu(infos);
     } else {
-        if (infos->c_scene == HOME)
-            draw_home(infos);
-        int cs = infos->c_scene;
-        if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
-            cs == INTERIOR)
-            draw_static_scene(infos, infos->scenes[infos->c_scene]);
-        else if (infos->c_scene == DUNGEON)
-            draw_dungeon(infos, p);
-        player_direction_management(infos, p);
-        draw_player(infos, p);
-        if (infos->transition) {
-            update_transition(infos, *p);
-            sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
-        }
-        if (infos->interacting && infos->ui.dialog) {
-            sfRenderWindow_drawSprite(infos->win,
-            infos->ui.background, 0);
-            if (infos->ui.dialog) {
-                dline *d = infos->ui.dialog->data;
-                if (d && d->sps[d->cline]) {
-                    for (int i = 0; i < d->nblines; i++) {
-                        sfRenderWindow_drawSprite(infos->win,
-                        d->sps[i], 0);
-                    }
-                    if (d->time > infos->ui.text_delay && d->i < d->max) {
-                        sfIntRect nr = (sfIntRect){0, d->height * d->cline, d->steps[d->i],
-                        d->height};
-                        if (d->steps[d->i] > d->steps[d->i + 1]) {
-                            d->cline++;
-                            d->i++;
-                        } else {
-                            sfSprite_setTextureRect(d->sps[d->cline], nr);
-                            d->i++;
-                            d->time = 0.0f;
-                        }
-                    }
-                    d->time += infos->time.dt;
-                }
-            }
-        }
-        if (infos->c_menu == PAUSE) {
-            draw_menu(infos, infos->pause_menu);
-            update_playtime(infos);
-        }
-        if (infos->c_menu != PAUSE && infos->c_menu != NONE) {
-            center_menu(infos->current_menu, infos, p);
-            draw_menu(infos, infos->current_menu);
-            if (infos->c_menu == USE_ITEM) {
-                center_menu(infos->inventory_menu, infos, p);
-                draw_menu(infos, infos->inventory_menu);
-            }
-            if (infos->c_menu == IG_OPTIONS && infos->pressed == 0) {
-                change_volume_ig(infos);
-            }
-        }
+        draw_gamemenu(infos, p);
     }
     draw_logs(infos);
     update_time(infos);
     sfRenderWindow_display(infos->win);
+}
+
+void draw_submenu(wininf *infos)
+{
+    if (infos->c_menu == LOAD_SAVE) draw_menu(infos, infos->current_menu);
+    if (infos->c_menu == OPTIONS){
+        draw_menu(infos, infos->current_menu);
+        if (((choices *)infos->current_menu->selected->data)->ptr < 3
+            && infos->pressed == 0) {
+            change_volume(infos);
+        }
+    }
+    if (infos->c_menu == KEYBINDS_M)
+        draw_menu(infos, infos->change_keys_menu);
+}
+
+void draw_special_scene(wininf *infos, player *p)
+{
+    if (infos->c_scene == INTRO) draw_intro(infos);
+    if (infos->c_scene == DREAM) draw_dream(infos);
+    if (infos->c_scene == QUIZ) draw_quiz(infos, p);
+    if (infos->c_scene == DITTO) draw_ditto(infos);
+}
+
+void draw_gamemenu(wininf *infos, player *p)
+{
+    if (infos->c_scene == HOME)
+        draw_home(infos);
+    int cs = infos->c_scene;
+    if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
+        cs == INTERIOR)
+        draw_static_scene(infos, infos->scenes[infos->c_scene]);
+    else if (infos->c_scene == DUNGEON)
+        draw_dungeon(infos, p);
+    player_direction_management(infos, p);
+    draw_player(infos, p);
+    if (infos->transition) {
+        update_transition(infos, *p);
+        sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
+    }
+    draw_dialog(infos, p);
+    draw_menuui(infos, p);
+}
+
+void draw_dialog(wininf *infos, player *p)
+{
+    if (!(infos->interacting && infos->ui.dialog)) return;
+    sfRenderWindow_drawSprite(infos->win,
+    infos->ui.background, 0);
+    if (!(infos->ui.dialog)) return;
+    dline *d = infos->ui.dialog->data;
+    if (!(d && d->sps[d->cline])) return;
+    for (int i = 0; i < d->nblines; i++) {
+        sfRenderWindow_drawSprite(infos->win,
+        d->sps[i], 0);
+    }
+    if (d->time > infos->ui.text_delay && d->i < d->max) {
+        anim_dialog(d);
+    }
+    d->time += infos->time.dt;
+}
+
+void anim_dialog(dline *d)
+{
+    sfIntRect nr = (sfIntRect){0, d->height * d->cline,
+    d->steps[d->i], d->height};
+    if (d->steps[d->i] > d->steps[d->i + 1]) {
+        d->cline++;
+        d->i++;
+    } else {
+        sfSprite_setTextureRect(d->sps[d->cline], nr);
+        d->i++;
+        d->time = 0.0f;
+    }
+}
+
+void draw_menuui(wininf *infos, player *p)
+{
+    if (infos->c_menu == PAUSE) {
+        draw_menu(infos, infos->pause_menu);
+        update_playtime(infos);
+    }
+    if (infos->c_menu != PAUSE && infos->c_menu != NONE) {
+        center_menu(infos->current_menu, infos, p);
+        draw_menu(infos, infos->current_menu);
+        if (infos->c_menu == USE_ITEM) {
+            center_menu(infos->inventory_menu, infos, p);
+            draw_menu(infos, infos->inventory_menu);
+        }
+        if (infos->c_menu == IG_OPTIONS && infos->pressed == 0)
+            change_volume_ig(infos);
+    }
 }
 
 scene create_home(wininf *infos, int id)

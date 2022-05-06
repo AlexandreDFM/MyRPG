@@ -10,7 +10,7 @@
 int quiz_result(char **csv, int sexe, int line)
 {
     char **tab = my_strtwa(csv[line], ";\n");
-    int pokemon = (sexe == 1 ? my_atoi(tab[1]) : my_atoi(tab[2])); 
+    int pokemon = (sexe == 1 ? my_atoi(tab[1]) : my_atoi(tab[2]));
     my_free_array(tab);
     my_printf(stdout, "My Calculate PKM : %d\n", pokemon);
     return pokemon;

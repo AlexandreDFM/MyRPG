@@ -48,9 +48,12 @@ void draw_quiz(wininf *inf, player *p)
     if (inf->quiz->destroy == 1) {
         char **csv = load_csv("./csv/quiz_choices.csv");
         inf->quiz->tendance = chose_tendance(inf);
-        inf->settings->pokemon = chose_line(csv, inf->quiz->tendance, inf->quiz->addptsnature[13] ? 1 : 0);
+        inf->settings->pokemon = chose_line(csv, inf->quiz->tendance,
+        inf->quiz->addptsnature[13] ? 1 : 0);
         *p = *(init_player(*(inf), inf->settings->pokemon));
         inf->camera.target = p->test;
+        inf->quiz->aq_quiz = inf->quiz->questions_quiz;
+        sfMusic_stop(inf->dream->music);
         inf->c_scene = HOME;
     }
 }

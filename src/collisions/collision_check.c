@@ -40,7 +40,7 @@ int is_valid(list *col, sfFloatRect *r, wininf *inf, player *p)
     int res_x = 0, res_y = 0, inside = 0;
     for (list *t = col; t; t = t->next) {
         sfVector2f x_axis = (sfVector2f){r->left + r->width, r->top};
-        sfVector2f y_axis = (sfVector2f){r->left, r->top + r->width};
+        sfVector2f y_axis = (sfVector2f){r->left, r->top + r->height};
         collision *c = t->data;
         res_x = c->check(c, x_axis); res_y = c->check(c, y_axis);
         if (res_x != 3 && res_y != 3 && inf->settings->show_collision)

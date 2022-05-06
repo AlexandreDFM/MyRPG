@@ -52,7 +52,8 @@ void check_back(wininf *inf, player *p)
 
 void update_keys(wininf *inf, player *p)
 {
-    if (inf->current_menu && (inf->inputs.axis.x == 0 || inf->inputs.axis.y == 0))
+    if (inf->current_menu && (inf->inputs.axis.x == 0 ||
+    inf->inputs.axis.y == 0))
         inf->current_menu->press = 0;
     if (inf->c_scene == QUIZ) handle_quiz(inf);
     if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
@@ -79,9 +80,15 @@ void update_events(wininf *inf, player *p)
     }
     inf->time.cursor += inf->time.dt;
     update_pause(inf, p); update_pause2(inf, p);
+    draw_intros(inf, p);
+}
+
+void draw_intros(wininf *inf, player *p)
+{
     float update = 0.0f;
+    float value = inf->event.type == sfEvtKeyPressed;
     if (inf->c_scene == MAIN_MENU)
-        update = ((!sfJoystick_isConnected(0) || inf->event.type == sfEvtKeyPressed) ? 0.35f : 0.45f);
+        update = (!sfJoystick_isConnected(0) || value) ? 0.35f : 0.45f;
     else {
         update = (inf->c_menu == NONE ? 0.0f : (!sfJoystick_isConnected(0) ||
         inf->event.type == sfEvtKeyPressed) ? 0.35f : 0.45f);

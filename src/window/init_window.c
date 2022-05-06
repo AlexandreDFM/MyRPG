@@ -6,6 +6,7 @@
 */
 
 #include "infos.h"
+#include "music.h"
 #include "inputs.h"
 #include "sounds.h"
 
@@ -96,7 +97,7 @@ wininf create_window_infos(int ac, char **av)
     inf.load_menu = init_all_menus(&inf, LOAD_IDX, 0);
     init_load_pointers(&inf);
     inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
-    inf.change_keys_menu = init_all_menus(&inf, KEYBINDS_IDX, 0);                                                                                                                                                                                                         inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
+    inf.change_keys_menu = init_all_menus(&inf, KEYBINDS_IDX, 0);
     inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.others_menu = init_ig_menus(&inf, OTHERS_IDX, 0);
     inf.ig_options_menu = init_ig_menus(&inf, IG_OPTIONS_IDX, 0);
@@ -125,7 +126,7 @@ wininf create_window_infos(int ac, char **av)
     inf.logs_textbox = generate_textbox((sfVector2i){205, 40},
         inf.atlases.atlas);
     sfSprite_setOrigin(inf.logs_textbox, (sfVector2f){100.0f, -25.0f});
-    inf.sounds = init_sounds();
     init_inventory(&inf, 10);
+    inf.sounds = init_sounds(); inf.music = init_musics();
     return inf;
 }

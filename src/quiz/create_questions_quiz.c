@@ -32,11 +32,14 @@ q_quiz *create_question_full(wininf *inf, char *csv)
     sfText_setFont(question->question, inf->ui.font);
     sfText_setCharacterSize(question->question, 80);
     sfFloatRect size = sfText_getGlobalBounds(question->question);
-    sfText_setOrigin(question->question, (sfVector2f) {size.width / 2, size.height / 2});
+    sfText_setOrigin(question->question,
+        (sfVector2f) {size.width / 2, size.height / 2});
     sfText_setPosition(question->question, (sfVector2f) {970, 750});
     sfText_setColor(question->question, sfWhite);
-    question->answer1 = create_answer(inf, linecsv[1], (sfVector2f) {440, 810});
-    question->answer2 = create_answer(inf, linecsv[2], (sfVector2f) {1040, 810});
+    question->answer1 = create_answer(inf, linecsv[1],
+        (sfVector2f) {440, 810});
+    question->answer2 = create_answer(inf, linecsv[2],
+        (sfVector2f) {1040, 810});
     question->next = NULL;
     my_free_array(linecsv);
     return question;

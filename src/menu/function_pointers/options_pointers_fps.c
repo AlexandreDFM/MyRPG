@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
 
 void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
@@ -54,6 +55,7 @@ void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 void right_main_fps(wininf *inf)
 {
     if (((choices *)inf->current_menu->selected->data)->ptr == 2) {
+        sfSound_play(inf->sounds->sounds_board[MENU_MOVE]);
         inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
@@ -66,6 +68,7 @@ void right_main_fps(wininf *inf)
 void left_main_fps(wininf *inf)
 {
     if (((choices *)inf->current_menu->selected->data)->ptr == 2) {
+        sfSound_play(inf->sounds->sounds_board[MENU_MOVE]);
         inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,

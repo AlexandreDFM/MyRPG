@@ -335,6 +335,7 @@ typedef struct wininf_t {
     struct ditto_assets_t *ditto;
     struct dream_assets_t *dream;
     struct quiz_t *quiz;
+    struct s_music_t *music;
     struct s_sounds_t *sounds;
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
@@ -421,6 +422,12 @@ void add_to_inventory(wininf *inf, inventory *inv, int id);
 void draw_ig_menu(wininf *inf, menuss *menu);
 void update_olds(sfIntRect r, wininf *inf);
 void draw_inv(inventory *inv, wininf *inf);
+void draw_menuui(wininf *infos, player *p);
+void anim_dialog(dline *d);
+void draw_dialog(wininf *infos, player *p);
+void draw_gamemenu(wininf *infos, player *p);
+void draw_special_scene(wininf *infos, player *p);
+void draw_submenu(wininf *infos);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
@@ -667,7 +674,6 @@ void village_to_dittoland(wininf *win, player *p);
 void generate_random_dungeon(wininf *win, player *p);
 ////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////
 //Menu pointers
 void play(wininf *inf);
@@ -809,8 +815,5 @@ void move_in_tunnel(player *e, wininf *inf, player *p);
 //Movement
 void player_direction_management(wininf *inf, player *p);
 ////////////////////////////////////////////////////////////
-
-
-
 
 #endif

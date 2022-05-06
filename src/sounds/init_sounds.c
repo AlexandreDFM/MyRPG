@@ -7,6 +7,12 @@
 
 #include "sounds.h"
 
+void set_volume_musics(wininf *inf, int volume)
+{
+    for (int i = 0; i < COUNTSOUNDS; i++)
+        sfSound_setVolume(inf->sounds->sounds_board[i], volume);
+}
+
 s_sounds *init_sounds()
 {
     s_sounds *sounds = my_malloc(sizeof(s_sounds));

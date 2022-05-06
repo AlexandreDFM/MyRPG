@@ -42,8 +42,6 @@ void receive_ord(network *net, components *all)
         scanned += sizeof(int);
         if (net->orders[*ord])
             scanned += net->orders[*ord]((char **)&castdata, &important, all);
-        // else
-            my_printf(stdout, "Order not implemented ! (%d)\n", *ord);
     }
     sfPacket_clear(net->packet);
 }
