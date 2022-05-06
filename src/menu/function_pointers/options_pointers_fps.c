@@ -9,8 +9,8 @@
 
 void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
-    if (current == 2 && inf->event.type == sfEvtKeyPressed &&
-    inf->event.key.code == inf->inputs.keys.mleft) {
+    if (current == 2 && inf->inputs.axis.x < 0) {
+        inf->pressed = 1;
         inf->settings->c_fps -= inf->settings->c_fps > 0 ? 1 : 0;
         inf->ig_choices[current] =
         load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf,
@@ -31,8 +31,8 @@ void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 
 void right_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {
-    if (current == 2 && inf->event.type == sfEvtKeyPressed &&
-    inf->event.key.code == inf->inputs.keys.mright) {
+    if (current == 2 && inf->inputs.axis.x > 0) {
+        inf->pressed = 1;
         inf->settings->c_fps += inf->settings->c_fps < 5 ? 1 : 0;
         inf->ig_choices[current] =
         load_line(inf->settings->fps[inf->settings->c_fps], FONT_SIZE, inf,
