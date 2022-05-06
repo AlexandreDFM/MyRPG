@@ -7,21 +7,23 @@
 
 #include "rpg.h"
 
-void handle_scene(wininf *infos, player *p)
+void handle_scene(wininf *inf, player *p)
 {
-    sfRenderWindow_clear(infos->win, sfBlack);
-    if (infos->c_scene == INTRO || infos->c_scene == QUIZ
-    || infos->c_scene == DREAM || infos->c_scene == DITTO) {
-        draw_special_scene(infos, p);
-    } else if (infos->c_scene == MAIN_MENU) {
-        draw_menu(infos, infos->main_menu);
-        draw_submenu(infos);
+    sfRenderWindow_clear(inf->win, sfBlack);
+    if (inf->c_scene == INTRO || inf->c_scene == QUIZ
+    || inf->c_scene == DREAM || inf->c_scene == DITTO) {
+        draw_special_scene(inf, p);
+    } else if (inf->c_scene == MAIN_MENU) {
+        sfRenderWindow_drawSprite(inf->win,
+        inf->menuback[inf->back_menu], NULL);
+        draw_menu(inf, inf->main_menu);
+        draw_submenu(inf);
     } else {
-        draw_gamemenu(infos, p);
+        draw_gamemenu(inf, p);
     }
-    draw_logs(infos);
-    update_time(infos);
-    sfRenderWindow_display(infos->win);
+    draw_logs(inf);
+    update_time(inf);
+    sfRenderWindow_display(inf->win);
 }
 
 void draw_submenu(wininf *infos)

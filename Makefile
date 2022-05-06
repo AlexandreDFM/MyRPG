@@ -99,6 +99,7 @@ SRC		= 	main.c												\
 			src/menu/init_all_menus.c							\
 			src/menu/init_ig_menus.c							\
 			src/menu/update_playtime.c							\
+			src/menu/back_menu.c								\
 			src/dungeon/coordinate.c							\
 			src/dungeon/dungeon_generation.c					\
 			src/dungeon/edge_detection.c						\

@@ -334,6 +334,8 @@ typedef struct wininf_t {
     struct quiz_t *quiz;
     struct s_music_t *music;
     struct s_sounds_t *sounds;
+    int back_menu;
+    sfSprite *menuback[3];
     sfRectangleShape *transi;
     void (*triggers[9])(struct wininf_t *win, struct player_t *p);
 } wininf;
