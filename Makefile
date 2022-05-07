@@ -68,6 +68,7 @@ SRC		= 	main.c												\
 			src/player/init_player.c							\
 			src/player/player_update.c							\
 			src/player/anims/move_rect.c						\
+			src/player/perform_movement.c						\
 			src/player/player_inventory.c						\
 			src/player/anims/update_sprite.c					\
 			src/camera/init_camera.c							\
