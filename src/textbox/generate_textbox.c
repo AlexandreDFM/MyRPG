@@ -45,6 +45,13 @@ void topbot_border(sfVector2i size, sfImage *new)
         sfImage_setPixel(new, x, size.y - 1, sfColor_fromRGB(168, 192, 224));
 }
 
+void fill_left(sfImage *new, sfVector2i size)
+{
+    for (int i = 6; i < size.y - 6; i++) {
+        sfImage_setPixel(new, size.x - 7, i, sfColor_fromRGB(72, 32, 248));
+    }
+}
+
 void leftright_border(sfVector2i size, sfImage *new)
 {
     for (int i = 6; i < size.y - 6; i++) {
@@ -66,9 +73,7 @@ void leftright_border(sfVector2i size, sfImage *new)
             sfImage_setPixel(new, x, i, sfColor_fromRGB(96, 128, 248));
         }
     }
-    for (int i = 6; i < size.y - 6; i++) {
-        sfImage_setPixel(new, size.x - 7, i, sfColor_fromRGB(72, 32, 248));
-    }
+    fill_left(new, size);
 }
 
 void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo)

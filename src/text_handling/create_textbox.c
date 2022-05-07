@@ -19,93 +19,6 @@ void init_textbox(wininf *win)
     load_alphabet(win->ui.font, FONT_SIZE);
 }
 
-int parse_balise(char *line, int i, int ln, dline_parsing *p)
-{
-    if (line[i] == '<') {
-        int cond = line[i] != '>' && line[i] != '\0' && line[i] != '\n';
-        for (int y = i; cond; y++, i++) {
-            cond = line[y] != '>' && line[y] != '\0' && line[y] != '\n';
-        }
-        if (i < ln && line[i + 1] == 'i' && line[i + 2] == '_') p->r.left++;
-            p->r.width += 8;
-        return 1;
-    }
-    return 0;
-}
-
-void parse_line(char *line, sfFont *f, dline_parsing *p)
-{
-    int ln = my_strlen(line); char prev = 0;
-    for (int i = 0; i < ln && line[i] != '\0' && line[i] != '\n'; i++, p->r.left++) {
-        if (line[i] == '\\' && line[i + 1] == 'n') {
-            i++;
-            p->r.top++;
-            continue;
-        }
-        if (parse_balise(line, i, ln, p)) continue;
-        sfGlyph glyph = sfFont_getGlyph(f, line[i], FONT_SIZE, sfFalse, 0.0f);
-        p->r.width += (int)glyph.advance;
-        int yoffset = (glyph.textureRect.height + glyph.bounds.top);
-        int nh = glyph.textureRect.height + yoffset;
-        p->r.height = nh > p->r.height ? nh + 1 : p->r.height;
-        if (prev) {
-            p->r.width -= sfFont_getKerning(f, prev, line[i], FONT_SIZE);
-        }
-        prev = line[i];
-    }
-}
-
-int treat_parsing_balise(char *line, dline_parsing *p, wininf *inf, int *steps)
-{
-    int y = 0;
-    for (; line[p->r2.left + y] != '>'; y++);
-    char test[y + 1];
-    my_strncpy(test, line + p->r2.left + 1, y - 1);
-    test[y - 1] = '\0';
-    int res = treat_balise(test, &p->current_color, inf);
-    p->r2.left = p->r2.left + y;
-    if (!res) {
-        p->r2.top = p->r2.top - 1;
-    } else {
-        sfIntRect r = find_icons(inf, 2 + test);
-        sfVector2i pos = (sfVector2i){p->r2.width - 1, p->r2.height + 1};
-        add_icon(pos, p->img, r, inf->atlases.atlas);
-        p->r2.width = p->r2.width + res;
-        steps[p->r2.top] = p->r2.width;
-    }
-    return 1;
-}
-
-void treat_letter_dialog(wininf *inf, char *line, dline_parsing *p, sfImage *font_alpha)
-{
-    sfGlyph glyph = sfFont_getGlyph(inf->ui.font, line[p->r2.left], FONT_SIZE, sfFalse, 0.0f);
-    int startY = (p->r.height - 1) + glyph.bounds.top + p->r2.height;
-    for (int y = 0; y < glyph.textureRect.height; y++) {
-        for (int x = 0; x < glyph.textureRect.width; x++) {
-            int gx = glyph.textureRect.left + x;
-            int gy = glyph.textureRect.top + y;
-            sfColor c = sfImage_getPixel(font_alpha, gx, gy);
-            c = sfColor_modulate(c, p->current_color);
-            sfImage_setPixel(p->img, x + p->r2.width, y + startY, c);
-        }
-    }
-    p->r2.width += (int)glyph.advance;
-}
-
-dline_parsing *create_dline_help(sfFont *f, char *line)
-{
-    dline_parsing *p = malloc(sizeof(dline_parsing));
-    sfIntRect r = (sfIntRect) {0, 1, 0, 0};
-    p->r = r;
-    p->r2 = (sfIntRect) {0, 0, 0, 0};
-    p->current_color = sfWhite;
-    parse_line(line, f, p);
-    sfColor bl = sfColor_fromRGBA(0, 0, 0, 0);
-    p->img = sfImage_createFromColor(p->r.width, p->r.height * p->r.top + 2,
-        bl);
-    return p;
-}
-
 int is_valid_dline(char *l, dline_parsing *p)
 {
     return l[p->r2.left] != '\0' && l[p->r2.left] != '\n';
@@ -145,7 +58,8 @@ void update_rects_dialog(wininf *win)
             sfSprite *sp = c_line->sps[i];
             sfTexture *t = (sfTexture *)sfSprite_getTexture(sp);
             sfVector2u si = sfTexture_getSize(t);
-            sfSprite_setTextureRect(sp, (sfIntRect){0, c_line->height * i, si.x, c_line->height});
+            sfSprite_setTextureRect(sp, (sfIntRect){0, c_line->height * i,
+            si.x, c_line->height});
         }
     }
 }

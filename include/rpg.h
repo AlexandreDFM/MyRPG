@@ -463,6 +463,25 @@ sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i plpos);
 void set_backs_menu(wininf *inf);
 void draw_intros(wininf *inf, player *p);
 void handle_music(wininf *inf);
+void update_key(wininf *inf);
+void update_pause(wininf *inf, player *p);
+void update_pause2(wininf *inf, player *p);
+int parse_balise(char *line, int i, int ln, dline_parsing *p);
+void parse_line(char *line, sfFont *f, dline_parsing *p);
+int treat_parsing_balise(char *l, dline_parsing *p, wininf *inf, int *steps);
+void treat_letter_dialog(wininf *inf, char *l, dline_parsing *p, sfImage *fo);
+dline_parsing *create_dline_help(sfFont *f, char *line);
+void draw_submenu(wininf *infos);
+void draw_special_scene(wininf *infos, player *p);
+void draw_gamemenu(wininf *infos, player *p);
+void draw_menuui(wininf *infos, player *p);
+list *init_backgrounds(char **arr, wininf *inf);
+int receive_clientsync(char **data, int *important, components *all);
+int receive_hostsync(char **data, int *important, components *all);
+int receive_okay(char **data, int *important, components *all);
+void perform_dungeon_movement(wininf *inf, player *p);
+void handle_attack(wininf *inf, player *p);
+void perform_free_movement(wininf *inf, player *p);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
