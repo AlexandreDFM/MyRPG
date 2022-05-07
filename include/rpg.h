@@ -272,6 +272,12 @@ typedef struct logline_t {
     int alive;
 } logline;
 
+typedef struct dline_creator_t {
+    sfImage *img;
+    int *steps;
+    void *(*ptr)(size_t t);
+} dline_creator;
+
 typedef struct dungeon_t {
     struct map_info *inf;
     int in;
@@ -409,27 +415,28 @@ typedef struct inventory_slot {
     void (*use)(wininf *, struct inventory_slot **);
 } invslot;
 
+void anim_dialog(dline *d);
 void draw_logs(wininf *inf);
-sfMusic *my_music_from_file(char *path);
-sfSoundBuffer *my_buffer_from_file(char *path);
-void add_log(wininf *inf, char *msg, ...);
-void init_inventory(wininf *inf, int size);
-void use_apple(wininf *inf, invslot **slot);
-int is_valid_move(wininf *inf, sfVector2i np, int target);
-sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
-sfImage *my_image_from_file(char *path);
-sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 void draw_ditto(wininf *inf);
-void add_to_inventory(wininf *inf, inventory *inv, int id);
-void draw_ig_menu(wininf *inf, menuss *menu);
+void draw_submenu(wininf *infos);
+sfMusic *my_music_from_file(char *path);
+sfImage *my_image_from_file(char *path);
+void add_log(wininf *inf, char *msg, ...);
+void draw_dialog(wininf *infos, player *p);
 void update_olds(sfIntRect r, wininf *inf);
+void init_inventory(wininf *inf, int size);
 void draw_inv(inventory *inv, wininf *inf);
 void draw_menuui(wininf *infos, player *p);
-void anim_dialog(dline *d);
-void draw_dialog(wininf *infos, player *p);
+void use_apple(wininf *inf, invslot **slot);
+void draw_ig_menu(wininf *inf, menuss *menu);
 void draw_gamemenu(wininf *infos, player *p);
+sfSoundBuffer *my_buffer_from_file(char *path);
 void draw_special_scene(wininf *infos, player *p);
-void draw_submenu(wininf *infos);
+int is_valid_move(wininf *inf, sfVector2i np, int target);
+void add_to_inventory(wininf *inf, inventory *inv, int id);
+sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
+dline *create_line_struct(dline_creator dlcreator, sfIntRect r, int li);
+sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

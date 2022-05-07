@@ -49,10 +49,31 @@ void parse_line(char *line, sfFont *f, sfIntRect *r)
     }
 }
 
+int treat_parsing_balise(char *line, int *i, sfColor *ccol, wininf *inf, sfImage *img, int *li, sfIntRect *ref, int c_height, int *steps)
+{
+    int y = 0;
+    for (; line[*i + y] != '>'; y++);
+    char test[y + 1];
+    my_strncpy(test,line + *i + 1, y - 1);
+    test[y - 1] = '\0';
+    int res = treat_balise(test, ccol, inf);
+    *i = *i + y;
+    if (!res) {
+        *li = *li - 1;
+    } else {
+        sfIntRect r = find_icons(inf, 2 + test);
+        sfVector2i pos = (sfVector2i){ref->width - 1, c_height + 3};
+        add_icon(pos, img, r, inf->atlases.atlas);
+        ref->width = ref->width + res;
+        steps[*li] = ref->width;
+    }
+    return 1;
+}
+
 // len, nb_y, length, height
 dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
 {
-    sfFont *f = inf->ui.font; int posx = 0; char prev = 0;
+    sfFont *f = inf->ui.font; char prev = 0;
     sfIntRect r = (sfIntRect) {0, 1, 0, 0}; parse_line(line, f, &r);
     sfImage *font_alpha = sfTexture_copyToImage(sfFont_getTexture(f, size));
     sfColor current_color = sfWhite;
@@ -60,29 +81,12 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
     sfImage *img = sfImage_createFromColor(r.width, r.height * r.top + 2, bl);
     int *steps = ptr(sizeof(int) * (r.left + 1));
     int li = 0, c_height = 0;
+    sfIntRect r2 = (sfIntRect) {0, li, 0, c_height}; //I, li, posx, height
     for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++, li++) {
-        if (line[i] == '<') {
-            int y = 0;
-            for (; line[i + y] != '>'; y++);
-            char test[y + 1];
-            my_strncpy(test,line + i + 1, y - 1);
-            test[y - 1] = '\0';
-            int res = treat_balise(test, &current_color, inf);
-            i += y;
-            if (!res) {
-                li--;
-            } else {
-                sfIntRect r = find_icons(inf, 2 + test);
-                sfVector2i pos = (sfVector2i){posx - 1, c_height + 3};
-                add_icon(pos, img, r, inf->atlases.atlas);
-                posx += res;
-                steps[li] = posx;
-            }
-            continue;
-        }
+        if (line[i] == '<' && treat_parsing_balise(line, &i, &current_color, inf, img, &li, &r2, c_height, steps)) continue;
         if (line[i] == '\\' && line[i + 1] == 'n') {
             i += 1;
-            posx = 0; c_height += r.height;
+            r2.width = 0; c_height += r.height;
             li--;
             continue;
         }
@@ -94,20 +98,25 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
                 int gy = glyph.textureRect.top + y;
                 sfColor c = sfImage_getPixel(font_alpha, gx, gy);
                 c = sfColor_modulate(c, current_color);
-                sfImage_setPixel(img, x + posx, y + startY, c);
+                sfImage_setPixel(img, x + r2.width, y + startY, c);
             }
         }
-        posx += (int)glyph.advance;
+        r2.width += (int)glyph.advance;
         if (prev) {
-            posx -= sfFont_getKerning(f, prev, line[i], size);
+            r2.width -= sfFont_getKerning(f, prev, line[i], size);
         }
         prev = line[i];
-        steps[li] = posx;
-    }
-    dline *nl = ptr(sizeof(dline));
-    nl->img = sfTexture_createFromImage(img, NULL);
+        steps[li] = r2.width;
+    } sfImage_destroy(font_alpha);
+    return create_line_struct((dline_creator){img, steps, ptr}, r, li);
+}
+
+dline *create_line_struct(dline_creator dlcreator, sfIntRect r, int li)
+{
+    dline *nl = dlcreator.ptr(sizeof(dline));
+    nl->img = sfTexture_createFromImage(dlcreator.img, NULL);
     nl->cline = 0;
-    nl->sps = ptr(sizeof(sfSprite *) * r.top);
+    nl->sps = dlcreator.ptr(sizeof(sfSprite *) * r.top);
     for (int i = 0; i < r.top; i++) {
         nl->sps[i] = sfSprite_create();
         sfSprite *sp = nl->sps[i];
@@ -115,13 +124,11 @@ dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t))
         sfSprite_setTexture(sp, nl->img, sfFalse);
         sfSprite_setTextureRect(sp, (sfIntRect){0, ch, 0, r.height});
     }
-    nl->nblines = r.top;
-    nl->steps = steps;
+    nl->nblines = r.top; nl->steps = dlcreator.steps;
     nl->max = li - 1;
     nl->height = r.height;
     nl->i = 1;
     nl->time = 0;
-    sfImage_destroy(font_alpha);
-    sfImage_destroy(img);
+    sfImage_destroy(dlcreator.img);
     return nl;
 }
