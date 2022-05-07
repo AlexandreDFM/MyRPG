@@ -27,8 +27,15 @@ int get_settings_flags(int ac, char **av, wininf *win)
 
 void change_settings(int opt, char *arg, wininf *inf)
 {
-    if (opt == 'p')
-        inf->settings->pokemon = my_atoi(arg);
+    if (opt == 'p') {
+        int pokemon = my_atoi(arg);
+        if (pokemon > 49) {
+            my_printf(stdout, "Pokemon not found, defaulting to 1\n");
+            inf->settings->pokemon = 1;
+        } else {
+            inf->settings->pokemon = pokemon;
+        }
+    }
     if (opt == 'H')
         inf->settings->house = my_atoi(arg);
     if (opt == 'C')

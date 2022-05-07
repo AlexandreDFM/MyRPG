@@ -33,7 +33,8 @@ void handle_multiple_music(wininf *inf, sfIntRect s, int tabmusic)
 
 void handle_music(wininf *inf)
 {
-    handle_one_music(inf, HOME, HOMEMUSIC);
+    handle_multiple_music(inf, (sfIntRect)
+    {HOME, INTERIOR, -1, -1}, HOMEMUSIC);
     handle_one_music(inf, MAIN_MENU, MENUMUSIC);
     handle_one_music(inf, DITTOLAND, DITTOLANDMUSIC);
     handle_one_music(inf, DUNGEON, DUNGEON1MUSIC);

@@ -14,3 +14,8 @@ void go_ig_options(wininf *inf)
     inf->c_menu = IG_OPTIONS;
     inf->ig_options_menu->focus = 1;
 }
+
+void dummy(wininf *inf)
+{
+    return;
+}

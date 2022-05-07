@@ -102,6 +102,14 @@ typedef enum direction_t {
     PDOWNRIGHT,
     PLEFT,
     PRIGHT,
+    PUPIDDLE,
+    PUPLEFTIDDLE,
+    PUPRIGHTIDDLE,
+    PDOWNIDDLE,
+    PDOWNLEFTIDDLE,
+    PDOWNRIGHTIDDLE,
+    PLEFTIDDLE,
+    PRIGHTIDDLE,
     PNONE_DIRECTION,
 } direction;
 
@@ -151,6 +159,7 @@ typedef struct atlases_t {
     char **collisions;
     char **poke_names;
     char **pokemons_anim;
+    char **items;
 } atlases;
 
 typedef struct collision_t {
@@ -460,8 +469,8 @@ void update_pause(wininf *inf, player *p);
 void update_pause2(wininf *inf, player *p);
 int parse_balise(char *line, int i, int ln, dline_parsing *p);
 void parse_line(char *line, sfFont *f, dline_parsing *p);
-int treat_parsing_balise(char *line, dline_parsing *p, wininf *inf, int *steps);
-void treat_letter_dialog(wininf *inf, char *l, dline_parsing *p, sfImage *font);
+int treat_parsing_balise(char *l, dline_parsing *p, wininf *inf, int *steps);
+void treat_letter_dialog(wininf *inf, char *l, dline_parsing *p, sfImage *fo);
 dline_parsing *create_dline_help(sfFont *f, char *line);
 void draw_submenu(wininf *infos);
 void draw_special_scene(wininf *infos, player *p);
@@ -471,7 +480,12 @@ list *init_backgrounds(char **arr, wininf *inf);
 int receive_clientsync(char **data, int *important, components *all);
 int receive_hostsync(char **data, int *important, components *all);
 int receive_okay(char **data, int *important, components *all);
-
+void perform_dungeon_movement(wininf *inf, player *p);
+void handle_attack(wininf *inf, player *p);
+void perform_free_movement(wininf *inf, player *p);
+void perform_attack(wininf *inf, player *p, sfVector2f pos);
+void deal_dmg(wininf *inf, player *p);
+void dummy(wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

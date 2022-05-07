@@ -30,7 +30,7 @@ void manage_lang(char *arg, wininf *inf)
     } else if (my_strcmp(arg, "fr") == 0){
         inf->lang = FRANCAIS;
     } else {
-        inf->lang = DEFAULT;
+        inf->lang = ENGLISH;
         my_printf(stdout, "Language not found, defaulting to English\n");
     }
 }

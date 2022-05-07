@@ -5,7 +5,6 @@
 ** edge_exeptions
 */
 
-
 #include "dungeon.h"
 
 int continue_exeption(int x)
