@@ -8,18 +8,24 @@
 #include "rpg.h"
 #include "dungeon.h"
 
-sfVector2f **get_random_position(sfIntRect **rooms, int count, char ***map)
+sfVector2f get_random_position(sfIntRect **rooms, int count)
 {
-    int rdm = (rand() % count);
-    sfVector2f **array = malloc(2 * sizeof(sfVector2f*));
-    sfVector2f *start_posf = malloc(sizeof(sfVector2f));
-    sfVector2f *last_posf = malloc(sizeof(sfVector2f));
-    *start_posf = local_to_global(0, 0);
-    *last_posf = local_to_global(1, 0);
-    (*map)[0][1] = 'F';
-    array[0] = start_posf;
-    array[1] = last_posf;
-    return array;
+    int rdm = (rand() % (count - 1));
+    sfIntRect *r = rooms[rdm];
+    sfVector2f start_posf  = (sfVector2f){r->left + rand() % (r->width - 1),
+        r->top + rand() % (r->height - 1)};
+    return local_to_global((int)start_posf.x, (int)start_posf.y);
+}
+
+sfVector2f local_to_global(int x, int y)
+{
+    return (sfVector2f){x * 24.0f + 12.0f, y * 24.0f + 12.0f};
+}
+
+sfVector2i global_to_local(sfVector2f p) {
+    int a = p.x / 24.0f;
+    int b = p.y / 24.0f;
+    return (sfVector2i){a, b};
 }
 
 int get_current_roomlo(sfVector2i pos, map_inf *inf)
