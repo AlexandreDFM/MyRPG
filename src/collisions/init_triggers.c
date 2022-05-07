@@ -60,7 +60,9 @@ void interact_pnj(wininf *win, player *p)
     for (list *t = l; t; t = t->next) {
         pnj *cp = t->data;
         float cmn = manhattan_distance(sfSprite_getPosition(p->test), cp->pos);
-        if (cmn < min) min = cmn; closest = cp;
+        if (cmn < min) {
+            min = cmn; closest = cp;
+        }
     }
     sfVector2f poubelle = sfView_getCenter(win->camera.view);
     poubelle.y += 45.0f; win->interacting = 1;
