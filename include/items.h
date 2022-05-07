@@ -6,7 +6,7 @@
 */
 
 #ifndef ITEMS_H_
-#define ITEMS_H_
+    #define ITEMS_H_
 
 typedef enum items_e {
     APPLE,

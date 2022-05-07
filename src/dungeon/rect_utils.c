@@ -5,9 +5,7 @@
 ** rect_utils
 */
 
-
 #include "dungeon.h"
-
 
 sfIntRect get_center(sfIntRect *rect)
 {

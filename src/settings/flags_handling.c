@@ -16,7 +16,7 @@ int get_settings_flags(int ac, char **av, wininf *win)
                             {"house", required_argument, NULL, 'H'},
                             {"client", required_argument, NULL, 1001},
                             {"host", no_argument, NULL, 1000},
-                            {"language", required_argument, NULL,'l'},
+                            {"language", required_argument, NULL, 'l'},
                             {"framerate", required_argument, NULL, 'f'}};
     int opt = 0;
     while ((opt = getopt_long(ac, av, "H:C:p:l:f:", lo, NULL)) != -1) {

@@ -23,7 +23,7 @@ sfColor my_hsvtorgb(float h2, float s2, float v2)
     } else if (h2 >= 240 && h2 < 300) {
         r = x, g = 0, b = c;
     } else {
-        r = c,g = 0,b = x;
+        r = c, g = 0, b = x;
     } int rr = (r + m) * 255, gg = (g + m) * 255, bb = (b + m) * 255;
     sfColor color = {rr, gg, bb, 255};
     return color;

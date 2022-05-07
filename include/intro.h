@@ -9,7 +9,7 @@
 #include "cinematics_elements.h"
 
 #ifndef INTRO_H_
-#define INTRO_H_
+    #define INTRO_H_
 
 enum pkmintro_t {
     RDMPKM = 0,

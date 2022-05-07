@@ -8,7 +8,7 @@
 #include "rpg.h"
 
 #ifndef ELEMENTS_H_
-#define ELEMENTS_H_
+    #define ELEMENTS_H_
 
 typedef struct cine_ele_t {
     sfSprite *sprite;

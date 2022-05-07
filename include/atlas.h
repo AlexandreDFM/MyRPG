@@ -6,7 +6,7 @@
 */
 
 #ifndef ATLAS_H_
-#define ATLAS_H_
+    #define ATLAS_H_
 
     #include "rpg.h"
 

@@ -13,7 +13,7 @@ void set_sound_musics(wininf *inf, int volume)
         sfMusic_setVolume(inf->music->musics_board[i], volume);
 }
 
-s_music *init_musics()
+s_music *init_musics(void)
 {
     s_music *music = my_malloc(sizeof(s_music));
     char **csvmusics = load_csv("./csv/music.csv");

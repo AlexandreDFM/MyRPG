@@ -6,7 +6,7 @@
 */
 
 #ifndef DEBUG_H_
-#define DEBUG_H_
+    #define DEBUG_H_
 
     #include "rpg.h"
     #define SIGN(x) ((x < 0) ? -1 : 1)
