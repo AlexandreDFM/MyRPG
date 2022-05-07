@@ -65,9 +65,9 @@ void interact_pnj(wininf *win, player *p)
     sfVector2f poubelle = sfView_getCenter(win->camera.view);
     poubelle.y += 45.0f; win->interacting = 1;
     sfSprite_setPosition(win->ui.background, poubelle);
-    if (!win->ui.dialog)
+    if (!win->ui.dialog) {
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
-    else {
+    } else {
         update_rects_dialogs(win);
     }
 }
