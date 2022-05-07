@@ -17,7 +17,7 @@ s_music *init_musics()
 {
     s_music *music = my_malloc(sizeof(s_music));
     char **csvmusics = load_csv("./csv/music.csv");
-    for (int i = 1, j = 0; csvmusics[i] != NULL; i++, j++) {
+    for (int i = 1, j = 0; csvmusics[i] != NULL && j < COUNTMUSICS; i++, j++) {
         char **actualmusic = my_strtwa(csvmusics[i], ";\n");
         music->musics_board[j] = my_music_from_file(actualmusic[0]);
         sfMusic_setLoop(music->musics_board[j], sfTrue);

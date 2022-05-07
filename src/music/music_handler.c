@@ -35,6 +35,7 @@ void handle_music(wininf *inf)
     handle_one_music(inf, HOME, HOMEMUSIC);
     handle_one_music(inf, MAIN_MENU, MENUMUSIC);
     handle_one_music(inf, DITTOLAND, DITTOLANDMUSIC);
+    handle_one_music(inf, DUNGEON, DUNGEON1MUSIC);
     handle_multiple_music(inf, (sfIntRect)
     {VILLAGE, BEKIPAN, DOJO, -1}, VILLAGEMUSIC);
 }
