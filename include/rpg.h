@@ -429,6 +429,7 @@ void draw_logs(wininf *inf);
 void draw_ditto(wininf *inf);
 void draw_submenu(wininf *infos);
 void update_rects_dialog(wininf *win);
+void update_rects_dialog(wininf *win);
 sfMusic *my_music_from_file(char *path);
 sfImage *my_image_from_file(char *path);
 void add_log(wininf *inf, char *msg, ...);

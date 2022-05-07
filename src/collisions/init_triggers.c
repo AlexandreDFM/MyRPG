@@ -68,7 +68,7 @@ void interact_pnj(wininf *win, player *p)
     if (!win->ui.dialog) {
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
     } else {
-        update_rects_dialogs(win);
+        update_rects_dialog(win);
     }
 }
 
