@@ -8,7 +8,7 @@
 #include "rpg.h"
 
 #ifndef MUSIC_H_
-#define MUSIC_H_
+    #define MUSIC_H_
 
 enum musicsidx {
     HOMEMUSIC,

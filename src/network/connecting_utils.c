@@ -23,7 +23,7 @@ void try_to_connect(sfIpAddress ip, int port, wininf *inf)
         sfPacket_append(net->packet, addrip, sizeof(sfIpAddress));
         sfPacket_append(net->packet, addrport, sizeof(int));
         sfUdpSocket_sendPacket(net->socket, net->packet, ip, port);
-        if (receive_with_timeout(net, addrip, (short unsigned int*)addrport))
+        if (receive_with_timeout(net, addrip, (short unsigned int *)addrport))
             break;
         iter += 1;
     }

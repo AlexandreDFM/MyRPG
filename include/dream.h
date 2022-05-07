@@ -9,7 +9,7 @@
 #include "cinematics_elements.h"
 
 #ifndef DREAM_H_
-#define DREAM_H_
+    #define DREAM_H_
 
 enum dreamscene_t {
     DREAMINIT,
