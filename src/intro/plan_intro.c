@@ -40,7 +40,7 @@ void plan5_clock(wininf *inf, intro_a *rpg)
         rpg->b_intro[2].rect = (sfIntRect) {720, 481, 96, 29};
         rpg->b_intro[2].pos = (sfVector2f) {645, 766};
         rpg->b_intro[3].rect = (sfIntRect) {1011, 483, 96, 29};
-        rpg->b_intro[3].pos = (sfVector2f) {645, 942};
+        rpg->b_intro[3].pos = (sfVector2f) {645, 962};
         rpg->b_intro[1].resize = (sfVector2f) {5, 5};
         rpg->b_intro[1].pos = (sfVector2f) {360, 0};
         sfColor base = sfSprite_getColor(rpg->b_intro[3].sprite);

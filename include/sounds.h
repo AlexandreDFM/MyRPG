@@ -24,8 +24,8 @@ enum soundsidx {
 };
 
 typedef struct s_sounds_t {
-    sfSoundBuffer *sound_buffer[10];
-    sfSound *sounds_board[10];
+    sfSoundBuffer *sound_buffer[COUNTSOUNDS];
+    sfSound *sounds_board[COUNTSOUNDS];
 }s_sounds;
 
 s_sounds *init_sounds();
