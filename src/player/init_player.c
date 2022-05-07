@@ -57,15 +57,15 @@ player *init_player(wininf inf, int id)
     int *arr1 = my_malloc(sizeof(int) * i);
     for (int j = 0; j < i; j++) arr1[j] = my_atoi(arr[j]);
     char **arr2 = my_strtwa(inf.atlases.pokemons_rect[id], ";\n");
-    int **rlist = get_player_rects(arr2);
+    int **rlist = get_player_rects(arr2); p->time = 0.0f;
     p->slist = arr1; p->rlist = rlist; p->direction = PNONE_DIRECTION;
     sfIntRect r = (sfIntRect) {arr1[1], arr1[2], arr1[5], arr1[4]};
     p->test = atlas_to_sprite(r, inf.atlases.atlas); p->offset = arr1[3];
     p->limit = (sfVector2i) {arr1[3] * rlist[5][0], arr1[3] * rlist[5][1]};
-    p->r = (sfIntRect) {0, 0, arr1[3], arr1[4]}; p->time = 0.0f;
+    p->r = (sfIntRect) {arr1[3] * rlist[5][0], 0, arr1[3], arr1[4]};
     p->speed = 120.0f; sfSprite_setOrigin(p->test, (sfVector2f){11.0f, 25.0f});
     sfSprite_setPosition(p->test, (sfVector2f){520.0f, 320.0f});
-    p->nextpos = (sfVector2f){-1.0f, -1.0f}; p->sentpos = p->sentpos;
+    sfVector2f np = {-1.0f, -1.0f}; p->nextpos = np; p->sentpos = np;
     sfSprite_setTextureRect(p->test, p->r); p->shadow = set_shadow(inf, p, id);
     my_free_array(arr); my_free_array(arr2); return p;
 }

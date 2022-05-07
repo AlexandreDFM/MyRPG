@@ -102,6 +102,14 @@ typedef enum direction_t {
     PDOWNRIGHT,
     PLEFT,
     PRIGHT,
+    PUPIDDLE,
+    PUPLEFTIDDLE,
+    PUPRIGHTIDDLE,
+    PDOWNIDDLE,
+    PDOWNLEFTIDDLE,
+    PDOWNRIGHTIDDLE,
+    PLEFTIDDLE,
+    PRIGHTIDDLE,
     PNONE_DIRECTION,
 } direction;
 
