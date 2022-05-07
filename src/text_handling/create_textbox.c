@@ -143,7 +143,7 @@ void update_rects_dialog(wininf *win)
         c_line->i = c_line->max - 1; c_line->cline = c_line->nblines - 1;
         for (int i = 0; i < c_line->nblines; i++) {
             sfSprite *sp = c_line->sps[i];
-            sfTexture *t = sfSprite_getTexture(sp);
+            sfTexture *t = (sfTexture *)sfSprite_getTexture(sp);
             sfVector2u si = sfTexture_getSize(t);
             sfSprite_setTextureRect(sp, (sfIntRect){0, c_line->height * i, si.x, c_line->height});
         }

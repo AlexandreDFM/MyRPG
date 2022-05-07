@@ -9,7 +9,7 @@
 #include "cinematics_elements.h"
 
 #ifndef DITTO_H_
-#define DITTO_H_
+    #define DITTO_H_
 
 enum dittoscene_t {
     DITTOINIT,

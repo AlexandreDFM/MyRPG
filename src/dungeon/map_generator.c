@@ -7,26 +7,6 @@
 
 #include "dungeon.h"
 
-void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count)
-{
-    if (tree) {
-        if (is_leaf(tree)) {
-            sfIntRect rect = generate_room(tree->rect);
-            for (int y = rect.top; y < rect.top + rect.height; y++) {
-                for (int i = rect.left; i < rect.left + rect.width; i++) {
-                    (*map)[y][i] = ' ';
-                }
-            }
-            sfIntRect *malloced = malloc(sizeof(sfIntRect));
-            *malloced = rect;
-            append_list(rects, malloced);
-            (*count)++;
-        }
-        populate_map(map, tree->left, rects, count);
-        populate_map(map, tree->right, rects, count);
-    }
-}
-
 void append_list(sfIntRect ***rects, sfIntRect *new_alloc)
 {
     int y = 0;
@@ -41,11 +21,45 @@ void append_list(sfIntRect ***rects, sfIntRect *new_alloc)
     *rects = new;
 }
 
+int paths2(int min, int max, char ***map, sfVector2i center_a)
+{
+    int out = 1;
+    for (int i = min; i < max; i++) {
+        if ((*map)[center_a.y - 1][i] == '.') {
+            (*map)[center_a.y - 1][i - 1] = out ? 'E' :
+            (*map)[center_a.y - 1][i - 1];
+            (*map)[center_a.y - 1][i] = 'T';
+            out = 0;
+        } else if (!out) {
+            (*map)[center_a.y - 1][i] = 'E';
+            out = 1;
+        }
+    }
+    return out;
+}
+
+int paths3(int out, char ***map, sfVector2i center_a, sfVector2i center_b)
+{
+    int min = center_a.y < center_b.y ? center_a.y : center_b.y;
+    int max = min == center_a.y ? center_b.y : center_a.y;
+    for (int i = min; i < max; i++) {
+        if ((*map)[i][center_a.x] == '.') {
+                (*map)[i - 1][center_a.x - 1] = out ? 'E' :
+                (*map)[i - 1][center_a.x - 1];
+            (*map)[i][center_a.x - 1] = 'T';
+            out = 0;
+        } else if ((*map)[i][center_a.x - 1] == ' ') {
+                (*map)[i - 1][center_a.x - 1] = !out ? 'E' :
+                (*map)[i - 1][center_a.x - 1];
+            out = 1;
+        }
+    }
+    return out;
+}
 
 void get_paths(char ***map, bsp *tree)
 {
-    if (!tree->left || !tree->right)
-        return;
+    if (!tree->left || !tree->right) return;
     sfIntRect *r = tree->left->rect;
     sfVector2i center_a = (sfVector2i){(float)r->left + (float)r->width / 2.0f,
         (float)r->top + (float)r->height / 2.0f};
@@ -57,35 +71,10 @@ void get_paths(char ***map, bsp *tree)
     if (diff == 1) {
         min = center_a.x < center_b.x ? center_a.x : center_b.x;
         max = min == center_a.x ? center_b.x : center_a.x;
-        for (int i = min; i < max; i++) {
-            if ((*map)[center_a.y - 1][i] == '.') {
-                if (out)
-                    (*map)[center_a.y - 1][i - 1] = 'E';
-                (*map)[center_a.y - 1][i] = 'T';
-                out = 0;
-            } else if (!out) {
-                (*map)[center_a.y - 1][i] = 'E';
-                out = 1;
-            }
-        }
+        out = paths2(min, max, map, center_a);
     } else {
-        min = center_a.y < center_b.y ? center_a.y : center_b.y;
-        max = min == center_a.y ? center_b.y : center_a.y;
-        for (int i = min; i < max; i++) {
-            if ((*map)[i][center_a.x] == '.') {
-                if (out)
-                    (*map)[i - 1][center_a.x - 1] = 'E';
-                (*map)[i][center_a.x - 1] = 'T';
-                out = 0;
-            } else if ((*map)[i][center_a.x - 1] == ' ') {
-                if (!out) {
-                    (*map)[i][center_a.x - 1] = 'E';
-                }
-                out = 1;
-            }
-        }
+        out = paths3(out, map, center_a, center_b);
     }
-    get_paths(map, tree->left);
-    get_paths(map, tree->right);
+    get_paths(map, tree->left); get_paths(map, tree->right);
     clean_map(map);
 }

@@ -27,7 +27,7 @@ typedef struct map_info {
     int **dsts;
     sfIntRect **rooms;
     int nbr_rooms;
-    sfVector2f **pos;
+    sfVector2f starting_pos;
 } map_inf;
 
 typedef struct bsp_s {
@@ -65,5 +65,7 @@ void fill_lre(sfIntRect *l, sfIntRect *re, sfIntRect *r, sfIntRect** splits);
 int rdm_btw(int min, int max);
 void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count);
 void get_paths(char ***map, bsp *tree);
+void fill_map(sfIntRect rect, char ***map);
+void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count);
 
 #endif /* !DEBUG_H_ */

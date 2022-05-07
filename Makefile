@@ -102,6 +102,7 @@ SRC		= 	main.c												\
 			src/menu/function_pointers/main_menu_play_option.c	\
 			src/menu/function_pointers/options_pointers_volume.c\
 			src/dungeon/bsp.c									\
+			src/dungeon/fill_map.c								\
 			src/dungeon/coordinate.c							\
 			src/dungeon/create_map.c							\
 			src/dungeon/rect_utils.c							\
