@@ -9,7 +9,7 @@
 
 quiz *create_quiz(wininf *inf)
 {
-    quiz *qcm = malloc(sizeof(quiz)); qcm->clicked = 0;
+    quiz *qcm = my_malloc(sizeof(quiz)); qcm->clicked = 0;
     qcm->destroy = 0; qcm->tendance = 0; qcm->nbquestions = 0;
     qcm->nature = my_malloc(sizeof(int) * 15);
     qcm->addptsnature = my_malloc(sizeof(int) * 15);

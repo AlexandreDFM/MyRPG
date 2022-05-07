@@ -30,7 +30,7 @@ invslot *get_item_from_id(int id, wininf *inf)
 void init_inventory(wininf *inf, int size)
 {
     inventory *inv = my_malloc(sizeof(inventory));
-    inv->slots = malloc(sizeof(invslot *) * (size + 1));
+    inv->slots = my_malloc(sizeof(invslot *) * (size + 1));
     list *tmp = inf->inventory_menu->head;
     for (int i = 0; i <= size; i++, tmp = tmp->next) {
         inv->slots[i] = 0;

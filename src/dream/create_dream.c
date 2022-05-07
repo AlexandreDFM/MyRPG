@@ -10,7 +10,7 @@
 
 dream_a *create_dream(wininf *inf)
 {
-    dream_a *dream = malloc(sizeof(dream_a));
+    dream_a *dream = my_malloc(sizeof(dream_a));
     dream->plan = DREAMINIT;
     for (int i = 0, j = 1; i < 3; i++, j++) {
         dream->b_dream[i] = c_ele(inf->atlases.atlas, "./csv/dreams.csv", j);

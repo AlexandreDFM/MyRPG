@@ -72,6 +72,7 @@
         "inputs.h": "c",
         "infos.h": "c",
         "sstream": "c",
-        "limits": "c"
+        "limits": "c",
+        "dungeon.h": "c"
     }
 }

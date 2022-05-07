@@ -26,7 +26,7 @@
     #include <sys/stat.h>
     #include <fcntl.h>
 
-    #define WINDOW_NAME "My RPG"
+    #define WINDOW_NAME "Pokemon Mystery Dungeon Red Rescue Team"
     #define SIZE 7.0f
     #define RATE 0.15f
     #define FONT_SIZE 15.0f

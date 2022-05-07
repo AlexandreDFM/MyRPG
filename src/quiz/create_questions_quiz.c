@@ -25,9 +25,9 @@ void link_questions_quiz(q_quiz *q1, q_quiz *q2)
 
 q_quiz *create_question_full(wininf *inf, char *csv)
 {
-    q_quiz *question = malloc(sizeof(q_quiz));
+    q_quiz *question = my_malloc(sizeof(q_quiz));
     char **linecsv = my_strtwa(csv, ";\n");
-    question->question = sfText_create();
+    question->question = my_text();
     sfText_setString(question->question, linecsv[0]);
     sfText_setFont(question->question, inf->ui.font);
     sfText_setCharacterSize(question->question, 80);

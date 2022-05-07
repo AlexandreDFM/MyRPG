@@ -27,17 +27,6 @@ sfVector2f **get_random_position(sfIntRect **rooms, int count, char ***map)
     return array;
 }
 
-sfVector2f local_to_global(int x, int y)
-{
-    return (sfVector2f){x * 24.0f + 12.0f, y * 24.0f + 12.0f};
-}
-
-sfVector2i global_to_local(sfVector2f p) {
-    int a = p.x / 24.0f;
-    int b = p.y / 24.0f;
-    return (sfVector2i){a, b};
-}
-
 int get_current_roomlo(sfVector2i pos, map_inf *inf)
 {
     for (int i = 0; inf->rooms[i]; i++) {

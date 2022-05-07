@@ -62,7 +62,6 @@ wininf create_window_infos(int ac, char **av)
     get_settings_flags(ac, av, &inf);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
-    // sfRenderWindow_setPosition(inf.win, (sfVector2i) {0, 0});
     inf.c_scene = INTRO;
     inf.interacting = 0;
     init_times(&inf);
@@ -98,7 +97,7 @@ wininf create_window_infos(int ac, char **av)
     inf.load_menu = init_all_menus(&inf, LOAD_IDX, 0);
     init_load_pointers(&inf);
     inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
-    inf.change_keys_menu = init_all_menus(&inf, KEYBINDS_IDX, 0);                                                                                                                                                                                                         inf.options_menu = init_all_menus(&inf, OPTIONS_IDX, 0);
+    inf.change_keys_menu = init_all_menus(&inf, KEYBINDS_IDX, 0);
     inf.pause_menu = init_ig_menus(&inf, PAUSE_VILLAGE_IDX, 0);
     inf.others_menu = init_ig_menus(&inf, OTHERS_IDX, 0);
     inf.ig_options_menu = init_ig_menus(&inf, IG_OPTIONS_IDX, 0);
