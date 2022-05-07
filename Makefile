@@ -29,29 +29,34 @@ SRC		= 	main.c												\
 			src/window/create_components.c						\
 			src/window/shader/create_state.c					\
 			src/scene_handling/scene_handler.c					\
-			src/scene_handling/draw_scene.c						\
 			src/scene_handling/draw_home.c						\
+			src/scene_handling/draw_scene.c						\
+			src/scene_handling/draw_menus.c						\
 			src/entity/draw_entity.c							\
 			src/csv/load_csv.c									\
 			src/inputs/inputs.c									\
+			src/inputs/change_keys.c							\
+			src/inputs/update_inputs.c							\
 			src/events/events.c									\
+			src/events/update_pause.c							\
 			src/texture_atlas/init_atlases.c					\
 			src/texture_atlas/create_sprite_from_atlas.c		\
-			src/utils/my_strtwa.c								\
-			src/utils/my_malloc.c								\
-			src/utils/my_sfalloc.c								\
 			src/utils/my_itoa.c									\
 			src/utils/is_same.c									\
 			src/utils/my_atof.c									\
+			src/utils/my_malloc.c								\
+			src/utils/my_strtwa.c								\
 			src/utils/my_memset.c								\
-			src/utils/get_arr_len.c								\
-			src/utils/lists/push_front.c						\
-			src/utils/lists/draw_list.c							\
-			src/utils/lists/init_double.c						\
-			src/utils/unix_to_date.c							\
-			src/utils/my_strdup_to_char.c						\
 			src/utils/my_checks.c								\
+			src/utils/my_sfalloc.c								\
+			src/utils/get_arr_len.c								\
+			src/utils/unix_to_date.c							\
 			src/utils/my_slice_array.c							\
+			src/utils/lists/draw_list.c							\
+			src/utils/lists/push_front.c						\
+			src/utils/lists/init_double.c						\
+			src/utils/my_strdup_to_char.c						\
+			src/utils/my_music_from_file.c						\
 			src/maths/pingpong.c								\
 			src/maths/my_lerp.c									\
 			src/maths/simple_maths.c							\
@@ -76,6 +81,8 @@ SRC		= 	main.c												\
 			src/pnjs/add_pnjs.c									\
 			src/text_handling/init_text.c						\
 			src/text_handling/load_font.c						\
+			src/text_handling/text_parsing.c					\
+			src/text_handling/treat_dialog.c					\
 			src/text_handling/icons_handler.c					\
 			src/text_handling/create_textbox.c					\
 			src/text_handling/create_dialog_list.c				\
@@ -90,6 +97,7 @@ SRC		= 	main.c												\
 			src/menu/init_ig_menus.c							\
 			src/menu/init_all_menus.c							\
 			src/menu/update_playtime.c							\
+			src/menu/init_backgrounds.c							\
 			src/menu/init_menus_pointers.c						\
 			src/menu/update_player_pokemon.c					\
 			src/menu/function_pointers/use_item.c				\
@@ -116,6 +124,7 @@ SRC		= 	main.c												\
 			src/dungeon/generate_dungeon_image.c				\
 			src/dungeon/enemy/scan_surroundings.c				\
 			src/dungeon/coordinates_transformation.c			\
+			src/network/receive_sync.c							\
 			src/settings/manage_flags.c							\
 			src/network/handle_orders.c							\
 			src/settings/init_settings.c						\
