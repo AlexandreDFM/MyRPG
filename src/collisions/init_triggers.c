@@ -55,31 +55,20 @@ void generate_random_dungeon(wininf *win, player *p)
 
 void interact_pnj(wininf *win, player *p)
 {
-    float min = 200.f;
-    pnj *closest = 0;
+    float min = 200.f; pnj *closest = 0;
     list *l = win->scenes[win->c_scene].pnjs;
     for (list *t = l; t; t = t->next) {
         pnj *cp = t->data;
         float cmn = manhattan_distance(sfSprite_getPosition(p->test), cp->pos);
-        if (cmn < min) {
-            min = cmn;
-            closest = cp;
-        }
+        if (cmn < min) min = cmn; closest = cp;
     }
     sfVector2f poubelle = sfView_getCenter(win->camera.view);
-    poubelle.y += 45.0f;
+    poubelle.y += 45.0f; win->interacting = 1;
     sfSprite_setPosition(win->ui.background, poubelle);
-    win->interacting = 1;
     if (!win->ui.dialog)
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
     else {
-        dline *c_line = (dline*)win->ui.dialog->data;
-        if (c_line->i == c_line->max) {
-            win->ui.dialog = win->ui.dialog->next;
-            win->interacting = !win->ui.dialog ? 0 : win->interacting;
-        } else {
-            c_line->i = c_line->max - 1;
-        }
+        update_rects_dialogs(win);
     }
 }
 

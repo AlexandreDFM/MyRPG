@@ -276,7 +276,7 @@ typedef struct dline_creator_t {
     sfImage *img;
     int *steps;
     void *(*ptr)(size_t t);
-} dline_creator;
+} dl_creat;
 
 typedef struct dungeon_t {
     struct map_info *inf;
@@ -356,6 +356,15 @@ typedef struct choices_t {
     void (*ptrs[2])(struct wininf_t *);
 } choices;
 
+typedef struct dline_parsing_t {
+    char *line;
+    sfColor current_color;
+    sfImage *img;
+    sfIntRect r2;
+    sfIntRect r;
+    sfImage *font_alpha;
+} dline_parsing;
+
 typedef struct menus {
     float blk;
     int id;
@@ -419,6 +428,7 @@ void anim_dialog(dline *d);
 void draw_logs(wininf *inf);
 void draw_ditto(wininf *inf);
 void draw_submenu(wininf *infos);
+void update_rects_dialog(wininf *win);
 sfMusic *my_music_from_file(char *path);
 sfImage *my_image_from_file(char *path);
 void add_log(wininf *inf, char *msg, ...);
@@ -435,7 +445,7 @@ void draw_special_scene(wininf *infos, player *p);
 int is_valid_move(wininf *inf, sfVector2i np, int target);
 void add_to_inventory(wininf *inf, inventory *inv, int id);
 sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
-dline *create_line_struct(dline_creator dlcreator, sfIntRect r, int li);
+dline *create_lstruct(dl_creat dlcreator, sfIntRect r, int li);
 sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 
 ////////////////////////////////////////////////////////////
