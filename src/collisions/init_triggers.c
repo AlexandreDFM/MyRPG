@@ -39,10 +39,8 @@ void generate_random_dungeon(wininf *win, player *p)
 {
     int id = rand() % 12;
     create_dungeon(win, id);
-    sfVector2f pos = *(win->dungeon.inf->pos[0]);
-    p->nextpos = pos;
     sfVector2f interior = (sfVector2f){10.0f, 10.0f};
-    sfVector2f home = (sfVector2f){pos.x, pos.y};
+    sfVector2f home = win->dungeon.inf->starting_pos;
     win->next_scene = win->c_scene == HOME ? DUNGEON : HOME;
     win->next_pos = win->c_scene == DUNGEON ? interior : home;
     win->transition = 1;

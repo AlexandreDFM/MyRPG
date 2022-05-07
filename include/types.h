@@ -7,7 +7,6 @@
 
 #ifndef TYPES_H_
     #define TYPES_H_
-
     #include "rpg.h"
 
 typedef enum types_e {
