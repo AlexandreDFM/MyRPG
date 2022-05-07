@@ -9,7 +9,7 @@
 
 void create_enemy(wininf *inf, dungeon *d, sfVector2i pos)
 {
-    player *new_e = init_player(*inf, rand() % 21);
+    player *new_e = init_player(*inf,  1 + rand() % 50);
     list *nl = malloc(sizeof(list));
     nl->data = new_e;
     nl->next = d->enemies;

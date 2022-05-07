@@ -39,10 +39,11 @@ void generate_random_dungeon(wininf *win, player *p)
 {
     int id = rand() % 12;
     create_dungeon(win, id);
-    sfVector2f interior = (sfVector2f){10.0f, 10.0f};
-    sfVector2f home = win->dungeon.inf->starting_pos;
-    win->next_scene = win->c_scene == HOME ? DUNGEON : HOME;
-    win->next_pos = win->c_scene == DUNGEON ? interior : home;
+    sfSprite_setPosition(p->test, win->dungeon.inf->starting_pos);
+    p->nextpos = win->dungeon.inf->starting_pos;
+    sfView_setCenter(win->camera.view,  win->dungeon.inf->starting_pos);
+    win->next_scene = DUNGEON;
+    win->next_pos = win->dungeon.inf->starting_pos;
     win->transition = 1;
     win->change_scene = 1;
     if (win->net->is_multi) {

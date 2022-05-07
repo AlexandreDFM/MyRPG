@@ -44,10 +44,25 @@ sfIntRect move_in_room(sfIntRect r, player *p, player *e, wininf *inf)
     } return final;
 }
 
+int test_attack(player *e, wininf *inf, player *p)
+{
+    sfVector2f pos = sfSprite_getPosition(p->test);
+    sfVector2f ppos = p->nextpos;
+    sfVector2f epos = sfSprite_getPosition(e->test);
+    float dst = distance(epos, p->nextpos);
+    if (dst < 36.0f) {
+        e->vel = (sfVector2f){p->nextpos.x - epos.x, p->nextpos.y - epos.y};
+        e->attack_pos = ppos;
+        e->attacking = 2;
+    }
+    return dst < 36.0f;
+}
+
 void update_enemy(player *e, wininf *inf, player *p)
 {
     map_inf *mi = inf->dungeon.inf; sfIntRect final;
     sfVector2f ppos = sfSprite_getPosition(p->test);
+    if (test_attack(e, inf, p)) return;
     sfVector2f epos = sfSprite_getPosition(e->test);
     sfVector2i elpos = global_to_local(epos), plpos = global_to_local(ppos);
     int proom = get_current_room(ppos, mi), eroom = get_current_room(epos, mi);
@@ -59,8 +74,8 @@ void update_enemy(player *e, wininf *inf, player *p)
     } else {
         final = move_in_room(rect, p, e, inf);
         if (final.left == -1) return;
-        if (final.width == plpos.x && final.height == plpos.y) return;
-        e->target = local_to_global(final.width, final.height);
+        sfVector2f new_vec = local_to_global(final.width, final.height);
+        e->target = new_vec;
         e->vel = (sfVector2f){e->target.x - epos.x, e->target.y - epos.y};
     }
 }

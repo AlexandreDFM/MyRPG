@@ -50,7 +50,7 @@ void perform_free_movement(wininf *inf, player *p)
         if (!(is_valid(cols, &rect, inf, p) && !inf->transition))
             return;
     sfSprite_setPosition(p->test, np);
-    if (!is_same(np, p->sentpos, 1.0f) && inf->net->is_multi) {
+    if (inf->net->is_multi && !is_same(np, p->sentpos, 1.0f)) {
         p->sentpos = np;
         add_ord(POSITION, &np, sizeof(sfVector2f), inf->net->packet);
     }
@@ -108,7 +108,8 @@ void perform_dungeon_movement(wininf *inf, player *p)
         if (p->time >= 2.0f) {
             p->attacking = 0;
             p->time = 0.0f;
-        }return;
+            update_mobs(inf, p);
+        } return;
     }
     if (inf->inputs.attack && inf->inputs.can_attack) {
         perform_attack(inf, p, pos);
