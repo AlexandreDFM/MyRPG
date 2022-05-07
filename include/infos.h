@@ -6,7 +6,7 @@
 */
 
 #ifndef INFOS_H_
-#define INFOS_H_
+    #define INFOS_H_
 
     #include <SFML/Audio.h>
     #include <SFML/Network.h>

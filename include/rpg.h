@@ -6,7 +6,7 @@
 */
 
 #ifndef RPG_H_
-#define RPG_H_
+    #define RPG_H_
     #define my_sprite() my_sfalloc((void *(*)(void))sfSprite_create,\
         (void *(*)(void *))sfSprite_destroy)
     #define my_texture() my_sfalloc((void *(*)(void))sfTexture_create,\

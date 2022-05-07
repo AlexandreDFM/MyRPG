@@ -6,7 +6,7 @@
 */
 
 #ifndef INPUTS_H_
-#define INPUTS_H_
+    #define INPUTS_H_
 
     #include "rpg.h"
 

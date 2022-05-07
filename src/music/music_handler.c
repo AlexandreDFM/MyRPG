@@ -17,6 +17,7 @@ void handle_one_music(wininf *inf, int scene, int tabmusic)
         sfMusic_stop(inf->music->musics_board[tabmusic]);
     }
 }
+
 void handle_multiple_music(wininf *inf, sfIntRect s, int tabmusic)
 {
     if ((inf->c_scene == s.height || inf->c_scene == s.left ||
