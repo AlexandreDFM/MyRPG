@@ -1,2 +1,4 @@
 Name;Pos X;Pos Y;Dialog;Scene
-Test Pnj;287;215;dialogs/test.dialog;Village
+Dracaufeu;287;215;dialogs/test.dialog;Village
+Tortank;317;465;dialogs/test.dialog;Village
+Pikachu;817;465;dialogs/test.dialog;Village

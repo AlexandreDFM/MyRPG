@@ -28,6 +28,6 @@ typedef struct s_sounds_t {
     sfSound *sounds_board[COUNTSOUNDS];
 }s_sounds;
 
-s_sounds *init_sounds();
+s_sounds *init_sounds(void);
 
 #endif /* !SOUNDS_H_ */

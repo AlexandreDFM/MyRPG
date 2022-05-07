@@ -224,6 +224,7 @@ typedef struct player_t {
     float animc;
     int shiny;
     sfSprite *test;
+    sfSprite *shadow;
     sfVector2f vel;
     sfVector2f sentpos;
     sfVector2f target;

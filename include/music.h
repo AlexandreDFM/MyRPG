@@ -24,6 +24,6 @@ typedef struct s_music_t {
     sfMusic *musics_board[COUNT];
 }s_music;
 
-s_music *init_musics();
+s_music *init_musics(void);
 
 #endif /* !MUSIC_H_ */
