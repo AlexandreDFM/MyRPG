@@ -8,7 +8,7 @@
 #include "rpg.h"
 
 #ifndef SOUNDS_H_
-#define SOUNDS_H_
+    #define SOUNDS_H_
 
 enum soundsidx {
     ATTACK_BASIC,

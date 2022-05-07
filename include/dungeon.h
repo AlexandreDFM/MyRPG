@@ -27,7 +27,7 @@ typedef struct map_info {
     int **dsts;
     sfIntRect **rooms;
     int nbr_rooms;
-    sfVector2f **pos;
+    sfVector2f starting_pos;
 } map_inf;
 
 typedef struct bsp_s {

@@ -214,7 +214,10 @@ map_inf *generate_map(int iter, sfImage *atlas)
     sfSprite_setTexture(sp, tex, sfFalse);
     sfImage_destroy(img);
     map_inf *inf = malloc(sizeof(map_inf));
-    inf->pos = get_random_position(rects, count, &map);
+    sfIntRect *r = rects[rand() % count];
+    sfVector2i spos = (sfVector2i) {r->left + rand() % (r->width - 1),
+        r->top + rand() % (r->height - 1)};
+    inf->starting_pos = local_to_global(spos.x, spos.y);
     inf->map = map; inf->sp = sp; inf->rooms = rects; inf->nbr_rooms = count;
     return inf;
 }
