@@ -62,7 +62,6 @@ wininf create_window_infos(int ac, char **av)
     get_settings_flags(ac, av, &inf);
     inf.mode = (sfVideoMode){1920, 1080, 32};
     inf.win = sfRenderWindow_create(inf.mode, WINDOW_NAME, sfClose, NULL);
-    // sfRenderWindow_setPosition(inf.win, (sfVector2i) {0, 0});
     inf.c_scene = INTRO;
     inf.interacting = 0;
     init_times(&inf);

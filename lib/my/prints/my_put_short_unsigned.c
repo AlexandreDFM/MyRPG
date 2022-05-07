@@ -12,7 +12,7 @@ int my_put_short_unsigned(short int number)
     int number2;
     if (number < 0) {
         int minus = '-';
-        my_putchar_disp((char*)(&minus), 0);
+        my_putchar_disp((char *)(&minus), 0);
         number = number * (-1);
     }
     if (number >= 10) {
@@ -20,10 +20,10 @@ int my_put_short_unsigned(short int number)
         number = number / 10;
         my_put_nbr(number);
         number2 += '0';
-        my_putchar_disp((char*)(&number2), 0);
+        my_putchar_disp((char *)(&number2), 0);
     } else {
         number += '0';
-        my_putchar_disp((char*)(&number), 0);
+        my_putchar_disp((char *)(&number), 0);
     }
     return (0);
 }

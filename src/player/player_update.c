@@ -14,7 +14,7 @@ void draw_player(wininf *inf, player *p)
         if (inf->c_menu == NONE)
             perform_free_movement(inf, p);
     } else {
-        // perform_dungeon_movement(inf, p);
+        perform_dungeon_movement(inf, p);
     }
     if (inf->net->is_multi && inf->net->other.p) {
         sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
@@ -78,7 +78,8 @@ void deal_dmg(wininf *inf, player *p)
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         enemy->st.health -= dmg;
-        add_log(inf, "Dealt: %d hp\n", dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
+        add_log(inf, "Dealt: %d hp\n", dmg < 0 ? dmg * -1 : dmg,
+        enemy->st.health);
     }
 }
 
@@ -87,7 +88,8 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfVector2f pos = sfSprite_getPosition(p->test);
     if (p->attacking) {
         p->time += inf->time.dt * 6.0f;
-        sfVector2f np = my_lerp(p->nextpos, p->attack_pos, my_pingpong(p->time, 1.0f));
+        sfVector2f np = my_lerp(p->nextpos, p->attack_pos,
+        my_pingpong(p->time, 1.0f));
         sfSprite_setPosition(p->test, np);
         if (p->time >= 1.0f && p->attacking == 2) {
             deal_dmg(inf, p);

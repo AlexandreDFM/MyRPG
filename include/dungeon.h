@@ -49,5 +49,23 @@ sfImage *generate_map_image(char **map, int line_len, sfImage *filename);
 sfVector2f **get_random_position(sfIntRect **rooms, int count, char ***map);
 int get_current_room(sfVector2f pos, map_inf *inf);
 sfVector2i get_closest_exit(int room, sfVector2f target, map_inf *inf);
+sfIntRect generate_room(sfIntRect *rect);
+sfIntRect **random_split(sfIntRect *r, int iter);
+bsp *split_container(sfIntRect *main, int iter);
+bsp *build_bsp(int size, int iter);
+int is_leaf(bsp *tree);
+char **empty_map(int size);
+map_inf *generate_map(int iter, sfImage *atlas);
+sfIntRect generate_room(sfIntRect *rect);
+sfIntRect **random_split(sfIntRect *r, int iter);
+void clean_map(char ***mapref);
+sfIntRect get_center(sfIntRect *rect);
+void free_list(sfIntRect **rects);
+void fill_lre(sfIntRect *l, sfIntRect *re, sfIntRect *r, sfIntRect** splits);
+int rdm_btw(int min, int max);
+void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count);
+void get_paths(char ***map, bsp *tree);
+void fill_map(sfIntRect rect, char ***map);
+void populate_map(char ***map, bsp *tree, sfIntRect ***rects, int *count);
 
 #endif /* !DEBUG_H_ */

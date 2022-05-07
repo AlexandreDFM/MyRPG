@@ -103,9 +103,9 @@ int receive_dungeon_info(char **data, int *important, components *all)
     *data += sizeof(map_inf);
     int id = *((int *)*data);
     *data += sizeof(int);
-    printf("Received map of id: %d\n", id);
+    my_printf(stdout, "Received map of id: %d\n", id);
     for (int i = 0; inf->map[i]; i++) {
-        printf("%s\n", inf->map[i]);
+        my_printf(stdout, "%s\n", inf->map[i]);
     }
     return sizeof(int) + sizeof(map_inf);
 }

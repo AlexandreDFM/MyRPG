@@ -49,7 +49,7 @@ void manage_host(char *arg, wininf *inf)
     inf->net->port = PORT;
     char ipstr[40];
     sfIpAddress_toString(ip, ipstr);
-    printf("Binding to %s\n", ipstr);
+    my_printf(stdout, "Binding to %s\n", ipstr);
     sfUdpSocket_setBlocking(inf->net->socket, sfFalse);
     sfUdpSocket_bind(inf->net->socket, inf->net->port, ip);
     sfSocketSelector_addUdpSocket(inf->net->selector, inf->net->socket);

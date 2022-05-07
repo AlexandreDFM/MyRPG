@@ -33,15 +33,12 @@ void move_up(wininf *inf, int off)
 
 void add_log(wininf *inf, char *msg, ...)
 {
-    va_list ap;
-    va_start(ap, msg);
+    va_list ap; va_start(ap, msg);
     list *nl = malloc(sizeof(list));
     char *result = print_log(inf, msg, ap);
     dline *line = load_line(result, FONT_SIZE, inf, malloc);
     logline *nlog = malloc(sizeof(logline));
-    nlog->line = line;
-    nlog->alive = 1;
-    nlog->time = 0.0f;
+    nlog->line = line; nlog->alive = 1; nlog->time = 0.0f;
     sfVector2f view = sfView_getCenter(inf->camera.view);
     nlog->target = (sfVector2f){-80.0f, 60.0f};
     nlog->oldtarget = (sfVector2f){-80.0f, 60.0f};
@@ -53,9 +50,7 @@ void add_log(wininf *inf, char *msg, ...)
         sfSprite_setPosition(line->sps[i], ta);
         sfSprite_setTextureRect(line->sps[i], rect);
     }
-    nl->data = nlog;
-    nl->next = inf->logs;
-    inf->logs = nl;
+    nl->data = nlog; nl->next = inf->logs; inf->logs = nl;
     int off = line->height + 1;
     move_up(inf, off);
 }

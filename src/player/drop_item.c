@@ -14,7 +14,7 @@ dline *update_ig_choice(char *str, sfSprite *data, wininf *inf)
     r.width = line->steps[line->max]; r.height = line->height;
     sfSprite_setTextureRect(line->sps[0], r);
     sfVector2f old_pos = sfSprite_getPosition(data);
-    // sfSprite_destroy(data);
+    sfSprite_destroy(data);
     sfSprite_setPosition(line->sps[0], old_pos);
     return line;
 }
@@ -22,10 +22,10 @@ dline *update_ig_choice(char *str, sfSprite *data, wininf *inf)
 void drop_item(wininf *inf)
 {
     free(inf->ig_slots[inf->slot_id]->steps);
-    inf->ig_slots[inf->slot_id] = update_ig_choice("Empty", ((choices *)inf->current_menu
-    ->selected->data)->choice, inf);
+    inf->ig_slots[inf->slot_id] = update_ig_choice("Empty",
+    ((choices *)inf->current_menu->selected->data)->choice, inf);
     list *tmp = inf->inventory_menu->head;
-    for(int i = 0; i < inf->slot_id; i++, tmp = tmp->next);
+    for (int i = 0; i < inf->slot_id; i++, tmp = tmp->next);
     sfSprite_destroy(((choices*)tmp->data)->choice);
     sfTexture_destroy(inf->inv->slots[inf->slot_id]->line->img);
     inf->inv->slots[inf->slot_id] = 0;
