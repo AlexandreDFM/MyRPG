@@ -7,6 +7,15 @@
 
 #include "rpg.h"
 
+void draw_shadow(wininf *inf, player *p)
+{
+    if (p->shadow == NULL) return;
+    sfVector2f pos = sfSprite_getPosition(p->test);
+    sfVector2f shadowpos = {pos.x - 8.0f, pos.y + 2.0f};
+    sfSprite_setPosition(p->shadow, shadowpos);
+    sfRenderWindow_drawSprite(inf->win, p->shadow, NULL);
+}
+
 void draw_player(wininf *inf, player *p)
 {
     if (!inf->dungeon.in) {
@@ -25,6 +34,7 @@ void draw_player(wininf *inf, player *p)
     } update_camera(inf);
     sfShader_setFloatUniform((sfShader*)inf->state.shader, "time",
     inf->time.time);
+    draw_shadow(inf, p);
     sfRenderWindow_drawSprite(inf->win, p->test, p->shiny ? &inf->state : 0);
 }
 

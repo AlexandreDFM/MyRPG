@@ -28,6 +28,9 @@ void change_anim(player *p, int n, float mirror)
     p->slist[3], p->slist[4]};
     p->limit = (sfVector2i) {p->offset * p->rlist[n][0],
     p->offset * p->rlist[n][1]};
+    int random = (rand() % (p->rlist[n][1] - p->rlist[n][0]));
+    int random1 = random <= 0 ? 0 : random;
+    p->r.left += p->offset * random1;
     sfSprite_setTextureRect(p->test, p->r);
     sfSprite_setScale(p->test, (sfVector2f) {mirror, 1.0f});
 }
@@ -39,6 +42,7 @@ void player_direction_management(wininf *inf, player *p)
         p->animc = 0.0f;
     }
     p->animc += inf->time.dt;
+    if (inf->c_menu != NONE) return;
     int d = direction_play(inf, p); if (d == -1) return;
     p->direction = d;
     if (d == PDOWNRIGHT) change_anim(p, 1, -1.0f);

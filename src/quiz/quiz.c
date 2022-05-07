@@ -36,7 +36,9 @@ void qcm(wininf *inf)
     sfRenderWindow_drawText(inf->win, inf->quiz->aq_quiz->question, NULL);
     sfRenderWindow_drawText(inf->win, inf->quiz->aq_quiz->answer1, NULL);
     sfRenderWindow_drawText(inf->win, inf->quiz->aq_quiz->answer2, NULL);
-    display_ele(inf->win, inf->quiz->cursor);
+    if (inf->time.intro_anim < 0.4f)
+            display_ele(inf->win, inf->quiz->cursor);
+    else if (inf->time.intro_anim > 0.9f) inf->time.intro_anim = 0;
 }
 
 void draw_quiz(wininf *inf, player *p)

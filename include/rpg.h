@@ -224,6 +224,7 @@ typedef struct player_t {
     float animc;
     int shiny;
     sfSprite *test;
+    sfSprite *shadow;
     sfVector2f vel;
     sfVector2f sentpos;
     sfVector2f target;
@@ -446,6 +447,7 @@ sfSoundBuffer *my_buffer_from_file(char *path);
 void draw_special_scene(wininf *infos, player *p);
 int is_valid_move(wininf *inf, sfVector2i np, int target);
 void add_to_inventory(wininf *inf, inventory *inv, int id);
+sfVector2f get_random_position(sfIntRect **rooms, int count);
 sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
 dline *create_lstruct(dl_creat dlcreator, sfIntRect r, int li);
 sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
