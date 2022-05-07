@@ -151,6 +151,7 @@ typedef struct atlases_t {
     char **collisions;
     char **poke_names;
     char **pokemons_anim;
+    char **items;
 } atlases;
 
 typedef struct collision_t {
@@ -474,6 +475,9 @@ int receive_okay(char **data, int *important, components *all);
 void perform_dungeon_movement(wininf *inf, player *p);
 void handle_attack(wininf *inf, player *p);
 void perform_free_movement(wininf *inf, player *p);
+void perform_attack(wininf *inf, player *p, sfVector2f pos);
+void deal_dmg(wininf *inf, player *p);
+void dummy(wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
