@@ -21,9 +21,6 @@ void check_back(wininf *inf, player *p)
 
 void update_keys(wininf *inf, player *p)
 {
-    if (inf->current_menu && (inf->inputs.axis.x == 0 ||
-    inf->inputs.axis.y == 0))
-        inf->current_menu->press = 0;
     if (inf->c_scene == QUIZ) handle_quiz(inf);
     if (inf->waiting_key == 1 && inf->event.type == sfEvtKeyPressed) {
         inf->waiting_key = 37; inf->tmp_key = inf->event.key.code;
@@ -36,8 +33,9 @@ void update_keys(wininf *inf, player *p)
 
 void update_events(wininf *inf, player *p)
 {
-    update_inputs(inf);
     while (sfRenderWindow_pollEvent(inf->win, &inf->event)) {
+        update_inputs(inf);
+        update_keys(inf, p);
         if (inf->event.type == sfEvtClosed)
             sfRenderWindow_close(inf->win);
         if (inf->event.type == sfEvtKeyPressed && inf->event.key.code ==
@@ -55,7 +53,7 @@ void update_events(wininf *inf, player *p)
 void draw_intros(wininf *inf, player *p)
 {
     float update = 0.0f;
-    float value = inf->event.type == sfEvtKeyPressed;
+    int value = inf->event.type == sfEvtKeyPressed;
     if (inf->c_scene == MAIN_MENU)
         update = (!sfJoystick_isConnected(0) || value) ? 0.35f : 0.45f;
     else {
@@ -65,6 +63,9 @@ void draw_intros(wininf *inf, player *p)
     if (inf->c_scene == INTRO) manage_intro(inf);
     if (inf->time.cursor > update) {
         inf->time.cursor = 0.0f;
-        update_keys(inf, p); check_back(inf, p);
+        if (inf->current_menu && (inf->inputs.axis.x == 0 ||
+            inf->inputs.axis.y == 0))
+            inf->current_menu->press = 0;
+        check_back(inf, p);
     }
 }

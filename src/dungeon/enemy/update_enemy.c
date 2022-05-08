@@ -32,7 +32,7 @@ void update_enemy(player *e, wininf *inf, player *p)
     sfIntRect rect = (sfIntRect){proom, eroom, elpos.x, elpos.y};
     int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
     int cond = mi->map[elpos.y][elpos.x] == 'E' && old != -1;
-    printf("%d %d => %d\n", e->sentpos.x, e->sentpos.y, old);
+    my_printf(stdout, "%d %d => %d\n", e->sentpos.x, e->sentpos.y, old);
     if (eroom == -1 || cond) {
         move_in_tunnel(e, inf, p); e->arrived = 0;
         return;
