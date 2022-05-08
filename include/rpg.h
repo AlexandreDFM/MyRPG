@@ -685,7 +685,7 @@ void treat_axis(wininf *inf);
 //Updates
 void update_inputs(wininf *inf);
 //Updates
-void update_camera(wininf *inf);
+void update_camera(wininf *inf, player *p);
 //Updates
 void update_time(wininf *infos);
 //Updates

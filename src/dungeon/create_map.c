@@ -33,8 +33,8 @@ map_inf *generate_map(int iter, sfImage *atlas)
     sfImage_destroy(img);
     map_inf *inf = malloc(sizeof(map_inf));
     inf->starting_pos = get_random_position(rects, count);
-    sfVector2i end = global_to_local(get_random_position(rects, count));
-    map[end.y][end.x] = 'F';
+    sfVector2i end = global_to_local(inf->starting_pos);
+    map[end.y][end.x - 1] = 'F';
     inf->map = map; inf->sp = sp; inf->rooms = rects; inf->nbr_rooms = count;
     return inf;
 }
