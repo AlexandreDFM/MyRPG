@@ -11,6 +11,7 @@ void update_transition(wininf *inf, player *p)
 {
     sfColor col = sfRectangleShape_getFillColor(inf->transi);
     float new_a = inf->ftransi;
+    printf("Descend: %d\n", col.a);
     if (inf->transition == 1) {
         int timecond = inf->dungeon.time > 7.0f || !inf->dungeon.ended;
         if (new_a > 0.99f && (timecond || !inf->dungeon.in)) {

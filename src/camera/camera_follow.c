@@ -10,7 +10,7 @@
 sfIntRect get_bounding_box_scene(wininf *inf)
 {
     int cs = inf->c_scene;
-    sfIntRect r = (sfIntRect){0, 0, 0, 0};
+    sfIntRect r = (sfIntRect){0, 0, 1000.0f, 1000.0f};
     if (cs == DUNGEON) {
         r.width = 1230.0f; r.height = 1230.0f;
     } if (cs == VILLAGE) {

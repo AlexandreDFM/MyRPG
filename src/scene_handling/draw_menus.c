@@ -80,9 +80,9 @@ void draw_gamemenu(wininf *infos, player *p)
     if (infos->c_scene == HOME) draw_home(infos);
     int cs = infos->c_scene;
     if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
-        cs == INTERIOR)
+        cs == INTERIOR) {
         draw_static_scene(infos, infos->scenes[infos->c_scene]);
-    else if (infos->c_scene == DUNGEON) {
+    } else if (infos->c_scene == DUNGEON) {
         draw_dungeon(infos, p);
         if (infos->d_items) {
             draw_dropped(infos);
@@ -95,6 +95,10 @@ void draw_gamemenu(wininf *infos, player *p)
     if (infos->transition) {
         update_transition(infos, p);
         sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
-    } draw_dialog(infos, p);
+    }
+    sfVector2f pos = sfSprite_getPosition(p->test);
+    update_transition(infos, p);
+    sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
+    draw_dialog(infos, p);
     draw_menuui(infos, p);
 }

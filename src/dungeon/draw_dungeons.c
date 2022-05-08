@@ -17,8 +17,9 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
         p->st.health -= dmg < 0 ? -dmg : dmg;
         if (p->st.health <= 0) {
             add_log(inf, "U ded\n");
-            inf->dungeon.ended = 1; inf->dungeon.in = 0;
-            inf->transition = 1;
+            inf->change_scene = 1;
+            inf->dungeon.in = 0;
+            inf->transition = 1; p->st.health = p->st.max_health;
             inf->next_pos = (sfVector2f){170.0f, 100.0f};
             inf->next_scene = INTERIOR;
         }

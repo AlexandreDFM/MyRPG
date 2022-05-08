@@ -25,7 +25,7 @@ void perform_free_movement(wininf *inf, player *p)
     }
 }
 
-void handle_attack(wininf *inf, player *p)
+int handle_attack(wininf *inf, player *p)
 {
     sfVector2f pos = sfSprite_getPosition(p->test);
     if (p->attacking) {
@@ -40,13 +40,13 @@ void handle_attack(wininf *inf, player *p)
         if (p->time >= 2.0f) {
             p->attacking = 0;
             p->time = 0.0f;
-        } return;
+        } return 1;
     }
     if (inf->inputs.attack && inf->inputs.can_attack) {
         perform_attack(inf, p, pos);
         inf->inputs.can_attack = 0;
-        return;
-    }
+        return 1;
+    } return 0;
 }
 
 int test_func(wininf *inf, player *p)
@@ -77,7 +77,7 @@ int next_floor(wininf *inf, player *p)
 void perform_dungeon_movement(wininf *inf, player *p)
 {
     if (!(p->can_move) || next_floor(inf, p)) return;
-    handle_attack(inf, p);
+    if (handle_attack(inf, p)) return;
     sfVector2f pos = sfSprite_getPosition(p->test);
     sfVector2f axis = inf->inputs.axis;
     sfVector2f input = (sfVector2f){pos.x + axis.x * 24.0f,
