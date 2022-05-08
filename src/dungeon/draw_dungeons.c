@@ -16,8 +16,8 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         p->st.health -= dmg < 0 ? -dmg : dmg;
         if (p->st.health <= 0) {
-            add_log(inf, "%s%s</c> %s\n", YELLOW,
-                "Pokemon", inf->lang ? "Je me sens pas bien..." :
+            add_log(inf, "%s\n", YELLOW,
+                inf->lang ? "Je me sens pas bien..." :
                 "I'm not felling well...");
             inf->change_scene = 1;
             inf->dungeon.in = 0;

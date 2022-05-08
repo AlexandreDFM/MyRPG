@@ -53,13 +53,6 @@ int is_valid_move(wininf *inf, sfVector2i np, int target)
     return encountered;
 }
 
-void perform_attack(wininf *inf, player *p, sfVector2f pos)
-{
-    p->attack_pos = (sfVector2f){pos.x + p->vel.x * 24.0f,
-        p->vel.y * 24.0f + pos.y};
-    p->attacking = 2;
-}
-
 void deal_dmg(wininf *inf, player *p)
 {
     for (list *t = inf->dungeon.enemies; t; t = t->next) {

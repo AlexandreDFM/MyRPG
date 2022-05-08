@@ -492,6 +492,7 @@ void treat_dungeon_sync(wininf *win, int id);
 void interact_pnj_quest(wininf *win, player *p);
 void first_fill_window(wininf *inf);
 void last_fill_window(wininf *inf);
+void check_death(wininf *inf, player *enemy, player *p);
 void mid_fill_window(wininf *inf);
 list *init_ig_choices(char **arr, wininf *inf, int off);
 void draw_ig_menu(wininf *inf, menuss *menu, player *p);
