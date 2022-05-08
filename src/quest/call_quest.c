@@ -26,7 +26,7 @@ void update_rects_dialog_quest(wininf *win)
     }
 }
 
-void int_manage_quest(wininf *win, pnj *closest,sfVector2f poubelle)
+void int_manage_quest(wininf *win, pnj *closest, sfVector2f poubelle)
 {
     if (!win->ui.dialog && win->quest == 0) {
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
