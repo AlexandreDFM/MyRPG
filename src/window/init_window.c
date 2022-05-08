@@ -83,7 +83,7 @@ wininf create_window_infos(int ac, char **av)
     inf.ftransi = 0.0f;
     inf.change_scene = 0;
     dungeon d; d.in = 0; d.enemies = 0; d.floor = 1; d.ended = 0;
-    d.next = 0; d.time = 0.0f; inf.dungeon = d;
+    d.next = 0; d.time = 0.0f; d.inf = 0; inf.dungeon = d;
     inf.transi = my_rectangle();
     sfRectangleShape_setSize(inf.transi, (sfVector2f){inf.mode.width,
         inf.mode.height});

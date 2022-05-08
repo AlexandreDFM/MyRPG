@@ -39,6 +39,9 @@ void generate_random_dungeon(wininf *win, player *p)
 {
     int id = rand() % 12;
     win->dungeon.id = id;
+    win->dungeon.in = 0; win->dungeon.enemies = 0; win->dungeon.floor = 1;
+    win->dungeon.ended = 0; win->dungeon.next = 0;
+    win->dungeon.time = 0.0f;
     create_dungeon(win, id);
     sfSprite_setPosition(p->test, win->dungeon.inf->starting_pos);
     p->nextpos = win->dungeon.inf->starting_pos;

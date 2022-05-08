@@ -7,6 +7,27 @@
 
 #include "rpg.h"
 
+void perform_attack_mob(wininf *inf, player *e, player *p)
+{
+    if (e->time > 1.0f && e->attacking == 2) {
+        e->attacking -= 1;
+        int A = e->st.attack, B = e->st.lvl, C = p->st.defense;
+        int D = ((A - C) / 8) + (B * 43690 / 65536);
+        int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
+        p->st.health -= dmg < 0 ? -dmg : dmg;
+        if (p->st.health <= 0) {
+            add_log(inf, "U ded\n");
+            inf->dungeon.ended = 1; inf->dungeon.in = 0;
+            inf->transition = 1;
+            inf->next_pos = (sfVector2f){170.0f, 100.0f};
+            inf->next_scene = INTERIOR;
+        }
+        else {
+            add_log(inf, "Aie j'ai pris %d hp\n", dmg < 0 ? dmg * -1 : dmg);
+        }
+    }
+}
+
 void update_attack_anims(wininf *inf, player *e, player *p)
 {
     sfVector2f ppos = sfSprite_getPosition(p->test);
@@ -16,17 +37,7 @@ void update_attack_anims(wininf *inf, player *e, player *p)
         my_pingpong(e->time, 1.0f));
     p->can_move = 0;
     sfSprite_setPosition(e->test, np);
-    if (e->time > 1.0f && e->attacking == 2) {
-        e->attacking -= 1;
-        int A = e->st.attack, B = e->st.lvl, C = p->st.defense;
-        int D = ((A - C) / 8) + (B * 43690 / 65536);
-        int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
-        p->st.health -= dmg;
-        if (p->st.health <= 0)
-            add_log(inf, "U ded\n");
-        else
-            add_log(inf, "Aie j'ai pris %d hp\n", dmg < 0 ? dmg * -1 : dmg);
-    }
+    perform_attack_mob(inf, e, p);
     if (e->time >= 2.0f) {
         e->attacking = 0;
         e->time = 0.0f;

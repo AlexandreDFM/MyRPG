@@ -67,9 +67,22 @@ void treat_dungeon_sync(wininf *win, int id)
     }
 }
 
+void free_map_inf(map_inf *inf)
+{
+    for (int i = 0; inf->map[i]; i++) free(inf->map[i]);
+    free(inf->map);
+    for (int i = 0; i <inf->nbr_rooms; i++)
+        free(inf->rooms[i]);
+    free(inf->rooms);
+    sfSprite_destroy(inf->sp);
+    sfSprite_destroy(inf->stairs);
+    free(inf);
+}
+
 void create_dungeon(wininf *win, int id)
 {
     sfImage *img = get_dungeon_image(win->atlases.atlas, id);
+    if (win->dungeon.inf) free_map_inf(win->dungeon.inf);
     win->dungeon.inf = generate_map(3, img, win->atlases.atlas);
     sfImage_destroy(img);
     treat_dungeon_sync(win, id); win->dungeon.in = 1;
