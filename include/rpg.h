@@ -882,6 +882,8 @@ list *init_backgrounds(char **arr, wininf *inf);
 //Menu initialization
 menuss *init_ig_menus(wininf *inf, int menu_id, int focus);
 //Menu initialization
+int fill_ig_menus(char **arr, menuss *menu, wininf *inf);
+//Menu initialization
 menuss *init_all_menus(wininf *inf, int menu_id, int focus);
 //Menu initialization
 sfSprite *set_cursor(wininf *inf, sfVector2f scale, sfVector2f pos);

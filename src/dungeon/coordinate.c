@@ -12,8 +12,9 @@ sfVector2f get_random_position(sfIntRect **rooms, int count)
 {
     int rdm = (rand() % (count - 1));
     sfIntRect *r = rooms[rdm];
-    sfVector2f start_posf  = (sfVector2f){r->left + rand() % (r->width - 1),
-        r->top + rand() % (r->height - 1)};
+    float x = r->left + rand() % (r->width - 1);
+    float y = r->top + rand() % (r->height - 1);
+    sfVector2f start_posf  = (sfVector2f){x, y};
     return local_to_global((int)start_posf.x, (int)start_posf.y);
 }
 

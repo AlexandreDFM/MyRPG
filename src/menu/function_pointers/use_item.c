@@ -23,11 +23,11 @@ void use_item(wininf *inf, player *p)
     char **arr = my_strtwa(inf->atlases.items[inf->inv->slots[inf->slot_id]
     ->id], ";\n");
     if (my_strcmp(arr[1], "REGEN") == 0) {
-        add_log(inf, "health: %d\n", p->st.health);
         p->st.health += my_atoi(arr[2]);
         p->st.health = p->st.health > p->st.max_health ?
         p->st.max_health : p->st.health;
-        add_log(inf, "health: %d\n", p->st.health);
+        add_log(inf, "Healed by: %d, now at %d\n", my_atoi(arr[2]),
+            p->st.health);
     }
     if (my_strcmp(arr[1], "ATK") == 0) p->st.atk_boost += my_atoi(arr[2]);
     if (my_strcmp(arr[1], "DEF") == 0) p->st.def_boost += my_atoi(arr[2]);

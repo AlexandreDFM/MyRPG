@@ -73,8 +73,9 @@ menuss *init_all_menus(wininf *inf, int menu_id, int focus)
 {
     menuss *menu = my_malloc(sizeof(menuss)); menu->id = menu_id; char **arr;
     if (inf->lang == ENGLISH)
-    arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
-    else arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");
+        arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
+    else
+        arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");
     menu->backgrounds = init_backgrounds(arr, inf);
     int offset = my_atoi(arr[4]) * 5 + 5;
     menu->choices = init_choices(arr, inf, offset);
@@ -88,7 +89,5 @@ menuss *init_all_menus(wininf *inf, int menu_id, int focus)
     } else {
         if (!arr[offset + 1]) return menu;
         offset += 2;
-    }
-    menu->focus = focus;
-    return init_all2(arr, offset, menu, inf);
+    } menu->focus = focus; return init_all2(arr, offset, menu, inf);
 }

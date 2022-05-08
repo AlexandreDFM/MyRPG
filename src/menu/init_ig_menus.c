@@ -89,14 +89,13 @@ menuss *init_ig_menus(wininf *inf, int menu_id, int focus)
     menuss *menu = my_malloc(sizeof(menuss)); char **arr;
     if (inf->lang == ENGLISH)
         arr = my_strtwa(inf->atlases.menus_en[menu_id], ";\n");
-    else arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");
-    menu->offset = my_atoi(arr[get_arr_len(arr) - 1]);
-    menu->backgrounds = init_backgrounds(arr, inf);
-    int offset = my_atoi(arr[4]) * 5 + 5;
-    menu->choices = init_ig_choices(arr, inf, offset);
-    menu->head = menu->choices; menu->selected = menu->choices;
-    if (menu->choices) offset += my_atoi(arr[offset]) * 7 + 1;
-    else offset += 1;
+    else
+        arr = my_strtwa(inf->atlases.menus_fr[menu_id], ";\n");
+    int offset = fill_ig_menus(arr, menu, inf);
+    if (menu->choices)
+        offset += my_atoi(arr[offset]) * 7 + 1;
+    else
+        offset += 1;
     menu->texts = fill_ig_texts(arr, inf, offset);
     if (menu->texts) {
         offset += my_atoi(arr[offset]) * 3 + 2;

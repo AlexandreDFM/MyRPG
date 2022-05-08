@@ -11,8 +11,10 @@
 void clock_dream(wininf *inf, dream_a *dream)
 {
     if (inf->time.ditto_anim > 0.05f) {
-        if (dream->b_dream[1].rect.top >= 192) dream->b_dream[1].rect.top = 0;
-        else dream->b_dream[1].rect.top += 1;
+        if (dream->b_dream[1].rect.top >= 192)
+            dream->b_dream[1].rect.top = 0;
+        else
+            dream->b_dream[1].rect.top += 1;
         if (dream->b_dream[2].rect.top <= 0) dream->b_dream[2].rect.top = 192;
         else dream->b_dream[2].rect.top -= 1;
         inf->time.ditto_anim = 0.0f;

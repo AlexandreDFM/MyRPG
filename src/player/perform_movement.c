@@ -74,27 +74,11 @@ int next_floor(wininf *inf, player *p)
     return 0;
 }
 
-void perform_dungeon_movement(wininf *inf, player *p)
+void perform_ifs_dungeon(wininf *inf, sfVector2i np, player *p, sfIntRect r)
 {
-    if (!(p->can_move) || next_floor(inf, p)) return;
-    if (handle_attack(inf, p)) return;
-    sfVector2f pos = sfSprite_getPosition(p->test);
-    sfVector2f axis = inf->inputs.axis;
-    sfVector2f input = (sfVector2f){pos.x + axis.x * 24.0f,
-        axis.y * 24.0f + pos.y};
-    sfVector2i np = global_to_local(input);
-    sfVector2i target = global_to_local(p->nextpos);
-    int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
-    int cond2 = is_same(pos, p->nextpos, 2.0f) && test_func(inf, p);
-    char c = inf->dungeon.inf->map[np.y][np.x];
-    int walkable = c == ' ' || c == 'E' || c == 'F';
-    sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
-    sfSprite_setPosition(p->test, newp);
-    int valid = !is_valid_move(inf, np, 0);
-    int poscond = (np.x != target.x || np.y != target.y) && valid;
     if (!is_same(inf->inputs.axis, (sfVector2f){0.0f, 0.0f}, 0.1f))
         p->vel = inf->inputs.axis;
-    if (walkable && !cond && cond2 && poscond && !inf->inputs.back) {
+    if (r.left && r.top && r.width && r.height && !inf->inputs.back) {
         p->nextpos = local_to_global(np.x, np.y);
         update_mobs(inf, p);
     }

@@ -23,3 +23,13 @@ list *init_backgrounds(char **arr, wininf *inf)
     }
     return backgrounds;
 }
+
+int fill_ig_menus(char **arr, menuss *menu, wininf *inf)
+{
+    menu->offset = my_atoi(arr[get_arr_len(arr) - 1]);
+    menu->backgrounds = init_backgrounds(arr, inf);
+    int offset = my_atoi(arr[4]) * 5 + 5;
+    menu->choices = init_ig_choices(arr, inf, offset);
+    menu->head = menu->choices; menu->selected = menu->choices;
+    return offset;
+}

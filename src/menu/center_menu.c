@@ -60,7 +60,9 @@ void center_menu(menuss *menu, wininf *inf, player *p)
     if (menu->choices) {
         center_choices(menu, arr, topl, offset);
         offset += my_atoi(arr[offset]) * 7 + 1;
-    } else offset += 1;
+    } else {
+        offset += 1;
+    }
     center_texts(menu, arr, topl, offset);
     my_free_array(arr);
 }
