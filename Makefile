@@ -31,6 +31,7 @@ SRC		= 	main.c												\
 			src/window/create_components.c						\
 			src/window/shader/create_state.c					\
 			src/scene_handling/scene_handler.c					\
+			src/scene_handling/draw_special_scenes.c			\
 			src/scene_handling/draw_home.c						\
 			src/scene_handling/draw_scene.c						\
 			src/scene_handling/draw_menus.c						\
