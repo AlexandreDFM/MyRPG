@@ -160,6 +160,7 @@ typedef struct atlases_t {
     char **poke_names;
     char **pokemons_anim;
     char **items;
+    char **item_sprites;
 } atlases;
 
 typedef struct collision_t {
@@ -305,6 +306,11 @@ typedef struct dungeon_t {
     list *enemies;
 } dungeon;
 
+typedef struct dropped {
+    int id;
+    sfSprite *data;
+} dropped;
+
 typedef struct wininf_t {
     sfEvent event;
     int pressed;
@@ -338,6 +344,7 @@ typedef struct wininf_t {
     FILE *log_file;
     struct ui_t ui;
     struct linked_list_t *logs;
+    struct linked_list_t *d_items;
     struct network_t *net;
     struct time_inft time;
     struct camera_t camera;
@@ -495,6 +502,7 @@ void perform_free_movement(wininf *inf, player *p);
 void perform_attack(wininf *inf, player *p, sfVector2f pos);
 void deal_dmg(wininf *inf, player *p);
 void dummy(wininf *inf, player *p);
+sfSprite *get_item_sprite(int id, wininf *inf, player *p);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

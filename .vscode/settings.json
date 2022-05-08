@@ -74,6 +74,7 @@
         "sstream": "c",
         "limits": "c",
         "dungeon.h": "c",
-        "items.h": "c"
+        "items.h": "c",
+        "string": "c"
     }
 }

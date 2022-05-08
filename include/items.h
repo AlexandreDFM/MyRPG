@@ -19,6 +19,7 @@ typedef enum items_e {
     PINK_BERRY,
     GREEN_BERRY,
     YELLOW_BERRY,
+    COINS,
     NB_ITEMS
 } items;
 

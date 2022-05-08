@@ -24,7 +24,7 @@ void update_attack_anims(wininf *inf, player *e, player *p)
         p->st.health -= dmg;
         if (p->st.health <= 0)
             add_log(inf, "U ded\n");
-        else 
+        else
             add_log(inf, "Aie j'ai pris %d hp\n", dmg < 0 ? dmg * -1 : dmg);
     }
     if (e->time >= 2.0f) {
@@ -49,7 +49,7 @@ void draw_dungeon(wininf *inf, player *p)
         }
         update_attack_anims(inf, enemy, p);
         player_direction_management(inf, enemy);
-        sfRenderWindow_drawSprite(inf->win, enemy->test, enemy->shiny ? 
+        sfRenderWindow_drawSprite(inf->win, enemy->test, enemy->shiny ?
         &(inf->state) : 0);
     }
 }

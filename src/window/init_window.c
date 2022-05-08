@@ -130,5 +130,6 @@ wininf create_window_infos(int ac, char **av)
     init_inventory(&inf, 10);
     inf.sounds = init_sounds(); inf.music = init_musics();
     set_backs_menu(&inf);
+    inf.d_items = 0;
     return inf;
 }
