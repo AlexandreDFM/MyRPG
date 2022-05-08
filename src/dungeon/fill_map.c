@@ -11,7 +11,7 @@ void fill_map(sfIntRect rect, char ***map)
 {
     for (int y = rect.top; y < rect.top + rect.height; y++) {
         for (int i = rect.left; i < rect.left + rect.width; i++) {
-        (*map)[y][i] = ' ';
+            (*map)[y][i] = ' ';
         }
     }
 }

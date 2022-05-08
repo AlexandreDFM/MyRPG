@@ -23,8 +23,7 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
             inf->transition = 1; p->st.health = p->st.max_health;
             inf->next_pos = (sfVector2f){170.0f, 100.0f};
             inf->next_scene = INTERIOR;
-        }
-        else {
+        } else {
             add_log(inf, "Aie j'ai pris %d hp\n", dmg < 0 ? dmg * -1 : dmg);
         }
     }

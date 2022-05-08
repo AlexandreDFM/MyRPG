@@ -80,7 +80,8 @@ void create_dungeon(wininf *win, int id)
     for (int o = 0; o < 10; o++) {
         sfVector2f rdmpos = get_random_position(i->rooms, i->nbr_rooms);
         if (distance(rdmpos, i->starting_pos) < 40) {
-            o--; continue;
+            o--;
+            continue;
         }
         create_enemy(win, &win->dungeon, global_to_local(rdmpos));
     }
