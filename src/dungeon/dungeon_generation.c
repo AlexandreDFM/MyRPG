@@ -59,7 +59,7 @@ void free_map_inf(map_inf *inf)
 {
     for (int i = 0; inf->map[i]; i++) free(inf->map[i]);
     free(inf->map);
-    for (int i = 0; i <inf->nbr_rooms; i++)
+    for (int i = 0; i < inf->nbr_rooms; i++)
         free(inf->rooms[i]);
     free(inf->rooms);
     sfSprite_destroy(inf->sp);

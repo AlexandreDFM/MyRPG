@@ -30,7 +30,6 @@ void scan_neighb(player *e, map_inf *mi, sfIntRect pi, sfFloatRect *myf)
         sfVector2f slp = (sfVector2f){lp.x, lp.y};
         float dst = distance((sfVector2f){pi.left, pi.top},
             slp);
-        int isold = lp.x == (int)e->sentpos.x && lp.y == (int)e->sentpos.y;
         int count = get_current_roomlo(lp, mi);
         int cond = count == -1 || mi->map[lp.y][lp.x] == 'E';
         if (myf->left > dst && c != '.' && cond) {
