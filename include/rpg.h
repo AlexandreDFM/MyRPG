@@ -509,7 +509,7 @@ int receive_clientsync(char **data, int *important, components *all);
 int receive_hostsync(char **data, int *important, components *all);
 int receive_okay(char **data, int *important, components *all);
 void perform_dungeon_movement(wininf *inf, player *p);
-void handle_attack(wininf *inf, player *p);
+int handle_attack(wininf *inf, player *p);
 void perform_free_movement(wininf *inf, player *p);
 void perform_attack(wininf *inf, player *p, sfVector2f pos);
 void deal_dmg(wininf *inf, player *p);
