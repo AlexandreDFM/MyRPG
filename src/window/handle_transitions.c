@@ -15,7 +15,7 @@ void update_transition(wininf *inf, player *p)
         int timecond = inf->dungeon.time > 7.0f || !inf->dungeon.ended;
         if (new_a > 0.99f && (timecond || !inf->dungeon.in)) {
             inf->transition = -1; inf->time.transi = 0.0f;
-            if (inf->change_scene != 1) return reroll_dungeon(inf, p);
+            if (inf->change_scene != 1) reroll_dungeon(inf, p); return;
             inf->transition = -1;
             inf->c_scene = inf->next_scene;
             sfSprite_setPosition(p->test, inf->next_pos);
