@@ -24,7 +24,7 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
             inf->next_pos = (sfVector2f){170.0f, 100.0f};
             inf->next_scene = INTERIOR;
         } else {
-            add_log(inf, "Aie j'ai pris %d hp\n", dmg < 0 ? dmg * -1 : dmg);
+            add_log(inf, "Ouch i took %d hp\n", dmg < 0 ? dmg * -1 : dmg);
         }
     }
 }

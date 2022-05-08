@@ -9,6 +9,7 @@
 #include "music.h"
 #include "inputs.h"
 #include "sounds.h"
+#include "rpg.h"
 
 void first_fill_window(wininf *inf)
 {
