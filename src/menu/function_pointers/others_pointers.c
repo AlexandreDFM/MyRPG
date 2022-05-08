@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void go_ig_options(wininf *inf)
+void go_ig_options(wininf *inf, player *p)
 {
     inf->current_menu->focus = 0;
     inf->current_menu = inf->ig_options_menu;
@@ -15,7 +15,7 @@ void go_ig_options(wininf *inf)
     inf->ig_options_menu->focus = 1;
 }
 
-void dummy(wininf *inf)
+void dummy(wininf *inf, player *p)
 {
     return;
 }

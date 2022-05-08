@@ -1,3 +1,10 @@
-Apple;HP;20;
-Chestnut;HP;20;
-Banana;HP;20;
+Apple;REGEN;20
+Chestnut;REGEN;20
+Banana;REGEN;20
+Medecine;REGEN;30
+Red Berry;HP;10
+Purple Berry;DEF;15
+Blue Berry;SPD;7
+Pink Berry;HP;7
+Green Berry;HP;20
+Yellow Berry;ATK;12

@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void play(wininf *inf)
+void play(wininf *inf, player *p)
 {
     inf->current_menu = inf->load_menu;
     inf->c_menu = LOAD_SAVE;
@@ -15,7 +15,7 @@ void play(wininf *inf)
     inf->load_menu->focus = 1;
 }
 
-void options(wininf *inf)
+void options(wininf *inf, player *p)
 {
     inf->current_menu->focus = 0;
     inf->current_menu = inf->options_menu;

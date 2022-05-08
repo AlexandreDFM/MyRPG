@@ -19,7 +19,7 @@ void move_cursor_up_down(menuss *menu, wininf *inf)
     }
 }
 
-void move_cursor(menuss *menu, wininf *inf)
+void move_cursor(menuss *menu, wininf *inf, player *p)
 {
     sfFloatRect r = menu->type ? sfSprite_getGlobalBounds(
     ((choices *)menu->selected->data)->choice) : sfText_getGlobalBounds(
@@ -35,7 +35,7 @@ void move_cursor(menuss *menu, wininf *inf)
     move_cursor_up_down(menu, inf);
     if (inf->inputs.interact && inf->inputs.can_interact == 0) {
         sfSound_play(inf->sounds->sounds_board[MENU_SELECT]);
-        ((choices *)menu->selected->data)->ptrs[0](inf);
+        ((choices *)menu->selected->data)->ptrs[0](inf, p);
         inf->inputs.can_interact = 1;
     }
     sfSprite_setPosition(menu->cursor, pos);

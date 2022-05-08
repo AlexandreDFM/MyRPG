@@ -16,8 +16,8 @@ void handle_scene(wininf *inf, player *p)
     } else if (inf->c_scene == MAIN_MENU) {
         sfRenderWindow_drawSprite(inf->win,
         inf->menuback[inf->back_menu], NULL);
-        draw_menu(inf, inf->main_menu);
-        draw_submenu(inf);
+        draw_menu(inf, inf->main_menu, p);
+        draw_submenu(inf, p);
     } else {
         draw_gamemenu(inf, p);
     }

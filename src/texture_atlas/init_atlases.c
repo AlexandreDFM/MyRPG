@@ -22,4 +22,5 @@ void create_atlases(wininf *inf)
     inf->atlases.menus_en = load_csv("csv/menus_en.csv");
     inf->atlases.menus_fr = load_csv("csv/menus_fr.csv");
     inf->atlases.poke_names = load_csv("csv/poke_names.csv");
+    inf->atlases.items = load_csv("csv/items.csv");
 }

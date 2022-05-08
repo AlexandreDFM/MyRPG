@@ -21,7 +21,7 @@ void change_volume(wininf *inf)
     }
 }
 
-void change_keybind(wininf *inf)
+void change_keybind(wininf *inf, player *p)
 {
     inf->options_menu->focus = 0;
     inf->waiting_key = 1;

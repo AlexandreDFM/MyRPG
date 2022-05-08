@@ -214,11 +214,18 @@ typedef struct inventory_t {
 
 typedef struct stats_t {
     int health;
+    int max_health;
+    int max_health_boost;
     int attack;
+    int atk_boost;
     int defense;
+    int def_boost;
     int spe_att;
+    int spe_atk_boost;
     int spe_def;
+    int spe_def_boost;
     int speed;
+    int speed_boost;
     int lvl;
 } stats;
 
@@ -366,7 +373,7 @@ typedef struct choices_t {
     void *choice;
     void *desc;
     int ptr;
-    void (*ptrs[2])(struct wininf_t *);
+    void (*ptrs[2])(struct wininf_t *, struct player_t *);
 } choices;
 
 typedef struct dline_parsing_t {
@@ -440,7 +447,6 @@ typedef struct inventory_slot {
 void anim_dialog(dline *d);
 void draw_logs(wininf *inf);
 void draw_ditto(wininf *inf);
-void draw_submenu(wininf *infos);
 void update_rects_dialog(wininf *win);
 void update_rects_dialog(wininf *win);
 sfMusic *my_music_from_file(char *path);
@@ -450,9 +456,8 @@ void draw_dialog(wininf *infos, player *p);
 void update_olds(sfIntRect r, wininf *inf);
 void init_inventory(wininf *inf, int size);
 void draw_inv(inventory *inv, wininf *inf);
-void draw_menuui(wininf *infos, player *p);
 void use_apple(wininf *inf, invslot **slot);
-void draw_ig_menu(wininf *inf, menuss *menu);
+void draw_ig_menu(wininf *inf, menuss *menu, player *p);
 void draw_gamemenu(wininf *infos, player *p);
 sfSoundBuffer *my_buffer_from_file(char *path);
 void draw_special_scene(wininf *infos, player *p);
@@ -465,7 +470,7 @@ sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i plpos);
 void set_backs_menu(wininf *inf);
 void draw_intros(wininf *inf, player *p);
-void handle_music(wininf *inf);
+void handle_music(wininf *inf, player *p);
 void update_key(wininf *inf);
 void update_pause(wininf *inf, player *p);
 void update_pause2(wininf *inf, player *p);
@@ -474,7 +479,7 @@ void parse_line(char *line, sfFont *f, dline_parsing *p);
 int treat_parsing_balise(char *l, dline_parsing *p, wininf *inf, int *steps);
 void treat_letter_dialog(wininf *inf, char *l, dline_parsing *p, sfImage *fo);
 dline_parsing *create_dline_help(sfFont *f, char *line);
-void draw_submenu(wininf *infos);
+void draw_submenu(wininf *infos, player *p);
 void draw_special_scene(wininf *infos, player *p);
 void draw_gamemenu(wininf *infos, player *p);
 void draw_menuui(wininf *infos, player *p);
@@ -487,7 +492,7 @@ void handle_attack(wininf *inf, player *p);
 void perform_free_movement(wininf *inf, player *p);
 void perform_attack(wininf *inf, player *p, sfVector2f pos);
 void deal_dmg(wininf *inf, player *p);
-void dummy(wininf *inf);
+void dummy(wininf *inf, player *p);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
@@ -609,15 +614,15 @@ void draw_player(wininf *inf, player *p);
 //Drawing functions
 void draw_dungeon(wininf *inf, player *p);
 //Drawing functions
-void draw_menu(wininf *inf, menuss *menu);
-//Drawing functions
-void move_cursor(menuss *menu, wininf *inf);
-//Drawing functions
 void handle_scene(wininf *infos, player *p);
 //Drawing functions
 void draw_static_scene(wininf *inf, scene s);
 //Drawing functions
 void update_transition(wininf *inf, player p);
+//Drawing functions
+void draw_menu(wininf *inf, menuss *menu, player *p);
+//Drawing functions
+void move_cursor(menuss *menu, wininf *inf, player *p);
 //Drawing functions
 void center_menu(menuss *menu, wininf *inf, player *p);
 //Drawing functions
@@ -736,35 +741,37 @@ void generate_random_dungeon(wininf *win, player *p);
 
 ////////////////////////////////////////////////////////////
 //Menu pointers
-void play(wininf *inf);
+void play(wininf *inf, player *p);
 //Menu pointers
-void a_log(wininf *inf);
+void a_log(wininf *inf, player *p);
 //Menu pointers
-void no_but(wininf *inf);
+void no_but(wininf *inf, player *p);
 //Menu pointers
-void go_inv(wininf *inf);
+void go_inv(wininf *inf, player *p);
 //Menu pointers
-void go_back(wininf *inf);
+void go_back(wininf *inf, player *p);
 //Menu pointers
-void options(wininf *inf);
+void options(wininf *inf, player *p);
 //Menu pointers
-void my_exit(wininf *inf);
+void my_exit(wininf *inf, player *p);
 //Menu pointers
-void yes_but(wininf *inf);
+void yes_but(wininf *inf, player *p);
 //Menu pointers
-void go_main(wininf *inf);
+void go_main(wininf *inf, player *p);
 //Menu pointers
-void go_pause(wininf *inf);
+void use_item(wininf *inf, player *p);
 //Menu pointers
-void drop_item(wininf *inf);
+void go_pause(wininf *inf, player *p);
 //Menu pointers
-void go_others(wininf *inf);
+void drop_item(wininf *inf, player *p);
 //Menu pointers
-void go_keybinds(wininf *inf);
+void go_others(wininf *inf, player *p);
 //Menu pointers
-void go_use_item(wininf *inf);
+void go_keybinds(wininf *inf, player *p);
 //Menu pointers
-void go_ig_options(wininf *inf);
+void go_use_item(wininf *inf, player *p);
+//Menu pointers
+void go_ig_options(wininf *inf, player *p);
 //Menu pointers
 void left_main_vol(wininf *inf);
 //Menu pointers
@@ -776,8 +783,6 @@ void right_main_vol(wininf *inf);
 //Menu pointers
 void right_main_fps(wininf *inf);
 //Menu pointers
-void change_keybind(wininf *inf);
-//Menu pointers
 void change_volume_ig(wininf *inf);
 //Menu pointers
 void init_load_pointers(wininf *inf);
@@ -785,6 +790,8 @@ void init_load_pointers(wininf *inf);
 void init_options_pointers(wininf *inf);
 //Menu pointers
 void init_main_menu_pointers(wininf *inf);
+//Menu pointers
+void change_keybind(wininf *inf, player *p);
 //Menu pointers
 void left_fps(wininf *inf, int current, sfVector2f old_pos, sfIntRect r);
 //Menu pointers

@@ -25,9 +25,7 @@ void test_static_anim(char *name, float *size, char **csv, int *i)
 
 void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
 {
-    int i = 0;
-    float size = 1.0f;
-    test_static_anim(name, &size, csv, &i);
+    int i = 0; float size = 1.0f; test_static_anim(name, &size, csv, &i);
     char **args = my_strtwa(csv[i], ";\n");
     entity *ne = my_malloc(sizeof(entity));
     ne->width = my_atoi(args[3]);
@@ -36,12 +34,14 @@ void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
     ne->max = my_atoi(args[5]);
     ne->sp = atlas_to_sprite(r, atlas);
     sfSprite_setScale(ne->sp, (sfVector2f){size, 1.0f});
-    ne->sign = 1;
-    ne->loop_type = my_atoi(args[6]);
+    if (my_strcmp(name, "LordDitto") == 0)
+        sfSprite_setScale(ne->sp, (sfVector2f){0.2, 0.2});
+    if (my_strcmp(name, "LittleDitto") == 0)
+        sfSprite_setScale(ne->sp, (sfVector2f){0.1, 0.1});
+    ne->sign = 1; ne->loop_type = my_atoi(args[6]);
     add_to_list(l, ne);
     r.width = ne->width;
     r.top = 0; r.left = ne->width * (rand() % (ne->max / ne->width));
-    ne->rect = r;
-    my_free_array(args);
+    ne->rect = r; my_free_array(args);
     sfSprite_setTextureRect(ne->sp, r);
 }

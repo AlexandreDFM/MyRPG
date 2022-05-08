@@ -15,13 +15,14 @@ enum musicsidx {
     VILLAGEMUSIC,
     MENUMUSIC,
     DITTOLANDMUSIC,
+    DITTOMUSIC,
     DUNGEON1MUSIC,
     DUNGEON2MUSIC,
     COUNTMUSICS
 };
 
 typedef struct s_music_t {
-    sfMusic *musics_board[COUNT];
+    sfMusic *musics_board[COUNTMUSICS];
 }s_music;
 
 s_music *init_musics(void);

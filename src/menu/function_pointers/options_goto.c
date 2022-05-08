@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void go_main(wininf *inf)
+void go_main(wininf *inf, player *p)
 {
     inf->current_menu->selected = inf->current_menu->head;
     inf->current_menu->focus = 0;
@@ -16,7 +16,7 @@ void go_main(wininf *inf)
     inf->c_menu = NONE;
 }
 
-void go_others(wininf *inf)
+void go_others(wininf *inf, player *p)
 {
     inf->current_menu->focus = 0;
     inf->current_menu->selected = inf->current_menu->head;
@@ -26,7 +26,7 @@ void go_others(wininf *inf)
     inf->others_menu->press = inf->pressed;
 }
 
-void go_pause(wininf *inf)
+void go_pause(wininf *inf, player *p)
 {
     inf->current_menu->focus = 0;
     inf->current_menu->selected = inf->current_menu->head;
@@ -36,7 +36,7 @@ void go_pause(wininf *inf)
     inf->pause_menu->press = inf->pressed;
 }
 
-void go_inv(wininf *inf)
+void go_inv(wininf *inf, player *p)
 {
     inf->current_menu->focus = 0;
     inf->current_menu->selected = inf->current_menu->head;
