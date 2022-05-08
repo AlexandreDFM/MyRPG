@@ -30,6 +30,6 @@ void create_dungeon(wininf *win, int id)
     } win->dungeon.in = 1;
     map_inf *i = win->dungeon.inf;
     sfVector2i pos = global_to_local(i->starting_pos);
-    pos.x += 1;
+    pos.x += 3;
     create_enemy(win, &win->dungeon, pos);
 }

@@ -24,13 +24,21 @@ int **get_player_rects(char **arr)
 
 void fill_stat(char **arr, player *p)
 {
-    p->st.health = my_atoi(arr[6]) + rand() % 31;
+    int health = my_atoi(arr[6]) + rand() % 31;
+    p->st.health = health;
+    p->st.max_health = health;
+    p->st.max_health_boost = 0;
     p->st.defense = my_atoi(arr[7]) + rand() % 31;
+    p->st.def_boost = 0;
     p->st.attack = my_atoi(arr[8]) + rand() % 31;
+    p->st.atk_boost = 0;
     p->st.spe_att = my_atoi(arr[9]) + rand() % 31;
+    p->st.spe_atk_boost = 0;
     p->st.spe_def = my_atoi(arr[10]) + rand() % 31;
+    p->st.spe_def_boost = 0;
     p->st.speed = my_atoi(arr[11]) + rand() % 31;
-    p->st.lvl = 100;
+    p->st.speed_boost = 0;
+    p->st.lvl = 5;
 }
 
 sfSprite *set_shadow(wininf inf, player *p, int id)
@@ -50,7 +58,7 @@ sfSprite *set_shadow(wininf inf, player *p, int id)
 player *init_player(wininf inf, int id)
 {
     player *p = my_malloc(sizeof(player));p->shiny = rand () % 10 == 1 ? 1 : 0;
-    p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
+    p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f; p->can_move = 1;
     p->target = (sfVector2f){0.0f, 0.0f}; p->attacking = 0;
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
     fill_stat(arr, p); int i = 0; for (; arr[i] != NULL; i++);

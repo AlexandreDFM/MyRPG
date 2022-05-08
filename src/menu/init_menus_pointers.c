@@ -9,7 +9,7 @@
 
 void init_main_menu_pointers(wininf *inf)
 {
-    void (*ptrs[])(wininf *inf) = {play, a_log, options, my_exit};
+    void (*ptrs[])(wininf *inf, player *p) = {play, a_log, options, my_exit};
     for (int i = 0; i < inf->main_menu->max_choice; i++) {
         ((choices *)inf->main_menu->choices->data)->ptrs[0] = ptrs[i];
         inf->main_menu->choices = inf->main_menu->choices->next;
@@ -24,7 +24,7 @@ void init_load_pointers(wininf *inf)
 
 void init_options_pointers(wininf *inf)
 {
-    void (*ptrs[])(wininf *inf) = {change_keybind, options};
+    void (*ptrs[])(wininf *inf, player *p) = {change_keybind, options};
     for (int i = 0; i < inf->change_keys_menu->max_choice - 1; i++) {
         ((choices *)inf->change_keys_menu->choices->data)->ptrs[0] = ptrs[0];
         inf->change_keys_menu->choices = inf->change_keys_menu->choices->next;
@@ -49,5 +49,7 @@ void init_options_pointers(wininf *inf)
 
     ((choices *)inf->ig_options_menu->choices->prev->data)->ptrs[0] = go_back;
 
+    ((choices *)inf->use_item_menu->choices->data)->ptrs[0] = use_item;
     ((choices *)inf->use_item_menu->choices->next->data)->ptrs[0] = drop_item;
+    ((choices *)inf->use_item_menu->choices->prev->data)->ptrs[0] = dummy;
 }

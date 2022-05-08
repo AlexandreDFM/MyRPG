@@ -18,7 +18,7 @@ dline *update_ig_choice(char *str, sfSprite *data, wininf *inf)
     return line;
 }
 
-void drop_item(wininf *inf)
+void drop_item(wininf *inf, player *p)
 {
     free(inf->ig_slots[inf->slot_id]->steps);
     inf->ig_slots[inf->slot_id] = update_ig_choice("Empty",
@@ -26,15 +26,9 @@ void drop_item(wininf *inf)
     list *tmp = inf->inventory_menu->head;
     int i = 0;
     for (; i < inf->slot_id; i++, tmp = tmp->next);
-    printf("%d\n", inf->inv->slots[i]->id);
     sfSprite_destroy(((choices*)tmp->data)->choice);
     sfTexture_destroy(inf->inv->slots[inf->slot_id]->line->img);
     inf->inv->slots[inf->slot_id] = 0;
     ((choices *)tmp->data)->choice = inf->ig_slots[inf->slot_id]->sps[0];
-    go_inv(inf);
+    go_inv(inf, p);
 }
-
-// void use_item(wininf *inf)
-// {
-//     inf->atlases.items[]
-// }

@@ -12,6 +12,13 @@ typedef enum items_e {
     APPLE,
     CHESTNUT,
     BANANA,
+    MEDECINE,
+    RED_BERRY,
+    PURPLE_BERRY,
+    BLUE_BERRY,
+    PINK_BERRY,
+    GREEN_BERRY,
+    YELLOW_BERRY,
     NB_ITEMS
 } items;
 
