@@ -22,7 +22,13 @@ s_music *init_musics(void)
         music->musics_board[j] = my_music_from_file(actualmusic[0]);
         sfMusic_setLoop(music->musics_board[j], sfTrue);
         if (actualmusic[1] != NULL &&
-        my_strcmp(actualmusic[1], "DITTOMUSIC") == 0) {
+        my_strcmp(actualmusic[1], "LORDDITTOMUSIC") == 0) {
+            sfMusic_setMinDistance(music->musics_board[j], 25.0f);
+            sfMusic_setPosition(music->musics_board[j],
+            (sfVector3f) {232.0f, 0.0f, 105.0f});
+        }
+        if (actualmusic[1] != NULL &&
+        my_strcmp(actualmusic[1], "LITTLEDITTOMUSIC") == 0) {
             sfMusic_setMinDistance(music->musics_board[j], 25.0f);
             sfMusic_setPosition(music->musics_board[j],
             (sfVector3f) {232.0f, 0.0f, 105.0f});

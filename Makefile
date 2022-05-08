@@ -164,6 +164,8 @@ SRC		= 	main.c												\
 			src/music/init_music.c								\
 			src/music/music_handler.c							\
 			src/music/change_volumes.c							\
+			src/quest/call_quest.c								\
+			src/quest/manage_quest.c							\
 
 
 
