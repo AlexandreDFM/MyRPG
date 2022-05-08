@@ -313,6 +313,7 @@ typedef struct dungeon_t {
 
 typedef struct dropped {
     int id;
+    int dropped;
     sfSprite *data;
 } dropped;
 
@@ -510,6 +511,8 @@ void perform_attack(wininf *inf, player *p, sfVector2f pos);
 void deal_dmg(wininf *inf, player *p);
 void dummy(wininf *inf, player *p);
 sfSprite *get_item_sprite(int id, wininf *inf, player *p);
+void retrieve_item(wininf *inf, player *p);
+invslot *get_item_from_id(int id, wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
@@ -542,6 +545,8 @@ void insert_into(sfUint8 **pxs, const sfUint8 *ptr, sfIntRect r, sfVector2i v);
 char *my_itoa(int num);
 //Utility functions
 int get_arr_len(char **arr);
+//Utility functions
+char *trim(char *s, char c);
 //Utility functions
 float my_atof(char *number);
 //Utility functions
