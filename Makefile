@@ -69,6 +69,7 @@ SRC		= 	main.c												\
 			src/player/init_player.c							\
 			src/player/retrieve_item.c							\
 			src/player/player_update.c							\
+			src/player/get_item_sprite.c						\
 			src/player/anims/move_rect.c						\
 			src/player/get_item_from_id.c						\
 			src/player/perform_movement.c						\
@@ -106,6 +107,7 @@ SRC		= 	main.c												\
 			src/menu/update_player_pokemon.c					\
 			src/menu/function_pointers/use_item.c				\
 			src/menu/function_pointers/main_menu.c				\
+			src/menu/function_pointers/equip_item.c				\
 			src/menu/function_pointers/options_goto.c			\
 			src/menu/function_pointers/others_pointers.c		\
 			src/menu/function_pointers/options_pointers.c		\

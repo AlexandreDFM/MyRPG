@@ -75,5 +75,6 @@ player *init_player(wininf inf, int id)
     sfSprite_setPosition(p->test, (sfVector2f){520.0f, 320.0f});
     sfVector2f np = {-1.0f, -1.0f}; p->nextpos = np; p->sentpos = np;
     sfSprite_setTextureRect(p->test, p->r); p->shadow = set_shadow(inf, p, id);
+    p->equip_slot = NULL; p->equipped = 0;
     my_free_array(arr); my_free_array(arr2); return p;
 }
