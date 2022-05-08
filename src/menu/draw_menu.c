@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void draw_ig_menu(wininf *inf, menuss *menu)
+void draw_ig_menu(wininf *inf, menuss *menu, player *p)
 {
     draw_list(menu->backgrounds, inf->win);
     if (menu->choices)  {
@@ -21,11 +21,11 @@ void draw_ig_menu(wininf *inf, menuss *menu)
             sfRenderWindow_drawSprite(inf->win, menu->cursor, NULL);
         else if (menu->blk > 0.9f) menu->blk = 0;
         menu->blk += inf->time.dt;
-        if (inf->waiting_key == 0) move_cursor(menu, inf);
+        if (inf->waiting_key == 0) move_cursor(menu, inf, p);
     }
 }
 
-void draw_menu(wininf *inf, menuss *menu)
+void draw_menu(wininf *inf, menuss *menu, player *p)
 {
     draw_list(menu->backgrounds, inf->win);
     if (menu->choices)  {
@@ -39,6 +39,6 @@ void draw_menu(wininf *inf, menuss *menu)
             sfRenderWindow_drawSprite(inf->win, menu->cursor, NULL);
         else if (menu->blk > 0.9f) menu->blk = 0;
         menu->blk += inf->time.dt;
-        if (inf->waiting_key == 0) move_cursor(menu, inf);
+        if (inf->waiting_key == 0) move_cursor(menu, inf, p);
     }
 }

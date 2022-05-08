@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void go_keybinds(wininf *inf)
+void go_keybinds(wininf *inf, player *p)
 {
     inf->prev_menu = inf->current_menu;
     inf->current_menu = inf->change_keys_menu;
@@ -18,26 +18,26 @@ void go_keybinds(wininf *inf)
     inf->prev_menu = inf->options_menu;
 }
 
-void my_exit(wininf *inf)
+void my_exit(wininf *inf, player *p)
 {
     sfRenderWindow_close(inf->win);
 }
 
-void a_log(wininf *inf)
+void a_log(wininf *inf, player *p)
 {
     inf->c_scene = HOME;
 }
 
-void go_back(wininf *inf)
+void go_back(wininf *inf, player *p)
 {
     if (inf->c_menu == OPTIONS || inf->c_menu == LOAD_SAVE)
-        go_main(inf);
+        go_main(inf, p);
     if (inf->c_menu == KEYBINDS_M)
-        options(inf);
+        options(inf, p);
     if (inf->c_menu == OTHERS || inf->c_menu == INVENTORY)
-        go_pause(inf);
+        go_pause(inf, p);
     if (inf->c_menu == IG_OPTIONS)
-        go_others(inf);
+        go_others(inf, p);
     if (inf->c_menu == USE_ITEM)
-        go_inv(inf);
+        go_inv(inf, p);
 }

@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void go_use_item(wininf *inf)
+void go_use_item(wininf *inf, player *p)
 {
     inf->slot_id = ((choices *)inf->current_menu->selected->data)->ptr;
     if (inf->inv->slots[inf->slot_id] == 0) return;
@@ -16,4 +16,29 @@ void go_use_item(wininf *inf)
     inf->c_menu = USE_ITEM;
     inf->current_menu->focus = 1;
     inf->use_item_menu->press = inf->pressed;
+}
+
+void use_item(wininf *inf, player *p)
+{
+    char **arr = my_strtwa(inf->atlases.items[inf->inv->slots[inf->slot_id]
+    ->id], ";\n");
+    if (my_strcmp(arr[1], "REGEN") == 0) {
+        add_log(inf, "health: %d\n", p->st.health);
+        p->st.health += my_atoi(arr[2]);
+        p->st.health = p->st.health > p->st.max_health ?
+        p->st.max_health : p->st.health;
+        add_log(inf, "health: %d\n", p->st.health);
+    }
+    if (my_strcmp(arr[1], "ATK") == 0) {
+        p->st.atk_boost += my_atoi(arr[2]);
+    }
+    if (my_strcmp(arr[1], "DEF") == 0) {
+        p->st.def_boost += my_atoi(arr[2]);
+    }
+    if (my_strcmp(arr[1], "HP") == 0) {
+        p->st.max_health_boost += my_atoi(arr[2]);
+    }
+    if (my_strcmp(arr[1], "SPD") == 0) {
+        p->st.speed_boost += my_atoi(arr[2]);
+    }
 }
