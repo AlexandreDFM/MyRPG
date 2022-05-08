@@ -26,7 +26,7 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
             inf->next_scene = INTERIOR;
         } else {
             add_log(inf, "%s %d hp\n", inf->lang ? "Aie j'ai pris" :
-            "Ouch I took",dmg < 0 ? dmg * -1 : dmg);
+            "Ouch I took", dmg < 0 ? dmg * -1 : dmg);
         }
     }
 }

@@ -50,6 +50,7 @@ int check_scene(wininf *inf)
     }
     return 1;
 }
+
 void drop_item(wininf *inf, player *p)
 {
     if (check_scene(inf) == -1) return;
