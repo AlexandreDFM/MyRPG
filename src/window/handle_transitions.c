@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void apply_transition(float new_a, int timecond, wininf *inf, player *p)
+int apply_transition(float new_a, int timecond, wininf *inf, player *p)
 {
     if (new_a > 0.99f && (timecond || !inf->dungeon.in)) {
         inf->transition = -1; inf->time.transi = 0.0f;
