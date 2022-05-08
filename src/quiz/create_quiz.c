@@ -17,7 +17,8 @@ quiz *create_quiz(wininf *inf)
     for (int i = 0; i < 15; i++) {
         qcm->nature[i] = i; qcm->addptsnature[i] = 0;
     }
-    qcm->questions = load_csv("./csv/quiz_questions.csv");
+    qcm->questions = inf->lang ? load_csv("csv/quiz_questions_fr.csv") :
+    load_csv("csv/quiz_questions_en.csv");
     for (; qcm->questions[qcm->nbquestions] != NULL; qcm->nbquestions++);
     qcm->actualquestion = 1; qcm->aquestions = NULL;
     qcm->quizbox = generate_textbox((sfVector2i) {385, 50},

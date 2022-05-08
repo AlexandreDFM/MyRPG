@@ -1,8 +1,9 @@
 Name;Pos X;Pos Y;Dialog;Scene
-Dracaufeu;287;215;dialogs/dracaufeu.dialog;Village
-Tortank;317;465;dialogs/tortank.dialog;Village
-Pipikachu;652;455;dialogs/pikachu.dialog;Village
-Roucarnage;652;237;dialogs/roucarnage.dialog;Village
-Rondoudou;772;242;dialogs/rondoudou.dialog;Village
-LordDitto;205;78;dialogs/ditto.dialog;Dittoland
-LittleDitto;20;35;dialogs/questditto.dialog;Village
+Dracaufeu;287;215;dialogs/dracaufeu_fr.dialog;Village
+Tortank;317;465;dialogs/tortank_fr.dialog;Village
+Pipikachu;652;455;dialogs/pikachu_fr.dialog;Village
+Roucarnage;652;237;dialogs/roucarnage_fr.dialog;Village
+Rondoudou;772;242;dialogs/rondoudou_fr.dialog;Village
+LordDitto;205;78;dialogs/ditto_fr.dialog;Dittoland
+LittleDitto;20;35;dialogs/questditto_fr.dialog;Village
+Panneau;280;160;dialogs/bekipan_fr.dialog;Post
