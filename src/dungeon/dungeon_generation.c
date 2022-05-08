@@ -28,5 +28,8 @@ void create_dungeon(wininf *win, int id)
         add_ord(APPEND, &id, sizeof(int), win->net->packet);
         win->dungeon.inf->sp = sp;
     } win->dungeon.in = 1;
-    // create_enemy(win, &win->dungeon, (sfVector2i){lpos.x + 2, lpos.y + 2});
+    map_inf *i = win->dungeon.inf;
+    sfVector2i pos = global_to_local(i->starting_pos);
+    pos.x += 3;
+    create_enemy(win, &win->dungeon, pos);
 }

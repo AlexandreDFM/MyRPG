@@ -21,13 +21,11 @@ char **empty_map(int size)
 
 map_inf *generate_map(int iter, sfImage *atlas)
 {
-    sfIntRect **rects = 0;
-    int count = 0;
+    sfIntRect **rects = 0; int count = 0;
     char **map = empty_map(MAP_SIZE + 2);
     bsp *tree = build_bsp(MAP_SIZE, iter);
     populate_map(&map, tree, &rects, &count);
     get_paths(&map, tree);
-    for (int i = 0; map[i] != NULL; i++) my_printf(stdout, "%s\n", map[i]);
     sfImage *img = generate_map_image(map, MAP_SIZE + 2, atlas);
     sfTexture *tex = my_texture_from_image(img, NULL);
     sfSprite *sp = sfSprite_create();

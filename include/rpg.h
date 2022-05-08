@@ -235,6 +235,7 @@ typedef struct player_t {
     float speed;
     int *slist;
     int **rlist;
+    int can_move;
     sfIntRect r;
     sfVector2i limit;
     float animc;
@@ -248,6 +249,7 @@ typedef struct player_t {
     sfVector2f nextpos;
     sfVector2f attack_pos;
     int attacking;
+    int arrived;
     struct stats_t st;
     struct inventory_t *inv;
 } player;
@@ -700,7 +702,7 @@ void update_mobs(wininf *inf, player *p);
 //Updates
 void update_events(wininf *inf, player *p);
 //Updates
-void update_enemy(player *enemy, wininf *inf, player *p);
+void update_enemy(player *e, wininf *inf, player *p);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
