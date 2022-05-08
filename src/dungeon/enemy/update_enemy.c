@@ -9,7 +9,6 @@
 
 int test_attack(player *e, wininf *inf, player *p)
 {
-    sfVector2f pos = sfSprite_getPosition(p->test);
     sfVector2f ppos = p->nextpos;
     sfVector2f epos = sfSprite_getPosition(e->test);
     float dst = distance(epos, p->nextpos);
@@ -27,7 +26,7 @@ void update_enemy(player *e, wininf *inf, player *p)
     map_inf *mi = inf->dungeon.inf; sfIntRect final;
     sfVector2f ppos = sfSprite_getPosition(p->test);
     sfVector2f epos = sfSprite_getPosition(e->test);
-    sfVector2i elpos = global_to_local(epos), plpos = global_to_local(ppos);
+    sfVector2i elpos = global_to_local(epos);
     int proom = get_current_room(ppos, mi), eroom = get_current_room(epos, mi);
     sfIntRect rect = (sfIntRect){proom, eroom, elpos.x, elpos.y};
     int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
