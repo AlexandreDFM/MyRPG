@@ -75,6 +75,18 @@ void update_equi_pos(wininf *inf, player *p)
     sfRenderWindow_drawSprite(inf->win, p->equip_slot, 0);
 }
 
+void draw_hud(wininf *inf, player *p)
+{
+    sfVector2f pos = sfView_getCenter(inf->camera.view);
+    sfVector2f size = sfView_getSize(inf->camera.view);
+    int off[4] = {0, 30, 60, 90};
+    for (int i = 0; i < 4; i++) {
+        sfSprite_setPosition(inf->ui.hud[i], (sfVector2f){
+        pos.x - size.x / 2 + 5 + off[i], pos.y - size.y / 2 + 2});
+        sfRenderWindow_drawSprite(inf->win, inf->ui.hud[i], 0);
+    }
+}
+
 void draw_gamemenu(wininf *infos, player *p)
 {
     if (infos->c_scene == HOME) draw_home(infos);
@@ -85,20 +97,18 @@ void draw_gamemenu(wininf *infos, player *p)
     } else if (infos->c_scene == DUNGEON) {
         draw_dungeon(infos, p);
         if (infos->d_items) {
-            draw_dropped(infos);
-            retrieve_item(infos, p);
+            draw_dropped(infos); retrieve_item(infos, p);
         }
     }
     player_direction_management(infos, p);
     draw_player(infos, p); manage_quest(infos);
     if (p->equip_slot) update_equi_pos(infos, p);
+    draw_hud(infos, p);
     if (infos->transition) {
         update_transition(infos, p);
         sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
     }
-    sfVector2f pos = sfSprite_getPosition(p->test);
     update_transition(infos, p);
     sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
-    draw_dialog(infos, p);
-    draw_menuui(infos, p);
+    draw_dialog(infos, p); draw_menuui(infos, p);
 }

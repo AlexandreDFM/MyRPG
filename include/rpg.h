@@ -282,6 +282,7 @@ typedef struct ui_t {
     float text_delay;
     sfSprite *background;
     struct linked_list_t *dialog;
+    sfSprite *hud[4];
 } ui;
 
 typedef struct other_t {
@@ -525,6 +526,7 @@ void retrieve_item(wininf *inf, player *p);
 invslot *get_item_from_id(int id, wininf *inf);
 sfSprite *get_item_sprite(int id, wininf *inf, player *p, int type);
 sfVector2f get_valid_drop(sfVector2i pos, wininf *inf);
+void init_hud(wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling

@@ -24,8 +24,10 @@ void init_load_pointers(wininf *inf)
 
 void continue_options_pointers(wininf *inf)
 {
+    ((choices *)inf->others_menu->choices->data)->ptrs[0] = go_ig_options;
     ((choices *)inf->others_menu->choices->next->data)->ptrs[0] = dummy;
-    ((choices *)inf->others_menu->choices->next->next->data)->ptrs[0] = dummy;
+    ((choices *)inf->others_menu->choices->next->next->data)->ptrs[0] =
+    my_exit;
     ((choices *)inf->others_menu->choices->prev->data)->ptrs[0] = go_back;
     ((choices *)inf->ig_options_menu->choices->prev->data)->ptrs[0] = go_back;
     ((choices *)inf->use_item_menu->choices->data)->ptrs[0] = use_item;
@@ -49,6 +51,5 @@ void init_options_pointers(wininf *inf)
     ((choices *)inf->pause_menu->choices->data)->ptrs[0] = go_inv;
     ((choices *)inf->pause_menu->choices->next->data)->ptrs[0] = dummy;
     ((choices *)inf->pause_menu->choices->next->next->data)->ptrs[0] = dummy;
-    ((choices *)inf->others_menu->choices->data)->ptrs[0] = go_ig_options;
     continue_options_pointers(inf);
 }
