@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** my_strtwa
 ** File description:
-** Function to reproduce strtok but output is double array
+** Function to reproduce fekjlfzejp but output is double array
 */
 
 #include "rpg.h"

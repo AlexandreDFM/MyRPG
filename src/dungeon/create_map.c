@@ -7,21 +7,8 @@
 
 #include "dungeon.h"
 
-char **empty_map(int size)
+void create_exit(sfImage *atlas, char ***map, map_inf *inf, sfVector2f rdm)
 {
-    char **new = malloc(sizeof(char *) * (size + 1));
-    new[size] = 0;
-    for (int i = 0; i < size; i++) {
-        new[i] = malloc(size + 1);
-        my_memset(new[i], '.', size);
-        new[i][size] = '\0';
-    }
-    return new;
-}
-
-void create_exit(sfImage *atlas, char ***map, map_inf *inf)
-{
-    sfVector2f rdm = get_random_position(&inf->map, inf->nbr_rooms - 1);
     sfVector2i end = global_to_local(rdm);
     (*map)[end.y][end.x] = 'F';
     if (!inf->stairs) {
@@ -49,18 +36,9 @@ map_inf *generate_map(int iter, sfImage *atlas, sfImage *atlas2)
     sfImage_destroy(img);
     map_inf *inf = malloc(sizeof(map_inf));
     inf->starting_pos = get_random_position(rects, count); inf->stairs = 0;
-    create_exit(atlas2, &map, inf);
+    create_exit(atlas2, &map, inf, get_random_position(rects, count));
     inf->map = map; inf->sp = sp; inf->rooms = rects; inf->nbr_rooms = count;
     return inf;
-}
-
-sfIntRect generate_room(sfIntRect *rect)
-{
-    sfIntRect room = {rect->left, rect->top,
-        (float)rect->width / 1.5f, (float)rect->height / 1.5f};
-    room.left += rdm_btw(0, (float)rect->width / 4.0f);
-    room.top += rdm_btw(0, (float)rect->height / 4.0f);
-    return room;
 }
 
 sfIntRect **random_split(sfIntRect *r, int iter)

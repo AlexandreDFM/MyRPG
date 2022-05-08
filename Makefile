@@ -112,6 +112,8 @@ SRC		= 	main.c												\
 			src/menu/function_pointers/options_pointers_volume.c\
 			src/dungeon/bsp.c									\
 			src/dungeon/fill_map.c								\
+			src/dungeon/dungeon_multi.c							\
+			src/dungeon/map_helper.c							\
 			src/dungeon/coordinate.c							\
 			src/dungeon/create_map.c							\
 			src/dungeon/rect_utils.c							\
@@ -122,6 +124,7 @@ SRC		= 	main.c												\
 			src/dungeon/dungeon_generation.c					\
 			src/dungeon/enemy/create_enemy.c					\
 			src/dungeon/enemy/update_enemy.c					\
+			src/dungeon/enemy/update_enemy_dungeon.c			\
 			src/dungeon/generate_dungeon_image.c				\
 			src/dungeon/enemy/scan_surroundings.c				\
 			src/dungeon/coordinates_transformation.c			\

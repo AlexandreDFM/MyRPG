@@ -37,7 +37,7 @@ void handle_music_ditto_proxi(wininf *inf, player *p)
         sfVector2f posp = sfSprite_getPosition(p->test);
         sfVector3f posl = {posp.x, 0.0f, posp.y};
         sfListener_setPosition(posl);
-        float volditto = 
+        float volditto =
         sfMusic_getVolume(inf->music->musics_board[LORDDITTOMUSIC]);
         volditto = volditto / 2.0f;
         sfListener_setGlobalVolume(volditto);

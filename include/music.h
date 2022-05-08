@@ -26,5 +26,6 @@ typedef struct s_music_t {
 }s_music;
 
 s_music *init_musics(void);
+void change_volume_sound_or_music(wininf *inf, int current);
 
 #endif /* !MUSIC_H_ */

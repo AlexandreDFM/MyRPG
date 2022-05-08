@@ -29,16 +29,9 @@ void use_item(wininf *inf, player *p)
         p->st.max_health : p->st.health;
         add_log(inf, "health: %d\n", p->st.health);
     }
-    if (my_strcmp(arr[1], "ATK") == 0) {
-        p->st.atk_boost += my_atoi(arr[2]);
-    }
-    if (my_strcmp(arr[1], "DEF") == 0) {
-        p->st.def_boost += my_atoi(arr[2]);
-    }
-    if (my_strcmp(arr[1], "HP") == 0) {
+    if (my_strcmp(arr[1], "ATK") == 0) p->st.atk_boost += my_atoi(arr[2]);
+    if (my_strcmp(arr[1], "DEF") == 0) p->st.def_boost += my_atoi(arr[2]);
+    if (my_strcmp(arr[1], "HP") == 0)
         p->st.max_health_boost += my_atoi(arr[2]);
-    }
-    if (my_strcmp(arr[1], "SPD") == 0) {
-        p->st.speed_boost += my_atoi(arr[2]);
-    }
+    if (my_strcmp(arr[1], "SPD") == 0) p->st.speed_boost += my_atoi(arr[2]);
 }

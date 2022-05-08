@@ -60,8 +60,7 @@ void draw_dropped(wininf *inf)
 
 void draw_gamemenu(wininf *infos, player *p)
 {
-    if (infos->c_scene == HOME)
-        draw_home(infos);
+    if (infos->c_scene == HOME) draw_home(infos);
     int cs = infos->c_scene;
     if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
         cs == INTERIOR)
@@ -71,14 +70,11 @@ void draw_gamemenu(wininf *infos, player *p)
         if (infos->d_items) draw_dropped(infos);
     }
     player_direction_management(infos, p);
-    draw_player(infos, p);
-    manage_quest(infos);
+    draw_player(infos, p); manage_quest(infos);
     sfVector2f pos = sfSprite_getPosition(p->test);
-    // printf("X : %f Y :%f \n", pos.x, pos.y);
     if (infos->transition) {
         update_transition(infos, p);
         sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
-    }
-    draw_dialog(infos, p);
+    } draw_dialog(infos, p);
     draw_menuui(infos, p);
 }

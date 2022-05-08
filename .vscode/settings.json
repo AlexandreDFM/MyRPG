@@ -75,6 +75,7 @@
         "limits": "c",
         "dungeon.h": "c",
         "items.h": "c",
-        "string": "c"
+        "string": "c",
+        "music.h": "c"
     }
 }

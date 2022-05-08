@@ -40,12 +40,12 @@ void scan_neighb(player *e, map_inf *mi, sfIntRect pi, sfFloatRect *myf)
     }
 }
 
-sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i plpos)
+sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i pl)
 {
     sfFloatRect myf = (sfFloatRect){1000, 1000, i.x, i.y};
     for (int y = i.y - 1; y < i.y + 2; y++) {
         myf.top = y;
-        scan_neighb(e, mi, (sfIntRect){plpos.x, plpos.y, i.x, i.y}, &myf);
+        scan_neighb(e, mi, (sfIntRect){pl.x, pl.y, i.x, i.y}, &myf);
     }
     return (sfVector2i){(int)myf.width, (int)myf.height};
 }

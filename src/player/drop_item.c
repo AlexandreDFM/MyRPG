@@ -59,12 +59,12 @@ char *trim(char *s, char c)
 {
     int writer = 0, reader = 0;
     while (s[reader]) {
-        if (s[reader]!=c) {
+        if (s[reader] != c) {
             s[writer++] = s[reader];
         }
         reader++;
     }
-    s[writer]=0;
+    s[writer] = 0;
     return s;
 }
 

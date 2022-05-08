@@ -38,12 +38,12 @@ void update_camera(wininf *inf, player *p)
     }
     sfIntRect r = get_bounding_box_scene(inf);
     sfVector2f view_size = sfView_getSize(inf->camera.view);
-    // pos.x = pos.x - view_size.x / 2.0f < r.left ? view_size.x / 2.0f : pos.x;
-    // pos.x = pos.x + view_size.x / 2.0f > r.width ?
-    //     r.width - view_size.x / 2.0f : pos.x;
-    // pos.y = pos.y - view_size.y / 2.0f < 0 ? view_size.y / 2.0f : pos.y;
-    // pos.y = pos.y + view_size.y / 2.0f > r.height ?
-    //     r.height - view_size.y / 2.0f : pos.y;
+    pos.x = pos.x - view_size.x / 2.0f < r.left ? view_size.x / 2.0f : pos.x;
+    pos.x = pos.x + view_size.x / 2.0f > r.width ?
+        r.width - view_size.x / 2.0f : pos.x;
+    pos.y = pos.y - view_size.y / 2.0f < 0 ? view_size.y / 2.0f : pos.y;
+    pos.y = pos.y + view_size.y / 2.0f > r.height ?
+        r.height - view_size.y / 2.0f : pos.y;
     sfView_setCenter(inf->camera.view, pos);
     sfRectangleShape_setPosition(inf->transi, pos);
     sfRenderWindow_setView(inf->win, inf->camera.view);

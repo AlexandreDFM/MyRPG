@@ -32,8 +32,6 @@ s_music *init_musics(void)
             sfMusic_setMinDistance(music->musics_board[j], 25.0f);
             sfMusic_setPosition(music->musics_board[j],
             (sfVector3f) {232.0f, 0.0f, 105.0f});
-        }
-        my_free_array(actualmusic);
-    }
-    return music;
+        } my_free_array(actualmusic);
+    } return music;
 }

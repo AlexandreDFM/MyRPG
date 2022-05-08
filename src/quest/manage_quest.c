@@ -11,7 +11,6 @@
 void manage_quest(wininf *inf)
 {
     if (inf->quest == 1) {
-        printf("Hello, I'm Antoine.\n");
         sfSound_play(inf->sounds->sounds_board[BIG_REWARD]);
         inf->quest = 3;
     }

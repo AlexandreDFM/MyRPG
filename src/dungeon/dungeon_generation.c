@@ -55,18 +55,6 @@ void reroll_dungeon(wininf *win, player *p)
     sfView_setCenter(win->camera.view, p->nextpos);
 }
 
-void treat_dungeon_sync(wininf *win, int id)
-{
-    if (win->net->is_multi) {
-        sfSprite *sp = win->dungeon.inf->sp;
-        win->dungeon.inf->sp = 0;
-        add_ord(DUNGEONSYNC, win->dungeon.inf, sizeof(win->dungeon.inf),
-            win->net->packet);
-        add_ord(APPEND, &id, sizeof(int), win->net->packet);
-        win->dungeon.inf->sp = sp;
-    }
-}
-
 void free_map_inf(map_inf *inf)
 {
     for (int i = 0; inf->map[i]; i++) free(inf->map[i]);
