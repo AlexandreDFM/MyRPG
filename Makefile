@@ -25,7 +25,9 @@ LIB		=  -L ./lib/my/ -lmy
 SRC		= 	main.c												\
 			src/window/log_system.c								\
 			src/window/init_window.c							\
+			src/window/fill_window.c							\
 			src/window/time_handling.c							\
+			src/window/update_logs.c							\
 			src/window/create_components.c						\
 			src/window/shader/create_state.c					\
 			src/scene_handling/scene_handler.c					\

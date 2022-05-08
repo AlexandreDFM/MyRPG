@@ -76,6 +76,7 @@
         "dungeon.h": "c",
         "items.h": "c",
         "string": "c",
-        "music.h": "c"
+        "music.h": "c",
+        "cmath": "c"
     }
 }

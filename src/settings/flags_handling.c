@@ -11,7 +11,7 @@
 
 int get_settings_flags(int ac, char **av, wininf *win)
 {
-    static struct option lo[] = {{"collisions", no_argument, NULL, 'C'},
+    static struct option lo[] = {{"collisions", no_argument, NULL, 'c'},
                             {"pokemon", required_argument, NULL, 'p'},
                             {"house", required_argument, NULL, 'H'},
                             {"client", required_argument, NULL, 1001},
@@ -19,7 +19,7 @@ int get_settings_flags(int ac, char **av, wininf *win)
                             {"language", required_argument, NULL, 'l'},
                             {"framerate", required_argument, NULL, 'f'}};
     int opt = 0;
-    while ((opt = getopt_long(ac, av, "H:C:p:l:f:", lo, NULL)) != -1) {
+    while ((opt = getopt_long(ac, av, "H:c:p:l:f:", lo, NULL)) != -1) {
         change_settings(opt, optarg, win);
     }
     return 0;
@@ -38,7 +38,7 @@ void change_settings(int opt, char *arg, wininf *inf)
     }
     if (opt == 'H')
         inf->settings->house = my_atoi(arg);
-    if (opt == 'C')
+    if (opt == 'c')
         inf->settings->show_collision = 1;
     if (opt == 1001) manage_client(arg, inf);
     if (opt == 1000) manage_host(arg, inf);

@@ -469,6 +469,8 @@ typedef struct inventory_slot {
 void anim_dialog(dline *d);
 void draw_logs(wininf *inf);
 void draw_ditto(wininf *inf);
+void init_key_list(wininf *inf);
+void apply_transparency(logline *ll);
 void update_rects_dialog(wininf *win);
 void update_rects_dialog(wininf *win);
 sfMusic *my_music_from_file(char *path);
