@@ -81,23 +81,21 @@ void handle_bisextile(date_t *t)
 
 char *unix_to_date(long int ti)
 {
-    ti += 7200;
-    date_t t; get_dateinfo(ti, &t);
+    ti += 7200; date_t t; get_dateinfo(ti, &t);
     char *ans = my_malloc(sizeof(char) * 20); my_memset(ans, '\0', 20);
     while (t.daystillnow >= 365) {
         if (t.curryear % 400 == 0 ||
         (t.curryear % 4 == 0 && t.curryear % 100 != 0))
             t.daystillnow -= 366;
-        else t.daystillnow -= 365;
+        else
+            t.daystillnow -= 365;
         t.curryear += 1;
     } t.extradays = t.daystillnow + 1;
     if (t.curryear % 400 == 0 || (t.curryear % 4 == 0 &&
     t.curryear % 100 != 0))
         t.flag = 1;
     handle_bisextile(&t);
-    t.hours = t.extratime / 3600;
-    t.minutes = (t.extratime % 3600) / 60;
-    t.secondss = (t.extratime % 3600) % 60;
-    fill_timeinf(&ans, t);
+    t.hours = t.extratime / 3600; t.minutes = (t.extratime % 3600) / 60;
+    t.secondss = (t.extratime % 3600) % 60; fill_timeinf(&ans, t);
     return ans;
 }
