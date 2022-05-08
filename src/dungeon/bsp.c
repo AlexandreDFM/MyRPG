@@ -12,7 +12,7 @@ bsp *split_container(sfIntRect *main, int iter)
     bsp *root = malloc(sizeof(bsp));
     root->rect = main, root->left = 0, root->right = 0;
     if (iter != 0) {
-        sfIntRect **lr = random_split(main, 1000);
+        sfIntRect **lr = random_split(main, 10);
         if (lr) {
             root->left = split_container(lr[0], iter - 1);
             root->right = split_container(lr[1], iter - 1);

@@ -25,13 +25,13 @@ int paths2(int min, int max, char ***map, sfVector2i center_a)
 {
     int out = 1;
     for (int i = min; i < max; i++) {
-        if ((*map)[center_a.y - 1][i] == '.') {
-            (*map)[center_a.y - 1][i - 1] = out ? 'E' :
-            (*map)[center_a.y - 1][i - 1];
-            (*map)[center_a.y - 1][i] = 'T';
+        if ((*map)[center_a.y][i] == '.') {
+            (*map)[center_a.y][i - 1] = out ? 'E' :
+            (*map)[center_a.y][i - 1];
+            (*map)[center_a.y][i] = 'T';
             out = 0;
         } else if (!out) {
-            (*map)[center_a.y - 1][i] = 'E';
+            (*map)[center_a.y][i] = 'E';
             out = 1;
         }
     }
@@ -44,13 +44,13 @@ int paths3(int out, char ***map, sfVector2i center_a, sfVector2i center_b)
     int max = min == center_a.y ? center_b.y : center_a.y;
     for (int i = min; i < max; i++) {
         if ((*map)[i][center_a.x] == '.') {
-                (*map)[i - 1][center_a.x - 1] = out ? 'E' :
-                (*map)[i - 1][center_a.x - 1];
-            (*map)[i][center_a.x - 1] = 'T';
+                (*map)[i - 1][center_a.x] = out ? 'E' :
+                (*map)[i - 1][center_a.x];
+            (*map)[i][center_a.x] = 'T';
             out = 0;
-        } else if ((*map)[i][center_a.x - 1] == ' ') {
-                (*map)[i - 1][center_a.x - 1] = !out ? 'E' :
-                (*map)[i - 1][center_a.x - 1];
+        } else if ((*map)[i][center_a.x] == ' ') {
+                (*map)[i][center_a.x] = !out ? 'E' :
+                (*map)[i][center_a.x];
             out = 1;
         }
     }

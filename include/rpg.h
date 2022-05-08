@@ -248,6 +248,7 @@ typedef struct player_t {
     sfVector2f target;
     float time;
     sfVector2f nextpos;
+    sfVector2f prevpos;
     sfVector2f attack_pos;
     int attacking;
     int arrived;
@@ -303,6 +304,10 @@ typedef struct dungeon_t {
     struct map_info *inf;
     int id;
     int in;
+    int next;
+    int floor;
+    float time;
+    int ended;
     list *enemies;
 } dungeon;
 
@@ -323,6 +328,7 @@ typedef struct wininf_t {
     int *volumes;
     int pause;
     int c_fps;
+    int quest;
     sfClock *play_time;
     sfSprite *logs_textbox;
     const char **fps;
@@ -374,7 +380,7 @@ typedef struct wininf_t {
     int back_menu;
     sfSprite *menuback[3];
     sfRectangleShape *transi;
-    void (*triggers[9])(struct wininf_t *win, struct player_t *p);
+    void (*triggers[10])(struct wininf_t *win, struct player_t *p);
 } wininf;
 
 typedef struct choices_t {
@@ -466,6 +472,7 @@ void init_inventory(wininf *inf, int size);
 void draw_inv(inventory *inv, wininf *inf);
 void use_apple(wininf *inf, invslot **slot);
 void reroll_dungeon(wininf *inf, player *p);
+void interact_pnj_quest(wininf *win, player *p);
 void draw_ig_menu(wininf *inf, menuss *menu, player *p);
 void draw_gamemenu(wininf *infos, player *p);
 sfSoundBuffer *my_buffer_from_file(char *path);
