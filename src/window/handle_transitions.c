@@ -15,8 +15,9 @@ void apply_transition(float new_a, int timecond, wininf *inf, player *p)
         inf->transition = -1;
         inf->c_scene = inf->next_scene;
         sfSprite_setPosition(p->test, inf->next_pos);
-        return;
+        return 1;
     }
+    return 0;
 }
 
 void update_transition(wininf *inf, player *p)
@@ -25,7 +26,7 @@ void update_transition(wininf *inf, player *p)
     float new_a = inf->ftransi;
     if (inf->transition == 1) {
         int timecond = inf->dungeon.time > 7.0f || !inf->dungeon.ended;
-        apply_transition(new_a, timecond, inf, p);
+        if (apply_transition(new_a, timecond, inf, p)) return;
         new_a += inf->time.dt * 3.0f;
     } else {
         if (new_a <= inf->time.dt) {
