@@ -22,8 +22,7 @@ sfSoundBuffer *my_buffer_from_file(char *path)
         my_printf(stdout, "Freed %d buffer%s automatically\n", nbfree,
         (nbfree > 1 ? "s" : ""));
         return NULL;
-    }
-    void *data = sfSoundBuffer_createFromFile(path);
+    } void *data = sfSoundBuffer_createFromFile(path);
     if (data) {
         list *nl = malloc(sizeof(list));
         nl->data = data; nl->next = garbage2;
@@ -67,8 +66,7 @@ sfImage *my_image_from_file(char *path)
         my_printf(stdout, "Freed %d image%s automatically\n", nbfree,
         (nbfree > 1 ? "s" : ""));
         return NULL;
-    }
-    void *data = sfImage_createFromFile(path);
+    } void *data = sfImage_createFromFile(path);
     if (data) {
         list *nl = malloc(sizeof(list));
         nl->data = data; nl->next = garbage2;
@@ -91,8 +89,7 @@ sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r)
         my_printf(stdout, "Freed %d texture%s automatically\n", nbfree,
         (nbfree > 1 ? "s" : ""));
         return NULL;
-    }
-    void *data = sfTexture_createFromImage(image, r);
+    } void *data = sfTexture_createFromImage(image, r);
     if (data) {
         list *nl = malloc(sizeof(list));
         nl->data = data; nl->next = garbage2;
@@ -113,8 +110,7 @@ void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *))
             garbage2 = ne;
             nbfree++;
         } my_printf(stdout, "Freed %d items from CPP automatically\n", nbfree,
-        (nbfree > 1 ? "s" : ""));
-        return NULL;
+        (nbfree > 1 ? "s" : "")); return NULL;
     } cpp_garbage *garbage = malloc(sizeof(cpp_garbage));
     if (garbage) {
         list *nl = malloc(sizeof(list));

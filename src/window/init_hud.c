@@ -23,4 +23,11 @@ void init_hud(wininf *inf)
     tex = sfTexture_createFromImage(inf->atlases.atlas,
     &((sfIntRect){820, 1166, 30, 6}));
     sfSprite_setTexture(inf->ui.hud[3], tex, sfTrue);
+    for (int i = 0; i < 2; i++) {
+        inf->ui.hp[i] = sfText_create();
+        sfText_setCharacterSize(inf->ui.hp[i], 50);
+        sfText_setScale(inf->ui.hp[i], (sfVector2f){0.25, 0.25});
+        sfText_setFont(inf->ui.hp[i], inf->ui.font);
+        sfText_setString(inf->ui.hp[i], "HP");
+    }
 }

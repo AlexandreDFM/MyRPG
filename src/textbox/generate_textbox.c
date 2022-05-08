@@ -72,8 +72,7 @@ void leftright_border(sfVector2i size, sfImage *new)
         for (int i = 6; i < size.y - 6; i++) {
             sfImage_setPixel(new, x, i, sfColor_fromRGB(96, 128, 248));
         }
-    }
-    fill_left(new, size);
+    } fill_left(new, size);
 }
 
 void add_corner(sfImage *img, sfImage *atlas, sfVector2i pos, sfVector2i glo)

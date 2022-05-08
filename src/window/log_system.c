@@ -49,8 +49,7 @@ void add_log(wininf *inf, char *msg, ...)
         sfSprite_setColor(line->sps[i], sfColor_fromRGBA(255, 255, 255, 0));
         sfSprite_setPosition(line->sps[i], ta);
         sfSprite_setTextureRect(line->sps[i], rect);
-    }
-    nl->data = nlog; nl->next = inf->logs; inf->logs = nl;
+    } nl->data = nlog; nl->next = inf->logs; inf->logs = nl;
     int off = line->height + 1;
     move_up(inf, off);
 }
@@ -67,41 +66,5 @@ void apply_transparency(logline *ll)
     }
     for (int i = 0; i < dl->nblines; i++) {
         sfSprite_setColor(dl->sps[i], col);
-    }
-}
-
-void draw_logs(wininf *inf)
-{
-    sfVector2f view = sfView_getCenter(inf->camera.view);
-    if (!inf->logs) return;
-    sfSprite_setPosition(inf->logs_textbox, view);
-    sfColor col = sfSprite_getColor(inf->logs_textbox);
-    if (((logline*)inf->logs->data)->alive != -1) {
-        col.a = my_lerpf(col.a, 255.0f, inf->time.dt * 4.0f);
-    } else {
-        col.a = my_lerpf(col.a, 0.0f, inf->time.dt * 4.0f);
-    }
-    sfSprite_setColor(inf->logs_textbox, col);
-    sfRenderWindow_drawSprite(inf->win, inf->logs_textbox, NULL);
-    for (list *t = inf->logs; t; t = t->next) {
-        logline *log = t->data;
-        dline *line = log->line;
-        apply_transparency(log);
-        sfVector2f np = my_lerp(log->oldtarget,
-            log->target, inf->time.dt * 3.0f);
-        sfVector2f offseted = np;
-        offseted.x += view.x; offseted.y += view.y;
-        for (int i = 0; i < line->nblines; i++) {
-            if (log->alive != -1) {
-                sfSprite_setPosition(line->sps[i], offseted);
-                sfRenderWindow_drawSprite(inf->win, line->sps[i], 0);
-            }
-        }
-        if (log->time > 3.0f && log->alive == 1) {
-            log->time = 0.0f;
-            log->alive = 0;
-        }
-        log->time += inf->time.dt;
-        log->oldtarget = np;
     }
 }

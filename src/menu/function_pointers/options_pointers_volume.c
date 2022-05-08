@@ -7,6 +7,7 @@
 
 #include "rpg.h"
 #include "sounds.h"
+#include "music.h"
 
 void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
 {

@@ -26,7 +26,8 @@ int continue_exeption(int x)
     return 4;
 }
 
-int search(int array[], int x, int started) {
+int search(int array[], int x, int started)
+{
     for (int ind = 0; ind < 47; ind++) {
         if (array[ind] == x) {
             return ind;

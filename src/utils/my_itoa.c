@@ -36,6 +36,5 @@ char *my_itoa(int num)
     }
     if (is_negative) str[i++] = '-';
     str[i] = '\0';
-    my_revstr(str);
-    return str;
+    my_revstr(str); return str;
 }

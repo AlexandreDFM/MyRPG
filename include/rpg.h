@@ -283,6 +283,7 @@ typedef struct ui_t {
     sfSprite *background;
     struct linked_list_t *dialog;
     sfSprite *hud[4];
+    sfText *hp[2];
 } ui;
 
 typedef struct other_t {
@@ -470,6 +471,8 @@ typedef struct inventory_slot {
 void anim_dialog(dline *d);
 void draw_logs(wininf *inf);
 void draw_ditto(wininf *inf);
+void init_key_list(wininf *inf);
+void apply_transparency(logline *ll);
 void update_rects_dialog(wininf *win);
 void update_rects_dialog(wininf *win);
 sfMusic *my_music_from_file(char *path);
@@ -527,6 +530,7 @@ invslot *get_item_from_id(int id, wininf *inf);
 sfSprite *get_item_sprite(int id, wininf *inf, player *p, int type);
 sfVector2f get_valid_drop(sfVector2i pos, wininf *inf);
 void init_hud(wininf *inf);
+void draw_hud(wininf *inf, player *p);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
