@@ -23,5 +23,6 @@ dream_a *create_dream(wininf *inf)
     dream->music =
     my_music_from_file("music/04_welcome_to_the_world_of_pokemon.ogg");
     sfMusic_setLoop(dream->music, sfTrue);
+    sfMusic_setVolume(dream->music, inf->volumes[1]);
     return dream;
 }

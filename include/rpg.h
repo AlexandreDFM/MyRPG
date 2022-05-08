@@ -463,7 +463,7 @@ sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i plpos);
 void set_backs_menu(wininf *inf);
 void draw_intros(wininf *inf, player *p);
-void handle_music(wininf *inf);
+void handle_music(wininf *inf, player *p);
 void update_key(wininf *inf);
 void update_pause(wininf *inf, player *p);
 void update_pause2(wininf *inf, player *p);

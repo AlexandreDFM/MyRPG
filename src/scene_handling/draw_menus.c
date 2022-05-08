@@ -59,6 +59,7 @@ void draw_gamemenu(wininf *infos, player *p)
         draw_dungeon(infos, p);
     player_direction_management(infos, p);
     draw_player(infos, p);
+    sfVector2f pos = sfSprite_getPosition(p->test);
     if (infos->transition) {
         update_transition(infos, *p);
         sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);

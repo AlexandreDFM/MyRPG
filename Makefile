@@ -163,6 +163,7 @@ SRC		= 	main.c												\
 			src/sounds/init_sounds.c							\
 			src/music/init_music.c								\
 			src/music/music_handler.c							\
+			src/music/change_volumes.c							\
 
 
 

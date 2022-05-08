@@ -27,6 +27,7 @@ void left_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
             ->ig_choices[current]->sps[0];
             sfSprite_setPosition(((choices *)inf->ig_options_menu->selected
             ->data)->choice, old_pos);
+            change_volume_sound_or_music(inf, current);
         }
     }
 }
@@ -48,6 +49,7 @@ void right_volume(wininf *inf, int current, sfVector2f old_pos, sfIntRect r)
         ->ig_choices[current]->sps[0];
         sfSprite_setPosition(((choices *)inf->ig_options_menu->selected
         ->data)->choice, old_pos);
+        change_volume_sound_or_music(inf, current);
     }
 }
 
@@ -70,12 +72,14 @@ void left_main_vol(wininf *inf)
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
             my_itoa(inf->volumes[0]));
+        change_volume_sound_or_music(inf, 0);
     }
     if (((choices *)inf->current_menu->selected->data)->ptr == 1) {
         inf->volumes[1] -= inf->volumes[1] > 0 ? 5 : 0;
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
             my_itoa(inf->volumes[1]));
+        change_volume_sound_or_music(inf, 1);
     }
 }
 
@@ -86,11 +90,13 @@ void right_main_vol(wininf *inf)
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
             my_itoa(inf->volumes[0]));
+        change_volume_sound_or_music(inf, 0);
     }
     if (((choices *)inf->current_menu->selected->data)->ptr == 1) {
         inf->volumes[1] += inf->volumes[1] < 100 ? 5 : 0;
         sfText_setString(
             ((choices *)inf->current_menu->selected->data)->choice,
             my_itoa(inf->volumes[1]));
+        change_volume_sound_or_music(inf, 1);
     }
 }
