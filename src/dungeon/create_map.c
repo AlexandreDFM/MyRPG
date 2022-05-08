@@ -21,9 +21,8 @@ char **empty_map(int size)
 
 void create_exit(sfImage *atlas, char ***map, map_inf *inf)
 {
-    sfVector2i end = global_to_local(inf->starting_pos);
-    end.x -= 1;
-    sfVector2f endf = local_to_global(end.x, end.y);
+    sfVector2f rdm = get_random_position(&inf->map, inf->nbr_rooms - 1);
+    sfVector2i end = global_to_local(rdm);
     (*map)[end.y][end.x] = 'F';
     if (!inf->stairs) {
         sfIntRect r = (sfIntRect){790, 1157, 24, 24};
@@ -33,7 +32,7 @@ void create_exit(sfImage *atlas, char ***map, map_inf *inf)
         sfSprite_setOrigin(stairs, (sfVector2f){12, 12});
         inf->stairs = stairs;
     }
-    sfSprite_setPosition(inf->stairs, endf);
+    sfSprite_setPosition(inf->stairs, rdm);
 }
 
 map_inf *generate_map(int iter, sfImage *atlas, sfImage *atlas2)
