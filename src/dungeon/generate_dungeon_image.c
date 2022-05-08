@@ -42,5 +42,6 @@ sfImage *generate_map_image(char **map, int line_len, sfImage *spritesheet)
         texture_line(map, (sfVector2i){i, line_len}, &pixls, ptr);
     }
     sfImage *t = sfImage_createFromPixels(24 * line_len, 24 * line_len, pixls);
+    free(pixls);
     return t;
 }

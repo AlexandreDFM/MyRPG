@@ -469,78 +469,76 @@ typedef struct inventory_slot {
     void (*use)(wininf *, struct inventory_slot **);
 } invslot;
 
-void anim_dialog(dline *d);
-void draw_logs(wininf *inf);
-void draw_ditto(wininf *inf);
-void init_key_list(wininf *inf);
-void apply_transparency(logline *ll);
-int test_func(wininf *inf, player *p);
-void update_rects_dialog(wininf *win);
-void update_rects_dialog(wininf *win);
-int next_floor(wininf *inf, player *p);
-sfMusic *my_music_from_file(char *path);
-sfImage *my_image_from_file(char *path);
-void add_log(wininf *inf, char *msg, ...);
-void draw_dialog(wininf *infos, player *p);
-void update_olds(sfIntRect r, wininf *inf);
-void init_inventory(wininf *inf, int size);
-void draw_dropped(wininf *inf);
-void draw_inv(inventory *inv, wininf *inf);
-void use_apple(wininf *inf, invslot **slot);
-void reroll_dungeon(wininf *inf, player *p);
-void treat_dungeon_sync(wininf *win, int id);
-void interact_pnj_quest(wininf *win, player *p);
-void first_fill_window(wininf *inf);
-void last_fill_window(wininf *inf);
-void check_death(wininf *inf, player *enemy, player *p);
-void mid_fill_window(wininf *inf);
-list *init_ig_choices(char **arr, wininf *inf, int off);
-void draw_ig_menu(wininf *inf, menuss *menu, player *p);
-void draw_gamemenu(wininf *infos, player *p);
-sfSoundBuffer *my_buffer_from_file(char *path);
-sfIntRect move_in_room(sfIntRect r, player *p, player *e, wininf *inf);
-float get_neighbours_enemy(int y, sfVector2f target, float mdst, sfIntRect *p);
-void draw_special_scene(wininf *infos, player *p);
-int is_valid_move(wininf *inf, sfVector2i np, int target);
-void add_to_inventory(wininf *inf, inventory *inv, int id);
-sfVector2f get_random_position(sfIntRect **rooms, int count);
-sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
-dline *create_lstruct(dl_creat dlcreator, sfIntRect r, int li);
-sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
-sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i pl);
-void perform_ifs_dungeon(wininf *inf, sfVector2i np, player *p, sfIntRect r);
-void set_backs_menu(wininf *inf);
-void draw_intros(wininf *inf, player *p);
-void handle_music(wininf *inf, player *p);
-void update_key(wininf *inf);
+////////////////////////////////////////////////////////////
+//Others
 void manage_quest(wininf *inf);
-void update_pause(wininf *inf, player *p);
-void update_pause2(wininf *inf, player *p);
-int parse_balise(char *line, int i, int ln, dline_parsing *p);
-void parse_line(char *line, sfFont *f, dline_parsing *p);
-int treat_parsing_balise(char *l, dline_parsing *p, wininf *inf, int *steps);
-void treat_letter_dialog(wininf *inf, char *l, dline_parsing *p, sfImage *fo);
-dline_parsing *create_dline_help(sfFont *f, char *line);
-void draw_submenu(wininf *infos, player *p);
-void draw_special_scene(wininf *infos, player *p);
-void draw_gamemenu(wininf *infos, player *p);
-void draw_menuui(wininf *infos, player *p);
-list *init_backgrounds(char **arr, wininf *inf);
-int receive_clientsync(char **data, int *important, components *all);
-int receive_hostsync(char **data, int *important, components *all);
-int receive_okay(char **data, int *important, components *all);
-void perform_dungeon_movement(wininf *inf, player *p);
-int handle_attack(wininf *inf, player *p);
+//Others
+void set_backs_menu(wininf *inf);
+//Others
+void apply_transparency(logline *ll);
+//Others
+int test_func(wininf *inf, player *p);
+//Others
+void update_rects_dialog(wininf *win);
+//Others
+void add_log(wininf *inf, char *msg, ...);
+//Others
+void handle_music(wininf *inf, player *p);
+//Others
+void use_apple(wininf *inf, invslot **slot);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Dungeon handling
+sfVector2f get_random_position(sfIntRect **rooms, int count);
+//Dungeon handling
+void reroll_dungeon(wininf *inf, player *p);
+//Dungeon handling
+void treat_dungeon_sync(wininf *win, int id);
+//Dungeon handling
+float get_neighbours_enemy(int y, sfVector2f target, float mdst, sfIntRect *p);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Movement handling
+int next_floor(wininf *inf, player *p);
+//Movement handling
 void perform_free_movement(wininf *inf, player *p);
-void perform_attack(wininf *inf, player *p, sfVector2f pos);
+//Movement handling
+void perform_dungeon_movement(wininf *inf, player *p);
+//Movement handling
+int is_valid_move(wininf *inf, sfVector2i np, int target);
+//Movement handling
+sfIntRect move_in_room(sfIntRect r, player *p, player *e, wininf *inf);
+//Movement handling
+sfVector2i check_neighb(sfVector2i i, map_inf *mi, player *e, sfVector2i pl);
+//Movement handling
+void perform_ifs_dungeon(wininf *inf, sfVector2i np, player *p, sfIntRect r);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Combat handling
 void deal_dmg(wininf *inf, player *p);
-void dummy(wininf *inf, player *p);
+//Combat handling
+int handle_attack(wininf *inf, player *p);
+//Combat handling
+void check_death(wininf *inf, player *enemy, player *p);
+//Combat handling
+void perform_attack(wininf *inf, player *p, sfVector2f pos);
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+//Inventory handling
 void retrieve_item(wininf *inf, player *p);
+//Inventory handling
 invslot *get_item_from_id(int id, wininf *inf);
-sfSprite *get_item_sprite(int id, wininf *inf, player *p, int type);
+//Inventory handling
 sfVector2f get_valid_drop(sfVector2i pos, wininf *inf);
-void init_hud(wininf *inf);
-void draw_hud(wininf *inf, player *p);
+//Inventory handling
+void add_to_inventory(wininf *inf, inventory *inv, int id);
+//Inventory handling
+sfSprite *get_item_sprite(int id, wininf *inf, player *p, int type);
+////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
@@ -592,7 +590,13 @@ char *unix_to_date(long int seconds);
 //Utility functions
 void end_global_free(components *all);
 //Utility functions
+sfMusic *my_music_from_file(char *path);
+//Utility functions
+sfImage *my_image_from_file(char *path);
+//Utility functions
 int pos_char(char *string, char *presence);
+//Utility functions
+sfSoundBuffer *my_buffer_from_file(char *path);
 //Utility functions
 char **my_strtwa(char const *str, char *limit);
 //Utility functions
@@ -600,22 +604,50 @@ char *my_strdup_to_char(char *src, char *delim);
 //Utility functions
 void *my_memset(void *dest, int value, int length);
 //Utility functions
-void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *));
+sfTexture *my_texture_from_image(sfImage *image, sfIntRect *r);
 //Utility functions
 char *my_slice_array(int direction, char *strslice, int nbslice);
+//Utility functions
+void *my_sfalloc(void *(*create)(void), void *(*destroy)(void *));
+//Utility functions
+sfShader *my_shader_from_file(char *vertex, char *geometry, char *path);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
 //Dialogs Handling
+void anim_dialog(dline *d);
+//Dialogs Handling
+void mid_fill_window(wininf *inf);
+//Dialogs Handling
+void last_fill_window(wininf *inf);
+//Dialogs Handling
+void first_fill_window(wininf *inf);
+//Dialogs Handling
 sfIntRect find_icons(wininf *inf, char *str);
+//Dialogs Handling
+void interact_pnj_quest(wininf *win, player *p);
+//Dialogs Handling
+list *init_backgrounds(char **arr, wininf *inf);
+//Dialogs Handling
+dline_parsing *create_dline_help(sfFont *f, char *line);
+//Dialogs Handling
+void parse_line(char *line, sfFont *f, dline_parsing *p);
 //Dialogs Handling
 int treat_balise(char *balise, sfColor *color, wininf *inf);
 //Dialogs Handling
+int parse_balise(char *line, int i, int ln, dline_parsing *p);
+//Dialogs Handling
+dline *create_lstruct(dl_creat dlcreator, sfIntRect r, int li);
+//Dialogs Handling
+list *create_dialog_list(wininf *inf, char *path, sfVector2f poÉÉubelle);
+//Dialogs Handling
 dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t));
 //Dialogs Handling
-list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
+int treat_parsing_balise(char *l, dline_parsing *p, wininf *inf, int *steps);
 //Dialogs Handling
 void add_icon(sfVector2i origin, sfImage *img, sfIntRect r, sfImage *atlas);
+//Dialogs Handling
+void treat_letter_dialog(wininf *inf, char *l, dline_parsing *p, sfImage *fo);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -633,6 +665,12 @@ void update_network(wininf *inf, components *all);
 void try_to_connect(sfIpAddress ip, int port, wininf *inf);
 //Network functions
 void add_ord(int ord, void *data, int size, sfPacket *packet);
+//Network functions
+int receive_okay(char **data, int *important, components *all);
+//Network functions
+int receive_clientsync(char **data, int *important, components *all);
+//Network functions
+int receive_hostsync(char **data, int *important, components *all);
 //Network functions
 int receive_with_timeout(network *net, sfIpAddress *ip, unsigned short *port);
 ////////////////////////////////////////////////////////////
@@ -652,29 +690,53 @@ void add_rect_col(list **l, sfVector2f pos, sfVector2f size);
 
 ////////////////////////////////////////////////////////////
 //Drawing functions
+void draw_logs(wininf *inf);
+//Drawing functions
 void draw_home(wininf *inf);
+//Drawing functions
+void draw_ditto(wininf *inf);
 //Drawing functions
 void draw_intro(wininf *inf);
 //Drawing functions
 void draw_dream(wininf *inf);
 //Drawing functions
+void draw_dropped(wininf *inf);
+//Drawing functions
+void draw_hud(wininf *inf, player *p);
+//Drawing functions
 void draw_quiz(wininf *inf, player *p);
+//Drawing functions
+void draw_intros(wininf *inf, player *p);
 //Drawing functions
 void draw_player(wininf *inf, player *p);
 //Drawing functions
 void draw_dungeon(wininf *inf, player *p);
 //Drawing functions
+void draw_inv(inventory *inv, wininf *inf);
+//Drawing functions
+void draw_menuui(wininf *infos, player *p);
+//Drawing functions
+void draw_dialog(wininf *infos, player *p);
+//Drawing functions
+void draw_submenu(wininf *infos, player *p);
+//Drawing functions
 void handle_scene(wininf *infos, player *p);
+//Drawing functions
+void draw_gamemenu(wininf *infos, player *p);
 //Drawing functions
 void draw_static_scene(wininf *inf, scene s);
 //Drawing functions
 void update_transition(wininf *inf, player *p);
+//Drawing functions
+void draw_special_scene(wininf *infos, player *p);
 //Drawing functions
 void draw_menu(wininf *inf, menuss *menu, player *p);
 //Drawing functions
 void move_cursor(menuss *menu, wininf *inf, player *p);
 //Drawing functions
 void center_menu(menuss *menu, wininf *inf, player *p);
+//Drawing functions
+void draw_ig_menu(wininf *inf, menuss *menu, player *p);
 //Drawing functions
 void draw_rect_col(collision *self, sfRenderWindow *win);
 //Drawing functions
@@ -686,6 +748,8 @@ void draw_entity(time_info *time_s, list *obj, sfRenderWindow *win);
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
+//Initializations
+void init_hud(wininf *inf);
 //Initializations
 void init_fps(wininf *inf);
 //Initializations
@@ -703,6 +767,8 @@ void init_textbox(wininf *win);
 //Initializations
 camera init_camera(wininf inf);
 //Initializations
+void init_key_list(wininf *inf);
+//Initializations
 void create_atlases(wininf *inf);
 //Initializations
 void create_triggers(wininf *inf);
@@ -712,6 +778,8 @@ sfRenderStates create_shiny_test(void);
 player *init_player(wininf inf, int id);
 //Initializations
 scene create_home(wininf *infos, int id);
+//Initializations
+void init_inventory(wininf *inf, int size);
 //Initializations
 entity *create_entity(wininf *info, int id);
 //Initializations
@@ -725,6 +793,8 @@ void create_pnj(char *line, scene *s, atlases atlas);
 //Initializations
 components create_all_components(int ac, char **argv);
 //Initializations
+list *init_ig_choices(char **arr, wininf *inf, int off);
+//Initializations
 sfSprite *atlas_to_sprite(sfIntRect rect, sfImage *atlas);
 //Initializations
 void create_enemy(wininf *inf, dungeon *d, sfVector2i pos);
@@ -736,11 +806,11 @@ void create_static_anim(sfImage *atlas, char *name, list **l, char **csv);
 
 ////////////////////////////////////////////////////////////
 //Updates
+void update_key(wininf *inf);
+//Updates
 void treat_axis(wininf *inf);
 //Updates
 void update_inputs(wininf *inf);
-//Updates
-void update_camera(wininf *inf, player *p);
 //Updates
 void update_time(wininf *infos);
 //Updates
@@ -750,7 +820,15 @@ void update_joysticks(wininf *inf);
 //Updates
 void update_mobs(wininf *inf, player *p);
 //Updates
+void update_pause(wininf *inf, player *p);
+//Updates
+void update_olds(sfIntRect r, wininf *inf);
+//Updates
 void update_events(wininf *inf, player *p);
+//Updates
+void update_pause2(wininf *inf, player *p);
+//Updates
+void update_camera(wininf *inf, player *p);
 //Updates
 void update_enemy(player *e, wininf *inf, player *p);
 ////////////////////////////////////////////////////////////
@@ -791,7 +869,21 @@ void generate_random_dungeon(wininf *win, player *p);
 
 ////////////////////////////////////////////////////////////
 //Menu pointers
+void left_main_vol(wininf *inf);
+//Menu pointers
+void left_main_fps(wininf *inf);
+//Menu pointers
+void change_volume(wininf *inf);
+//Menu pointers
+void right_main_vol(wininf *inf);
+//Menu pointers
+void right_main_fps(wininf *inf);
+//Menu pointers
+void change_volume_ig(wininf *inf);
+//Menu pointers
 void play(wininf *inf, player *p);
+//Menu pointers
+void dummy(wininf *inf, player *p);
 //Menu pointers
 void a_log(wininf *inf, player *p);
 //Menu pointers
@@ -809,6 +901,8 @@ void yes_but(wininf *inf, player *p);
 //Menu pointers
 void go_main(wininf *inf, player *p);
 //Menu pointers
+void init_load_pointers(wininf *inf);
+//Menu pointers
 void use_item(wininf *inf, player *p);
 //Menu pointers
 void go_pause(wininf *inf, player *p);
@@ -819,29 +913,15 @@ void go_others(wininf *inf, player *p);
 //Menu pointers
 void equip_item(wininf *inf, player *p);
 //Menu pointers
-void go_keybinds(wininf *inf, player *p);
+void init_options_pointers(wininf *inf);
 //Menu pointers
 void go_use_item(wininf *inf, player *p);
 //Menu pointers
-void go_ig_options(wininf *inf, player *p);
-//Menu pointers
-void left_main_vol(wininf *inf);
-//Menu pointers
-void left_main_fps(wininf *inf);
-//Menu pointers
-void change_volume(wininf *inf);
-//Menu pointers
-void right_main_vol(wininf *inf);
-//Menu pointers
-void right_main_fps(wininf *inf);
-//Menu pointers
-void change_volume_ig(wininf *inf);
-//Menu pointers
-void init_load_pointers(wininf *inf);
-//Menu pointers
-void init_options_pointers(wininf *inf);
+void go_keybinds(wininf *inf, player *p);
 //Menu pointers
 void init_main_menu_pointers(wininf *inf);
+//Menu pointers
+void go_ig_options(wininf *inf, player *p);
 //Menu pointers
 void change_keybind(wininf *inf, player *p);
 //Menu pointers

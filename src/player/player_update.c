@@ -23,7 +23,8 @@ void draw_player(wininf *inf, player *p)
         if (inf->c_menu == NONE)
             perform_free_movement(inf, p);
     } else {
-        perform_dungeon_movement(inf, p);
+        if (inf->c_menu == NONE)
+            perform_dungeon_movement(inf, p);
     }
     if (inf->net->is_multi && inf->net->other.p) {
         sfVector2f pos = sfSprite_getPosition(inf->net->other.p->test);
