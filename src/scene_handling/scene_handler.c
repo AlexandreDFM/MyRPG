@@ -95,7 +95,8 @@ scene create_static_env(wininf *inf, int id)
     }
     place_decorations(inf->atlases.scenes[id + 1], inf->atlases.atlas,
         inf->atlases.statics, &scene.animated);
-    id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
+    if (id != 50)
+        id = id == 0 ? 22 : id > 6 ? id / 2 + 25 : 23 + id / 2 - 1;
     add_pnjs(inf->atlases, id, &scene);
     add_collisions(inf->atlases.collisions[id], &scene.colls);
     my_free_array(arr);

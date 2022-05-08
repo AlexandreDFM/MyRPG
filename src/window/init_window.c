@@ -77,6 +77,7 @@ wininf create_window_infos(int ac, char **av)
     inf.scenes[4] = create_static_env(&inf, 2);
     inf.scenes[5] = create_static_env(&inf, 4);
     inf.scenes[2] = create_static_env(&inf, 6 + inf.settings->house * 2);
+    inf.scenes[6] = create_static_env(&inf, 50);
     inf.camera = init_camera(inf);
     create_triggers(&inf);
     inf.transition = 0;

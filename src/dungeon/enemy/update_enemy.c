@@ -31,9 +31,11 @@ void update_enemy(player *e, wininf *inf, player *p)
     int proom = get_current_room(ppos, mi), eroom = get_current_room(epos, mi);
     sfIntRect rect = (sfIntRect){proom, eroom, elpos.x, elpos.y};
     int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
-    int enemycond = (mi->map[elpos.y][elpos.x] == 'E' && old != -1);
-    if (enemycond || eroom == -1) {
-        move_in_tunnel(e, inf, p); e->arrived = 0; return;
+    int cond = mi->map[elpos.y][elpos.x] == 'E' && old != -1;
+    printf("%d %d => %d\n", e->sentpos.x, e->sentpos.y, old);
+    if (eroom == -1 || cond) {
+        move_in_tunnel(e, inf, p); e->arrived = 0;
+        return;
     } else {
         final = move_in_room(rect, p, e, inf);
         if (final.left == -1) return;
@@ -49,12 +51,12 @@ void move_in_tunnel(player *e, wininf *inf, player *p)
     sfVector2f epos = sfSprite_getPosition(e->test);
     sfVector2i plpos = global_to_local(sfSprite_getPosition(p->test));
     sfVector2i i = global_to_local(epos);
-    sfVector2f oldprevpos = e->sentpos;
+    sfVector2i oldprevpos = global_to_local(epos);
     e->sentpos = (sfVector2f){i.x, i.y};
     sfVector2i final = check_neighb(i, mi, e, plpos);
     sfVector2f ffinal = local_to_global(final.x, final.y);
     int count = is_valid_move(inf, (sfVector2i){final.x, final.y}, 1);
-    e->sentpos = oldprevpos;
+    e->sentpos = (sfVector2f){oldprevpos.x, oldprevpos.y};
     if (count) return;
     e->vel = (sfVector2f){ffinal.x - epos.x, ffinal.y - epos.y};
     e->target = ffinal;

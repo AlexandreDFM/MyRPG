@@ -32,8 +32,8 @@ void scan_neighb(player *e, map_inf *mi, sfIntRect pi, sfFloatRect *myf)
             slp);
         int isold = lp.x == (int)e->sentpos.x && lp.y == (int)e->sentpos.y;
         int count = get_current_roomlo(lp, mi);
-        int cond = count == -1 || c == 'E';
-        if (myf->left > dst && c != '.' && cond && !isold) {
+        int cond = count == -1 || mi->map[lp.y][lp.x] == 'E';
+        if (myf->left > dst && c != '.' && cond) {
             myf->left = dst;
             myf->width = lp.x; myf->height = lp.y;
         }

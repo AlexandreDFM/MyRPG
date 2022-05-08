@@ -65,8 +65,8 @@ void draw_gamemenu(wininf *infos, player *p)
     if (infos->c_scene == HOME) draw_home(infos);
     int cs = infos->c_scene;
     if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
-        cs == INTERIOR) {
-        draw_static_scene(infos, infos->scenes[infos->c_scene]);
+        cs == INTERIOR ||cs == BOSS) {
+        draw_static_scene(infos, infos->scenes[cs]);
     } else if (infos->c_scene == DUNGEON) {
         draw_dungeon(infos, p);
         if (infos->d_items) {

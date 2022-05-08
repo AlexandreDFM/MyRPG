@@ -58,6 +58,7 @@ typedef enum scenes_e {
     DOJO,
     BEKIPAN,
     DITTOLAND,
+    BOSS,
     MAIN_MENU,
     INTRO,
     DITTO,
@@ -358,7 +359,7 @@ typedef struct wininf_t {
     struct inputs_t inputs;
     struct atlases_t atlases;
     struct dungeon_t dungeon;
-    struct scene_t scenes[6];
+    struct scene_t scenes[8];
     struct menus *prev_menu;
     struct menus *main_menu;
     struct menus *load_menu;
