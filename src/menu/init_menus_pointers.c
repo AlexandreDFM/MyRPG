@@ -30,7 +30,7 @@ void continue_options_pointers(wininf *inf)
     ((choices *)inf->ig_options_menu->choices->prev->data)->ptrs[0] = go_back;
     ((choices *)inf->use_item_menu->choices->data)->ptrs[0] = use_item;
     ((choices *)inf->use_item_menu->choices->next->data)->ptrs[0] = drop_item;
-    ((choices *)inf->use_item_menu->choices->prev->data)->ptrs[0] = dummy;
+    ((choices *)inf->use_item_menu->choices->prev->data)->ptrs[0] = equip_item;
 }
 
 void init_options_pointers(wininf *inf)

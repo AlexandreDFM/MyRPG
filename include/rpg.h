@@ -255,6 +255,10 @@ typedef struct player_t {
     int arrived;
     struct stats_t st;
     struct inventory_t *inv;
+    sfSprite *equip_bg_slot;
+    sfSprite *equip_slot;
+    int equipped;
+    int equip_slot_id;
 } player;
 
 typedef struct camera_t {
@@ -515,9 +519,10 @@ void perform_free_movement(wininf *inf, player *p);
 void perform_attack(wininf *inf, player *p, sfVector2f pos);
 void deal_dmg(wininf *inf, player *p);
 void dummy(wininf *inf, player *p);
-sfSprite *get_item_sprite(int id, wininf *inf, player *p);
 void retrieve_item(wininf *inf, player *p);
 invslot *get_item_from_id(int id, wininf *inf);
+sfSprite *get_item_sprite(int id, wininf *inf, player *p, int type);
+sfVector2f get_valid_drop(sfVector2i pos, wininf *inf);
 
 ////////////////////////////////////////////////////////////
 //Flags Handling
@@ -793,6 +798,8 @@ void go_pause(wininf *inf, player *p);
 void drop_item(wininf *inf, player *p);
 //Menu pointers
 void go_others(wininf *inf, player *p);
+//Menu pointers
+void equip_item(wininf *inf, player *p);
 //Menu pointers
 void go_keybinds(wininf *inf, player *p);
 //Menu pointers

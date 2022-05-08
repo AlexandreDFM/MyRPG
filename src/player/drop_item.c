@@ -39,38 +39,32 @@ sfVector2f get_valid_drop(sfVector2i pos, wininf *inf)
     return (sfVector2f){-1, -1};
 }
 
-sfSprite *get_item_sprite(int id, wininf *inf, player *p)
+int check_scene(wininf *inf)
 {
-    sfSprite *sp = sfSprite_create();
-    char **arr = my_strtwa(inf->atlases.item_sprites[id], ";\n");
-    sfIntRect r = (sfIntRect){my_atoi(arr[1]), my_atoi(arr[2]),
-    my_atoi(arr[3]), my_atoi(arr[4])};
-    sfTexture *tex = sfTexture_createFromImage(inf->atlases.atlas, &r);
-    sfSprite_setTexture(sp, tex, sfFalse);
-    sfSprite_setOrigin(sp, (sfVector2f){r.width / 2, r.height / 2});
-    sfVector2f pos = sfSprite_getPosition(p->test);
-    sfVector2i loc = global_to_local(pos);
-    sfSprite_setPosition(sp, get_valid_drop(loc, inf));
-    my_free_array(arr);
-    return sp;
+    if (inf->c_scene != DUNGEON) {
+        if (inf->lang == ENGLISH)
+            add_log(inf, "You can't drop an item here.\n");
+        else
+            add_log(inf, "Vous ne pouvez pas jeter d'objet ici.\n");
+        return - 1;
+    }
+    return 1;
 }
-
 void drop_item(wininf *inf, player *p)
 {
+    if (check_scene(inf) == -1) return;
     dropped *d = malloc(sizeof(dropped));
     d->id = inf->inv->slots[inf->slot_id]->id;
-    d->data = get_item_sprite(d->id, inf, p);
-    d->dropped = 1;
+    d->data = get_item_sprite(d->id, inf, p, 1); d->dropped = 1;
     char **arr = my_strtwa(inf->atlases.items[d->id], ";\n");
     push_back(&inf->d_items, d);
-    add_log(inf, "You dropped %s <i_l%s> \n", arr[0], trim(my_strdup(arr[0],
-    my_malloc), ' '));
+    add_log(inf, "%s %s <i_l%s>\n", inf->lang ? "Vous avez jete" :
+    "You dropped", arr[0], trim(my_strdup(arr[0], my_malloc), ' '));
     free(inf->ig_slots[inf->slot_id]->steps);
-    inf->ig_slots[inf->slot_id] = update_ig_choice("Empty",
-    ((choices *)inf->current_menu->selected->data)->choice, inf);
+    inf->ig_slots[inf->slot_id] = update_ig_choice(inf->lang ? "Vide" :
+    "Empty", ((choices *)inf->current_menu->selected->data)->choice, inf);
     list *tmp = inf->inventory_menu->head;
-    int i = 0;
-    for (; i < inf->slot_id; i++, tmp = tmp->next);
+    int i = 0; for (; i < inf->slot_id; i++, tmp = tmp->next);
     sfSprite_destroy(((choices*)tmp->data)->choice);
     sfTexture_destroy(inf->inv->slots[inf->slot_id]->line->img);
     inf->inv->slots[inf->slot_id] = 0;
