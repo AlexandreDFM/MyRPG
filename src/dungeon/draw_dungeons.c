@@ -16,14 +16,17 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         p->st.health -= dmg < 0 ? -dmg : dmg;
         if (p->st.health <= 0) {
-            add_log(inf, "I'm not feeling well...\n");
+            add_log(inf, "%s\n", YELLOW,
+                inf->lang ? "Je me sens pas bien..." :
+                "I'm not felling well...");
             inf->change_scene = 1;
             inf->dungeon.in = 0;
             inf->transition = 1; p->st.health = p->st.max_health;
             inf->next_pos = (sfVector2f){170.0f, 100.0f};
             inf->next_scene = INTERIOR;
         } else {
-            add_log(inf, "Ouch i took %d hp\n", dmg < 0 ? dmg * -1 : dmg);
+            add_log(inf, "%s %d hp\n", inf->lang ? "Aie j'ai pris" :
+            "Ouch I took", dmg < 0 ? dmg * -1 : dmg);
         }
     }
 }
