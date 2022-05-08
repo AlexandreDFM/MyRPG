@@ -44,6 +44,7 @@ SRC		= 	main.c												\
 			src/utils/my_itoa.c									\
 			src/utils/is_same.c									\
 			src/utils/my_atof.c									\
+			src/utils/trim_char.c								\
 			src/utils/my_malloc.c								\
 			src/utils/my_strtwa.c								\
 			src/utils/my_memset.c								\
@@ -66,8 +67,10 @@ SRC		= 	main.c												\
 			src/items/use_food.c								\
 			src/player/drop_item.c								\
 			src/player/init_player.c							\
+			src/player/retrieve_item.c							\
 			src/player/player_update.c							\
 			src/player/anims/move_rect.c						\
+			src/player/get_item_from_id.c						\
 			src/player/perform_movement.c						\
 			src/player/player_inventory.c						\
 			src/player/anims/update_sprite.c					\

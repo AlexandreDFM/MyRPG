@@ -51,8 +51,10 @@ void draw_dropped(wininf *inf)
 {
     list *tmp = inf->d_items;
     while (inf->d_items) {
-        sfRenderWindow_drawSprite(inf->win,
-        ((dropped *)inf->d_items->data)->data, 0);
+        if (((dropped *)inf->d_items->data)->dropped == 1) {
+            sfRenderWindow_drawSprite(inf->win,
+            ((dropped *)inf->d_items->data)->data, 0);
+        }
         inf->d_items = inf->d_items->next;
     }
     inf->d_items = tmp;
@@ -67,7 +69,10 @@ void draw_gamemenu(wininf *infos, player *p)
         draw_static_scene(infos, infos->scenes[infos->c_scene]);
     else if (infos->c_scene == DUNGEON) {
         draw_dungeon(infos, p);
-        if (infos->d_items) draw_dropped(infos);
+        if (infos->d_items) {
+            draw_dropped(infos);
+            retrieve_item(infos, p);
+        }
     }
     player_direction_management(infos, p);
     draw_player(infos, p); manage_quest(infos);

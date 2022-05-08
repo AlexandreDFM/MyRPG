@@ -55,24 +55,12 @@ sfSprite *get_item_sprite(int id, wininf *inf, player *p)
     return sp;
 }
 
-char *trim(char *s, char c)
-{
-    int writer = 0, reader = 0;
-    while (s[reader]) {
-        if (s[reader] != c) {
-            s[writer++] = s[reader];
-        }
-        reader++;
-    }
-    s[writer] = 0;
-    return s;
-}
-
 void drop_item(wininf *inf, player *p)
 {
     dropped *d = malloc(sizeof(dropped));
     d->id = inf->inv->slots[inf->slot_id]->id;
     d->data = get_item_sprite(d->id, inf, p);
+    d->dropped = 1;
     char **arr = my_strtwa(inf->atlases.items[d->id], ";\n");
     push_back(&inf->d_items, d);
     add_log(inf, "You dropped %s <i_l%s> \n", arr[0], trim(my_strdup(arr[0],
