@@ -75,6 +75,10 @@ void draw_hud(wininf *inf, player *p)
     }
     sfText_setString(inf->ui.hp[0], my_itoa(p->st.health));
     sfText_setString(inf->ui.hp[1], my_itoa(p->st.max_health));
+    sfText_setString(inf->ui.lvl, my_itoa(p->st.lvl));
+    sfText_setPosition(inf->ui.lvl, (sfVector2f){
+    pos.x - size.x / 2 + 5 + off[0] + 15, pos.y - size.y / 2 - 3});
+    sfRenderWindow_drawText(inf->win, inf->ui.lvl, 0);
     for (int i = 0; i < 2; i++) {
         sfText_setPosition(inf->ui.hp[i], (sfVector2f){
         pos.x - size.x / 2 + 5 + off[i + 1] + 15 - (7 * i), pos.y -
