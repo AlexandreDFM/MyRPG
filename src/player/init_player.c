@@ -50,7 +50,7 @@ sfSprite *set_shadow(wininf inf, player *p, int id)
 player *init_player(wininf inf, int id)
 {
     player *p = my_malloc(sizeof(player));p->shiny = rand () % 10 == 1 ? 1 : 0;
-    p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f;
+    p->vel = (sfVector2f){0.0f, 0.0f}; p->animc = 0.0f; p->can_move = 1;
     p->target = (sfVector2f){0.0f, 0.0f}; p->attacking = 0;
     char **arr = my_strtwa(inf.atlases.pokemons_anim[id], ";\n");
     fill_stat(arr, p); int i = 0; for (; arr[i] != NULL; i++);

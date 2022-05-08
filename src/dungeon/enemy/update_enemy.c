@@ -70,12 +70,13 @@ void update_enemy(player *e, wininf *inf, player *p)
     int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
     int enemycond = (mi->map[elpos.y][elpos.x] == 'E' && old != -1);
     if (enemycond || eroom == -1) {
-        move_in_tunnel(e, inf, p); return;
+        move_in_tunnel(e, inf, p); e->arrived = 0;
+        return;
     } else {
         final = move_in_room(rect, p, e, inf);
         if (final.left == -1) return;
         sfVector2f new_vec = local_to_global(final.width, final.height);
-        e->target = new_vec;
+        e->target = new_vec; e->arrived = 0;
         e->vel = (sfVector2f){e->target.x - epos.x, e->target.y - epos.y};
     }
 }

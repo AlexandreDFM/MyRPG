@@ -14,6 +14,7 @@ void update_attack_anims(wininf *inf, player *e, player *p)
     e->time += inf->time.dt * 6.0f;
     sfVector2f np = my_lerp(e->target, e->attack_pos,
         my_pingpong(e->time, 1.0f));
+    p->can_move = 0;
     sfSprite_setPosition(e->test, np);
     if (e->time > 1.0f && e->attacking == 2) {
         e->attacking -= 1;
@@ -29,6 +30,7 @@ void update_attack_anims(wininf *inf, player *e, player *p)
     if (e->time >= 2.0f) {
         e->attacking = 0;
         e->time = 0.0f;
+        p->can_move = 1;
     }
 }
 
@@ -41,8 +43,12 @@ void draw_dungeon(wininf *inf, player *p)
         sfVector2f np = my_lerp(sfSprite_getPosition(enemy->test),
             enemy->target, inf->time.dt * 6.0f);
         sfSprite_setPosition(enemy->test, np);
+        if (is_same(np, enemy->target, 1.0f) && !enemy->arrived) {
+            enemy->arrived = 1;
+        }
         update_attack_anims(inf, enemy, p);
         player_direction_management(inf, enemy);
-        sfRenderWindow_drawSprite(inf->win, enemy->test, &(inf->state));
+        sfRenderWindow_drawSprite(inf->win, enemy->test, enemy->shiny ? 
+        &(inf->state) : 0);
     }
 }

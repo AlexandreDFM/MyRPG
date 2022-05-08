@@ -16,5 +16,6 @@ void create_enemy(wininf *inf, dungeon *d, sfVector2i pos)
     d->enemies = nl;
     sfVector2f np = local_to_global(pos.x, pos.y);
     new_e->target = np;
+    new_e->attacking = 0;
     sfSprite_setPosition(new_e->test, np);
 }

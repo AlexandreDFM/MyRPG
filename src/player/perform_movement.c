@@ -49,8 +49,18 @@ void handle_attack(wininf *inf, player *p)
     }
 }
 
+int test_func(wininf *inf, player *p)
+{
+    for (list *t = inf->dungeon.enemies; t; t = t->next) {
+        player *enemy = t->data;
+        if (enemy->attacking) return 0;
+    }
+    return 1;
+}
+
 void perform_dungeon_movement(wininf *inf, player *p)
 {
+    if (!(p->can_move)) return;
     handle_attack(inf, p);
     sfVector2f pos = sfSprite_getPosition(p->test);
     sfVector2f axis = inf->inputs.axis;
@@ -68,7 +78,8 @@ void perform_dungeon_movement(wininf *inf, player *p)
     int poscond = (np.x != target.x || np.y != target.y) && valid;
     if (!is_same(inf->inputs.axis, (sfVector2f){0.0f, 0.0f}, 0.1f))
         p->vel = inf->inputs.axis;
-    if (walkable && !cond && cond2 && poscond && !inf->inputs.back) {
-        p->nextpos = local_to_global(np.x, np.y); update_mobs(inf, p);
+    if (walkable && !cond && cond2 && poscond && !inf->inputs.back && test_func(inf, p)) {
+        p->nextpos = local_to_global(np.x, np.y);
+        update_mobs(inf, p);
     }
 }
