@@ -43,9 +43,6 @@ void generate_random_dungeon(wininf *win, player *p)
     win->dungeon.ended = 0; win->dungeon.next = 0;
     win->dungeon.time = 0.0f;
     create_dungeon(win, id);
-    for (int i = 0; win->dungeon.inf->map[i]; i++) {
-        printf("%s\n", win->dungeon.inf->map[i]);
-    }
     sfSprite_setPosition(p->test, win->dungeon.inf->starting_pos);
     p->nextpos = win->dungeon.inf->starting_pos;
     sfView_setCenter(win->camera.view,  win->dungeon.inf->starting_pos);

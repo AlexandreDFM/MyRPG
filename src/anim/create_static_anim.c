@@ -43,6 +43,5 @@ void create_static_anim(sfImage *atlas, char *name, list **l, char **csv)
     r.width = ne->width;
     int rdm = ne->max ? rand() % ne->max / ne->width : 0;
     r.top = 0; r.left = ne->width * rdm;
-    ne->rect = r; my_free_array(args);
-    sfSprite_setTextureRect(ne->sp, r);
+    ne->rect = r; my_free_array(args); sfSprite_setTextureRect(ne->sp, r);
 }
