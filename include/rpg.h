@@ -284,6 +284,7 @@ typedef struct ui_t {
     struct linked_list_t *dialog;
     sfSprite *hud[4];
     sfText *hp[2];
+    sfText *lvl;
 } ui;
 
 typedef struct other_t {

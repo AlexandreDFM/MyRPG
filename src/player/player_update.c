@@ -70,8 +70,9 @@ void deal_dmg(wininf *inf, player *p)
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         enemy->st.health -= dmg > 0 ? dmg : -dmg;
-        add_log(inf, "Dealt: %d hp. The pokemon got %d remaining\n",
-            dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
+        add_log(inf, "%s: %d hp. %s %d hp%s\n", inf->lang ? "Infliges" :
+        "Dealt", dmg < 0 ? dmg * -1 : dmg, inf->lang ? "Il lui reste" :
+        "The pokemon got", enemy->st.health, inf->lang ? "" : " remaining");
         if (enemy->st.health <= 0) p->can_move = 1;
     }
     update_mobs(inf, p);

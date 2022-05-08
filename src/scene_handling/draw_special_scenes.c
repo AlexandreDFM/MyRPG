@@ -73,9 +73,11 @@ void draw_hud(wininf *inf, player *p)
         pos.x - size.x / 2 + 5 + off[i], pos.y - size.y / 2 + 2});
         sfRenderWindow_drawSprite(inf->win, inf->ui.hud[i], 0);
     }
+    sfText_setString(inf->ui.hp[0], my_itoa(p->st.health));
+    sfText_setString(inf->ui.hp[1], my_itoa(p->st.max_health));
     for (int i = 0; i < 2; i++) {
         sfText_setPosition(inf->ui.hp[i], (sfVector2f){
-        pos.x - size.x / 2 + 5 + off[i + 1] + 18 - (3 * i), pos.y -
+        pos.x - size.x / 2 + 5 + off[i + 1] + 15 - (7 * i), pos.y -
         size.y / 2 - 3});
         sfRenderWindow_drawText(inf->win, inf->ui.hp[i], 0);
     }

@@ -26,7 +26,7 @@ void fill_stat(char **arr, player *p)
 {
     int health = my_atoi(arr[6]) + rand() % 31;
     p->st.health = health * 3;
-    p->st.max_health = health;
+    p->st.max_health = health * 3;
     p->st.max_health_boost = 0;
     p->st.defense = my_atoi(arr[7]) + rand() % 31;
     p->st.def_boost = 0;
