@@ -69,6 +69,7 @@ SRC		= 	main.c												\
 			src/anim/create_static_anim.c						\
 			src/anim/handle_decorations.c						\
 			src/items/use_food.c								\
+			src/player/death_checker.c							\
 			src/player/drop_item.c								\
 			src/player/dungeon_movement.c						\
 			src/player/init_player.c							\

@@ -53,13 +53,6 @@ int is_valid_move(wininf *inf, sfVector2i np, int target)
     return encountered;
 }
 
-void perform_attack(wininf *inf, player *p, sfVector2f pos)
-{
-    p->attack_pos = (sfVector2f){pos.x + p->vel.x * 24.0f,
-        p->vel.y * 24.0f + pos.y};
-    p->attacking = 2;
-}
-
 void deal_dmg(wininf *inf, player *p)
 {
     for (list *t = inf->dungeon.enemies; t; t = t->next) {
@@ -70,9 +63,10 @@ void deal_dmg(wininf *inf, player *p)
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         enemy->st.health -= dmg > 0 ? dmg : -dmg;
+        int remain = enemy->st.health;
         add_log(inf, "Dealt: %d hp. The pokemon got %d remaining\n",
-            dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
-        if (enemy->st.health <= 0) p->can_move = 1;
+            dmg < 0 ? dmg * -1 : dmg, remain > 0 ? remain : 0);
+        check_death(inf, enemy, p);
     }
     update_mobs(inf, p);
 }
