@@ -23,6 +23,7 @@ RM		= rm -f
 LIB		=  -L ./lib/my/ -lmy
 
 SRC		= 	main.c												\
+			src/window/init_hud.c								\
 			src/window/log_system.c								\
 			src/window/init_window.c							\
 			src/window/fill_window.c							\

@@ -36,7 +36,6 @@ void continue_gamemenu(wininf *infos, player *p)
         update_transition(infos, p);
         sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
     }
-    sfVector2f pos = sfSprite_getPosition(p->test);
     update_transition(infos, p);
     sfRenderWindow_drawRectangleShape(infos->win, infos->transi, 0);
     draw_dialog(infos, p); draw_menuui(infos, p);
@@ -44,7 +43,8 @@ void continue_gamemenu(wininf *infos, player *p)
 
 void draw_gamemenu(wininf *infos, player *p)
 {
-    if (infos->c_scene == HOME) draw_home(infos); int cs = infos->c_scene;
+    if (infos->c_scene == HOME) draw_home(infos);
+    int cs = infos->c_scene;
     if (cs == VILLAGE || cs == BEKIPAN || cs == DOJO || cs == DITTOLAND ||
         cs == INTERIOR || cs == BOSS) {
         draw_static_scene(infos, infos->scenes[cs]);
@@ -54,8 +54,29 @@ void draw_gamemenu(wininf *infos, player *p)
             draw_dropped(infos);
             retrieve_item(infos, p);
         }
-    } player_direction_management(infos, p); draw_player(infos, p);
+    }
+    player_direction_management(infos, p);
+    draw_player(infos, p);
     manage_quest(infos);
+    draw_hud(infos, p);
     if (p->equip_slot) update_equi_pos(infos, p);
     continue_gamemenu(infos, p);
+}
+
+void draw_hud(wininf *inf, player *p)
+{
+    sfVector2f pos = sfView_getCenter(inf->camera.view);
+    sfVector2f size = sfView_getSize(inf->camera.view);
+    int off[4] = {0, 30, 60, 90};
+    for (int i = 0; i < 4; i++) {
+        sfSprite_setPosition(inf->ui.hud[i], (sfVector2f){
+        pos.x - size.x / 2 + 5 + off[i], pos.y - size.y / 2 + 2});
+        sfRenderWindow_drawSprite(inf->win, inf->ui.hud[i], 0);
+    }
+    for (int i = 0; i < 2; i++) {
+        sfText_setPosition(inf->ui.hp[i], (sfVector2f){
+        pos.x - size.x / 2 + 5 + off[i + 1] + 18 - (3 * i), pos.y -
+        size.y / 2 - 3});
+        sfRenderWindow_drawText(inf->win, inf->ui.hp[i], 0);
+    }
 }

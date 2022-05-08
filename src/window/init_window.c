@@ -71,7 +71,7 @@ wininf create_window_infos(int ac, char **av)
         sfColor_fromRGBA(0, 0, 0, 0));
     sfRectangleShape_setOrigin(inf.transi,
     (sfVector2f){inf.mode.width / 2.0f, inf.mode.height / 2.0f});
-    init_textbox(&inf);
+    init_textbox(&inf); init_hud(&inf);
     inf.main_menu = init_all_menus(&inf, MAIN_IDX, 1);
     mid_fill_window(&inf); last_fill_window(&inf);
     return inf;
