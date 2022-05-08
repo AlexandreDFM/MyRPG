@@ -16,7 +16,8 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         p->st.health -= dmg < 0 ? -dmg : dmg;
         if (p->st.health <= 0) {
-            add_log(inf, "U ded\n");
+            add_log(inf, "%s%s</c> I'm not feeling well...\n", YELLOW,
+                "Pokemon");
             inf->change_scene = 1;
             inf->dungeon.in = 0;
             inf->transition = 1; p->st.health = p->st.max_health;

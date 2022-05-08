@@ -35,6 +35,8 @@
     #define my_sf_free() my_sfalloc(NULL, NULL)
     #define XOR(a,b) ((!(a && b)) && (a || b))
 
+    #define YELLOW "<255 224 0>"
+
     #include "infos.h"
     #include "dungeon.h"
     #include "atlas.h"

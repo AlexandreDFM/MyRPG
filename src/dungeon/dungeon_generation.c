@@ -77,7 +77,7 @@ void create_dungeon(wininf *win, int id)
     map_inf *i = win->dungeon.inf;
     sfVector2i pos = global_to_local(i->starting_pos);
     pos.x += 3;
-    for (int o = 0; o < 1; o++) {
+    for (int o = 0; o < 10; o++) {
         sfVector2f rdmpos = get_random_position(i->rooms, i->nbr_rooms);
         if (distance(rdmpos, i->starting_pos) < 40) {
             o--; continue;
