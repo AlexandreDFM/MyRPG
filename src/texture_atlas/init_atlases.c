@@ -17,7 +17,8 @@ void create_atlases(wininf *inf)
     inf->atlases.scenes = load_csv("csv/scenes.csv");
     inf->atlases.statics = load_csv("csv/statics.csv");
     inf->atlases.collisions = load_csv("csv/collisions.csv");
-    inf->atlases.pnjs = load_csv("csv/pnjs.csv");
+    inf->atlases.pnjs =
+    inf->lang ? load_csv("csv/pnjs_fr.csv") : load_csv("csv/pnjs_en.csv");
     inf->atlases.icons = load_csv("csv/icons.csv");
     inf->atlases.menus_en = load_csv("csv/menus_en.csv");
     inf->atlases.menus_fr = load_csv("csv/menus_fr.csv");

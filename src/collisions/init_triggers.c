@@ -19,6 +19,7 @@ void create_triggers(wininf *inf)
     inf->triggers[6] = village_to_dittoland;
     inf->triggers[7] = village_to_dojo;
     inf->triggers[8] = generate_random_dungeon;
+    inf->triggers[9] = interact_pnj_quest;
 }
 
 void ta_mere(wininf *win, player *p)

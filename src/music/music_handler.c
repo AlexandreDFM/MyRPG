@@ -38,7 +38,7 @@ void handle_music_ditto_proxi(wininf *inf, player *p)
         sfVector3f posl = {posp.x, 0.0f, posp.y};
         sfListener_setPosition(posl);
         float volditto = 
-        sfMusic_getVolume(inf->music->musics_board[DITTOMUSIC]);
+        sfMusic_getVolume(inf->music->musics_board[LORDDITTOMUSIC]);
         volditto = volditto / 2.0f;
         sfListener_setGlobalVolume(volditto);
     }
@@ -49,7 +49,7 @@ void handle_music(wininf *inf, player *p)
     handle_multiple_music(inf, (sfIntRect)
     {HOME, INTERIOR, -1, -1}, HOMEMUSIC);
     handle_one_music(inf, MAIN_MENU, MENUMUSIC);
-    handle_one_music(inf, DITTOLAND, DITTOMUSIC);
+    handle_one_music(inf, DITTOLAND, LORDDITTOMUSIC);
     handle_music_ditto_proxi(inf, p);
     handle_one_music(inf, DUNGEON, DUNGEON1MUSIC);
     handle_multiple_music(inf, (sfIntRect)
