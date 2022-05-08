@@ -60,9 +60,9 @@ int test_attack(player *e, wininf *inf, player *p)
 
 void update_enemy(player *e, wininf *inf, player *p)
 {
+    if (e->st.health <= 0 || test_attack(e, inf, p)) return;
     map_inf *mi = inf->dungeon.inf; sfIntRect final;
     sfVector2f ppos = sfSprite_getPosition(p->test);
-    if (test_attack(e, inf, p)) return;
     sfVector2f epos = sfSprite_getPosition(e->test);
     sfVector2i elpos = global_to_local(epos), plpos = global_to_local(ppos);
     int proom = get_current_room(ppos, mi), eroom = get_current_room(epos, mi);
@@ -70,8 +70,7 @@ void update_enemy(player *e, wininf *inf, player *p)
     int old = get_current_roomlo((sfVector2i){e->sentpos.x, e->sentpos.y}, mi);
     int enemycond = (mi->map[elpos.y][elpos.x] == 'E' && old != -1);
     if (enemycond || eroom == -1) {
-        move_in_tunnel(e, inf, p); e->arrived = 0;
-        return;
+        move_in_tunnel(e, inf, p); e->arrived = 0; return;
     } else {
         final = move_in_room(rect, p, e, inf);
         if (final.left == -1) return;

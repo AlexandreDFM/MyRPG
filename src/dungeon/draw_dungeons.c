@@ -37,6 +37,7 @@ void update_attack_anims(wininf *inf, player *e, player *p)
 void draw_dungeon(wininf *inf, player *p)
 {
     sfRenderWindow_drawSprite(inf->win, inf->dungeon.inf->sp, 0);
+    sfRenderWindow_drawSprite(inf->win, inf->dungeon.inf->stairs, 0);
     for (list *t = inf->dungeon.enemies; t; t = t->next) {
         player *enemy = t->data;
         if (enemy->st.health <= 0) continue;

@@ -38,6 +38,7 @@ void ta_mere(wininf *win, player *p)
 void generate_random_dungeon(wininf *win, player *p)
 {
     int id = rand() % 12;
+    win->dungeon.id = id;
     create_dungeon(win, id);
     sfSprite_setPosition(p->test, win->dungeon.inf->starting_pos);
     p->nextpos = win->dungeon.inf->starting_pos;

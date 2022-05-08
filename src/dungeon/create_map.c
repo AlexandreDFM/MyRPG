@@ -19,7 +19,23 @@ char **empty_map(int size)
     return new;
 }
 
-map_inf *generate_map(int iter, sfImage *atlas)
+void create_exit(sfImage *atlas, char ***map, map_inf *inf)
+{
+    sfVector2i end = global_to_local(inf->starting_pos);
+    end.x -= 1;
+    sfVector2f endf = local_to_global(end.x, end.y);
+    (*map)[end.y][end.x] = 'F';
+    if (!inf->stairs) {
+        sfIntRect r = (sfIntRect){790, 1157, 24, 24};
+        sfTexture *tex = sfTexture_createFromImage(atlas, &r);
+        sfSprite *stairs = sfSprite_create();
+        sfSprite_setTexture(stairs, tex, sfFalse);
+        inf->stairs = stairs;
+    }
+    sfSprite_setPosition(inf->stairs, endf);
+}
+
+map_inf *generate_map(int iter, sfImage *atlas, sfImage *atlas2)
 {
     sfIntRect **rects = 0; int count = 0;
     char **map = empty_map(MAP_SIZE + 2);
@@ -32,9 +48,8 @@ map_inf *generate_map(int iter, sfImage *atlas)
     sfSprite_setTexture(sp, tex, sfFalse);
     sfImage_destroy(img);
     map_inf *inf = malloc(sizeof(map_inf));
-    inf->starting_pos = get_random_position(rects, count);
-    sfVector2i end = global_to_local(inf->starting_pos);
-    map[end.y][end.x - 1] = 'F';
+    inf->starting_pos = get_random_position(rects, count); inf->stairs = 0;
+    create_exit(atlas2, &map, inf);
     inf->map = map; inf->sp = sp; inf->rooms = rects; inf->nbr_rooms = count;
     return inf;
 }

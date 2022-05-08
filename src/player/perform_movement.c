@@ -58,9 +58,23 @@ int test_func(wininf *inf, player *p)
     return 1;
 }
 
+int next_floor(wininf *inf, player *p)
+{
+    sfVector2f pos = sfSprite_getPosition(p->test);
+    sfVector2i lp = global_to_local(pos);
+    sfVector2f center = local_to_global(lp.x, lp.y);
+    map_inf *mapi = inf->dungeon.inf;
+    if (mapi->map[lp.y][lp.x] == 'F' && is_same(center, pos, 1.0f)) {
+        inf->transition = 1;
+        inf->change_scene = -1;
+        inf->next_pos = pos;
+    }
+    return 0;
+}
+
 void perform_dungeon_movement(wininf *inf, player *p)
 {
-    if (!(p->can_move)) return;
+    if (!(p->can_move) || next_floor(inf, p)) return;
     handle_attack(inf, p);
     sfVector2f pos = sfSprite_getPosition(p->test);
     sfVector2f axis = inf->inputs.axis;
@@ -69,16 +83,16 @@ void perform_dungeon_movement(wininf *inf, player *p)
     sfVector2i np = global_to_local(input);
     sfVector2i target = global_to_local(p->nextpos);
     int cond = is_same(axis, (sfVector2f){0.0f, 0.0f}, 0.3f);
-    int cond2 = is_same(pos, p->nextpos, 2.0f);
+    int cond2 = is_same(pos, p->nextpos, 2.0f) && test_func(inf, p);
     char c = inf->dungeon.inf->map[np.y][np.x];
-    int walkable = c == ' ' || c == 'E';
+    int walkable = c == ' ' || c == 'E' || c == 'F';
     sfVector2f newp = my_lerp(pos, p->nextpos, inf->time.dt * 4.0f);
     sfSprite_setPosition(p->test, newp);
     int valid = !is_valid_move(inf, np, 0);
     int poscond = (np.x != target.x || np.y != target.y) && valid;
     if (!is_same(inf->inputs.axis, (sfVector2f){0.0f, 0.0f}, 0.1f))
         p->vel = inf->inputs.axis;
-    if (walkable && !cond && cond2 && poscond && !inf->inputs.back && test_func(inf, p)) {
+    if (walkable && !cond && cond2 && poscond && !inf->inputs.back) {
         p->nextpos = local_to_global(np.x, np.y);
         update_mobs(inf, p);
     }

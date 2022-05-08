@@ -69,8 +69,10 @@ void deal_dmg(wininf *inf, player *p)
         int A = p->st.attack, B = p->st.lvl, C = enemy->st.defense;
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
-        enemy->st.health -= dmg;
-        add_log(inf, "Dealt: %d hp\n", dmg < 0 ? dmg * -1 : dmg,
-        enemy->st.health);
+        enemy->st.health -= dmg > 0 ? dmg : -dmg;
+        add_log(inf, "Dealt: %d hp. The pokemon got %d remaining\n",
+            dmg < 0 ? dmg * -1 : dmg, enemy->st.health);
+        if (enemy->st.health <= 0) p->can_move = 1;
     }
+    update_mobs(inf, p);
 }

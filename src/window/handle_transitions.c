@@ -7,16 +7,16 @@
 
 #include "rpg.h"
 
-void update_transition(wininf *inf, player p)
+void update_transition(wininf *inf, player *p)
 {
     sfColor col = sfRectangleShape_getFillColor(inf->transi);
     float new_a = inf->ftransi;
     if (inf->transition == 1) {
         if (new_a > 0.99f) {
             inf->transition = -1; inf->time.transi = 0.0f;
-            if (!inf->change_scene) return;
+            if (inf->change_scene != 1) return reroll_dungeon(inf, p);
             inf->c_scene = inf->next_scene;
-            sfSprite_setPosition(p.test, inf->next_pos);
+            sfSprite_setPosition(p->test, inf->next_pos);
             return;
         } new_a += inf->time.dt * 3.0f;
     } else {

@@ -23,6 +23,7 @@ enum directions {
 
 typedef struct map_info {
     sfSprite *sp;
+    sfSprite *stairs;
     char **map;
     int **dsts;
     sfIntRect **rooms;
@@ -42,7 +43,6 @@ sfVector2i global_to_local(sfVector2f p);
 sfVector2i apply_dir(int dir, char **map);
 sfIntRect **random_split(sfIntRect *rect, int iter);
 char **my_str_to_word_array(char const *str);
-map_inf *generate_map(int iter, sfImage *atlas);
 int get_current_roomlo(sfVector2i pos, map_inf *inf);
 sfVector2f get_random_position(sfIntRect **rooms, int count);
 unsigned char get_neighbours(int i, int o, char **tab, int len);
@@ -55,7 +55,7 @@ bsp *split_container(sfIntRect *main, int iter);
 bsp *build_bsp(int size, int iter);
 int is_leaf(bsp *tree);
 char **empty_map(int size);
-map_inf *generate_map(int iter, sfImage *atlas);
+map_inf *generate_map(int iter, sfImage *atlas, sfImage *atlas2);
 sfIntRect generate_room(sfIntRect *rect);
 sfIntRect **random_split(sfIntRect *r, int iter);
 void clean_map(char ***mapref);

@@ -300,6 +300,7 @@ typedef struct dline_creator_t {
 
 typedef struct dungeon_t {
     struct map_info *inf;
+    int id;
     int in;
     list *enemies;
 } dungeon;
@@ -457,6 +458,7 @@ void update_olds(sfIntRect r, wininf *inf);
 void init_inventory(wininf *inf, int size);
 void draw_inv(inventory *inv, wininf *inf);
 void use_apple(wininf *inf, invslot **slot);
+void reroll_dungeon(wininf *inf, player *p);
 void draw_ig_menu(wininf *inf, menuss *menu, player *p);
 void draw_gamemenu(wininf *infos, player *p);
 sfSoundBuffer *my_buffer_from_file(char *path);
@@ -618,7 +620,7 @@ void handle_scene(wininf *infos, player *p);
 //Drawing functions
 void draw_static_scene(wininf *inf, scene s);
 //Drawing functions
-void update_transition(wininf *inf, player p);
+void update_transition(wininf *inf, player *p);
 //Drawing functions
 void draw_menu(wininf *inf, menuss *menu, player *p);
 //Drawing functions

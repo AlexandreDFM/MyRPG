@@ -16,10 +16,25 @@ sfImage *get_dungeon_image(sfImage *atlas, int id)
     return cdungeon;
 }
 
+void reroll_dungeon(wininf *win, player *p)
+{
+    if (win->change_scene != -1) return;
+    for (list *t = win->dungeon.enemies; t;) {
+        list *temp = t;
+        t = t->next;
+        player *enemy = temp->data;
+        //Free player
+        free(enemy); free(temp); temp = 0;
+    }
+    win->dungeon.enemies = 0;
+    create_dungeon(win, win->dungeon.id);
+}
+
 void create_dungeon(wininf *win, int id)
 {
     sfImage *img = get_dungeon_image(win->atlases.atlas, id);
-    win->dungeon.inf = generate_map(3, img); sfImage_destroy(img);
+    win->dungeon.inf = generate_map(3, img, win->atlases.atlas);
+    sfImage_destroy(img);
     if (win->net->is_multi) {
         sfSprite *sp = win->dungeon.inf->sp;
         win->dungeon.inf->sp = 0;
