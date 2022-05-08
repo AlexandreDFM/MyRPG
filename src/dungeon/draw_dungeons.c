@@ -36,6 +36,7 @@ void update_attack_anims(wininf *inf, player *e, player *p)
 
 void draw_dungeon(wininf *inf, player *p)
 {
+    if (inf->dungeon.ended) inf->dungeon.time += inf->time.dt;
     sfRenderWindow_drawSprite(inf->win, inf->dungeon.inf->sp, 0);
     sfRenderWindow_drawSprite(inf->win, inf->dungeon.inf->stairs, 0);
     for (list *t = inf->dungeon.enemies; t; t = t->next) {

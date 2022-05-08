@@ -91,10 +91,8 @@ void move_in_tunnel(player *e, wininf *inf, player *p)
     sfVector2i final = check_neighb(i, mi, e, plpos);
     sfVector2f ffinal = local_to_global(final.x, final.y);
     int count = is_valid_move(inf, (sfVector2i){final.x, final.y}, 1);
-    if (count) {
-        e->sentpos = oldprevpos;
-        return;
-    }
+    e->sentpos = oldprevpos;
+    if (count) return;
     e->vel = (sfVector2f){ffinal.x - epos.x, ffinal.y - epos.y};
     e->target = ffinal;
 }

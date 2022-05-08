@@ -40,7 +40,7 @@ void handle_attack(wininf *inf, player *p)
         if (p->time >= 2.0f) {
             p->attacking = 0;
             p->time = 0.0f;
-        }return;
+        } return;
     }
     if (inf->inputs.attack && inf->inputs.can_attack) {
         perform_attack(inf, p, pos);
@@ -64,11 +64,13 @@ int next_floor(wininf *inf, player *p)
     sfVector2i lp = global_to_local(pos);
     sfVector2f center = local_to_global(lp.x, lp.y);
     map_inf *mapi = inf->dungeon.inf;
-    if (mapi->map[lp.y][lp.x] == 'F' && is_same(center, pos, 1.0f)) {
+    int centered = is_same(center, pos, 1.0f);
+    if (mapi->map[lp.y][lp.x] == 'F' && centered && !inf->dungeon.next) {
         inf->transition = 1;
         inf->change_scene = -1;
         inf->next_pos = pos;
     }
+    p->can_move = 1;
     return 0;
 }
 

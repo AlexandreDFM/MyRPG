@@ -10,7 +10,7 @@
 
     #include "rpg.h"
     #define SIGN(x) ((x < 0) ? -1 : 1)
-    #define MAP_SIZE 50
+    #define MAP_SIZE 35
     #define H_RATIO 0.45
     #define W_RATIO 0.45
 

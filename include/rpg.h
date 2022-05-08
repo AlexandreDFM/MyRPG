@@ -247,6 +247,7 @@ typedef struct player_t {
     sfVector2f target;
     float time;
     sfVector2f nextpos;
+    sfVector2f prevpos;
     sfVector2f attack_pos;
     int attacking;
     int arrived;
@@ -302,6 +303,10 @@ typedef struct dungeon_t {
     struct map_info *inf;
     int id;
     int in;
+    int next;
+    int floor;
+    float time;
+    int ended;
     list *enemies;
 } dungeon;
 

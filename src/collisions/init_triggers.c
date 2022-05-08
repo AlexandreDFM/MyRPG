@@ -23,7 +23,6 @@ void create_triggers(wininf *inf)
 
 void ta_mere(wininf *win, player *p)
 {
-    my_printf(stdout, "Eh non ta mère :D\n");
     sfVector2f mid = (sfVector2f){520.0f, 320.0f};
     win->next_scene = VILLAGE;
     win->next_pos = mid;

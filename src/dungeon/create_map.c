@@ -30,6 +30,7 @@ void create_exit(sfImage *atlas, char ***map, map_inf *inf)
         sfTexture *tex = sfTexture_createFromImage(atlas, &r);
         sfSprite *stairs = sfSprite_create();
         sfSprite_setTexture(stairs, tex, sfFalse);
+        sfSprite_setOrigin(stairs, (sfVector2f){12, 12});
         inf->stairs = stairs;
     }
     sfSprite_setPosition(inf->stairs, endf);
@@ -75,7 +76,7 @@ sfIntRect **random_split(sfIntRect *r, int iter)
         if (!(lr < W_RATIO || rr < W_RATIO)) return splits;
         free(splits); free(l); free(re); return random_split(r, iter--);
     }
-    *l = (sfIntRect){r->left, r->top, r->width, rdm_btw(2, r->height - 2)};
+    *l = (sfIntRect){r->left, r->top, r->width, rdm_btw(3, r->height - 3)};
     splits[0] = l;
     *re = (sfIntRect){r->left, r->top + splits[0]->height, r->width,
         r->height - splits[0]->height}; splits[1] = re;
