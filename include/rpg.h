@@ -639,7 +639,7 @@ int parse_balise(char *line, int i, int ln, dline_parsing *p);
 //Dialogs Handling
 dline *create_lstruct(dl_creat dlcreator, sfIntRect r, int li);
 //Dialogs Handling
-list *create_dialog_list(wininf *inf, char *path, sfVector2f poÉÉubelle);
+list *create_dialog_list(wininf *inf, char *path, sfVector2f poubelle);
 //Dialogs Handling
 dline *load_line(char *line, int size, wininf *inf, void *(ptr)(size_t t));
 //Dialogs Handling
