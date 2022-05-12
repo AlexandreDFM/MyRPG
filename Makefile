@@ -180,8 +180,7 @@ SRC		= 	main.c												\
 			src/music/change_volumes.c							\
 			src/quest/call_quest.c								\
 			src/quest/manage_quest.c							\
-
-
+			src/help/manage_help.c								\
 
 OBJ    = $(SRC:.c=.o)
 
@@ -197,7 +196,7 @@ all:  $(OBJ) compile
 compile:
 	@make -C ./lib/my
 	@$(CC) $(SRC) -o $(NAME) $(LIBFLAG) -lm
-	## @./bonus/pokeball.sh
+	@./bonus/pokeball.sh
 
 clean:
 	@$(RM) $(OBJ)

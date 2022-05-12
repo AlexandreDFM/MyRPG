@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
 
 void perform_attack_mob(wininf *inf, player *e, player *p)
 {
@@ -19,8 +20,8 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
             add_log(inf, "%s%s\n", YELLOW,
                 inf->lang ? "Je me sens pas bien..." :
                 "I'm not felling well...");
-            inf->change_scene = 1;
-            inf->dungeon.in = 0;
+            sfSound_play(inf->sounds->sounds_board[MISSION_FAILURE]);
+            inf->change_scene = 1; inf->dungeon.in = 0;
             inf->transition = 1; p->st.health = p->st.max_health;
             inf->next_pos = (sfVector2f){170.0f, 100.0f};
             inf->next_scene = INTERIOR;

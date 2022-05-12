@@ -470,6 +470,8 @@ typedef struct inventory_slot {
 } invslot;
 
 ////////////////////////////////////////////////////////////
+// Others
+void manage_help(void);
 //Others
 void manage_quest(wininf *inf);
 //Others

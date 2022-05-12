@@ -6,9 +6,11 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
 
 void perform_attack(wininf *inf, player *p, sfVector2f pos)
 {
+    sfSound_play(inf->sounds->sounds_board[ATTACK_BASIC]);
     p->attack_pos = (sfVector2f){pos.x + p->vel.x * 24.0f,
         p->vel.y * 24.0f + pos.y};
     p->attacking = 2;

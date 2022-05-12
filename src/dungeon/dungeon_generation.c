@@ -20,6 +20,7 @@ int print_next_log(wininf *win)
 {
     if (win->dungeon.floor > 5) {
         if (!win->dungeon.ended) {
+            win->c_scene = DITTO;
             add_log(win, "You finished the dungeon !\n");
             add_log(win, "Well done :DD\n");
         }
