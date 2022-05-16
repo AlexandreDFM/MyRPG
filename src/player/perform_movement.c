@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
 
 void perform_free_movement(wininf *inf, player *p)
 {
@@ -66,6 +67,7 @@ int next_floor(wininf *inf, player *p)
     map_inf *mapi = inf->dungeon.inf;
     int centered = is_same(center, pos, 1.0f);
     if (mapi->map[lp.y][lp.x] == 'F' && centered && !inf->dungeon.next) {
+        sfSound_play(inf->sounds->sounds_board[STAIR_UP]);
         inf->transition = 1;
         inf->change_scene = -1;
         inf->next_pos = pos;

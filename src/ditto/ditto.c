@@ -8,6 +8,17 @@
 #include "ditto.h"
 #include "intro.h"
 
+int my_cmp_values(sfVector2f size, float a, float b)
+{
+    if (a == size.x && b == size.y) {
+        return 1;
+    } else if (a <= size.x && b <= size.y) {
+        return 2;
+    } else {
+        return 0;
+    }
+}
+
 void ditto_clock(wininf *inf, ditto_a *cditto)
 {
     if (inf->time.ditto_anim < 0.1f) return;

@@ -1,0 +1,23 @@
+
+                                        MY_RPG
+    This RPG is a reproduction of "Pokemon Mystery Dungeon Red Rescue Team".
+    The objective is simple, you need to get the quest in the world and
+    complete the main quest. (Finis a dungeon)
+    They are many Easter eggs that you can find in the game.
+    Good Luck & have fun ! :)
+                                CONTROLS
+    Basic Moves are with Z = UP, Q = LEFT, S = DOWN, D = RIGHT, E = INTERRACT
+    & SPACE = ATTACK.
+    The game is also controller friendly, connect it and play with it !
+                                    Flags
+    --collisions || -c                : Display the game collisions.
+    --pokemon    || -p  [ID]          : Change your pokemon by skipping the
+                                        quiz with CTRLR (PKMID Official)
+    --house      || -H  [HOUSENB]     : Change the house of the player.
+                                        (HOUSENB : 0-21)
+    --client            [HOSTIP:PORT] : Connect to your friend.
+    --host                            : Host a game for your friend.
+    --language   || -l  [LANG]        : Change game language.  (LANG : en, fr)
+    --framerate  || -f  [FPS]         : Change game framerate.
+                                        (FPS : 30, 60, 120, 144, 300, MAX)
+

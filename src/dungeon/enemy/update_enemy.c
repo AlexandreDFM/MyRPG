@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
 
 int test_attack(player *e, wininf *inf, player *p)
 {
@@ -13,6 +14,8 @@ int test_attack(player *e, wininf *inf, player *p)
     sfVector2f epos = sfSprite_getPosition(e->test);
     float dst = distance(epos, p->nextpos);
     if (dst < 36.0f) {
+        sfSound_play(inf->sounds->sounds_board[ATTACK_BASIC]);
+        sfSound_play(inf->sounds->sounds_board[TAKE_DAMAGE]);
         e->vel = (sfVector2f){p->nextpos.x - epos.x, p->nextpos.y - epos.y};
         e->attack_pos = ppos;
         e->attacking = 2;

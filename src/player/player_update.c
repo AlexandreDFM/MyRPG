@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "sounds.h"
 
 void draw_shadow(wininf *inf, player *p)
 {
@@ -64,6 +65,7 @@ void deal_dmg(wininf *inf, player *p)
         int D = ((A - C) / 8) + (B * 43690 / 65536);
         int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
         enemy->st.health -= dmg > 0 ? dmg : -dmg;
+        sfSound_play(inf->sounds->sounds_board[TAKE_DAMAGE]);
         add_log(inf, "%s: %d hp. %s %d hp%s\n", inf->lang ? "Infliges" :
         "Dealt", dmg < 0 ? dmg * -1 : dmg, inf->lang ? "Il lui reste" :
         "The pokemon got", enemy->st.health, inf->lang ? "" : " remaining");

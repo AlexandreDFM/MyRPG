@@ -10,6 +10,9 @@
 
 ditto_a *create_ditto(wininf *inf)
 {
+    sfView_zoom(inf->camera.view, 1.0f * SIZE);
+    sfView_setCenter(inf->camera.view, (sfVector2f){960.0f, 540.0f});
+    sfRenderWindow_setView(inf->win, inf->camera.view);
     ditto_a *cditto = malloc(sizeof(ditto_a)); cditto->plan = DITTOINIT;
     for (int i = 0, j = 1; i < 4; i++, j++)
         cditto->ditto[i] = c_ele(inf->atlases.atlas, "./csv/ditto.csv", j);

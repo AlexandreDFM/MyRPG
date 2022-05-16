@@ -13,7 +13,6 @@ void update_rects_dialog_quest(wininf *win)
     if (c_line->i == c_line->max) {
         win->ui.dialog = win->ui.dialog->next;
         win->interacting = !win->ui.dialog ? 0 : win->interacting;
-        win->quest = 1;
     } else {
         c_line->i = c_line->max - 1; c_line->cline = c_line->nblines - 1;
         for (int i = 0; i < c_line->nblines; i++) {
@@ -31,16 +30,17 @@ void int_manage_quest(wininf *win, pnj *closest, sfVector2f poubelle)
     if (!win->ui.dialog && win->quest == 0) {
         win->ui.dialog = create_dialog_list(win, closest->dialog, poubelle);
         win->quest = 2;
-    } else if (win->ui.dialog && win->quest == 2) {
+    } else if (win->ui.dialog && (win->quest == 2 || win->quest == 3)) {
         update_rects_dialog_quest(win);
     } else {
         win->interacting = 0;
+        win->quest = 1;
     }
 }
 
 void interact_pnj_quest(wininf *win, player *p)
 {
-    if (win->quest == 1 || win->quest == 3) {
+    if (win->quest == 1) {
         win->interacting = 0; return;
     }
     float min = 200.f; pnj *closest = 0;

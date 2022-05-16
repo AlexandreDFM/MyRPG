@@ -20,6 +20,9 @@ enum soundsidx {
     LEVEL_UP,
     RANK_UP,
     REWARD,
+    MISSION_FAILURE,
+    STAIR_UP,
+    TAKE_DAMAGE,
     COUNTSOUNDS
 };
 

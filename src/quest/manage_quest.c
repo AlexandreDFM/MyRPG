@@ -10,7 +10,7 @@
 
 void manage_quest(wininf *inf)
 {
-    if (inf->quest == 1) {
+    if (inf->quest == 2) {
         sfSound_play(inf->sounds->sounds_board[BIG_REWARD]);
         inf->quest = 3;
     }

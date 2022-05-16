@@ -8,3 +8,6 @@ Sound;Enum
 ./sounds/special/level_up.ogg;LEVEL_UP
 ./sounds/special/rank_up.ogg;RANK_UP
 ./sounds/special/reward.ogg;REWARD
+./sounds/special/mission_Failure.ogg;MISSION_FAILURE
+./sounds/special/stair_up.ogg;STAIR_UP
+./sounds/attack/take_damage.ogg;TAKE_DAMAGE
