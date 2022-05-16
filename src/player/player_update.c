@@ -67,7 +67,9 @@ void deal_dmg(wininf *inf, player *p)
         add_log(inf, "%s: %d hp. %s %d hp%s\n", inf->lang ? "Infliges" :
         "Dealt", dmg < 0 ? dmg * -1 : dmg, inf->lang ? "Il lui reste" :
         "The pokemon got", enemy->st.health, inf->lang ? "" : " remaining");
-        if (enemy->st.health <= 0) p->can_move = 1;
+        if (enemy->st.health <= 0) {
+            p->can_move = 1; check_death(inf, enemy, p);
+        }
     }
     update_mobs(inf, p);
 }
