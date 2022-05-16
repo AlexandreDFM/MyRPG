@@ -19,7 +19,6 @@ void perform_attack(wininf *inf, player *p, sfVector2f pos)
 void check_death(wininf *inf, player *enemy, player *p)
 {
     if (enemy->st.health <= 0) {
-        printf("You killed the enemy!\n");
         p->can_move = 1;
         add_to_inventory(inf, inf->inv, 0);
     }
