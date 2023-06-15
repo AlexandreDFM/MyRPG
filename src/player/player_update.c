@@ -62,13 +62,13 @@ void deal_dmg(wininf *inf, player *p)
         sfVector2f epos = sfSprite_getPosition(enemy->test);
         if (!is_same(p->attack_pos, epos, 12.0f)) continue;
         int A = p->st.attack, B = p->st.lvl, C = enemy->st.defense;
-        int D = ((A - C) / 8) + (B * 43690 / 65536);
-        int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
+        int dmg = 66666;
         enemy->st.health -= dmg > 0 ? dmg : -dmg;
         sfSound_play(inf->sounds->sounds_board[TAKE_DAMAGE]);
         add_log(inf, "%s: %d hp. %s %d hp%s\n", inf->lang ? "Infliges" :
-        "Dealt", dmg < 0 ? dmg * -1 : dmg, inf->lang ? "Il lui reste" :
-        "The pokemon got", enemy->st.health, inf->lang ? "" : " remaining");
+            "Dealt", dmg < 0 ? dmg * -1 : dmg, inf->lang ? "Il lui reste" :
+            "The pokemon got", enemy->st.health > 0 ? enemy->st.health : 0,
+            inf->lang ? "" : " remaining");
         if (enemy->st.health <= 0) {
             p->can_move = 1; check_death(inf, enemy, p);
         }

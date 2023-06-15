@@ -12,10 +12,8 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
 {
     if (e->time > 1.0f && e->attacking == 2) {
         e->attacking -= 1;
-        int A = e->st.attack, B = e->st.lvl, C = p->st.defense;
-        int D = ((A - C) / 8) + (B * 43690 / 65536);
-        int dmg = floor((2 * D) - C + 10 + (D * D) * (3276 / 65536));
-        p->st.health -= dmg < 0 ? -dmg : dmg;
+        p->st.health -= 1;
+        if (p->st.health <= 1) p->st.health = 1;
         if (p->st.health <= 0) {
             add_log(inf, "%s%s\n", YELLOW,
                 inf->lang ? "Je me sens pas bien..." :
@@ -27,7 +25,7 @@ void perform_attack_mob(wininf *inf, player *e, player *p)
             inf->next_scene = INTERIOR;
         } else {
             add_log(inf, "%s %d hp\n", inf->lang ? "Aie j'ai pris" :
-            "Ouch I took", dmg < 0 ? dmg * -1 : dmg);
+            "Ouch I took", 1);
         }
     }
 }
